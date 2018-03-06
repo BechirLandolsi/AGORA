@@ -32,7 +32,7 @@ public class Identity {
 			navigateTo = "/home?faces-redirect=true";
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-					"Veuillez insérer un login et un mot de passe valide", ""));
+					"Veuillez inserer un login et un mot de passe valide", ""));
 			return "/login?faces-redirect=true";
 
 		}

@@ -72,30 +72,34 @@
 							<name>${mysql.artifactId}-${mysql.driver.version}.jar</name>
 						</configuration>
 					</execution>
-					<execution>
+				<execution>
 						<id>add_datasource</id>
-						<phase>deploy</phase>
+						<phase>install</phase>
 						<goals>
 							<goal>add-resource</goal>
 						</goals>
 						<configuration>
-							<address>subsystem=datasources,data-source=${ds.jndi.name}</address>
+							<address>subsystem=datasources,data-source=java:jboss/myDs</address>
 							<resources>
 								<resource>
 									<properties>
-										<connection-url>${db.jdbc.url}</connection-url>
-										<jndi-name>${ds.jndi.name}</jndi-name>
+										<jndi-name>java:jboss/${parent.name}Ds</jndi-name>
+										<pool-name>${parent.name}Ds</pool-name>
 										<enabled>true</enabled>
-										<enable>true</enable>
-										<user-name>${mysql.username}</user-name>
-										<driver-name>${mysql.driver.name}</driver-name>
-										<pool-name>${ds.jndi.name}</pool-name>
-										<use-ccm>false</use-ccm>
+										<connection-url>jdbc:h2:mem:${parent.name}db;DB_CLOSE_DELAY=-1</connection-url>
+										<driver-class>org.h2.Driver</driver-class>
+										<driver-name>h2</driver-name>
+										<user-name>sa</user-name>
+										<password>sa</password>
 									</properties>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
+					
+					
+					
+					
 				</executions>
 			</plugin>
 

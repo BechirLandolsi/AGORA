@@ -17,6 +17,7 @@
 	<inceptionYear>2018</inceptionYear>
 	<properties>
 
+<parent.name>esprit1718b1businessbuilder</parent.name>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javaee-api-version>7.0</javaee-api-version>
 		<javaee-web-api-version>7.0</javaee-web-api-version>

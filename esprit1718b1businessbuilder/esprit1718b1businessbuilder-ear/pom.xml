@@ -74,7 +74,7 @@
 					</execution>
 				<execution>
 						<id>add_datasource</id>
-						<phase>deploy</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>add-resource</goal>
 						</goals>

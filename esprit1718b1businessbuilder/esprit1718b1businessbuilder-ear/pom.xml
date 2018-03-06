@@ -79,7 +79,6 @@
 							<goal>add-resource</goal>
 						</goals>
 						<configuration>
-							<address>subsystem=datasources,data-source=java:jboss/${parent.name}Ds</address>
 							<resources>
 								<resource>
 									<properties>

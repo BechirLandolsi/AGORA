@@ -6,15 +6,24 @@
     <artifactId>esprit1718b1businessbuilder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>esprit1718b1businessbuilder-domain</artifactId>
   <packaging>ejb</packaging>
 	<name>esprit1718b1businessbuilder-domain</name>
-
+	
+	
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
+		
 	</dependencies>
   
 </project>

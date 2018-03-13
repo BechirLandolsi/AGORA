@@ -1,8 +1,10 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,7 +32,34 @@ public class Company extends User {
 	private String resultTest ;
 	
 	private String Services ;
+	
+	/* Association */
+	
+	@OneToMany(mappedBy="supplier") 
+	private List<Produit> produits ; 
+	
+	public List<Produit> getProduits() {
+		return produits;
+	}
 
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	@OneToMany(mappedBy="buyer") 
+	private List<Order> orders ;  
+    
+	/***********************/
+	
+	
 	public String getCEO() {
 		return CEO;
 	}

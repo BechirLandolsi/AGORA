@@ -14,7 +14,13 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tab_Admin")
 
-public class Admin extends User {
+public class Admin extends User implements Serializable {
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 @Column(name = "ADMIN_FIRST")
 private String firstname ;

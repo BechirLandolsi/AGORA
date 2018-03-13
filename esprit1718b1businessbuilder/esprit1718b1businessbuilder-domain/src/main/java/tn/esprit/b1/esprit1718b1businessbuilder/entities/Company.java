@@ -12,6 +12,11 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tab_Company")
 public class Company extends User {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String CEO ;
 	
 	@Temporal(TemporalType.DATE)

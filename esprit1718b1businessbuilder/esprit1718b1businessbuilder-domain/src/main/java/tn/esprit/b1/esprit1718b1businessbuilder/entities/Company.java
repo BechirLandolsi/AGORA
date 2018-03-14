@@ -12,6 +12,11 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tab_Company")
 public class Company extends User {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String CEO ;
 	
 	@Temporal(TemporalType.DATE)
@@ -40,7 +45,29 @@ public class Company extends User {
 	
 	@OneToMany (mappedBy="ProjectOwner")
 	private List <Project> project;
+	
+	/* Association */
+	
+	@OneToMany(mappedBy="supplier") 
+	private List<Produit> produits ;
 
+	@OneToMany(mappedBy="buyer") 
+	private List<Order> orders ;  
+    
+	/***********************/
+	
+	public List<Produit> getProduits() {
+		return produits;
+	}
+
+	
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+
+	
+
+	
 	
 	public String getCEO() {
 		return CEO;
@@ -138,5 +165,24 @@ public class Company extends User {
 		this.project = project;
 	}
 
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 	
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+@OneToMany
+	private List<Event> events;
+
 }

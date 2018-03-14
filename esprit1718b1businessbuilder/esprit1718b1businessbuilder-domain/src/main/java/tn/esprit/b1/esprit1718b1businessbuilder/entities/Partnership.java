@@ -18,17 +18,26 @@ import javax.persistence.Table;
 @Table(name = "tab_partnership")
 public class Partnership implements Serializable {
 	
-	@EmbeddedId
-	private PartnershipPK partnershipPk;
-	
+		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	//@ManyToOne
-	//@JoinColumn(name="idCompany",referencedColumnName="id",insertable=false,updatable=false)
-	private Company company;
+
+	@EmbeddedId
+	private PartnershipPK partnershipPK;
 	
-	//@ManyToOne
-	//@JoinColumn(name="idPartner",referencedColumnName="id",insertable=false,updatable=false)
-	private Company partner;
+	
+	@ManyToOne
+	@JoinColumn(name="CompanyPartnerId",referencedColumnName="USR_ID",insertable=false,updatable=false)
+	private Company CompanyPartner;
+	
+	
+	
+	@ManyToOne
+	@JoinColumn(name="ProjectId",referencedColumnName="ProjectId",insertable=false,updatable=false)
+	private Project project;
 		
 	@Column(name = "partnershipDate")
 	private String partnershipDate;
@@ -40,38 +49,38 @@ public class Partnership implements Serializable {
 		super();
 	}
 
-	public Partnership(PartnershipPK partnershipPk, Company company, Company partner, String partnershipDate,
+	public Partnership(PartnershipPK partnershipPK, Company companyPartner, Project project, String partnershipDate,
 			String partnershipDuration) {
 		super();
-		this.partnershipPk = partnershipPk;
-		this.company = company;
-		this.partner = partner;
+		this.partnershipPK = partnershipPK;
+		CompanyPartner = companyPartner;
+		this.project = project;
 		this.partnershipDate = partnershipDate;
 		this.partnershipDuration = partnershipDuration;
 	}
 
-	public PartnershipPK getPartnershipPk() {
-		return partnershipPk;
+	public PartnershipPK getPartnershipPK() {
+		return partnershipPK;
 	}
 
-	public void setPartnershipPk(PartnershipPK partnershipPk) {
-		this.partnershipPk = partnershipPk;
+	public void setPartnershipPK(PartnershipPK partnershipPK) {
+		this.partnershipPK = partnershipPK;
 	}
 
-	public Company getCompany() {
-		return company;
+	public Company getCompanyPartner() {
+		return CompanyPartner;
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setCompanyPartner(Company companyPartner) {
+		CompanyPartner = companyPartner;
 	}
 
-	public Company getPartner() {
-		return partner;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setPartner(Company partner) {
-		this.partner = partner;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public String getPartnershipDate() {
@@ -89,13 +98,6 @@ public class Partnership implements Serializable {
 	public void setPartnershipDuration(String partnershipDuration) {
 		this.partnershipDuration = partnershipDuration;
 	}
-	
-	
-
-
 
 	
-	
-
-
 }

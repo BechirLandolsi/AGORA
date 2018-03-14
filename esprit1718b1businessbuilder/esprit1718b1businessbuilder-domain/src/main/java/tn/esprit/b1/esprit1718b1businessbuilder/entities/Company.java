@@ -39,6 +39,14 @@ public class Company extends User {
 	
 	
 	
+	@OneToMany (mappedBy="CompanyPartner")
+	private List <Partnership> CompanyPartner;
+	
+	
+	
+	@OneToMany (mappedBy="ProjectOwner")
+	private List <Project> project;
+	
 	/* Association */
 	@ManyToMany
 	private List<Service> services ;
@@ -55,6 +63,7 @@ public class Company extends User {
 		return produits;
 	}
 
+	
 	public void setProduits(List<Produit> produits) {
 		this.produits = produits;
 	}
@@ -144,6 +153,23 @@ public class Company extends User {
 		this.services = services;
 	}
 
+	public List<Partnership> getCompanyPartner() {
+		return CompanyPartner;
+	}
+
+	public void setCompanyPartner(List<Partnership> companyPartner) {
+		CompanyPartner = companyPartner;
+	}
+
+	public List<Project> getProject() {
+		return project;
+	}
+
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+
+
 	public List<Order> getOrders() {
 		return orders;
 	}
@@ -152,6 +178,7 @@ public class Company extends User {
 		this.orders = orders;
 	}
 	
+
 	public List<Event> getEvents() {
 		return events;
 	}

@@ -15,37 +15,49 @@ import javax.persistence.Table;
 @Embeddable
 public class PartnershipPK implements Serializable {
 	
-	private int idCompany;
-	private int idPartner;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Long CompanyPartnerId;
+	private Long ProjectId;
 	
 	public PartnershipPK() {
 		super();
 	}
-	public PartnershipPK(int idCompany, int idPartner) {
+
+	public PartnershipPK(Long companyPartnerId, Long projectId) {
 		super();
-		this.idCompany = idCompany;
-		this.idPartner = idPartner;
+		CompanyPartnerId = companyPartnerId;
+		ProjectId = projectId;
 	}
-	public int getIdCompany() {
-		return idCompany;
+
+	public Long getCompanyPartnerId() {
+		return CompanyPartnerId;
 	}
-	public void setIdCompany(int idCompany) {
-		this.idCompany = idCompany;
+
+	public void setCompanyPartnerId(Long companyPartnerId) {
+		CompanyPartnerId = companyPartnerId;
 	}
-	public int getIdPartner() {
-		return idPartner;
+
+	public Long getProjectId() {
+		return ProjectId;
 	}
-	public void setIdPartner(int idPartner) {
-		this.idPartner = idPartner;
+
+	public void setProjectId(Long projectId) {
+		ProjectId = projectId;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idCompany;
-		result = prime * result + idPartner;
+		result = prime * result + ((CompanyPartnerId == null) ? 0 : CompanyPartnerId.hashCode());
+		result = prime * result + ((ProjectId == null) ? 0 : ProjectId.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -55,12 +67,19 @@ public class PartnershipPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PartnershipPK other = (PartnershipPK) obj;
-		if (idCompany != other.idCompany)
+		if (CompanyPartnerId == null) {
+			if (other.CompanyPartnerId != null)
+				return false;
+		} else if (!CompanyPartnerId.equals(other.CompanyPartnerId))
 			return false;
-		if (idPartner != other.idPartner)
+		if (ProjectId == null) {
+			if (other.ProjectId != null)
+				return false;
+		} else if (!ProjectId.equals(other.ProjectId))
 			return false;
 		return true;
 	}
+
 	
 	
 	

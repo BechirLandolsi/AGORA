@@ -41,7 +41,12 @@ public class Company extends User {
 	/* Association */
 	
 	@OneToMany(mappedBy="supplier") 
-	private List<Produit> produits ; 
+	private List<Produit> produits ;
+
+	@OneToMany(mappedBy="buyer") 
+	private List<Order> orders ;  
+    
+	/***********************/
 	
 	public List<Produit> getProduits() {
 		return produits;
@@ -51,18 +56,8 @@ public class Company extends User {
 		this.produits = produits;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
-	}
+	
 
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	@OneToMany(mappedBy="buyer") 
-	private List<Order> orders ;  
-    
-	/***********************/
 	
 	
 	public String getCEO() {
@@ -143,6 +138,14 @@ public class Company extends User {
 
 	public void setServices(String services) {
 		Services = services;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

@@ -6,30 +6,31 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class OrderLineFK implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 
-	private Integer idOrder ; 
-	private Integer idProduct ;
+	private int idOrder ; 
+	private int idProduct ;
 	
 	
-	public Integer getIdOrder() {
+	public int getIdOrder() {
 		return idOrder;
 	}
-	public void setIdOrder(Integer idOrder) {
+	public void setIdOrder(int idOrder) {
 		this.idOrder = idOrder;
 	}
-	public Integer getIdProduct() {
+	public int getIdProduct() {
 		return idProduct;
 	}
-	public void setIdProduct(Integer idProduct) {
+	public void setIdProduct(int idProduct) {
 		this.idProduct = idProduct;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idOrder == null) ? 0 : idOrder.hashCode());
-		result = prime * result + ((idProduct == null) ? 0 : idProduct.hashCode());
+		result = prime * result + idOrder;
+		result = prime * result + idProduct;
 		return result;
 	}
 	@Override
@@ -41,18 +42,15 @@ public class OrderLineFK implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		OrderLineFK other = (OrderLineFK) obj;
-		if (idOrder == null) {
-			if (other.idOrder != null)
-				return false;
-		} else if (!idOrder.equals(other.idOrder))
+		if (idOrder != other.idOrder)
 			return false;
-		if (idProduct == null) {
-			if (other.idProduct != null)
-				return false;
-		} else if (!idProduct.equals(other.idProduct))
+		if (idProduct != other.idProduct)
 			return false;
 		return true;
 	}
+	
+	
+	
 	
 	
 }

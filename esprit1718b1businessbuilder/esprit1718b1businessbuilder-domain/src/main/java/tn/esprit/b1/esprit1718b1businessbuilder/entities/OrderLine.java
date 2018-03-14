@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class OrderLine implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	@EmbeddedId
 	private OrderLineFK orderLineFK ; 
 	
@@ -20,11 +22,11 @@ public class OrderLine implements Serializable{
 	/* Association */ 
 	@ManyToOne
 	@JoinColumn(name="idProduct",referencedColumnName="id",insertable=false,updatable=false)
-	private Produit product ; 
+	private Produit prod ; 
 	
 	@ManyToOne
 	@JoinColumn(name="idOrder",referencedColumnName="id",insertable=false,updatable=false)
-	private Order order ;
+	private Order ord ;
 	
 	/***************/
 	
@@ -47,20 +49,20 @@ public class OrderLine implements Serializable{
 	
 	
 
-	public Produit getProduct() {
-		return product;
+	public Produit getProd() {
+		return prod;
 	}
 
-	public void setProduct(Produit product) {
-		this.product = product;
+	public void setProd(Produit prod) {
+		this.prod = prod;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Order getOrd() {
+		return ord;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrd(Order ord) {
+		this.ord = ord;
 	}
 
 	public OrderLine(OrderLineFK orderLineFK, Integer quantity) {

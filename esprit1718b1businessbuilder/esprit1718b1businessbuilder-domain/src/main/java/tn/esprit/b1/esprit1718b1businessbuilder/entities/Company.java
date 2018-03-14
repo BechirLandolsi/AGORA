@@ -1,8 +1,10 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -116,6 +118,14 @@ public class Company extends User {
 		Services = services;
 	}
 	
-	
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+@OneToMany
+	private List<Event> events;
 
 }

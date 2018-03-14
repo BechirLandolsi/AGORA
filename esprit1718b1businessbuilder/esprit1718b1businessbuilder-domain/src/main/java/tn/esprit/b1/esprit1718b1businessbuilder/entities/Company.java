@@ -148,6 +148,14 @@ public class Company extends User {
 		this.orders = orders;
 	}
 	
-	
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+@OneToMany
+	private List<Event> events;
 
 }

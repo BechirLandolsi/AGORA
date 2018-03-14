@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Embeddable
 public class PartnershipPK implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idCompany;
 	private int idPartner;
 	

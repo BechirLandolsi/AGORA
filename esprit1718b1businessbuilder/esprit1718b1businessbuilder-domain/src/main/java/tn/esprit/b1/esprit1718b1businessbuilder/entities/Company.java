@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,9 +37,11 @@ public class Company extends User {
 	
 	private String resultTest ;
 	
-	private String Services ;
+	
 	
 	/* Association */
+	@ManyToMany
+	private List<Service> services ;
 	
 	@OneToMany(mappedBy="supplier") 
 	private List<Produit> produits ;
@@ -132,12 +135,13 @@ public class Company extends User {
 		this.resultTest = resultTest;
 	}
 
-	public String getServices() {
-		return Services;
+	
+	public List<Service> getServices() {
+		return services;
 	}
 
-	public void setServices(String services) {
-		Services = services;
+	public void setServices(List<Service> services) {
+		this.services = services;
 	}
 
 	public List<Order> getOrders() {
@@ -155,7 +159,7 @@ public class Company extends User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-@OneToMany
+    @OneToMany
 	private List<Event> events;
 
 }

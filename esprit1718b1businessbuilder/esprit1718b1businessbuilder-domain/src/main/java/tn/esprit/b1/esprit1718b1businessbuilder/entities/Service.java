@@ -1,12 +1,13 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,10 +23,10 @@ public class Service implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	private Long id;
-	
-	
 	private String name;
-
+    
+	@ManyToMany (mappedBy="services")
+	private List<Company> companies ;
 
 	public Long getId() {
 		return id;
@@ -34,6 +35,16 @@ public class Service implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+
+	public List<Company> getCompanies() {
+		return companies;
+	}
+
+
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
 	}
 
 
@@ -47,10 +58,7 @@ public class Service implements Serializable{
 	}
 
 
-	@Override
-	public String toString() {
-		return "Service [id=" + id + ", name=" + name + "]";
-	}
+	
 	
 	
 }

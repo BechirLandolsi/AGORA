@@ -57,13 +57,41 @@ public class Company extends User {
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
     
+ 
+	@OneToMany(mappedBy = "company1" )
+	private List<Recommandation> recommandations1 ; 
+	
+	@OneToMany(mappedBy = "company2" )
+	private List<Recommandation> recommandations2 ; 
 	/***********************/
+	
+	
 	
 	public List<Produit> getProduits() {
 		return produits;
 	}
 
 	
+	public List<Recommandation> getRecommandations1() {
+		return recommandations1;
+	}
+
+
+	public void setRecommandations1(List<Recommandation> recommandations1) {
+		this.recommandations1 = recommandations1;
+	}
+
+
+	public List<Recommandation> getRecommandations2() {
+		return recommandations2;
+	}
+
+
+	public void setRecommandations2(List<Recommandation> recommandations2) {
+		this.recommandations2 = recommandations2;
+	}
+
+
 	public void setProduits(List<Produit> produits) {
 		this.produits = produits;
 	}

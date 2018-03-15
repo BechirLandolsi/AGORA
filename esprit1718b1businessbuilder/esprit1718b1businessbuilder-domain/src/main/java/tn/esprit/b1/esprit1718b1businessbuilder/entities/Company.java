@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,9 +37,19 @@ public class Company extends User {
 	
 	private String resultTest ;
 	
-	private String Services ;
+	
+	
+	@OneToMany (mappedBy="CompanyPartner")
+	private List <Partnership> CompanyPartner;
+	
+	
+	
+	@OneToMany (mappedBy="ProjectOwner")
+	private List <Project> project;
 	
 	/* Association */
+	@ManyToMany
+	private List<Service> services ;
 	
 	@OneToMany(mappedBy="supplier") 
 	private List<Produit> produits ;
@@ -52,11 +63,40 @@ public class Company extends User {
 	@OneToMany(mappedBy="company") 
 	private List<Claim> Recevedclaims ; 
     
+ 
+	@OneToMany(mappedBy = "company1" )
+	private List<Recommandation> recommandations1 ; 
+	
+	@OneToMany(mappedBy = "company2" )
+	private List<Recommandation> recommandations2 ; 
 	/***********************/
+	
+	
 	
 	public List<Produit> getProduits() {
 		return produits;
 	}
+
+	
+	public List<Recommandation> getRecommandations1() {
+		return recommandations1;
+	}
+
+
+	public void setRecommandations1(List<Recommandation> recommandations1) {
+		this.recommandations1 = recommandations1;
+	}
+
+
+	public List<Recommandation> getRecommandations2() {
+		return recommandations2;
+	}
+
+
+	public void setRecommandations2(List<Recommandation> recommandations2) {
+		this.recommandations2 = recommandations2;
+	}
+
 
 	public List<Claim> getMyClaims() {
 		return myClaims;
@@ -154,13 +194,31 @@ public class Company extends User {
 		this.resultTest = resultTest;
 	}
 
-	public String getServices() {
-		return Services;
+	
+	public List<Service> getServices() {
+		return services;
 	}
 
-	public void setServices(String services) {
-		Services = services;
+	public void setServices(List<Service> services) {
+		this.services = services;
 	}
+
+	public List<Partnership> getCompanyPartner() {
+		return CompanyPartner;
+	}
+
+	public void setCompanyPartner(List<Partnership> companyPartner) {
+		CompanyPartner = companyPartner;
+	}
+
+	public List<Project> getProject() {
+		return project;
+	}
+
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+
 
 	public List<Order> getOrders() {
 		return orders;
@@ -170,6 +228,7 @@ public class Company extends User {
 		this.orders = orders;
 	}
 	
+
 	public List<Event> getEvents() {
 		return events;
 	}
@@ -177,7 +236,7 @@ public class Company extends User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-@OneToMany
+    @OneToMany
 	private List<Event> events;
 
 }

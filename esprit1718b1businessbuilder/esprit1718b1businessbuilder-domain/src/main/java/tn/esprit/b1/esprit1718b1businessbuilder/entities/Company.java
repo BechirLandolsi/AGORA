@@ -45,11 +45,33 @@ public class Company extends User {
 
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
+	
+	@OneToMany(mappedBy="claimant") 
+	private List<Claim> myClaims ;  
+	
+	@OneToMany(mappedBy="company") 
+	private List<Claim> Recevedclaims ; 
     
 	/***********************/
 	
 	public List<Produit> getProduits() {
 		return produits;
+	}
+
+	public List<Claim> getMyClaims() {
+		return myClaims;
+	}
+
+	public void setMyClaims(List<Claim> myClaims) {
+		this.myClaims = myClaims;
+	}
+
+	public List<Claim> getRecevedclaims() {
+		return Recevedclaims;
+	}
+
+	public void setRecevedclaims(List<Claim> recevedclaims) {
+		Recevedclaims = recevedclaims;
 	}
 
 	public void setProduits(List<Produit> produits) {

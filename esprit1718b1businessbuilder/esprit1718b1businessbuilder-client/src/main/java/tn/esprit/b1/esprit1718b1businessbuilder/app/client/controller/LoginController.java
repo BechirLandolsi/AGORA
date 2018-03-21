@@ -11,6 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -22,6 +25,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private JFXButton btnLogin;
+    
+    @FXML
+    private Label signup;
 
     /**
      * Initializes the controller class.
@@ -42,5 +48,10 @@ public class LoginController implements Initializable {
         mainStage.setScene(scene);
         mainStage.show();
     }
-    
+
+    @FXML
+    void DoSignUp(MouseEvent event) {
+
+    }
+
 }

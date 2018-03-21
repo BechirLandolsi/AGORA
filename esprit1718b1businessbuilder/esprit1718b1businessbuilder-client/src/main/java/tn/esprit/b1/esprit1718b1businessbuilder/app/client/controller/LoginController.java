@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void DoSignUp(MouseEvent event) {
+    void doSignUp(MouseEvent event) {
 
     }
 

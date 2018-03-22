@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.HomeController">
+   <children>
+            <TextField layoutX="50.0" layoutY="14.0" prefHeight="53.0" prefWidth="685.0" promptText="Search...">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+            <JFXButton fx:id="btnSearch" ellipsisString="" layoutX="735.0" layoutY="15.0" onAction="#makeSearch" prefHeight="53.0" prefWidth="43.0" style="-fx-alignment: left;" styleClass="nav-button" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#bcc2cd" glyphName="SEARCH" size="30" text="" wrappingWidth="12.0" />
+               </graphic>
+            </JFXButton>
+            <Separator layoutX="846.0" layoutY="2.0" orientation="VERTICAL" prefHeight="630.0" prefWidth="0.0" />
+            <Label layoutX="849.0" layoutY="2.0" prefHeight="60.0" prefWidth="298.0" style="-fx-alignment: center; -fx-font-size: 16; -fx-text-fill: #7387A8; -fx-border-color: #7387A8; -fx-border-width: 0 0 2 0;" text="RECOMMENDATIONS" />
+         
+   </children>
+</AnchorPane>

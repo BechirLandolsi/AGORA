@@ -42,8 +42,6 @@ public class Company extends User {
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
 	
-	
-	
 	@OneToMany (mappedBy="ProjectOwner")
 	private List <Project> project;
 	

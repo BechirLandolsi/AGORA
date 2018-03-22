@@ -100,4 +100,6 @@ public class Partnership implements Serializable {
 	}
 
 	
+	
+	
 }

@@ -54,14 +54,91 @@ public class Company extends User {
 
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
+	
+	@OneToMany(mappedBy="claimant") 
+	private List<Claim> myClaims ;  
+	
+	@OneToMany(mappedBy="company") 
+	private List<Claim> Recevedclaims ; 
     
+ 
+	@OneToMany(mappedBy = "company1" )
+	private List<Recommandation> recommandations1 ; 
+	
+	@OneToMany(mappedBy = "company2" )
+	private List<Recommandation> recommandations2 ; 
 	/***********************/
+	
+	
 	
 	public List<Produit> getProduits() {
 		return produits;
 	}
 
 	
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+	public Company(String name, String login, String password, String email,String cEO, String adress, Long number, String reference,
+			
+			String sector, int rate, String resultTest) {
+		super(name, login, password, email);
+		CEO = cEO;
+	
+		this.adress = adress;
+		this.number = number;
+		this.reference = reference;
+		
+		this.sector = sector;
+		this.rate = rate;
+		this.resultTest = resultTest;
+	
+		
+	}
+
+
+	public List<Recommandation> getRecommandations1() {
+		return recommandations1;
+	}
+
+
+	public void setRecommandations1(List<Recommandation> recommandations1) {
+		this.recommandations1 = recommandations1;
+	}
+
+
+	public List<Recommandation> getRecommandations2() {
+		return recommandations2;
+	}
+
+
+	public void setRecommandations2(List<Recommandation> recommandations2) {
+		this.recommandations2 = recommandations2;
+	}
+
+
+	public List<Claim> getMyClaims() {
+		return myClaims;
+	}
+
+	public void setMyClaims(List<Claim> myClaims) {
+		this.myClaims = myClaims;
+	}
+
+	public List<Claim> getRecevedclaims() {
+		return Recevedclaims;
+	}
+
+	public void setRecevedclaims(List<Claim> recevedclaims) {
+		Recevedclaims = recevedclaims;
+	}
+
 	public void setProduits(List<Produit> produits) {
 		this.produits = produits;
 	}

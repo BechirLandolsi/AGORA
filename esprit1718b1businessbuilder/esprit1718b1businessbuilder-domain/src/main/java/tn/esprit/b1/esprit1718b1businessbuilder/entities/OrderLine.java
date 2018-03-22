@@ -24,6 +24,7 @@ public class OrderLine implements Serializable{
 	@JoinColumn(name="idProduct",referencedColumnName="id",insertable=false,updatable=false)
 	private Produit prod ; 
 	
+	
 	@ManyToOne
 	@JoinColumn(name="idOrder",referencedColumnName="id",insertable=false,updatable=false)
 	private Order ord ;

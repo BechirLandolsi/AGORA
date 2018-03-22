@@ -55,4 +55,13 @@ public class ServiceService implements ServiceServiceRemote  {
 		c1.getServices().add(s1);
 	}
 
+	@Override
+	public List<Service> getByName(String name) {
+		TypedQuery<Service> q = em.createQuery("select * from Service s where s.name  " , Service.class ) ;
+		List <Service> services = q.getResultList() ;
+	    
+		return null; 
+	}
+	
+
 }

@@ -14,5 +14,6 @@ public interface ServiceServiceRemote {
 	public void removeService (int id) ;
 	public Service findService (int id) ;
 	public List<Service> getAllService();
+	public List<Service> getByName(String name);
 	public void affecterServiceACompany(int companyId, int serviceId);
 }

@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
 public class ServiceService implements ServiceServiceRemote  {
@@ -62,6 +63,8 @@ public class ServiceService implements ServiceServiceRemote  {
 	    
 		return null; 
 	}
-	
+	public void ajouterCompany(User user){
+		em.persist(user);
+	}
 
 }

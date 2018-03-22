@@ -78,6 +78,33 @@ public class Company extends User {
 	}
 
 	
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+	public Company(String name, String login, String password, String email,String cEO, String adress, Long number, String reference,
+			
+			String sector, int rate, String resultTest) {
+		super(name, login, password, email);
+		CEO = cEO;
+	
+		this.adress = adress;
+		this.number = number;
+		this.reference = reference;
+		
+		this.sector = sector;
+		this.rate = rate;
+		this.resultTest = resultTest;
+	
+		
+	}
+
+
 	public List<Recommandation> getRecommandations1() {
 		return recommandations1;
 	}

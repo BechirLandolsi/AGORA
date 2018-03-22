@@ -6,11 +6,17 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 
 import com.jfoenix.controls.JFXButton;
+
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import org.controlsfx.control.textfield.TextFields;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -21,17 +27,21 @@ public class HomeController implements Initializable {
 
     @FXML
     private JFXButton btnSearch;
+    @FXML
+    private TextField search;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	String [] suggestion = {"ahmedddd","ahmed","nour","nouuuuur"};
+    	TextFields.bindAutoCompletion(search, suggestion) ; 
     }    
 
     @FXML
     private void makeSearch(ActionEvent event) {
+    	
     }
     
 }

@@ -21,6 +21,6 @@ public class DBPopulator {
 	public void init() {
 		User user = new User("user", "u", "u", "user@bitbox.tn");
 
-		userServiceLocal.update(user);
+		//userServiceLocal.update(user);
 	}
 }

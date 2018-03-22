@@ -6,26 +6,21 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.xml.registry.infomodel.User;
 
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
 public class ProductService implements ProductServiceRemote{
 	
 	@PersistenceContext(unitName="sample-project-ejb")
-	EntityManager em ;
-	
+	EntityManager em ; 
+
 	@Override
-	public void addProduct(Produit P, Company C) {
-		
-		P.setSupplier(C);
+	public void addProduct(Produit P) {
 		em.persist(P);
 		
 	}
-
-
 
 	@Override
 	public void removeProduct(Produit P) {

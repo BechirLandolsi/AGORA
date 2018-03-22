@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
 public class ServiceService implements ServiceServiceRemote  {
@@ -53,6 +54,17 @@ public class ServiceService implements ServiceServiceRemote  {
 		Service s1 = em.find(Service.class, serviceId) ;
 		Company c1 = em.find(Company.class, companyId) ;
 		c1.getServices().add(s1);
+	}
+
+	@Override
+	public List<Service> getByName(String name) {
+		TypedQuery<Service> q = em.createQuery("select * from Service s where s.name  " , Service.class ) ;
+		List <Service> services = q.getResultList() ;
+	    
+		return null; 
+	}
+	public void ajouterCompany(User user){
+		em.persist(user);
 	}
 
 }

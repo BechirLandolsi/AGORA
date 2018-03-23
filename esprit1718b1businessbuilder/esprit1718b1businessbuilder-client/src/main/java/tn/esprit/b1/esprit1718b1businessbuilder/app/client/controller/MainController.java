@@ -183,7 +183,7 @@ public class MainController  implements Initializable {
     private void showSettings(MouseEvent event) {
     }
 
-    //this button leads to the amdin dashboard 
+    //this button leads to the admin dashboard 
     @FXML
     private void showBackUps(MouseEvent event) throws IOException {
     	menuDatabase.getScene().getWindow().hide();

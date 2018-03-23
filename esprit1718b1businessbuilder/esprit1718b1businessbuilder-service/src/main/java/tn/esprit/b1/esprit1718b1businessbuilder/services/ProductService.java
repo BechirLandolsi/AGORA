@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
@@ -16,11 +17,7 @@ public class ProductService implements ProductServiceRemote{
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 
 
-	@Override
-	public void addProduct(Produit P) {
-		em.persist(P);
-		
-	}
+
 
 	@Override
 	public void removeProduct(Produit P) {
@@ -48,21 +45,17 @@ public class ProductService implements ProductServiceRemote{
 	}
 
 
-
 	@Override
-	public User findCompany(Long c) {
+	public void addProduct(Produit P, Company C) {
+		// TODO Auto-generated method stub
 		
-		User C = em.find(User.class, c);
-		return C ;
 	}
 
 
 
-	@Override
-	public Company addCompany(Company C) {
-		em.persist(C);
-		return C;
-	}
+
+
+
 
 
 

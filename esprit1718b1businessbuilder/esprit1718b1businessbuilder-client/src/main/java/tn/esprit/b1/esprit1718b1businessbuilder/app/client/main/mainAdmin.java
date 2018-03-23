@@ -22,7 +22,7 @@ public class mainAdmin {
 		
 		Company c1 = new Company(); 
 		c1.setName("Agile");
-		proxy1.addCompany(c1);
+		//proxy1.addCompany(c1);
 		
 	/*	Produit p1 = new Produit("Roue",(long)1200,null,(float)66,(float)90,null);  
 		p1.setSupplier(c1);*/

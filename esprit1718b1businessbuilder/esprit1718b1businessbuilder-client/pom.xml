@@ -8,6 +8,14 @@
 	</parent>
 	<artifactId>esprit1718b1businessbuilder-client</artifactId>
 	<name>esprit1718b1businessbuilder-client</name>
+	
+	<repositories>
+    <repository>
+      <id>snapshots-repo</id>
+      <name>Sonatype Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
 
 	<dependencies>
 		<dependency>
@@ -60,7 +68,19 @@
 		    <artifactId>fontawesomefx</artifactId>
 		    <version>8.9</version>
 		</dependency>
-			
+		<!-- TILESFX -->
+		<dependency>
+  			<groupId>eu.hansolo</groupId>
+  			<artifactId>tilesfx</artifactId>
+ 			 <version>1.5.2</version>
+		</dependency>
+		<!-- jfxtras -->  
+      <dependency>
+           <groupId>org.jfxtras</groupId>
+           <artifactId>jfxtras-all</artifactId>
+           <version>8.0-r6-SNAPSHOT</version>
+       </dependency>
+   	
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>

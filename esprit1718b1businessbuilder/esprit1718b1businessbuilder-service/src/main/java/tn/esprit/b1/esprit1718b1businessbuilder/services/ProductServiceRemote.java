@@ -16,13 +16,6 @@ public interface ProductServiceRemote {
 	public void editProduct(Produit P); 
 	public Produit findProduct(int id);
 	public List<Produit> findAllProduct(); 
-	/*
-	 * provisoire 
-	 */
-	public User findCompany(Long c);
-	public Company addCompany(Company C); 
-	
-	//public void orderProduct(Produit P) ; 
-	
+
 	
 }

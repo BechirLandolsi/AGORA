@@ -89,6 +89,15 @@ public class Project implements Serializable {
 		ProjectOwner = projectOwner;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", service=" + service + ", partnerships=" + partnerships + ", ProjectOwner="
+				+ ProjectOwner + "]";
+	}
+
+
+	
 	
 
 	

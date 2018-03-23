@@ -263,5 +263,16 @@ public class Company extends User {
 	}
     @OneToMany
 	private List<Event> events;
+	@Override
+	public String toString() {
+		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
+				+ ", reference=" + reference + ", sector=" + sector + ", services=" + services + "]";
+	}
+	
+    
+    
+    
+    
+    
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProjectController">
+   <children>
+      <JFXButton fx:id="btnajouter" layoutX="108.0" layoutY="476.0" onAction="#btnajouter" text="Ajouter Projet" />
+      <TableView fx:id="tab_project" layoutX="49.0" layoutY="81.0" prefHeight="273.0" prefWidth="712.0">
+        <columns>
+          <TableColumn fx:id="col_project" prefWidth="239.0" text="Project" />
+          <TableColumn fx:id="col_service" prefWidth="205.0" text="Service" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -32,4 +32,5 @@ public class UserService extends GenericDAO<User> implements UserServiceRemote, 
 		}
 		return user;
 	}
+	
 }

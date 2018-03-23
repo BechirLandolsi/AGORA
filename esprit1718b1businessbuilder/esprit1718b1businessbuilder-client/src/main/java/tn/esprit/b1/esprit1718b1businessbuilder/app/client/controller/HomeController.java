@@ -106,23 +106,46 @@ public class HomeController implements Initializable {
 
     @FXML
     private void makeSearch(ActionEvent event) throws NamingException {
-    
-    	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-		CompanyServiceRemote proxy;
-	
-			 Context	context = new InitialContext();
-			proxy = (CompanyServiceRemote) context.lookup(jndiName1);
-			cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
-			System.out.println(cplist.toString());
-	
- 		list_company.setItems(cplist);
- 		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
-        {
-			@Override
-			public ListCell<Company> call(ListView<Company> param) {
-				 return new CompanyRowController();
+    	String str = search.getText() ;
+    	if (!str.equals("") ){
+    		String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+    		CompanyServiceRemote proxy;
+    	
+    			 Context	context = new InitialContext();
+    			proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+    			cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
+    			System.out.println(cplist.toString());
+    	
+     		list_company.setItems(cplist);
+     		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
+            {
+    			@Override
+    			public ListCell<Company> call(ListView<Company> param) {
+    				 return new CompanyRowController();
+    			}
+            });
+    	}
+    	else {
+    		String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+			CompanyServiceRemote proxy;
+			try {
+				 Context	context = new InitialContext();
+				proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+				cplist = FXCollections.observableArrayList(proxy.findAllCompany());
+			} catch (NamingException e) {
+				e.printStackTrace();
 			}
-        });
+	 		list_company.setItems(cplist);
+	 		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
+	        {
+				@Override
+				public ListCell<Company> call(ListView<Company> param) {
+					 return new CompanyRowController();
+				}
+	        });
+	 		
+    	}
+    	
     	 
     } 
     

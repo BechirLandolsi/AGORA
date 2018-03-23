@@ -6,12 +6,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "tab_Company")
+
 public class Company extends User {
 	/**
 	 * 
@@ -36,11 +36,14 @@ public class Company extends User {
 	private int rate ; 
 	
 	private String resultTest ;
+	private String image ;
 	
 	
 	
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
+	
+	
 	
 	@OneToMany (mappedBy="ProjectOwner")
 	private List <Project> project;
@@ -87,7 +90,7 @@ public class Company extends User {
 
 	public Company(String name, String login, String password, String email,String cEO, String adress, Long number, String reference,
 			
-			String sector, int rate, String resultTest) {
+			String sector, int rate, String resultTest, String image) {
 		super(name, login, password, email);
 		CEO = cEO;
 	
@@ -98,6 +101,7 @@ public class Company extends User {
 		this.sector = sector;
 		this.rate = rate;
 		this.resultTest = resultTest;
+		this.image = image;
 	
 		
 	}
@@ -274,5 +278,23 @@ public class Company extends User {
     
     
     
+    
+	public String getImage() {
+		return image;
+	}
 
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
+				+ ", reference=" + reference + ", partner=" + partner + ", sector=" + sector + ", rate=" + rate
+				+ ", resultTest=" + resultTest + "]";
+	}
+
+    
 }

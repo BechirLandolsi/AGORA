@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
@@ -34,8 +37,28 @@ public class CompanyService implements CompanyServiceRemote{
 	@Override
 	public Company findAllCompanyByName(String name) {
 
-		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name",Company.class) ;
+		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name OR c.sector =:name",Company.class) ;
+		Company c = null  ;
+		try{
+		c =	q.setParameter("name", name).getSingleResult() ;
+		}catch(NoResultException e){
+			
+		}
 		
-		return  q.setParameter("name", name).getSingleResult();
+		return c ;
 	}
+	@Override
+	public void AddCompanyReserche(Reserche r, Company c  ) {
+	  
+		r.setCompanyR(c);
+		em.persist(r);
+		
+	}
+	@Override
+	public Company findBy(long id) {
+		TypedQuery<Company> q =  em.createQuery("select c from Company c where c.id=:id",Company.class) ;
+		
+		return q.setParameter("id", id).getSingleResult();
+	}
+	
 }

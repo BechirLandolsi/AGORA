@@ -70,6 +70,9 @@ public class Company extends User {
 	
 	@OneToMany(mappedBy = "company2" )
 	private List<Recommandation> recommandations2 ; 
+	
+	@OneToMany(mappedBy = "companyR" )
+	private List<Reserche> reserche ; 
 	/***********************/
 	
 	

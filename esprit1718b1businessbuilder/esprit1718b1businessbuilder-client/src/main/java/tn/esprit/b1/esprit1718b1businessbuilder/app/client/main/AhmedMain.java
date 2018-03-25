@@ -26,19 +26,19 @@ public class AhmedMain {
 		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
 		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F12","IT",5,"excellent","vermeg.jpg");
 	    
-		proxy.ajouterCompany(c1);
-	    proxy.ajouterCompany(c2);
-	    proxy.ajouterCompany(c3);
+		//proxy.ajouterCompany(c1);
+	    //proxy.ajouterCompany(c2);
+	    //proxy.ajouterCompany(c3);
 	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
 	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-		Context context1;
+		 
 
-		context1 = new InitialContext();
+	    Context context1 = new InitialContext();
 		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
- 		List <Company> list = new ArrayList<>() ;
- 	 	list = proxy1.findAllCompany();
-	    System.out.println(list.toString());    
+ 		List <String> list = new ArrayList<>() ;
+ 	 	list = proxy1.findAllCompanyNames();
+	    //System.out.println(list);    
 	
 
 }

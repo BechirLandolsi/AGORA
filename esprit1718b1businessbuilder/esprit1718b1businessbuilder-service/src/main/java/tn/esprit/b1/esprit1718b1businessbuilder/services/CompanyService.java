@@ -23,12 +23,26 @@ public class CompanyService implements CompanyServiceRemote{
 		return companies;
 	
 	}
+	@Override
+    public List<String> findAllCompanyNames() {
+		
+		TypedQuery<String> q =  em.createQuery("select c.name from Company c",String.class) ;
+		List<String> companiesname = q.getResultList() ;
+		return companiesname;
+	
+	}
+		
+	@Override
+	public Company findAllCompanyByName(String name) {
 
+		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name",Company.class) ;
+		
+		return  q.setParameter("name", name).getSingleResult();
+	}
 	@Override
 	public Company findBy(long id) {
 		TypedQuery<Company> q =  em.createQuery("select c from Company c where c.id=:id",Company.class) ;
 		
 		return q.setParameter("id", id).getSingleResult();
 	}
-
 }

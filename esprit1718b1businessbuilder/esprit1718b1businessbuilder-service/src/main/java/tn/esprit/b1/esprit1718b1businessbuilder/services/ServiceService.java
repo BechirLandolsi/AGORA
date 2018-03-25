@@ -50,7 +50,7 @@ public class ServiceService implements ServiceServiceRemote  {
 	}
 
 	@Override
-	public void affecterServiceACompany(int companyId, int serviceId) {
+	public void affecterServiceACompany(long companyId, long serviceId) {
 		Service s1 = em.find(Service.class, serviceId) ;
 		Company c1 = em.find(Company.class, companyId) ;
 		c1.getServices().add(s1);

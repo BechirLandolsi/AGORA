@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
+
 
 import org.controlsfx.control.textfield.TextFields;
 
@@ -33,7 +33,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
+
 
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 
@@ -61,6 +62,7 @@ public class HomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	/////////////////////////////////////INITIALIZATION DES COMPANIES///////////////////////////////////////////////
    	 FXMLLoader lloader = new FXMLLoader(getClass().getResource("../gui/Main.fxml"));
      try {
          Parent rroot = lloader.load();
@@ -106,13 +108,22 @@ public class HomeController implements Initializable {
 
     @FXML
     private void makeSearch(ActionEvent event) throws NamingException {
+    	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+		CompanyServiceRemote proxy;
+		Context	context1 = new InitialContext();
+		proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
+    	//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
+
+			Reserche reserche = new Reserche() ;
+	 	 	reserche.setReserche(search.getText());
+	 	 	Company c =proxy.findBy(31);
+	 	 	System.out.println(c);
+			proxy.AddCompanyReserche(reserche, c);
+		//////////////////////////////////AFFICHAGE RECHERCHE/////////////////////////////////////////
     	String str = search.getText() ;
     	if (!str.equals("") ){
-    		String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-    		CompanyServiceRemote proxy;
-    	
-    			 Context	context = new InitialContext();
-    			proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+    		
+    			 
     			cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
     			System.out.println(cplist.toString());
     	
@@ -126,15 +137,11 @@ public class HomeController implements Initializable {
             });
     	}
     	else {
-    		String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-			CompanyServiceRemote proxy;
-			try {
-				 Context	context = new InitialContext();
-				proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+    		
+			
+				
 				cplist = FXCollections.observableArrayList(proxy.findAllCompany());
-			} catch (NamingException e) {
-				e.printStackTrace();
-			}
+			
 	 		list_company.setItems(cplist);
 	 		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
 	        {
@@ -145,8 +152,7 @@ public class HomeController implements Initializable {
 	        });
 	 		
     	}
-    	
-    	 
+
     } 
     
 }

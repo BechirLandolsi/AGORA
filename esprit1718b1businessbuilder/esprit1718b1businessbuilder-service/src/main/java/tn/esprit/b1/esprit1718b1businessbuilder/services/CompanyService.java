@@ -34,6 +34,7 @@ public class CompanyService implements CompanyServiceRemote{
 		return companiesname;
 	
 	}
+		
 	@Override
 	public Company findAllCompanyByName(String name) {
 
@@ -48,6 +49,7 @@ public class CompanyService implements CompanyServiceRemote{
 		return c ;
 	}
 	@Override
+
 	public void AddCompanyReserche(Reserche r, Company c  ) {
 	  
 		r.setCompanyR(c);
@@ -61,4 +63,5 @@ public class CompanyService implements CompanyServiceRemote{
 		return q.setParameter("id", id).getSingleResult();
 	}
 	
+
 }

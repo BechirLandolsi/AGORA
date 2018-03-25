@@ -71,12 +71,19 @@ public class Company extends User {
 	@OneToMany(mappedBy = "company2" )
 	private List<Recommandation> recommandations2 ; 
 	
+	
 	@OneToMany(mappedBy = "companyR" )
-	private List<Reserche> reserche ; 
+    private List<Reserche> reserche ; 
+	
+
+	
+	  @OneToMany
+      private List<Event> events;
+
 	/***********************/
 	
 	
-	
+
 	public List<Produit> getProduits() {
 		return produits;
 	}
@@ -268,8 +275,9 @@ public class Company extends User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-    @OneToMany
-	private List<Event> events;
+  
+    
+    
     
 	public String getImage() {
 		return image;

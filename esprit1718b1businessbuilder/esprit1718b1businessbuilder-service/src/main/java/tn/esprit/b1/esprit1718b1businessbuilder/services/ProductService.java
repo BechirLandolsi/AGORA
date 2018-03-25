@@ -18,38 +18,29 @@ public class ProductService implements ProductServiceRemote{
 	EntityManager em ; 
 
 
-
 	@Override
-	public void removeProduct(Produit P) {
-		// TODO Auto-generated method stub
+	public void addProduct(Produit P, Company C) {
+		P.setSupplier(C);
+		em.persist(P);
 		
 	}
 
-	@Override
-	public void editProduct(Produit P) {
-		em.merge(P) ; 
-		
-	}
-
-	@Override
-	public Produit findProduct(int id) {
-		Produit P= em.find(Produit.class, id);
-		return P ;
-	}
-
+	
 	@Override
 	public List<Produit> findAllProduct() {
-		TypedQuery<Produit> q =  em.createQuery("select * from Produit ",Produit.class) ;
+		TypedQuery<Produit> q =  em.createQuery("select p from Produit p ",Produit.class) ;
 		 List<Produit> produits = q.getResultList() ;
 		return produits;
 	}
 
 
 	@Override
-	public void addProduct(Produit P, Company C) {
-		// TODO Auto-generated method stub
-		
+	public Produit findProduct(int id) {
+		Produit p = em.find(Produit.class, id);
+		return p;
 	}
+
+
 
 
 

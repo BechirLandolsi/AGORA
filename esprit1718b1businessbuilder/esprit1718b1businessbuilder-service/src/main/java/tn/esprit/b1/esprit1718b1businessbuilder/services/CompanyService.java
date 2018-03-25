@@ -24,4 +24,11 @@ public class CompanyService implements CompanyServiceRemote{
 	
 	}
 
+	@Override
+	public Company findBy(long id) {
+		TypedQuery<Company> q =  em.createQuery("select c from Company c where c.id=:id",Company.class) ;
+		
+		return q.setParameter("id", id).getSingleResult();
+	}
+
 }

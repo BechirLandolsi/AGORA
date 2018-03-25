@@ -15,9 +15,9 @@ public interface OrderServiceRemote {
 	
 	public Order findOrder(int id);
 	public void addProductToOrder(Produit P,Company C,int k) ; 
-	public void payOrder(Company C);
+	public String payOrder(Company C);
 	public List<Order> findAllOrder(Company C); 
 	public Order findActiveOrder(Company C); 
-	public Float calculAmount(Order o,Company C);
+	public  Float calculAmount(Order o) ;
 
 }

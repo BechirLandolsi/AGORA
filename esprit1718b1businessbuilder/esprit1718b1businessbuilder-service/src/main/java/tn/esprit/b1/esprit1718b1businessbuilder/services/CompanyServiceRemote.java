@@ -10,12 +10,12 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 @Remote
 public interface CompanyServiceRemote {
 	
-	public List<Company> findAllCompany() ; 
+	 public List<Company> findAllCompany() ; 
 
-	public Company findBy(long id);
+	 public Company findBy(long id);
 
 	 public List<String> findAllCompanyNames() ;
 	 
-	public Company findAllCompanyByName(String name) ; 
+	 public Company findAllCompanyByName(String name) ; 
 
 }

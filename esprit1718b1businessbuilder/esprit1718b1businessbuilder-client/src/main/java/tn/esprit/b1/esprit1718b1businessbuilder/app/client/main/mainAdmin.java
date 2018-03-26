@@ -27,13 +27,13 @@ public class mainAdmin {
 		    CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2) ; 
 			ServiceServiceRemote proxy3 = (ServiceServiceRemote) context.lookup(jndiName3);
 			
-			/*Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
+			Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
 			Company c2 = new Company("Zara","Zaralogin","Zarapass","Zara@gmail.com","CEO_Zara","Espagne",(long)339585789,"0E17","Vetement",5,"excellent","Zara.jpg");
 			Company c3 = new Company("Astral","Astrallogin","Astralgpass","Astral@gmail.com","CEO_Astral","Tunisie",(long)71852963,"0T13","peinture",5,"excellent","Astral.jpg");
 		    
-			proxy3.ajouterCompany(c1);
-		    proxy3.ajouterCompany(c2);
-		    proxy3.ajouterCompany(c3);*/
+			//proxy3.ajouterCompany(c1);
+		   // proxy3.ajouterCompany(c2);
+		    //proxy3.ajouterCompany(c3);
 		//***************************************************************************\\
 		//*******************************PRODUCT******************************************\\
 			//ProductService
@@ -61,11 +61,11 @@ public class mainAdmin {
 		    String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 			
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
-		    Company c1 = proxy2.findBy(33) ; 
+		    //Company c1 = proxy2.findBy(33) ; 
 		  //System.out.println(proxy.findActiveOrder(c1));  
 		    Produit p1 = proxy1.findProduct(8);
 		  // proxy.addProductToOrder(p1, c1, 20);
-		  proxy.payOrder(c1); 
+		  //proxy.payOrder(c1); 
 		    //Order o = proxy.findOrder(1);
 		    //System.out.println(proxy.calculAmount(o));
 		 //********************************************************************************\\

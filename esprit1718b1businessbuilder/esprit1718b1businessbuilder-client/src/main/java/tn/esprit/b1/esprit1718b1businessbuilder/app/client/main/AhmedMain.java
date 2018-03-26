@@ -60,5 +60,7 @@ public class AhmedMain {
  	 	//                       proxy.ajouterService(service);
  	 	//proxy.affecterServiceACompany(30, 10);
  	    //System.out.println( proxy1.findAllCompanyByService("sim")); 
+ 	 	System.out.println(proxy.ResercheListe(31));
+ 	 	
     }
 }

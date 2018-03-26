@@ -78,8 +78,8 @@ public class HomeController implements Initializable {
 			CompanyServiceRemote proxy;
 			try {
 				 Context	context = new InitialContext();
-				proxy = (CompanyServiceRemote) context.lookup(jndiName1);
-				cplist = FXCollections.observableArrayList(proxy.findAllCompany());
+				 proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+				 cplist = FXCollections.observableArrayList(proxy.findAllCompany());
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}
@@ -127,7 +127,10 @@ public class HomeController implements Initializable {
 				try {
 					 Context	context3 = new InitialContext();
 					 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName3);
-					cplist3 = FXCollections.observableArrayList(proxy3.findAllCompany());
+
+					 //for()
+					 
+					 //cplist3 = FXCollections.observableArrayList(proxy3.findAllCompany());
 				} catch (NamingException e) {
 					e.printStackTrace();
 				}
@@ -151,12 +154,7 @@ public class HomeController implements Initializable {
 		proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
 		ServiceServiceRemote proxys = (ServiceServiceRemote) context1.lookup(jndiNames);
 
-    	//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
-			Reserche reserche = new Reserche() ;
-	 	 	reserche.setReserche(search.getText());
-	 	 	Company c =proxy.findBy(31);
-	 	 	System.out.println(c);
-			proxy.AddCompanyReserche(reserche, c);
+    	
 		//////////////////////////////////AFFICHAGE RECHERCHE/////////////////////////////////////////
     	String str = search.getText() ;
     	if (!str.equals("") ){
@@ -172,6 +170,12 @@ public class HomeController implements Initializable {
     				 return new CompanyRowController();
     			}
             });
+     		//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
+     		Reserche reserche = new Reserche() ;
+     		reserche.setReserche(search.getText());
+     		Company c =proxy.findBy(31);
+     		System.out.println(c);
+     		proxy.AddCompanyReserche(reserche, c);
     	}
     	else {
 

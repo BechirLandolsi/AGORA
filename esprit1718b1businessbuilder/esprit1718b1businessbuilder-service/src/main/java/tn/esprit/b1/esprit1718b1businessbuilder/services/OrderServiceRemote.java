@@ -2,6 +2,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
 import java.util.List;
 
+
 import javax.ejb.Remote;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -19,5 +20,11 @@ public interface OrderServiceRemote {
 	public List<Order> findAllOrder(Company C); 
 	public Order findActiveOrder(Company C); 
 	public  Float calculAmount(Order o) ;
+	
+	public Long nbSubscriber();
+	public Long nbSubscriberPerday(); 
+	public List<Object[]> nbSubscriberPertype() ; 
+	
+	public List<Object[]> salesPermonth() ; 
 
 }

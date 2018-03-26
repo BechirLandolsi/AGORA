@@ -1,5 +1,9 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -63,9 +67,23 @@ public class mainAdmin {
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 		    Company c1 = proxy2.findBy(33) ; 
 		  //System.out.println(proxy.findActiveOrder(c1));  
-		    Produit p1 = proxy1.findProduct(8);
-		  // proxy.addProductToOrder(p1, c1, 20);
-		  proxy.payOrder(c1); 
+		    Produit p1 = proxy1.findProduct(15);
+		   // proxy.addProductToOrder(p1, c1, 55);
+		proxy.payOrder(c1); 
+		   //System.out.println(proxy.salesPermonth().toString());
+		   /* Date current = new Date() ; 
+		    String PATTERN="yyyy-MM-dd";
+		    SimpleDateFormat dateFormat=new SimpleDateFormat();
+		    dateFormat.applyPattern(PATTERN);
+		    String date1=dateFormat.format(Calendar.getInstance().getTime());
+		    int mois = Integer.parseInt((date1.toString().substring(5,7)));
+		    System.out.println(mois);*/
+		   
+		   /* for (Object[] o : proxy.salesPermonth()){
+		    	System.out.println((double)o[0]) ; 
+		    	System.out.println((Date)o[1]) ;
+		    }*/
+		    
 		    //Order o = proxy.findOrder(1);
 		    //System.out.println(proxy.calculAmount(o));
 		 //********************************************************************************\\

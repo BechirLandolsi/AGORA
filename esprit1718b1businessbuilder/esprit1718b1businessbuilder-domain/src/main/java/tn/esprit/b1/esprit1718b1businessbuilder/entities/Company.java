@@ -38,6 +38,10 @@ public class Company extends User {
 	private String resultTest ;
 	private String image ;
 	
+	//date d'inscription
+	@Temporal(TemporalType.DATE)
+	private Date subDate ; 
+	
 	
 	
 	@OneToMany (mappedBy="CompanyPartner")
@@ -286,6 +290,16 @@ public class Company extends User {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+
+	public Date getSubDate() {
+		return subDate;
+	}
+
+
+	public void setSubDate(Date subDate) {
+		this.subDate = subDate;
 	}
 
 

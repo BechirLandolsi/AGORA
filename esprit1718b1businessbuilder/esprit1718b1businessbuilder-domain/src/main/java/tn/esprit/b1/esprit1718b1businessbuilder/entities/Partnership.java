@@ -28,11 +28,13 @@ public class Partnership implements Serializable {
 	@EmbeddedId
 	private PartnershipPK partnershipPK;
 	
+	@ManyToOne
+	@JoinColumn(name="CompanyOwnerId",referencedColumnName="USR_ID",insertable=false,updatable=false)
+	private Company CompanyOwner;
 	
 	@ManyToOne
 	@JoinColumn(name="CompanyPartnerId",referencedColumnName="USR_ID",insertable=false,updatable=false)
 	private Company CompanyPartner;
-	
 	
 	
 	@ManyToOne
@@ -40,7 +42,7 @@ public class Partnership implements Serializable {
 	private Project project;
 		
 	@Column(name = "partnershipDate")
-	private String partnershipDate;
+	private Date partnershipDate;
 	
 	@Column(name = "partnershipDuration")
 	private String partnershipDuration;
@@ -49,15 +51,20 @@ public class Partnership implements Serializable {
 		super();
 	}
 
-	public Partnership(PartnershipPK partnershipPK, Company companyPartner, Project project, String partnershipDate,
-			String partnershipDuration) {
+	
+	
+	public Partnership(PartnershipPK partnershipPK, Company companyOwner, Company companyPartner, Project project,
+			Date partnershipDate, String partnershipDuration) {
 		super();
 		this.partnershipPK = partnershipPK;
+		CompanyOwner = companyOwner;
 		CompanyPartner = companyPartner;
 		this.project = project;
 		this.partnershipDate = partnershipDate;
 		this.partnershipDuration = partnershipDuration;
 	}
+
+
 
 	public PartnershipPK getPartnershipPK() {
 		return partnershipPK;
@@ -65,6 +72,14 @@ public class Partnership implements Serializable {
 
 	public void setPartnershipPK(PartnershipPK partnershipPK) {
 		this.partnershipPK = partnershipPK;
+	}
+
+	public Company getCompanyOwner() {
+		return CompanyOwner;
+	}
+
+	public void setCompanyOwner(Company companyOwner) {
+		CompanyOwner = companyOwner;
 	}
 
 	public Company getCompanyPartner() {
@@ -83,11 +98,11 @@ public class Partnership implements Serializable {
 		this.project = project;
 	}
 
-	public String getPartnershipDate() {
+	public Date getPartnershipDate() {
 		return partnershipDate;
 	}
 
-	public void setPartnershipDate(String partnershipDate) {
+	public void setPartnershipDate(Date partnershipDate) {
 		this.partnershipDate = partnershipDate;
 	}
 
@@ -99,5 +114,15 @@ public class Partnership implements Serializable {
 		this.partnershipDuration = partnershipDuration;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Partnership [partnershipPK=" + partnershipPK + ", CompanyOwner=" + CompanyOwner + ", CompanyPartner="
+				+ CompanyPartner + ", project=" + project + ", partnershipDate=" + partnershipDate
+				+ ", partnershipDuration=" + partnershipDuration + "]";
+	}
+
+	
 	
 }

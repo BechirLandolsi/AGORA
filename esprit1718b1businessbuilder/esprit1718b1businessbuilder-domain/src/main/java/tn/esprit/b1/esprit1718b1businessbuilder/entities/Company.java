@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -43,14 +44,17 @@ public class Company extends User {
 	private Date subDate ; 
 	
 	
+	@OneToMany (mappedBy="CompanyOwner")
+	private List <Partnership> CompanyOwner;
 	
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
 	
 	
-	
 	@OneToMany (mappedBy="ProjectOwner")
 	private List <Project> project;
+	
+	/************************************************************/
 	
 	/* Association */
 	@ManyToMany
@@ -279,9 +283,7 @@ public class Company extends User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-  
-    
-    
+
     
 	public String getImage() {
 		return image;
@@ -307,8 +309,18 @@ public class Company extends User {
 	public String toString() {
 		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
 				+ ", reference=" + reference + ", partner=" + partner + ", sector=" + sector + ", rate=" + rate
-				+ ", resultTest=" + resultTest + "]";
+				+ ", resultTest=" + resultTest + ", image=" + image + ", CompanyOwner=" + CompanyOwner
+				+ ", CompanyPartner=" + CompanyPartner + ", project=" + project + ", services=" + services
+				+ ", produits=" + produits + ", orders=" + orders + ", myClaims=" + myClaims + ", Recevedclaims="
+				+ Recevedclaims + ", recommandations1=" + recommandations1 + ", recommandations2=" + recommandations2
+				+ ", reserche=" + reserche + ", events=" + events + "]";
 	}
+
+
+
+
+	
+	
 
     
 }

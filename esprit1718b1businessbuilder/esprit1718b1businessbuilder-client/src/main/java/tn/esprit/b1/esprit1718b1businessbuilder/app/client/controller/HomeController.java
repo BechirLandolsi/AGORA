@@ -37,6 +37,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 
 
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 
 
 /**
@@ -54,9 +55,13 @@ public class HomeController implements Initializable {
    
     @FXML
     private ListView<Company> list_company;
-
+    @FXML
+    private ListView<Company> list_Recommandation;
+    private ObservableList<Company> cplist3 ;
     private ObservableList<Company> cplist ;
+    private ObservableList<Company> cplistservice ;
     private List<String> cplistname  = new ArrayList<>();
+    private List<String> listservice  = new ArrayList<>();
     /**
      * Initializes the controller class.
      */
@@ -87,16 +92,28 @@ public class HomeController implements Initializable {
 				}
 	        });
 	 		
-	 		/****************************************************************/
+	 		/*******************************autocomplete*********************************/
 	 		
 	 		
 	 		String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 			 CompanyServiceRemote proxy2;
 			 Context context;
+			 Context contexts;
+			
+			 String jndiNames ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
+				
 			try {
-				context = new InitialContext();
+				 context = new InitialContext();
 				 proxy = (CompanyServiceRemote) context.lookup(jndiName2);
+				
+				 contexts = new InitialContext();
+				 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
+					
 				 cplistname = FXCollections.observableArrayList(proxy.findAllCompanyNames());
+				 listservice =FXCollections.observableArrayList(proxys.getAllService());
+				 cplistname.addAll(listservice);
+				 
+				// cplistname.addAll(listservice) ;
 				 //System.out.println(cplistname.toString());
 				 
 			} catch (NamingException e) {
@@ -104,29 +121,49 @@ public class HomeController implements Initializable {
 				e.printStackTrace();
 			}
 	    	 TextFields.bindAutoCompletion(search, cplistname) ; 
+	///////////////////////////////////////////////INITILIZATIONRECOMMANDATION/////////////////////////////////////////////////////////////////////////////////////////////////////
+	    	 String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+				CompanyServiceRemote proxy3;
+				try {
+					 Context	context3 = new InitialContext();
+					 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName3);
+					cplist3 = FXCollections.observableArrayList(proxy3.findAllCompany());
+				} catch (NamingException e) {
+					e.printStackTrace();
+				}
+				list_Recommandation.setItems(cplist3);
+				list_Recommandation.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
+		        {
+					@Override
+					public ListCell<Company> call(ListView<Company> param) {
+						 return new CompanyRowReController();
+					}
+		        });
+	    	 
     }    
 
     @FXML
     private void makeSearch(ActionEvent event) throws NamingException {
     	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-		CompanyServiceRemote proxy;
+    	String jndiNames ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
+    	CompanyServiceRemote proxy;
 		Context	context1 = new InitialContext();
 		proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
-    	//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
+		ServiceServiceRemote proxys = (ServiceServiceRemote) context1.lookup(jndiNames);
 
+    	//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
 			Reserche reserche = new Reserche() ;
 	 	 	reserche.setReserche(search.getText());
-	 	 	Company c =proxy.findBy(31);
-	 	 	System.out.println(c);
+	 	 	Company c =proxy.findBy(16);
+	 	 	//System.out.println(c);
 			proxy.AddCompanyReserche(reserche, c);
 		//////////////////////////////////AFFICHAGE RECHERCHE/////////////////////////////////////////
     	String str = search.getText() ;
     	if (!str.equals("") ){
-    		
-    			 
-    			cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
-    			System.out.println(cplist.toString());
-    	
+    		cplistservice =  FXCollections.observableArrayList(proxy.findAllCompanyByService(str));
+    		cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
+    		cplist.addAll(cplistservice);
+    	  //  System.out.println(cplist.toString());
      		list_company.setItems(cplist);
      		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
             {
@@ -137,11 +174,8 @@ public class HomeController implements Initializable {
             });
     	}
     	else {
-    		
-			
-				
-				cplist = FXCollections.observableArrayList(proxy.findAllCompany());
-			
+
+			cplist = FXCollections.observableArrayList(proxy.findAllCompany());
 	 		list_company.setItems(cplist);
 	 		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
 	        {

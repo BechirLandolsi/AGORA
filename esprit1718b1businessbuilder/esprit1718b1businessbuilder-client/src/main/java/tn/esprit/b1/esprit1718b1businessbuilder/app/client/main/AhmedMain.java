@@ -59,6 +59,6 @@ public class AhmedMain {
  	    //service.setName("computer   sale ");
  	 	//                       proxy.ajouterService(service);
  	 	//proxy.affecterServiceACompany(30, 10);
- 	   
+ 	    //System.out.println( proxy1.findAllCompanyByService("sim")); 
     }
 }

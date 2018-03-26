@@ -62,6 +62,12 @@ public class CompanyService implements CompanyServiceRemote{
 		
 		return q.setParameter("id", id).getSingleResult();
 	}
+	@Override
+	public List<Company> findAllCompanyByService(String service){
+		TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name LIKE :service",Company.class) ;
+		List<Company> companies = q.setParameter("service", "%" + service+ "%").getResultList() ;
+		return companies;
+	}
 	
 
 }

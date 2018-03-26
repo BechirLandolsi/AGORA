@@ -42,10 +42,10 @@ public class ServiceService implements ServiceServiceRemote  {
 	}
 
 	@Override
-	public List<Service> getAllService() {
+	public List<String> getAllService() {
 	
-		TypedQuery<Service> q = em.createQuery("select * from Service " , Service.class ) ;
-		List <Service> services = q.getResultList() ;
+		TypedQuery<String> q = em.createQuery("select c.name from Service c " , String.class ) ;
+		List <String> services = q.getResultList() ;
 		return services;
 	}
 
@@ -57,11 +57,11 @@ public class ServiceService implements ServiceServiceRemote  {
 	}
 
 	@Override
-	public List<Service> getByName(String name) {
-		TypedQuery<Service> q = em.createQuery("select * from Service s where s.name  " , Service.class ) ;
-		List <Service> services = q.getResultList() ;
+	public List<String> getByName(String name) {
+		TypedQuery<String> q = em.createQuery("select c.name from Service c WHERE c.name =:name" , String.class ) ;
+		List<String> servicename = q.setParameter("service", "%" + name+ "%").getResultList() ;
 	    
-		return null; 
+		return servicename; 
 	}
 	public void ajouterCompany(User user){
 		em.persist(user);

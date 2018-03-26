@@ -11,10 +11,10 @@ public interface CompanyServiceRemote {
 
 	    public List<Company> findAllCompany() ; 
 	    public List<String> findAllCompanyNames() ;
-		public Company findAllCompanyByName(String name); 		
+		public Company findAllCompanyByName(String name); 	
 		public Company findBy(long id) ;
 		public void AddCompanyReserche(Reserche r,  Company c );
-
+		public List<Company> findAllCompanyByService(String service) ;
 }
 
 	

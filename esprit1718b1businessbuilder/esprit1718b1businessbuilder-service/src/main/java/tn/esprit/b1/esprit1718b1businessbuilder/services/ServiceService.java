@@ -66,5 +66,13 @@ public class ServiceService implements ServiceServiceRemote  {
 	public void ajouterCompany(User user){
 		em.persist(user);
 	}
+	
+	@Override
+	public List <String> getName()
+	{
+		TypedQuery<String> q = em.createQuery("select s.name from Service s" , String.class ) ;
+		List <String> services = q.getResultList() ;
+		return services;
+	}
 
 }

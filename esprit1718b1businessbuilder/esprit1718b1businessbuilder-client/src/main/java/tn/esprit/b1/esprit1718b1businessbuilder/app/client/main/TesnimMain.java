@@ -18,7 +18,9 @@ public class TesnimMain {
 		
 		ProjectRemote proxy = (ProjectRemote) context.lookup(jndiName1);
 		
-		System.out.println("projets sont: "+proxy.getAllProject());
+		System.out.println("projets sont: "+proxy.getProjectsByCompany(16));
+		
+		//System.out.println(proxy.getProjectsByCompany(10));
 		
 	}
 

@@ -13,6 +13,8 @@ public interface ProjectRemote {
 	
 	public List<Project> getAllProject(); 
 	
+	public List<Project> getProjectsByCompany(int companyId);
+	
 	
 	
 }

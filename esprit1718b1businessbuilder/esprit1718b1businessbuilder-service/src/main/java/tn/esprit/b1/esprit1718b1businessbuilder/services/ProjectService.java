@@ -16,22 +16,45 @@ public class ProjectService implements ProjectRemote{
 	EntityManager em ;
 
 	@Override
-	public void addProject(Project P) {
-		// TODO Auto-generated method stub
+	public void addProject(Project p) {
+	
+		em.persist(p);
 		
 	}
 
 	@Override
 	public List<Project> getAllProject() {
-TypedQuery <Project> k = em.createQuery("select c from Project c",Project.class);
+    
+		TypedQuery <Project> k = em.createQuery("select c from Project c",Project.class);
 		
 		List<Project> listproject = k.getResultList();
 		
-		//return (long) em.createQuery("select count(*) from employe",Long.class);
-		//System.out.println("list"+listproject);
 		return listproject;
 		
+	}
+	
+
+	@Override
+	public List<Project> getProjectsByCompany(int companyId) {
+		
+	//TypedQuery <Project> k = em.createQuery("select pr.service, par.CompanyPartner.name,par.partnershipDuration from Partnership par inner join par.Project pr on (pr.id=par.project.id) where pr.ProjectOwner.id="+companyId,Project.class);
+	
+	//TypedQuery <Project> k = em.createQuery("select pr from Partnership par inner join par.project pr where pr.ProjectOwner.id="+companyId,Project.class);
+
+   TypedQuery <Project> k = em.createQuery("select pr from Project pr where pr.ProjectOwner.id="+companyId,Project.class);
+
+		
+	List<Project> listproject = k.getResultList();
+	
+	return listproject;
+		
 	} 
+	
+	
+	
+	
+	
+	
 	
 }
 

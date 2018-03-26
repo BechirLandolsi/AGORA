@@ -18,5 +18,9 @@ public interface ServiceServiceRemote {
 	public List<String> getByName(String name) ;
 	public void affecterServiceACompany(long companyId, long serviceId);
 	public void ajouterCompany(User user) ;
+
 	public List <String> ResercheListe (long id) ;
+
+	public List <String> getName();
+
 }

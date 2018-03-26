@@ -78,8 +78,8 @@ public class HomeController implements Initializable {
 			CompanyServiceRemote proxy;
 			try {
 				 Context	context = new InitialContext();
-				 proxy = (CompanyServiceRemote) context.lookup(jndiName1);
-				 cplist = FXCollections.observableArrayList(proxy.findAllCompany());
+				proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+				cplist = FXCollections.observableArrayList(proxy.findAllCompany());
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}

@@ -190,9 +190,15 @@ public class MainController  implements Initializable {
     private void showSettings(MouseEvent event) {
     }
 
+    //this button leads to the admin dashboard 
     @FXML
-    private void showBackUps(MouseEvent event) {
-        
+    private void showBackUps(MouseEvent event) throws IOException {
+    	menuDatabase.getScene().getWindow().hide();
+        Stage news=new Stage();
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml"));
+        Scene s=new Scene(root);
+        news.setScene(s);
+        news.show();
     }
 
     @FXML

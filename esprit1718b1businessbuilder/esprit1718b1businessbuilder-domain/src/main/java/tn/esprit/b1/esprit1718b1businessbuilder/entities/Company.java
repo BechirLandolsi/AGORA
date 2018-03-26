@@ -75,10 +75,20 @@ public class Company extends User {
 	
 	@OneToMany(mappedBy = "company2" )
 	private List<Recommandation> recommandations2 ; 
+	
+	
+	@OneToMany(mappedBy = "companyR" )
+    private List<Reserche> reserche ; 
+	
+
+	
+	  @OneToMany
+      private List<Event> events;
+
 	/***********************/
 	
 	
-	
+
 	public List<Produit> getProduits() {
 		return produits;
 	}
@@ -270,9 +280,7 @@ public class Company extends User {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-    @OneToMany
-	private List<Event> events;
-	    
+
     
 	public String getImage() {
 		return image;
@@ -288,11 +296,15 @@ public class Company extends User {
 	public String toString() {
 		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
 				+ ", reference=" + reference + ", partner=" + partner + ", sector=" + sector + ", rate=" + rate
-				+ ", resultTest=" + resultTest + ", image=" + image + ", CompanyPartner=" + CompanyPartner
-				+ ", project=" + project + ", services=" + services + ", produits=" + produits + ", orders=" + orders
-				+ ", myClaims=" + myClaims + ", Recevedclaims=" + Recevedclaims + ", recommandations1="
-				+ recommandations1 + ", recommandations2=" + recommandations2 + ", events=" + events + "]";
+				+ ", resultTest=" + resultTest + ", image=" + image + ", CompanyOwner=" + CompanyOwner
+				+ ", CompanyPartner=" + CompanyPartner + ", project=" + project + ", services=" + services
+				+ ", produits=" + produits + ", orders=" + orders + ", myClaims=" + myClaims + ", Recevedclaims="
+				+ Recevedclaims + ", recommandations1=" + recommandations1 + ", recommandations2=" + recommandations2
+				+ ", reserche=" + reserche + ", events=" + events + "]";
 	}
+
+
+
 
 	
 	

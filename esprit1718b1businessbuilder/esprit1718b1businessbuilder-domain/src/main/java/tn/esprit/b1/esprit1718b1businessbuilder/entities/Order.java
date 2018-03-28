@@ -7,7 +7,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -23,6 +24,7 @@ public class Order implements Serializable {
 	
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
 	
 	@Column(name = "O_date")
@@ -30,7 +32,7 @@ public class Order implements Serializable {
 	private Date orderDate;
 	
 	@Column(name = "state")
-	private Boolean state;
+	private Integer state;
 	
 	@Column(name = "amount")
 	private Float amount;
@@ -61,11 +63,11 @@ public class Order implements Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public Boolean getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(Boolean state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 
@@ -89,15 +91,10 @@ public class Order implements Serializable {
 		this.orderLines = orderLines;
 	}
 
-	public Order(Date orderDate, Boolean state, Float amount) {
-		super();
-		this.orderDate = orderDate;
-		this.state = state;
-		this.amount = amount;
-	}
 
 	public Order() {
-		
+		this.state = 0 ; //empty Order
+		this.amount = (float) 0 ; //
 	}
 
 	public Company getBuyer() {
@@ -106,6 +103,12 @@ public class Order implements Serializable {
 
 	public void setBuyer(Company buyer) {
 		this.buyer = buyer;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderDate=" + orderDate + ", state=" + state + ", amount=" + amount + ", buyer="
+				+ buyer + "]";
 	}
 	
 	

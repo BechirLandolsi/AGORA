@@ -57,7 +57,7 @@
                   <MaterialDesignIconView fill="#a1aec4" glyphName="VIEW_GRID" size="17.0" wrappingWidth="42.99997329711914" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnAlerts" layoutX="10.0" layoutY="235.0" onAction="#switchPartnership" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Partnership" textFill="#a1aec4">
+            <JFXButton fx:id="btnProjects" layoutX="10.0" layoutY="235.0" onAction="#switchProjects" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Projects" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>

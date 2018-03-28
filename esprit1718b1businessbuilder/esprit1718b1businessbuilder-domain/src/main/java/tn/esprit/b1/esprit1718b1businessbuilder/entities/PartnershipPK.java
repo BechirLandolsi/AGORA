@@ -20,43 +20,56 @@ public class PartnershipPK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private Long CompanyPartnerId;
 	private Long ProjectId;
+	private Long CompanyOwnerId;
+	private Long CompanyPartnerId;
+	
 	
 	public PartnershipPK() {
 		super();
 	}
 
-	public PartnershipPK(Long companyPartnerId, Long projectId) {
-		super();
-		CompanyPartnerId = companyPartnerId;
-		ProjectId = projectId;
-	}
-
-	public Long getCompanyPartnerId() {
-		return CompanyPartnerId;
-	}
-
-	public void setCompanyPartnerId(Long companyPartnerId) {
-		CompanyPartnerId = companyPartnerId;
-	}
 
 	public Long getProjectId() {
 		return ProjectId;
 	}
 
+
 	public void setProjectId(Long projectId) {
 		ProjectId = projectId;
 	}
+
+
+	public Long getCompanyOwnerId() {
+		return CompanyOwnerId;
+	}
+
+
+	public void setCompanyOwnerId(Long companyOwnerId) {
+		CompanyOwnerId = companyOwnerId;
+	}
+
+
+	public Long getCompanyPartnerId() {
+		return CompanyPartnerId;
+	}
+
+
+	public void setCompanyPartnerId(Long companyPartnerId) {
+		CompanyPartnerId = companyPartnerId;
+	}
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((CompanyOwnerId == null) ? 0 : CompanyOwnerId.hashCode());
 		result = prime * result + ((CompanyPartnerId == null) ? 0 : CompanyPartnerId.hashCode());
 		result = prime * result + ((ProjectId == null) ? 0 : ProjectId.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -67,6 +80,11 @@ public class PartnershipPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PartnershipPK other = (PartnershipPK) obj;
+		if (CompanyOwnerId == null) {
+			if (other.CompanyOwnerId != null)
+				return false;
+		} else if (!CompanyOwnerId.equals(other.CompanyOwnerId))
+			return false;
 		if (CompanyPartnerId == null) {
 			if (other.CompanyPartnerId != null)
 				return false;
@@ -80,7 +98,13 @@ public class PartnershipPK implements Serializable {
 		return true;
 	}
 
-	
+
+	@Override
+	public String toString() {
+		return "PartnershipPK [ProjectId=" + ProjectId + ", CompanyOwnerId=" + CompanyOwnerId + ", CompanyPartnerId="
+				+ CompanyPartnerId + "]";
+	}
+
 	
 	
 	

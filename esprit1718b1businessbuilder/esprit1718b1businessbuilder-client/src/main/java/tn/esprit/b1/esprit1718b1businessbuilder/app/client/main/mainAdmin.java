@@ -72,7 +72,7 @@ public class mainAdmin {
 		   // Produit p1 = proxy1.findProduct(8);
 		  // proxy.addProductToOrder(p1, c1, 20);
 		  //proxy.payOrder(c1); 
-		    Produit p1 = proxy1.findProduct(15);
+		    //Produit p1 = proxy1.findProduct(15);
 		   // proxy.addProductToOrder(p1, c1, 55);
 		proxy.payOrder(c1); 
 		   //System.out.println(proxy.salesPermonth().toString());

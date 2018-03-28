@@ -38,7 +38,7 @@ public class CompanyService implements CompanyServiceRemote{
 	@Override
 	public Company findAllCompanyByName(String name) {
 
-		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name OR c.sector =:name",Company.class) ;
+		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name",Company.class) ;
 		Company c = null  ;
 		try{
 		c =	q.setParameter("name", name).getSingleResult() ;
@@ -49,12 +49,9 @@ public class CompanyService implements CompanyServiceRemote{
 		return c ;
 	}
 	@Override
-
 	public void AddCompanyReserche(Reserche r, Company c  ) {
-	  
 		r.setCompanyR(c);
 		em.persist(r);
-		
 	}
 	@Override
 	public Company findBy(long id) {

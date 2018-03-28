@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="cellre" prefHeight="224.0" prefWidth="255.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="cellre" prefHeight="224.0" prefWidth="294.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imgRowre" fitHeight="153.0" fitWidth="255.0" layoutX="-1.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="LNamere" layoutX="46.0" layoutY="14.0" prefHeight="39.0" prefWidth="169.0" text="Company Name">
+      <ImageView fx:id="imgRowre" fitHeight="124.0" fitWidth="188.0" layoutX="-1.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="14.0" layoutY="181.0" text="Stock:" />
+      <Label layoutX="175.0" layoutY="181.0" text="Price :" />
+      <Label fx:id="nameP" layoutX="2.0" layoutY="1.0" prefHeight="30.0" prefWidth="204.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" />
+      <JFXButton layoutX="188.0" layoutY="41.0" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #3C8DBC;" text="See Offer !" textFill="WHITE">
          <font>
-            <Font size="23.0" />
-         </font></Label>
+            <Font name="Roboto Medium" size="15.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="stockP" layoutX="57.0" layoutY="184.0" prefHeight="8.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label fx:id="priceP" layoutX="223.0" layoutY="182.0" prefHeight="20.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
    </children>
 </AnchorPane>

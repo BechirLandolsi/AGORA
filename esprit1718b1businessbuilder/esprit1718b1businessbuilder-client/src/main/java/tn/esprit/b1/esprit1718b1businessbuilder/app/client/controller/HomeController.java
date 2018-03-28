@@ -10,8 +10,10 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,6 +35,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 
 
@@ -56,12 +59,22 @@ public class HomeController implements Initializable {
     @FXML
     private ListView<Company> list_company;
     @FXML
-    private ListView<Company> list_Recommandation;
+    private ListView<Produit> list_Recommandation;
+    
+    
+    
     private ObservableList<Company> cplist3 ;
+    private ObservableList<Produit> listefinale  = FXCollections.<Produit>observableArrayList();
+  
+    //private ObservableList<String> cplist3s ;
     private ObservableList<Company> cplist ;
+    private Set<Company> hs = new HashSet<Company>();
     private ObservableList<Company> cplistservice ;
     private List<String> cplistname  = new ArrayList<>();
     private List<String> listservice  = new ArrayList<>();
+    private List<String> cplist3s  = new ArrayList<>();
+    private List<Company> test  = new ArrayList<>();
+   
     /**
      * Initializes the controller class.
      */
@@ -123,22 +136,58 @@ public class HomeController implements Initializable {
 	    	 TextFields.bindAutoCompletion(search, cplistname) ; 
 	///////////////////////////////////////////////INITILIZATIONRECOMMANDATION/////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	 String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-				CompanyServiceRemote proxy3;
+	
+	    	 CompanyServiceRemote proxy3;
+				
 				try {
+					 String service ;
 					 Context	context3 = new InitialContext();
+					 contexts = new InitialContext();
 					 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName3);
-
-					 //for()
+					 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
+					 cplist3s = proxys.ResercheListe(31);
+					// System.out.println(cplist3s);
+			     for( String s : cplist3s  ){			    	 
+			    	 //System.out.println(s);
+						 test = proxy3.findAllCompanyByService(s);
+						// System.out.println(cplist3);
+						 for(Company c : test){		
+							// System.out.println(c);
+							 // System.out.println(",yntbrve");
+						            if (!hs.contains(c)){
+						                hs.add(c);
+						                //System.out.println(hs);
+						        }
+							}
+					 }
 					 
-					 //cplist3 = FXCollections.observableArrayList(proxy3.findAllCompany());
+			     
 				} catch (NamingException e) {
 					e.printStackTrace();
 				}
-				list_Recommandation.setItems(cplist3);
-				list_Recommandation.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
+				List<Produit> listp = new ArrayList<>();
+				 try {
+					contexts = new InitialContext();
+					 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
+					 
+					 
+						for(Company c : hs) {
+							listp=	proxys.findProductByCompany(c) ;
+						}
+						
+				} catch (NamingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+				
+				listefinale.addAll(listp); 
+				list_Recommandation.setItems(listefinale);
+				//list_Recommandation.
+				list_Recommandation.setCellFactory(new Callback<ListView<Produit>, javafx.scene.control.ListCell<Produit>>()
 		        {
 					@Override
-					public ListCell<Company> call(ListView<Company> param) {
+					public ListCell<Produit> call(ListView<Produit> param) {
 						 return new CompanyRowReController();
 					}
 		        });

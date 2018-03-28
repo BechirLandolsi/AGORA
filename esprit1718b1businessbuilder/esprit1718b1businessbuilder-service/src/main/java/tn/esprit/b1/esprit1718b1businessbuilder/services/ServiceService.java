@@ -8,8 +8,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+
 
 @Stateless
 public class ServiceService implements ServiceServiceRemote  {
@@ -82,5 +84,21 @@ public class ServiceService implements ServiceServiceRemote  {
 		List <String> recherches = q.setParameter("id", c1).getResultList() ;
 		return recherches;
 	}
+	@Override
+	public List<Produit> findProductByCompany(Company c) {
+		 TypedQuery<Produit> q =  em.createQuery("select p from Produit p WHERE p.supplier =:company ",Produit.class) ;
+		 List<Produit> produits  =	q.setParameter("company", c).getResultList();
+		return produits;
+	}
+
+	@Override
+	public List<Company> findCompanyBysynonyme(String r) {
+		 TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name IN (select s.service from Synonyme s where s.synonyme1 LIKE "
+		 		+ ":service OR s.synonyme2 LIKE :service OR s.synonyme3 LIKE :service)",Company.class) ;
+		 
+		 List<Company> companies  =	q.setParameter("service", "%" + r+ "%").getResultList();
+		return companies;
+	}
+
 
 }

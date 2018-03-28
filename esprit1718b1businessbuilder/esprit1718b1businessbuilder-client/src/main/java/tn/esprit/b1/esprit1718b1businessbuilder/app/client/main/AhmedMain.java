@@ -19,6 +19,10 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 
 public class AhmedMain {
 
+	/**
+	 * @param args
+	 * @throws NamingException
+	 */
 	public static void main(String[] args) throws NamingException {
         String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 		Context context = new InitialContext();
@@ -31,6 +35,8 @@ public class AhmedMain {
 		//proxy.ajouterCompany(c1);
 	    //proxy.ajouterCompany(c2);
 	    //proxy.ajouterCompany(c3);
+		
+		System.out.println(proxy.findCompanyBysynonyme("passat"));
 	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
 	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
@@ -38,8 +44,8 @@ public class AhmedMain {
 
 	    Context context1 = new InitialContext();
 		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
- 		List <String> list = new ArrayList<>() ;
- 	 	list = proxy1.findAllCompanyNames();
+ 		List <Company> list = new ArrayList<>() ;
+ 	 	//list = proxy1.findAllCompanyNames();
 	    //System.out.println(list);    
 	/**************************************************Reserche************************************************************************************************************************************/
  	 	
@@ -58,9 +64,18 @@ public class AhmedMain {
  	 	//service.setName("merchandise  sale ");
  	    //service.setName("computer   sale ");
  	 	//                       proxy.ajouterService(service);
- 	 	//proxy.affecterServiceACompany(30, 10);
- 	    //System.out.println( proxy1.findAllCompanyByService("sim")); 
- 	 	System.out.println(proxy.ResercheListe(31));
+ 	 	/*proxy.affecterServiceACompany(30, 10);
+ 	 	proxy.affecterServiceACompany(30, 12 );
+ 	 	proxy.affecterServiceACompany(31, 13 );
+ 	 	proxy.affecterServiceACompany(31, 15 );
+ 	 	proxy.affecterServiceACompany(33, 2 );
+ 	 	proxy.affecterServiceACompany(31, 4 );
+ 	 	proxy.affecterServiceACompany(34, 13 );
+ 	 	proxy.affecterServiceACompany(35, 14 );*/
+ 	    //System.out.println( proxy1.findAllCompanyByService("orange"));
+ 	    //list.addAll(proxy1.findAllCompanyByService("sim"));
+ 	   // System.out.println(proxy1.findAllCompanyByService("orange"));
+ 	 	//System.out.println(proxy.ResercheListe(31));
  	 	
     }
 }

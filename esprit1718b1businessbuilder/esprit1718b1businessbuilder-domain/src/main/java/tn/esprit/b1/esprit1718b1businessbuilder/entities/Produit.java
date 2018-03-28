@@ -147,6 +147,13 @@ public class Produit implements Serializable {
 		this.price = price;
 		this.deliveryD = deliveryD;
 	}
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", description=" + description + ", stock=" + stock + ", path=" + path + ", cout="
+				+ cout + ", price=" + price + ", deliveryD=" + deliveryD + ", supplier=" + supplier + ", orderLines="
+				+ orderLines + "]";
+	}
 	
 	
 	

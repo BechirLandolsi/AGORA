@@ -165,7 +165,7 @@ public class ProjectController implements Initializable {
 		context1 = new InitialContext();
 		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
 		
-		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(16));
+		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(31));
     	
  	      col_project.setId("1");;
     	  col_project.cellFactoryProperty();
@@ -247,7 +247,7 @@ public class ProjectController implements Initializable {
     	
     	Project p = new Project();
     	Company c = new Company();
-    	c.setId((long) 16);
+    	c.setId((long) 31);
     	
     	p.setName(projectnameEntry.getText());
     	p.setProjectNature(natureproectcombobox.getValue());

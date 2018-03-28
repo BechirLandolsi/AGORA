@@ -43,7 +43,11 @@ public class Company extends User {
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
 	
+	@OneToMany(mappedBy="companyTender")
+	private List <Tender> tenders;
 	
+	@OneToMany(mappedBy="company")
+	private List <TenderApplication> tenderApplications;
 	
 	@OneToMany (mappedBy="ProjectOwner")
 	private List <Project> project;
@@ -90,7 +94,7 @@ public class Company extends User {
 
 	public Company(String name, String login, String password, String email,String cEO, String adress, Long number, String reference,
 			
-			String sector, int rate, String resultTest, String image) {
+		String sector, int rate, String resultTest, String image) {
 		super(name, login, password, email);
 		CEO = cEO;
 	
@@ -148,9 +152,27 @@ public class Company extends User {
 	}
 
 	
+	
+	public List<Tender> getTenders() {
+		return tenders;
+	}
 
+
+	public void setTenders(List<Tender> tenders) {
+		this.tenders = tenders;
+	}
 	
-	
+
+	public List<TenderApplication> getTenderApplications() {
+		return tenderApplications;
+	}
+
+
+	public void setTenderApplications(List<TenderApplication> tenderApplications) {
+		this.tenderApplications = tenderApplications;
+	}
+
+
 	public String getCEO() {
 		return CEO;
 	}

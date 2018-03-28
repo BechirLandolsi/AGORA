@@ -15,6 +15,27 @@ import javax.persistence.TemporalType;
 @Table(name = "tab_Event")
 public class Event implements Serializable {
 
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	@Override
+	public String toString() {
+		return "Event [event_name=" + event_name + ", event_adress=" + event_adress + ", event_date=" + event_date
+				+ "]";
+	}
+
+
+	public Event(String event_name, String event_adress, Date event_date) {
+		super();
+		this.event_name = event_name;
+		this.event_adress = event_adress;
+		this.event_date = event_date;
+	}
+
+
 	/**
 	 * 
 	 */

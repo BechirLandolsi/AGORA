@@ -1,5 +1,9 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -27,19 +31,19 @@ public class mainAdmin {
 		    CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2) ; 
 			ServiceServiceRemote proxy3 = (ServiceServiceRemote) context.lookup(jndiName3);
 			
-			//Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
-			//Company c2 = new Company("Zara","Zaralogin","Zarapass","Zara@gmail.com","CEO_Zara","Espagne",(long)339585789,"0E17","Vetement",5,"excellent","Zara.jpg");
-			//Company c3 = new Company("Astral","Astrallogin","Astralgpass","Astral@gmail.com","CEO_Astral","Tunisie",(long)71852963,"0T13","peinture",5,"excellent","Astral.jpg");
+			/*Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
+			Company c2 = new Company("Zara","Zaralogin","Zarapass","Zara@gmail.com","CEO_Zara","Espagne",(long)339585789,"0E17","Vetement",5,"excellent","Zara.jpg");
+			Company c3 = new Company("Astral","Astrallogin","Astralgpass","Astral@gmail.com","CEO_Astral","Tunisie",(long)71852963,"0T13","peinture",5,"excellent","Astral.jpg");
 		    
-			//proxy3.ajouterCompany(c1);
-		   // proxy3.ajouterCompany(c2);
-		    //proxy3.ajouterCompany(c3);
+			proxy3.ajouterCompany(c1);
+		    proxy3.ajouterCompany(c2);
+		    proxy3.ajouterCompany(c3);*/
 		//***************************************************************************\\
 		//*******************************PRODUCT******************************************\\
 			//ProductService
 		    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
 			
-		    ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
+		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
 	  		//System.out.println(proxy3.findBy(32));
 				Company c1 = proxy2.findBy(31) ; 
@@ -68,6 +72,23 @@ public class mainAdmin {
 		   // Produit p1 = proxy1.findProduct(8);
 		  // proxy.addProductToOrder(p1, c1, 20);
 		  //proxy.payOrder(c1); 
+		    Produit p1 = proxy1.findProduct(15);
+		   // proxy.addProductToOrder(p1, c1, 55);
+		proxy.payOrder(c1); 
+		   //System.out.println(proxy.salesPermonth().toString());
+		   /* Date current = new Date() ; 
+		    String PATTERN="yyyy-MM-dd";
+		    SimpleDateFormat dateFormat=new SimpleDateFormat();
+		    dateFormat.applyPattern(PATTERN);
+		    String date1=dateFormat.format(Calendar.getInstance().getTime());
+		    int mois = Integer.parseInt((date1.toString().substring(5,7)));
+		    System.out.println(mois);*/
+		   
+		   /* for (Object[] o : proxy.salesPermonth()){
+		    	System.out.println((double)o[0]) ; 
+		    	System.out.println((Date)o[1]) ;
+		    }*/
+		    
 		    //Order o = proxy.findOrder(1);
 		    //System.out.println(proxy.calculAmount(o));
 		 //********************************************************************************\\

@@ -46,13 +46,6 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <TableView fx:id="tab_project1" layoutX="45.0" layoutY="101.0" onMouseClicked="#tableclick1" prefHeight="273.0" prefWidth="483.0" visible="false">
-              <columns>
-                <TableColumn id="1" fx:id="col_project1" prefWidth="124.0" text="Project" />
-                  <TableColumn fx:id="col_name1" prefWidth="173.0" text="Name" />
-                <TableColumn fx:id="col_service1" prefWidth="182.0" text="Service" />
-              </columns>
-            </TableView>
             <Label layoutX="434.0" layoutY="430.0" prefHeight="75.0" prefWidth="155.0" text="Your partner is:" textFill="#0b485b">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -61,7 +54,8 @@
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <JFXButton fx:id="btnajouter" layoutX="832.0" layoutY="536.0" onAction="#btnajouter" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Project" />
+            <JFXButton fx:id="btnajouter" layoutX="723.0" layoutY="537.0" onAction="#btnajouter" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Project" />
+            <JFXButton fx:id="btnajouterpartner1" layoutX="863.0" layoutY="536.0" onAction="#btnajouterpartner1" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Partner" visible="false" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchor2" layoutX="4.0" layoutY="-13.0" prefHeight="623.0" prefWidth="1017.0" visible="false">
@@ -131,7 +125,7 @@
             </Label>
             <JFXTextField fx:id="price" accessibleRole="MENU_BUTTON" layoutX="726.0" layoutY="265.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey1" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <JFXTextField fx:id="energycost" accessibleRole="MENU_BUTTON" layoutX="247.0" layoutY="374.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey3" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label fx:id="remplirLabel" layoutX="90.0" layoutY="553.0" prefHeight="37.0" prefWidth="388.0">
+            <Label fx:id="remplirLabel" layoutX="90.0" layoutY="553.0" prefHeight="37.0" prefWidth="388.0" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font></Label>
@@ -162,7 +156,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnajouterproject" layoutX="755.0" layoutY="525.0" onAction="#btnajouterproject" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add" />
+            <JFXButton fx:id="btnajouterproject" layoutX="861.0" layoutY="542.0" onAction="#btnajouterproject" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add" />
+            <Label fx:id="remplirchampLabel" layoutX="448.0" layoutY="562.0" prefHeight="46.0" prefWidth="373.0" textFill="#060514">
+               <font>
+                  <Font name="Sitka Heading" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="1010.0" visible="false">

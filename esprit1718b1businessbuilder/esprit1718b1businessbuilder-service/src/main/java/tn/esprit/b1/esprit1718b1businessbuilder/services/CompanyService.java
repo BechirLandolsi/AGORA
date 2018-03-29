@@ -83,6 +83,11 @@ public class CompanyService implements CompanyServiceRemote{
 		return sectors;
 		
 	}
+	@Override
+	public void add(Company c) {
+		em.persist(c);
+		
+	}
 	
 	
 

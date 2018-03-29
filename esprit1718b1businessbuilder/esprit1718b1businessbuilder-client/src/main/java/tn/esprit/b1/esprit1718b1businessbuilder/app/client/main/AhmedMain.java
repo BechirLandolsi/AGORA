@@ -24,34 +24,34 @@ public class AhmedMain {
 	 * @throws NamingException
 	 */
 	public static void main(String[] args) throws NamingException {
-        String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
+        String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
 		Context context = new InitialContext();
-		ServiceServiceRemote proxy = (ServiceServiceRemote) context.lookup(jndiName1);
+		CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName1);
 		
 		Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
 		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
 		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F12","IT",5,"excellent","vermeg.jpg");
 	   
-		//proxy.ajouterCompany(c1);
-	    //proxy.ajouterCompany(c2);
-	    //proxy.ajouterCompany(c3);
+		proxy.add(c1);
+	    proxy.add(c2);
+	    proxy.add(c3);
 		
-		System.out.println(proxy.findCompanyBysynonyme("passat"));
+		//System.out.println(proxy.findCompanyBysynonyme("passat"));
 	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
 	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 		 
 
-	    Context context1 = new InitialContext();
-		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
- 		List <Company> list = new ArrayList<>() ;
+	    //Context context1 = new InitialContext();
+		//CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
+ 		//List <Company> list = new ArrayList<>() ;
  	 	//list = proxy1.findAllCompanyNames();
 	    //System.out.println(list);    
 	/**************************************************Reserche************************************************************************************************************************************/
  	 	
- 	 	Reserche reserche = new Reserche() ;
- 	 	reserche.setReserche("aaa");
- 	 	Company c =proxy1.findBy(30) ;
+ 	 	//Reserche reserche = new Reserche() ;
+ 	 	//reserche.setReserche("aaa");
+ 	 	//Company c =proxy1.findBy(30) ;
  	 	//proxy1.AddCompanyReserche(reserche,c);
  	/**********************************************Service*************************************************************************************/
  	 	Service service = new Service () ;

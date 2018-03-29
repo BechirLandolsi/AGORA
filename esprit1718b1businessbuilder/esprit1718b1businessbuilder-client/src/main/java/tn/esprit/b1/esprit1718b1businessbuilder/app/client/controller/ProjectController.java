@@ -84,8 +84,6 @@ public class ProjectController implements Initializable {
     private TableView<Project> tab_project;
     
     @FXML
-    private TableColumn<Integer, Integer> col_project;
-    @FXML
     private TableColumn<Project, String> col_name;
     @FXML
     private TableColumn<Project, String> col_service;
@@ -147,10 +145,17 @@ public class ProjectController implements Initializable {
     private Label remplirLabel;
     
     @FXML
+    private Label remplirchampLabel;
+    
+    @FXML
     private JFXTextField stock;
 
     @FXML
     private Label stockLabel;
+    
+
+    @FXML
+    private JFXButton btnajouterpartner1;
     
  /************************************************ Anchor pane 3 *************************************************/
     
@@ -236,13 +241,33 @@ public class ProjectController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    	
    	 
+    	 ObservableList<String> natureprojectList = FXCollections.observableArrayList();
+         natureprojectList.add("Creation");
+         natureprojectList.add("Recovery");
+         natureproectcombobox.setItems(natureprojectList);
+         	 
+        	try {
+       	context4 = new InitialContext();
+       	CompanyServiceRemote proxy = (CompanyServiceRemote) context4.lookup(jndiName4);
+       	Set <String> hashset = new HashSet<>();
+       	hashset.addAll(proxy.getAllSectors());
+       	ObservableList<String> comboList = FXCollections.observableArrayList(hashset);
+       	sectorcombobox.setItems(comboList);
+        
+        	}
+        	catch (NamingException e)
+        	{
+        		e.printStackTrace();
+        		
+        	}
+    	
    	
 	try {
 
 		context1 = new InitialContext();
 		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
 		
-		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(31));
+		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(2));
     	
  	     // col_project.setId("1");
     	  //col_project.cellFactoryProperty();
@@ -264,7 +289,7 @@ public class ProjectController implements Initializable {
     }    
 
 
-    @FXML
+   @FXML
     void tableclick(MouseEvent event) {
 
     	if (tab_project.getSelectionModel().getSelectedItem() != null) {
@@ -290,11 +315,12 @@ public class ProjectController implements Initializable {
     		partnerLabel.setVisible(false);
 			partnerLabel1.setVisible(true);
 	 		partnerLabel1.setText("You do not have partners in this project"); 
+	 		btnajouterpartner1.setVisible(true);
     		}
     		
     		else
     		{   
-    			
+    			btnajouterpartner1.setVisible(false);
     			partnerLabel1.setVisible(false);
     			partnerLabel.setVisible(true);
     			partnerLabel.setText(names.get(0));
@@ -313,154 +339,146 @@ public class ProjectController implements Initializable {
 		
     	
     }
-    
-    
-    @FXML
+   
+   
+   @FXML
+   void btnajouterpartner1(ActionEvent event) throws IOException {
+   	
+	     Stage news=new Stage();
+	     Parent root=FXMLLoader.load(getClass().getResource("../gui/Partnership.fxml"));
+	     Scene s=new Scene(root);
+	     news.setScene(s);
+	     news.show();
+   } 
+ 
+   @FXML
     void btnajouter(ActionEvent event) {
     	
     	anchor1.setVisible(false);
     	anchor2.setVisible(true);
-    
-     ObservableList<String> natureprojectList = FXCollections.observableArrayList();
-     natureprojectList.add("Cration");
-     natureprojectList.add("Recovery");
-     natureproectcombobox.setItems(natureprojectList);
-     	 
-    	try {
-   	context4 = new InitialContext();
-   	CompanyServiceRemote proxy = (CompanyServiceRemote) context4.lookup(jndiName4);
-   	Set <String> hashset = new HashSet<>();
-   	hashset.addAll(proxy.getAllSectors());
-   	ObservableList<String> comboList = FXCollections.observableArrayList(hashset);
-   	sectorcombobox.setItems(comboList);
-    
-    	}
-    	catch (NamingException e)
-    	{
-    		e.printStackTrace();
-    		
-    	}
-    	
-    	
+     	
     }
     
-    
+   
     @FXML
-    void btnajouterproject(ActionEvent event) throws IOException {
-    	
+    void btnajouterproject(ActionEvent event) throws IOException, NamingException {
+    	 	
     	
     	Company c = new Company();
-    	c.setId((long) 31);
-    	
-    	p = new Project();
-    	
-    	p.setName(projectnameEntry.getText());
-    	p.setProjectNature(natureproectcombobox.getValue());
-    	p.setService(sectorcombobox.getValue());
-    	p.setStock(Integer.parseInt(stock.getText()));
-    	p.setPriceUnit(Float.parseFloat(price.getText()));
-    	p.setPurchase(Float.parseFloat(purchase.getText()));
-    	p.setEnergyCost(Float.parseFloat(energycost.getText()));
-    	p.setTransportCost(Float.parseFloat(transpcost.getText()));
-    	p.setEmployeeSalaire(Float.parseFloat(salaire.getText()));
-    	p.setInterestOnLoans(Float.parseFloat(interestonloans.getText()));
-    	p.setRentCost(Float.parseFloat(rentcost.getText()));
-    	p.setCapital(Float.parseFloat(capital.getText()));
-    	p.setState(false);
-    	p.setProjectOwner(c);
-
-    	float CA = p.getStock()*p.getPriceUnit();
-    	float CV =p.getPurchase()+p.getEnergyCost()+p.getTransportCost();
-    	float percentCV = (CV/CA)*100 ;
-    	float Mg = CA-CV;
-    	float percentMg= (Mg/CA)*100;
-    	float CF = p.getRentCost()+p.getEmployeeSalaire()+p.getInterestOnLoans();
-    	float result = Mg-CF;
-    	float SR = CF/Mg;
-    	float PM = (SR/CA)*12;
-    	//float FR= (p.getCapital()+p.getInterestOnLoans())-(p.getTransportCost()+p.getEnergyCost());
-    	float FR =(float) (502.5);
-    	
-    	if (FR>0)
-    	{
-    		happyimg.setVisible(true);
-    		StateLabel.setTextFill(Color.GREEN);
-    		StateLabel.setText("Your financial state is stable");
-    	}
-    	
-    	if (FR<0)
-    	{
-    		sadimg.setVisible(true);
-    		StateLabel.setTextFill(Color.RED);
-    		StateLabel.setText("Your financial state is in danger");
-
-    		
-    	}	
-    
-    	Bilan b = new Bilan();
-    	b.setCA(CA);
-    	b.setCF(CF);
-    	b.setCV(CV);
-    	b.setMargeSurCoutV(Mg);
-    	b.setResult(result);
-    	//b.setProject(p);
-    	b.setSR(SR);
-    	b.setPM(PM);
-    	b.setFR(FR);
-    	
-     	salesLabel.setText(String.valueOf(CA));
-      	
-    	CVLabel.setText(String.valueOf(CV));
-    	percentCVLabel.setText(String.valueOf(percentCV)+"%");
-    	
-    	MgLabel.setText(String.valueOf(Mg));
-    	percentMgLabel.setText(String.valueOf(percentMg)+"%");
-    	
-    	CFLabel.setText(String.valueOf(CF));
-    	
-    	resultLabel.setText(String.valueOf(result));
-    	
-    	SRLabel.setText(String.valueOf(SR));
-    	
-    	PointMortLabel.setText(String.valueOf(PM));
-    	
-    	fondDeRoulmntLabel.setText(String.valueOf(FR));
+    	c.setId((long) 2);
     	
     	
-    	
-    	try{
-    		anchor2.setVisible(false);
-    		anchor3.setVisible(true);
-        	label.setText(p.getName());
           	
-        	context5 = new InitialContext();
-    		BilanRemote proxy5 = (BilanRemote) context5.lookup(jndiName5);
-        	/*long  x =p.getId();
-    		proxy5.addBilan(b,x);*/
-    
-    		
-    	   }
+        boolean n = false;
     	
-    	
-    	catch(NamingException e)
-    	{
-    		e.printStackTrace();
-    	}
-    	
-    	
-    	try {
+        if ( projectnameEntry.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  stock.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  price.getText().equals("")  ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  purchase.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  energycost.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  transpcost.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  salaire.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  interestonloans.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  rentcost.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  capital.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  natureproectcombobox.getValue()!="" ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  sectorcombobox.getValue()!="") { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
 
-    		context1 = new InitialContext();
-    		 ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
-    		 proxy.addProject(p,b);
+
+        if (n==true)
+       	{
+    		 remplirchampLabel.setText("Please fill in all the fields");
     		
     	}
-    	catch(NamingException e)
-    	{
-    		e.printStackTrace();
-    	}
     	
- 		
+    	
+    	if (n==false)
+    	{context1 = new InitialContext();
+		 ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
+		 p = new Project();
+	    	
+	    	
+	    	p.setName(projectnameEntry.getText());
+	    	p.setProjectNature(natureproectcombobox.getValue());
+	    	p.setService(sectorcombobox.getValue());
+	    	p.setStock(Integer.parseInt(stock.getText()));
+	    	p.setPriceUnit(Float.parseFloat(price.getText()));
+	    	p.setPurchase(Float.parseFloat(purchase.getText()));
+	    	p.setEnergyCost(Float.parseFloat(energycost.getText()));
+	    	p.setTransportCost(Float.parseFloat(transpcost.getText()));
+	    	p.setEmployeeSalaire(Float.parseFloat(salaire.getText()));
+	    	p.setInterestOnLoans(Float.parseFloat(interestonloans.getText()));
+	    	p.setRentCost(Float.parseFloat(rentcost.getText()));
+	    	p.setCapital(Float.parseFloat(capital.getText()));
+	    	p.setState(false);
+	    	p.setProjectOwner(c);
+
+	    	float CA = p.getStock()*p.getPriceUnit();
+	    	float CV =p.getPurchase()+p.getEnergyCost()+p.getTransportCost();
+	    	float percentCV = (CV/CA)*100 ;
+	    	float Mg = CA-CV;
+	    	float percentMg= (Mg/CA)*100;
+	    	float CF = p.getRentCost()+p.getEmployeeSalaire()+p.getInterestOnLoans();
+	    	float result = Mg-CF;
+	    	float SR = CF/Mg;
+	    	float PM = (SR/CA)*12;
+	    	//float FR= (p.getCapital()+p.getInterestOnLoans())-(p.getTransportCost()+p.getEnergyCost());
+	    	float FR =(float) (502.5);
+	    	
+	    	if (FR>0)
+	    	{
+	    		happyimg.setVisible(true);
+	    		StateLabel.setTextFill(Color.GREEN);
+	    		StateLabel.setText("Your financial state is stable");
+	    	}
+	    	
+	    	if (FR<0)
+	    	{
+	    		sadimg.setVisible(true);
+	    		StateLabel.setTextFill(Color.RED);
+	    		StateLabel.setText("Your financial state is in danger");
+
+	    		
+	    	}	
+	    
+	    	Bilan b = new Bilan();
+	    	b.setCA(CA);
+	    	b.setCF(CF);
+	    	b.setCV(CV);
+	    	b.setMargeSurCoutV(Mg);
+	    	b.setResult(result);
+	    	b.setSR(SR);
+	    	b.setPM(PM);
+	    	b.setFR(FR);
+	    	
+	     	salesLabel.setText(String.valueOf(CA));
+	      	
+	    	CVLabel.setText(String.valueOf(CV));
+	    	percentCVLabel.setText(String.valueOf(percentCV)+"%");
+	    	
+	    	MgLabel.setText(String.valueOf(Mg));
+	    	percentMgLabel.setText(String.valueOf(percentMg)+"%");
+	    	
+	    	CFLabel.setText(String.valueOf(CF));
+	    	
+	    	resultLabel.setText(String.valueOf(result));
+	    	
+	    	SRLabel.setText(String.valueOf(SR));
+	    	
+	    	PointMortLabel.setText(String.valueOf(PM));
+	    	
+	    	fondDeRoulmntLabel.setText(String.valueOf(FR));
+	    	
+	    	
+	    	
+	    	
+	    		anchor2.setVisible(false);
+	    		anchor3.setVisible(true);
+	        	label.setText(p.getName());
+		 proxy.addProject(p,b);
+		 
+    	}
+		 
     		
     }
 
@@ -685,6 +703,7 @@ void btnajouterpartner(ActionEvent event) throws IOException
 
 
 
+  
 
 } 
     

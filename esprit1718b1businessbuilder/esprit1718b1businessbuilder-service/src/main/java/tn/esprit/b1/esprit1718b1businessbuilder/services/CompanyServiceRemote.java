@@ -8,7 +8,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 @Remote
 public interface CompanyServiceRemote {
 	
-
+		public void add(Company c);
 	    public List<Company> findAllCompany() ; 
 	    public List<String> findAllCompanyNames() ;
 		public Company findAllCompanyByName(String name); 	

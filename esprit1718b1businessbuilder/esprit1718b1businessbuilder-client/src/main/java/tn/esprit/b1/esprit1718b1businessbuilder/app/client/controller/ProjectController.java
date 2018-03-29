@@ -381,8 +381,8 @@ public class ProjectController implements Initializable {
         if (  interestonloans.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
         if (  rentcost.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
         if (  capital.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
-        if (  natureproectcombobox.getValue()!="" ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
-        if (  sectorcombobox.getValue()!="") { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        //if (  natureproectcombobox.getValue()!="" ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+      //  if (  sectorcombobox.getValue()!="") { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
 
 
         if (n==true)

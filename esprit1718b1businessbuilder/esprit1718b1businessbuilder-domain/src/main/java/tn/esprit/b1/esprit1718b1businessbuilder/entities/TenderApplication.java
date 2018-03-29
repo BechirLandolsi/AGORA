@@ -1,6 +1,7 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -64,8 +65,9 @@ public class TenderApplication implements Serializable {
 		return applicationDate;
 	}
 
-	public void setApplicationDate(Date applicationDate) {
-		this.applicationDate = applicationDate;
+	public void setApplicationDate(ZonedDateTime applicationDate) {
+		applicationDate = ZonedDateTime.now();
+		this.applicationDate = java.util.Date.from( applicationDate.toInstant() );
 	}
 
 	public TenderApplication() {

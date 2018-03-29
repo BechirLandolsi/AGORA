@@ -39,6 +39,14 @@ public class TenderCategory implements Serializable {
 		this.id = id;
 	}
 
+	public List<Tender> getTenders() {
+		return tenders;
+	}
+
+	public void setTenders(List<Tender> tenders) {
+		this.tenders = tenders;
+	}
+
 	public String getNameCategory() {
 		return nameCategory;
 	}

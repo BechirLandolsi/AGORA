@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="604.0" prefWidth="1017.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.PartnershipController">
+   <children>
+      <Label layoutX="38.0" layoutY="43.0" prefHeight="73.0" prefWidth="228.0" text="Please choose sector" textFill="#0b485b">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="sectorcombo" layoutX="242.0" layoutY="51.0" prefHeight="40.0" prefWidth="249.0" />
+      <Label layoutX="553.0" layoutY="45.0" prefHeight="73.0" prefWidth="119.0" text="Companies " textFill="#0b485b">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="companiescombo" layoutX="678.0" layoutY="52.0" onMouseMoved="#help" prefHeight="40.0" prefWidth="249.0" />
+   </children>
+</AnchorPane>

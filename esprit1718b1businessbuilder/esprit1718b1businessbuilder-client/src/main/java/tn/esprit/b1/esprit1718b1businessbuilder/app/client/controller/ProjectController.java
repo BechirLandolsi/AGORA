@@ -7,8 +7,10 @@ import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,10 +26,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Partnership;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.PartnershipRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectService;
@@ -41,6 +48,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -48,6 +56,8 @@ import javafx.scene.Parent;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.NoResultException;
+
 import javafx.scene.control.TextField;
 
 /**
@@ -57,13 +67,16 @@ import javafx.scene.control.TextField;
  */
 public class ProjectController implements Initializable {
 
+	
+	@FXML
+    private AnchorPane idanchor;
+	
     @FXML
     private JFXButton btnajouter;
     
     @FXML
     private JFXButton btnajouterpartner;
-    
-    
+       
     @FXML
     private JFXButton btnajouterproject;
     
@@ -82,6 +95,9 @@ public class ProjectController implements Initializable {
 
     @FXML
     private Label partnerLabel;
+    
+    @FXML
+    private Label partnerLabel1;
 
 
     @FXML
@@ -91,7 +107,7 @@ public class ProjectController implements Initializable {
     private JFXTextField projectnameEntry;
 
     @FXML
-    private JFXComboBox <String> servicecombobox;
+    private JFXComboBox <String> sectorcombobox;
 
     @FXML
     private RadioButton radio1;
@@ -118,6 +134,9 @@ public class ProjectController implements Initializable {
     private JFXTextField rentcost;
 
     @FXML
+    private JFXTextField capital;
+    
+    @FXML
     private JFXComboBox <String> natureproectcombobox;
     
 
@@ -133,6 +152,53 @@ public class ProjectController implements Initializable {
     @FXML
     private Label stockLabel;
     
+ /************************************************ Anchor pane 3 *************************************************/
+    
+    @FXML
+    private AnchorPane anchor3;
+
+    @FXML
+    private Label label;
+
+    @FXML
+    private Label salesLabel;
+
+    @FXML
+    private Label CVLabel;
+
+    @FXML
+    private Label percentCVLabel;
+
+    @FXML
+    private Label MgLabel;
+
+    @FXML
+    private Label percentMgLabel;
+
+    @FXML
+    private Label CFLabel;
+
+    @FXML
+    private Label resultLabel;
+    
+    @FXML
+    private Label SRLabel;
+
+    @FXML
+    private Label PointMortLabel;
+
+    @FXML
+    private Label fondDeRoulmntLabel;
+    
+    @FXML
+    private ImageView happyimg;
+
+    @FXML
+    private ImageView sadimg;
+    
+    @FXML
+    private Label StateLabel;
+    
     
     
     /**
@@ -145,15 +211,26 @@ public class ProjectController implements Initializable {
 	 
 	 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProjectService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote" ; 
 	 Context context1;
-	 
+	 	 
 	 String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/PartnershipService!tn.esprit.b1.esprit1718b1businessbuilder.services.PartnershipRemote" ; 
 	 Context context2;
 	 
 	 String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 	 Context context3;
 	 
-	 Company c = null;
+	 String jndiName4 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
+	 Context context4;
 	 
+	 String jndiName5 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/BilanService!tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote" ; 
+	 Context context5;
+	 	 
+	 Company c = null;
+	 //ProjectRemote proxy;
+
+   //  static Project o  ;
+
+	 
+	 public static Project p ;
 	 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -167,9 +244,9 @@ public class ProjectController implements Initializable {
 		
 		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(16));
     	
- 	      col_project.setId("1");;
-    	  col_project.cellFactoryProperty();
-
+ 	     // col_project.setId("1");
+    	  //col_project.cellFactoryProperty();
+    	  
     	  col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
     	  col_name.cellFactoryProperty();
          
@@ -191,17 +268,41 @@ public class ProjectController implements Initializable {
     void tableclick(MouseEvent event) {
 
     	if (tab_project.getSelectionModel().getSelectedItem() != null) {
-            Project o = tab_project.getSelectionModel().getSelectedItem();
-           
-            Long id = o.getId();
+    		 Project o = new Project();
+    		 o = tab_project.getSelectionModel().getSelectedItem();
+      	     Long id = o.getId();
+          
            try {
+        	  
             context2 = new InitialContext();
             
             PartnershipRemote proxy = (PartnershipRemote) context2.lookup(jndiName2);
+    		List <String> names = new ArrayList<>();
+    				names=proxy.getPartnerByProject(id);
     		
-    		String name =proxy.getPartnerByProject(id);
+    		///partnerLabel.setVisible(true);
+			//partnerLabel.setText(name);
     		
-    		partnerLabel.setText(name);
+    		
+    		if(names.isEmpty())
+    		
+    		{
+    		partnerLabel.setVisible(false);
+			partnerLabel1.setVisible(true);
+	 		partnerLabel1.setText("You do not have partners in this project"); 
+    		}
+    		
+    		else
+    		{   
+    			
+    			partnerLabel1.setVisible(false);
+    			partnerLabel.setVisible(true);
+    			partnerLabel.setText(names.get(0));
+    			
+    			
+    		}
+    		
+    	
 
     	} catch (NamingException e) {
     		
@@ -226,10 +327,12 @@ public class ProjectController implements Initializable {
      natureproectcombobox.setItems(natureprojectList);
      	 
     	try {
-   	context3 = new InitialContext();
-   	ServiceServiceRemote proxy = (ServiceServiceRemote) context3.lookup(jndiName3);
-   	ObservableList<String> comboList = FXCollections.observableArrayList(proxy.getName());
-   	servicecombobox.setItems(comboList);
+   	context4 = new InitialContext();
+   	CompanyServiceRemote proxy = (CompanyServiceRemote) context4.lookup(jndiName4);
+   	Set <String> hashset = new HashSet<>();
+   	hashset.addAll(proxy.getAllSectors());
+   	ObservableList<String> comboList = FXCollections.observableArrayList(hashset);
+   	sectorcombobox.setItems(comboList);
     
     	}
     	catch (NamingException e)
@@ -243,15 +346,17 @@ public class ProjectController implements Initializable {
     
     
     @FXML
-    void btnajouterproject(ActionEvent event) {
+    void btnajouterproject(ActionEvent event) throws IOException {
     	
-    	Project p = new Project();
+    	
     	Company c = new Company();
     	c.setId((long) 16);
     	
+    	p = new Project();
+    	
     	p.setName(projectnameEntry.getText());
     	p.setProjectNature(natureproectcombobox.getValue());
-    	p.setService(servicecombobox.getValue());
+    	p.setService(sectorcombobox.getValue());
     	p.setStock(Integer.parseInt(stock.getText()));
     	p.setPriceUnit(Float.parseFloat(price.getText()));
     	p.setPurchase(Float.parseFloat(purchase.getText()));
@@ -260,30 +365,105 @@ public class ProjectController implements Initializable {
     	p.setEmployeeSalaire(Float.parseFloat(salaire.getText()));
     	p.setInterestOnLoans(Float.parseFloat(interestonloans.getText()));
     	p.setRentCost(Float.parseFloat(rentcost.getText()));
+    	p.setCapital(Float.parseFloat(capital.getText()));
+    	p.setState(false);
     	p.setProjectOwner(c);
+
+    	float CA = p.getStock()*p.getPriceUnit();
+    	float CV =p.getPurchase()+p.getEnergyCost()+p.getTransportCost();
+    	float percentCV = (CV/CA)*100 ;
+    	float Mg = CA-CV;
+    	float percentMg= (Mg/CA)*100;
+    	float CF = p.getRentCost()+p.getEmployeeSalaire()+p.getInterestOnLoans();
+    	float result = Mg-CF;
+    	float SR = CF/Mg;
+    	float PM = (SR/CA)*12;
+    	//float FR= (p.getCapital()+p.getInterestOnLoans())-(p.getTransportCost()+p.getEnergyCost());
+    	float FR =(float) (502.5);
+    	
+    	if (FR>0)
+    	{
+    		happyimg.setVisible(true);
+    		StateLabel.setTextFill(Color.GREEN);
+    		StateLabel.setText("Your financial state is stable");
+    	}
+    	
+    	if (FR<0)
+    	{
+    		sadimg.setVisible(true);
+    		StateLabel.setTextFill(Color.RED);
+    		StateLabel.setText("Your financial state is in danger");
+
+    		
+    	}	
+    
+    	Bilan b = new Bilan();
+    	b.setCA(CA);
+    	b.setCF(CF);
+    	b.setCV(CV);
+    	b.setMargeSurCoutV(Mg);
+    	b.setResult(result);
+    	//b.setProject(p);
+    	b.setSR(SR);
+    	b.setPM(PM);
+    	b.setFR(FR);
+    	
+     	salesLabel.setText(String.valueOf(CA));
+      	
+    	CVLabel.setText(String.valueOf(CV));
+    	percentCVLabel.setText(String.valueOf(percentCV)+"%");
+    	
+    	MgLabel.setText(String.valueOf(Mg));
+    	percentMgLabel.setText(String.valueOf(percentMg)+"%");
+    	
+    	CFLabel.setText(String.valueOf(CF));
+    	
+    	resultLabel.setText(String.valueOf(result));
+    	
+    	SRLabel.setText(String.valueOf(SR));
+    	
+    	PointMortLabel.setText(String.valueOf(PM));
+    	
+    	fondDeRoulmntLabel.setText(String.valueOf(FR));
+    	
+    	
+    	
+    	try{
+    		anchor2.setVisible(false);
+    		anchor3.setVisible(true);
+        	label.setText(p.getName());
+          	
+        	context5 = new InitialContext();
+    		BilanRemote proxy5 = (BilanRemote) context5.lookup(jndiName5);
+        	/*long  x =p.getId();
+    		proxy5.addBilan(b,x);*/
+    
+    		
+    	   }
+    	
+    	
+    	catch(NamingException e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
     	
     	try {
 
     		context1 = new InitialContext();
-    		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
+    		 ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
+    		 proxy.addProject(p,b);
     		
-    		proxy.addProject(p);
-    	
     	}
     	catch(NamingException e)
     	{
     		e.printStackTrace();
     	}
-    		
+    	
+ 		
     		
     }
-    	
-    	
-    	
-    @FXML
-    void btnajouterpartner(ActionEvent event) {
-    	
-    }
+
    
 
     @FXML
@@ -460,12 +640,54 @@ void floatkey8(KeyEvent event) {
     else{
     	stockLabel.setVisible(false);
         }
-}
-    
-    
-    
- 
-    
     
     
 }
+
+@FXML
+void floatkey9(KeyEvent event) {
+	
+    if( capital.getText().trim().length()>0 )
+    		{
+     try {
+        
+        float i6 = Float.parseFloat(capital.getText());        
+         }
+     catch (NumberFormatException e) {
+        remplirLabel.setVisible(true);
+        remplirLabel.setText("Please enter numerical values");
+        }
+    }
+    
+    else{
+    	remplirLabel.setVisible(false);
+        }
+}
+    
+@FXML
+void tableclick1(MouseEvent event) {
+
+}
+    
+@FXML
+void btnajouterpartner(ActionEvent event) throws IOException 
+{
+	
+	 //menuScheduling.getScene().getWindow().hide();
+     Stage news=new Stage();
+     Parent root=FXMLLoader.load(getClass().getResource("../gui/Partnership.fxml"));
+     Scene s=new Scene(root);
+     news.setScene(s);
+     news.show();
+	
+
+}
+
+
+
+
+} 
+    
+    
+    
+

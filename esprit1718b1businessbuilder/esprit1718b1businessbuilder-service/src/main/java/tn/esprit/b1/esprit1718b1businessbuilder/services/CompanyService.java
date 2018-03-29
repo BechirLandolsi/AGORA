@@ -69,5 +69,24 @@ public class CompanyService implements CompanyServiceRemote{
 		return companies;
 	}
 	
+	@Override
+	public List <String> FindBySector(String sector)
+	{
+		TypedQuery<String> q = em.createQuery("select c.name from Company c WHERE c.sector=:sector", String.class ) ;
+		//List <String> names = q.getResultList() ;
+		//return names;
+		return q.setParameter("sector", sector).getResultList();
+	}
+	
+	@Override
+	public List <String> getAllSectors()
+	{
+		TypedQuery<String> q = em.createQuery("select c.sector from Company c", String.class ) ;
+		List <String> sectors = q.getResultList() ;
+		return sectors;
+		
+	}
+	
+	
 
 }

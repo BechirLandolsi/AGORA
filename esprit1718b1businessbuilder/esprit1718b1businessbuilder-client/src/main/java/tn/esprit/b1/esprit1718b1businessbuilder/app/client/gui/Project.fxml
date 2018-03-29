@@ -3,30 +3,68 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProjectController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProjectController">
    <children>
-      <AnchorPane fx:id="anchor1" layoutX="-1.0" prefHeight="594.0" prefWidth="1000.0">
+      <AnchorPane fx:id="anchor1" layoutX="-1.0" layoutY="-9.0" prefHeight="615.0" prefWidth="1010.0">
          <children>
-            <Label fx:id="partnerLabel" prefHeight="60.0" prefWidth="196.0" />
-            <JFXButton fx:id="btnajouter" layoutX="250.0" layoutY="436.0" onAction="#btnajouter" text="Add Project" />
-            <TableView fx:id="tab_project" layoutX="45.0" layoutY="101.0" onMouseClicked="#tableclick" prefHeight="273.0" prefWidth="483.0">
+            <Label fx:id="partnerLabel" layoutX="401.0" layoutY="503.0" prefHeight="44.0" prefWidth="330.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TitledPane animated="false" layoutX="70.0" layoutY="82.0" prefHeight="342.0" prefWidth="880.0" styleClass="blue-titledPane" stylesheets="@Style2.css" text="Project list">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="846.0">
+                     <children>
+                        <TableView fx:id="tab_project" layoutX="13.0" layoutY="14.0" onMouseClicked="#tableclick" prefHeight="292.0" prefWidth="851.0" styleClass="card-unpadded">
+                           <columns>
+                              <TableColumn fx:id="col_name" prefWidth="112.0" text="Name" />
+                              <TableColumn fx:id="col_service" prefWidth="119.0" text="Service" />
+                           </columns>
+                           <effect>
+                              <InnerShadow />
+                           </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TableView fx:id="tab_project1" layoutX="45.0" layoutY="101.0" onMouseClicked="#tableclick1" prefHeight="273.0" prefWidth="483.0" visible="false">
               <columns>
-                <TableColumn id="1" fx:id="col_project" prefWidth="124.0" text="Project" />
-                  <TableColumn fx:id="col_name" prefWidth="173.0" text="Name" />
-                <TableColumn fx:id="col_service" prefWidth="182.0" text="Service" />
+                <TableColumn id="1" fx:id="col_project1" prefWidth="124.0" text="Project" />
+                  <TableColumn fx:id="col_name1" prefWidth="173.0" text="Name" />
+                <TableColumn fx:id="col_service1" prefWidth="182.0" text="Service" />
               </columns>
             </TableView>
-            <Label layoutX="624.0" layoutY="93.0" prefHeight="44.0" prefWidth="151.0" text="Your partners are:" />
+            <Label layoutX="434.0" layoutY="430.0" prefHeight="75.0" prefWidth="155.0" text="Your partner is:" textFill="#0b485b">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="partnerLabel1" layoutX="317.0" layoutY="503.0" prefHeight="44.0" prefWidth="366.0" visible="false">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <JFXButton fx:id="btnajouter" layoutX="832.0" layoutY="536.0" onAction="#btnajouter" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Project" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="anchor2" layoutX="-1.0" prefHeight="600.0" prefWidth="1000.0" visible="false">
+      <AnchorPane fx:id="anchor2" layoutX="4.0" layoutY="-13.0" prefHeight="623.0" prefWidth="1017.0" visible="false">
          <children>
             <Label layoutX="86.0" layoutY="52.0" prefHeight="37.0" prefWidth="129.0" text="Project name:" textFill="#060514">
                <font>
@@ -34,89 +72,260 @@
                </font>
             </Label>
             <JFXTextField fx:id="projectnameEntry" layoutX="254.0" layoutY="47.0" maxWidth="196.0" minWidth="196.0" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXComboBox fx:id="servicecombobox" layoutX="252.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
-            <JFXButton fx:id="btnajouterproject" layoutX="480.0" layoutY="534.0" onAction="#btnajouterproject" prefHeight="44.0" prefWidth="106.0" text="Add" textAlignment="CENTER" textFill="#9e0b0b">
-               <font>
-                  <Font name="FontAwesome Regular" size="18.0" />
-               </font>
-            </JFXButton>
-            <Label layoutX="101.0" layoutY="134.0" prefHeight="44.0" prefWidth="83.0" text="Service" textFill="#060514">
+            <JFXComboBox fx:id="sectorcombobox" layoutX="252.0" layoutY="139.0" prefHeight="25.0" prefWidth="196.0" />
+            <Label layoutX="101.0" layoutY="134.0" prefHeight="44.0" prefWidth="83.0" text="Sector" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <TextArea layoutX="689.0" layoutY="39.0" prefHeight="200.0" prefWidth="286.0" text="Becoming an entrepreneur &#10;requires certain skills (know-how) to &#10;hold even if training can already build&#10;a certain base. Improvisation is not &#10;appropriate.">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </TextArea>
             <Label layoutX="62.0" layoutY="96.0" prefHeight="27.0" prefWidth="176.0" text="Nature of the project" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="92.0" layoutY="279.0" prefHeight="44.0" prefWidth="129.0" text="Purchases" textFill="#060514">
+            <Label layoutX="569.0" layoutY="314.0" prefHeight="59.0" prefWidth="129.0" text="Purchases (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="purchase" accessibleRole="MENU_BUTTON" layoutX="254.0" layoutY="285.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey2" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label layoutX="64.0" layoutY="403.0" prefHeight="27.0" prefWidth="158.0" text="Employee salaries" textFill="#060514">
+            <JFXTextField fx:id="purchase" accessibleRole="MENU_BUTTON" layoutX="728.0" layoutY="320.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey2" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <Label layoutX="67.0" layoutY="423.0" prefHeight="53.0" prefWidth="158.0" text="Employee salaries (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="92.0" layoutY="314.0" prefHeight="44.0" prefWidth="129.0" text="Energy costs" textFill="#060514">
+            <Label layoutX="78.0" layoutY="369.0" prefHeight="60.0" prefWidth="129.0" text="Energy costs (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="351.0" prefHeight="44.0" prefWidth="129.0" text="Transport costs" textFill="#060514">
+            <Label layoutX="553.0" layoutY="370.0" prefHeight="56.0" prefWidth="140.0" text="Transport costs (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="73.0" layoutY="442.0" prefHeight="27.0" prefWidth="166.0" text="Interest on loans" textFill="#060514">
+            <Label layoutX="559.0" layoutY="436.0" prefHeight="27.0" prefWidth="127.0" text="Loan interest (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="105.0" layoutY="486.0" prefHeight="27.0" prefWidth="90.0" text="Rent costs" textFill="#060514">
+            <Label layoutX="89.0" layoutY="504.0" prefHeight="42.0" prefWidth="106.0" text="Rent costs (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="transpcost" layoutX="254.0" layoutY="357.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey4" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXTextField fx:id="salaire" layoutX="254.0" layoutY="401.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey5" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXTextField fx:id="interestonloans" layoutX="252.0" layoutY="440.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey6" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXTextField fx:id="rentcost" layoutX="252.0" layoutY="484.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey7" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="transpcost" layoutX="731.0" layoutY="373.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey4" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="salaire" layoutX="243.0" layoutY="416.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey5" prefHeight="44.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="interestonloans" layoutX="723.0" layoutY="416.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey6" prefHeight="44.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="rentcost" layoutX="246.0" layoutY="507.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey7" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <JFXComboBox fx:id="natureproectcombobox" layoutX="254.0" layoutY="97.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="109.0" layoutY="191.0" prefHeight="44.0" prefWidth="83.0" text="Stock" textFill="#060514">
+            <Label layoutX="100.0" layoutY="275.0" prefHeight="31.0" prefWidth="78.0" text="Stock(unit)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="101.0" layoutY="235.0" prefHeight="44.0" prefWidth="83.0" text="Price/unit" textFill="#060514">
+            <Label layoutX="568.0" layoutY="258.0" prefHeight="56.0" prefWidth="132.0" text="Price/unit (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="price" accessibleRole="MENU_BUTTON" layoutX="254.0" layoutY="242.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey1" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXButton fx:id="btnajouterpartner" layoutX="586.0" layoutY="534.0" onAction="#btnajouterpartner" prefHeight="44.0" prefWidth="166.0" text="Add a partner" textAlignment="CENTER" textFill="#9e0b0b">
-               <font>
-                  <Font name="FontAwesome Regular" size="18.0" />
-               </font>
-            </JFXButton>
-            <JFXTextField fx:id="energycost" accessibleRole="MENU_BUTTON" layoutX="254.0" layoutY="323.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey3" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label fx:id="remplirLabel" layoutX="156.0" layoutY="548.0" prefHeight="37.0" prefWidth="346.0" text="Label" visible="false">
+            <JFXTextField fx:id="price" accessibleRole="MENU_BUTTON" layoutX="726.0" layoutY="265.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey1" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="energycost" accessibleRole="MENU_BUTTON" layoutX="247.0" layoutY="374.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey3" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <Label fx:id="remplirLabel" layoutX="90.0" layoutY="553.0" prefHeight="37.0" prefWidth="388.0">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font></Label>
-            <JFXTextField fx:id="stock" accessibleRole="MENU_BUTTON" layoutX="252.0" layoutY="198.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey8" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label fx:id="stockLabel" layoutX="459.0" layoutY="204.0" prefHeight="31.0" prefWidth="271.0" text="Stock" textFill="#060514" visible="false">
+            <JFXTextField fx:id="stock" accessibleRole="MENU_BUTTON" layoutX="245.0" layoutY="265.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey8" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <Label fx:id="stockLabel" layoutX="162.0" layoutY="297.0" prefHeight="31.0" prefWidth="304.0" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="194.0" prefHeight="60.0" prefWidth="565.0">
+               <font>
+                  <Font name="Sitka Heading" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="96.0" layoutY="313.0" prefHeight="61.0" prefWidth="83.0" text="Capital (DT)" textFill="#060514">
+               <font>
+                  <Font name="Sitka Heading" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="capital" accessibleRole="MENU_BUTTON" layoutX="244.0" layoutY="322.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey9" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <Label layoutX="151.0" layoutY="207.0" prefHeight="31.0" prefWidth="690.0" style="-fx-alignment: center; -fx-background-color: #1E90FF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="Give us your estimated values about your future project">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="632.0" layoutY="22.0" prefHeight="184.0" prefWidth="315.0" text="Becoming an entrepreneur requires certain skills (know-how) to hold even if training can already builda certain base. Improvisation is not appropriate." wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnajouterproject" layoutX="755.0" layoutY="525.0" onAction="#btnajouterproject" prefHeight="45.0" prefWidth="113.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="1010.0" visible="false">
+         <children>
+            <Label fx:id="label" layoutX="14.0" layoutY="14.0" prefHeight="53.0" prefWidth="163.0" text="Label" visible="false" />
+            <Label layoutX="255.0" layoutY="57.0">
+               <font>
+                  <Font name="Sitka Heading" size="18.0" />
+               </font>
+            </Label>
+            <GridPane gridLinesVisible="true" layoutX="50.0" layoutY="148.0" prefHeight="200.0" prefWidth="554.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="170.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="114.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Sales revenue :" textFill="#2485d3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Variable Charges" textFill="#2485d3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="salesLabel" prefHeight="21.0" prefWidth="191.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CVLabel" prefHeight="21.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="percentCVLabel" prefHeight="21.0" prefWidth="184.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="MgLabel" prefHeight="21.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="percentMgLabel" prefHeight="21.0" prefWidth="167.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="CFLabel" prefHeight="21.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="resultLabel" prefHeight="21.0" prefWidth="116.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Margin on variable cost" textFill="#2485d3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Fixed charges" textFill="#2485d3" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Result" textFill="#2485d3" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane layoutX="617.0" layoutY="160.0" prefHeight="156.0" prefWidth="386.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="1.0" prefWidth="204.33331298828125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="0.0" prefWidth="129.66668701171875" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" />
+                  <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Sitka Heading" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Sitka Heading" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="SRLabel" prefHeight="21.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="PointMortLabel" prefHeight="21.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fondDeRoulmntLabel" prefHeight="21.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Profitability threshold" textFill="#2485d3" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Dead point" textFill="#2485d3" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Rolling capital" textFill="#2485d3" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="Sitka Heading Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <ImageView fx:id="happyimg" fitHeight="209.0" fitWidth="113.0" layoutX="126.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/happy.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sadimg" fitHeight="209.0" fitWidth="88.0" layoutX="748.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/sad.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="StateLabel" layoutX="263.0" layoutY="421.0" prefHeight="92.0" prefWidth="459.0" textFill="#bc0808">
+               <font>
+                  <Font name="Sitka Heading" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnajouterpartner" layoutX="851.0" layoutY="528.0" onAction="#btnajouterpartner" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add partner" />
+            <Label layoutX="174.0" layoutY="48.0" prefHeight="45.0" prefWidth="690.0" style="-fx-alignment: center; -fx-background-color: #1E90FF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="With our plateform, you do not need a financial expert anymore">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Label>
          </children>
       </AnchorPane>

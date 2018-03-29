@@ -49,6 +49,14 @@
                   <FontAwesomeIconView fill="#a1aec4" glyphName="GROUP" size="17.0" wrappingWidth="43.0" />
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="btnProduct" onAction="#switchProduct" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Products" textFill="#a1aec4">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="#a1aec4" glyphName="GROUP" size="17.0" wrappingWidth="43.0" />
+               </graphic>
+            </JFXButton>
             <JFXButton fx:id="btnTenders" layoutX="10.0" layoutY="151.0" onAction="#switchTenders" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Tenders" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />

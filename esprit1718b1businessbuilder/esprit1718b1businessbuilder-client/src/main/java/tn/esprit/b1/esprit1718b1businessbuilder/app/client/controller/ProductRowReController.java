@@ -11,28 +11,37 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 
-public class CompanyRowReController extends ListCell<Company> {
+public class ProductRowReController extends ListCell<Produit> {
 
     @FXML
     private AnchorPane cellre;
+
     @FXML
     private ImageView imgRowre;
+
     @FXML
-    private Label LNamere;
+    private Label nameP;
+
+    @FXML
+    private Label stockP;
+
+    @FXML
+    private Label priceP;
     private FXMLLoader mLLoader;
     
     
     @Override
-    protected void updateItem(Company company, boolean empty) {
-    	 if (empty || company == null) {
+    protected void updateItem(Produit produit, boolean empty) {
+    	 if (empty || produit == null) {
 
              setText(null);
              setGraphic(null);
 
          } else {
              if (mLLoader == null) {
-                 mLLoader = new FXMLLoader(getClass().getResource("../gui/CompanyRowRe.fxml"));
+                 mLLoader = new FXMLLoader(getClass().getResource("../gui/ProductRowRe.fxml"));
                  mLLoader.setController(this);
 
                  try {
@@ -42,9 +51,10 @@ public class CompanyRowReController extends ListCell<Company> {
                  }
 
              }
-             LNamere.setText(company.getName());
-           
-             File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + company.getImage());
+             nameP.setText(produit.getDescription());
+             stockP.setText(String.valueOf(produit.getStock()));
+             priceP.setText(String.valueOf(produit.getPrice()+" DT"));
+             File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + produit.getPath());
              Image img = new Image(file.toURI().toString());
              imgRowre.setImage(img);
              setText(null);

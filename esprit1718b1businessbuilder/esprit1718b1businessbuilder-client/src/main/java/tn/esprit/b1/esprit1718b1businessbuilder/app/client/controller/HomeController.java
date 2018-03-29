@@ -63,8 +63,7 @@ public class HomeController implements Initializable {
     
     
     
-    private ObservableList<Company> cplist3 ;
-    private ObservableList<Produit> listefinale  = FXCollections.<Produit>observableArrayList();
+
   
     //private ObservableList<String> cplist3s ;
     private ObservableList<Company> cplist ;
@@ -134,64 +133,8 @@ public class HomeController implements Initializable {
 				e.printStackTrace();
 			}
 	    	 TextFields.bindAutoCompletion(search, cplistname) ; 
-	///////////////////////////////////////////////INITILIZATIONRECOMMANDATION/////////////////////////////////////////////////////////////////////////////////////////////////////
-	    	 String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 	
-	    	 CompanyServiceRemote proxy3;
-				
-				try {
-					 String service ;
-					 Context	context3 = new InitialContext();
-					 contexts = new InitialContext();
-					 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName3);
-					 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
-					 cplist3s = proxys.ResercheListe(31);
-					// System.out.println(cplist3s);
-			     for( String s : cplist3s  ){			    	 
-			    	 //System.out.println(s);
-						 test = proxy3.findAllCompanyByService(s);
-						// System.out.println(cplist3);
-						 for(Company c : test){		
-							// System.out.println(c);
-							 // System.out.println(",yntbrve");
-						            if (!hs.contains(c)){
-						                hs.add(c);
-						                //System.out.println(hs);
-						        }
-							}
-					 }
-					 
-			     
-				} catch (NamingException e) {
-					e.printStackTrace();
-				}
-				List<Produit> listp = new ArrayList<>();
-				 try {
-					contexts = new InitialContext();
-					 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
-					 
-					 
-						for(Company c : hs) {
-							listp=	proxys.findProductByCompany(c) ;
-						}
-						
-				} catch (NamingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-				
-				listefinale.addAll(listp); 
-				list_Recommandation.setItems(listefinale);
-				//list_Recommandation.
-				list_Recommandation.setCellFactory(new Callback<ListView<Produit>, javafx.scene.control.ListCell<Produit>>()
-		        {
-					@Override
-					public ListCell<Produit> call(ListView<Produit> param) {
-						 return new CompanyRowReController();
-					}
-		        });
-	    	 
+	    		    	 
     }    
 
     @FXML

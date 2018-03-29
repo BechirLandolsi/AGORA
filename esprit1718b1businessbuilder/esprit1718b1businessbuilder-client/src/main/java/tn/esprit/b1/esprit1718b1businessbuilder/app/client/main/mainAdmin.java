@@ -67,14 +67,14 @@ public class mainAdmin {
 		    String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 			
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
-		  //  Company c1 = proxy2.findBy(33) ; 
+		 // Company c1 = proxy2.findBy(33) ; 
 		  //System.out.println(proxy.findActiveOrder(c1));  
-		   // Produit p1 = proxy1.findProduct(8);
-		  // proxy.addProductToOrder(p1, c1, 20);
+		 //Produit p1 = proxy1.findProduct(8);
+		 //proxy.addProductToOrder(p1, c1, 20);
 		  //proxy.payOrder(c1); 
 		    //Produit p1 = proxy1.findProduct(15);
 		   // proxy.addProductToOrder(p1, c1, 55);
-		proxy.payOrder(c1); 
+		//proxy.payOrder(c1); 
 		   //System.out.println(proxy.salesPermonth().toString());
 		   /* Date current = new Date() ; 
 		    String PATTERN="yyyy-MM-dd";
@@ -95,7 +95,7 @@ public class mainAdmin {
 		 
 		
 		
-		 
+		  System.out.println( proxy1.findAllProduct()); 
 		
 		 
 

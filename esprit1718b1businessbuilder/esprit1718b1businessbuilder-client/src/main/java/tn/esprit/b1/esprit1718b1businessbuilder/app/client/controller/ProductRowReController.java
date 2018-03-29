@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 
-public class CompanyRowReController extends ListCell<Produit> {
+public class ProductRowReController extends ListCell<Produit> {
 
     @FXML
     private AnchorPane cellre;
@@ -41,7 +41,7 @@ public class CompanyRowReController extends ListCell<Produit> {
 
          } else {
              if (mLLoader == null) {
-                 mLLoader = new FXMLLoader(getClass().getResource("../gui/CompanyRowRe.fxml"));
+                 mLLoader = new FXMLLoader(getClass().getResource("../gui/ProductRowRe.fxml"));
                  mLLoader.setController(this);
 
                  try {

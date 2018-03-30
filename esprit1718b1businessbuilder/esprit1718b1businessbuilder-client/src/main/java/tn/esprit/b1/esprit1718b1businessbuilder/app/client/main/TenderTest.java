@@ -58,7 +58,7 @@ public class TenderTest {
 		
 		Company loggedUser=(Company)proxyCompany.login("vermeglogin", "vermegpass");
 		
-		System.out.println(loggedUser);
+		//System.out.println(loggedUser);
 		
 		
 		Tender tender = new Tender("Looking for Java web development Expert",
@@ -68,7 +68,8 @@ public class TenderTest {
 		//tender.setCompanyTender(loggedUser);
 		//tender.setCategory(HelpDesk);
 		//proxyTender.save(tender);
-		
+		long id = 3;
+		System.out.println(proxyCompany.find(id));
 	}
 
 }

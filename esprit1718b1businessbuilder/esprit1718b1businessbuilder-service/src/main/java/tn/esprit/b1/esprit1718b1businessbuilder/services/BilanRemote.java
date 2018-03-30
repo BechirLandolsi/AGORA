@@ -8,13 +8,9 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 
 @Remote
-public interface ProjectRemote {
+public interface BilanRemote {
 
-	public void addProject(Project P,Bilan b); 
-	
-	public List<Project> getAllProject(); 
-	
-	public List<Project> getProjectsByCompany(int companyId);
+	public void addBilan(Bilan b ,long idP ) ;
 	
 	
 	

@@ -46,15 +46,15 @@ public class mainAdmin {
 		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
 	  		//System.out.println(proxy3.findBy(32));
-				Company c1 = proxy2.findBy(31) ; 
+				//Company c1 = proxy2.findBy(31) ; 
 				 
-				Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
+			/*	//Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
 				Produit p2 = new Produit("Ballons de foot",(long)500,null,(float)39,(float)50,null);
 				Produit p3 = new Produit("peinture speciale grise",(long)250,null,(float)44,(float)60,null);
 				Produit p4 = new Produit("peinture dain champagne ",(long)120,null,(float)49,(float)63,null);
 				Produit p5 = new Produit("pinceau",(long)120,null,(float)8,(float)12,null);
 				//proxy1.addProduct(p1,c1);
-				//proxy1.addProduct(p2,c1);
+				//proxy1.addProduct(p2,c1);*/
 				
 				//System.out.println(c1.getProduits());
 				//proxy1.addProduct(p3,c1);
@@ -67,10 +67,9 @@ public class mainAdmin {
 		    String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 			
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
-		 // Company c1 = proxy2.findBy(33) ; 
-		  //System.out.println(proxy.findActiveOrder(c1));  
-		 //Produit p1 = proxy1.findProduct(8);
-		 //proxy.addProductToOrder(p1, c1, 20);
+		 Company c1 = proxy2.findBy(34) ; 
+		 Produit p1 = proxy1.findProduct(3);
+		 proxy.addProductToOrder(p1, c1, 50);
 		  //proxy.payOrder(c1); 
 		    //Produit p1 = proxy1.findProduct(15);
 		   // proxy.addProductToOrder(p1, c1, 55);
@@ -95,7 +94,7 @@ public class mainAdmin {
 		 
 		
 		
-		  System.out.println( proxy1.findAllProduct()); 
+		 // System.out.println( proxy1.findAllProduct()); 
 		
 		 
 

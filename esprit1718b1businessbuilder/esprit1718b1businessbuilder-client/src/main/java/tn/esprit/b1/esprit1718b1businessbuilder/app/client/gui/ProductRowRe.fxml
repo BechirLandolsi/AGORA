@@ -13,7 +13,7 @@
       <Label layoutX="158.0" layoutY="175.0" text="Stock:" />
       <Label layoutX="15.0" layoutY="175.0" text="Price :" />
       <Label fx:id="nameP" layoutX="2.0" layoutY="1.0" prefHeight="30.0" prefWidth="204.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" />
-      <JFXButton layoutX="158.0" layoutY="50.0" prefHeight="37.0" prefWidth="111.0" style="-fx-background-color: #3C8DBC;" text="See Offer !" textFill="WHITE">
+      <JFXButton layoutX="203.0" layoutY="87.0" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #3C8DBC;" text="View " textFill="WHITE">
          <font>
             <Font name="Roboto Medium" size="15.0" />
          </font>

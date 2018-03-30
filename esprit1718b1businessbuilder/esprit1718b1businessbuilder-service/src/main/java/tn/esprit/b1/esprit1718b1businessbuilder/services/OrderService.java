@@ -49,7 +49,9 @@ public class OrderService implements OrderServiceRemote {
 	@Override
 	public void addProductToOrder(Produit P, Company C, int k) {
 		Order o ; 
+		
 		if (findActiveOrder(C) == null){
+			System.out.println("aaaaaaaa");
 			o = new Order();
 			o.setBuyer(C);
 			em.persist(o);

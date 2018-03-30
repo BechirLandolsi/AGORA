@@ -150,8 +150,7 @@ public class ProductController   implements Initializable {
       /////////////////////////////////////////////////INITIALIAZE PRODUCT/////////////////////////////////////////////////////////////////////////
 		
 			   String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ; 	
-			 
-			     try {
+			 			     try {
 			         Parent rroot = lloader.load();
 			     } catch (IOException ex) {
 			        

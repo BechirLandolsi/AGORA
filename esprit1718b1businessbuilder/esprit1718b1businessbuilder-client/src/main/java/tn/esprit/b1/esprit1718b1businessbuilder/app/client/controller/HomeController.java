@@ -40,6 +40,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 
 
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 
 
@@ -133,7 +134,34 @@ public class HomeController implements Initializable {
 				e.printStackTrace();
 			}
 	    	 TextFields.bindAutoCompletion(search, cplistname) ; 
-	
+	////////////////////////////////////////INITIALIZE /// RECOMMANDATION//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    	 
+	    	 
+	    	/*
+			   String jndiNameP ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ; 	
+			   ProductServiceRemote proxyP;
+				try {
+					 String service ;
+					 Context contextP = new InitialContext();
+					 proxyP = (ProductServiceRemote) contextP.lookup(jndiNameP);
+					 cplist3s = proxyP.ResercheListe(31);
+					// System.out.println(cplist3s);	 
+			     
+				} catch (NamingException e) {
+					e.printStackTrace();
+				}
+
+			
+				
+				listefinale.addAll(listp); 
+				listPRe.setItems(listefinale);
+				listPRe.setCellFactory(new Callback<ListView<Produit>, javafx.scene.control.ListCell<Produit>>()
+		        {
+					@Override
+					public ListCell<Produit> call(ListView<Produit> param) {
+						 return new ProductRowReController();
+					}
+		        });*/
 	    		    	 
     }    
 

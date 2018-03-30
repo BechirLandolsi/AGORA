@@ -32,7 +32,7 @@ public class SkeletonController implements Initializable {
     @FXML
     private AnchorPane holderPane;
     
-    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects;
+    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products;
     @FXML
     private JFXButton btnHome;
     @FXML
@@ -51,7 +51,9 @@ public class SkeletonController implements Initializable {
     private JFXButton btnExit;
     @FXML
     private JFXButton btnProjects;
-
+    @FXML
+    private JFXButton btnProduct;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -116,6 +118,13 @@ public class SkeletonController implements Initializable {
          setNode(Projects);
     	
     }
+    @FXML
+    private void switchProduct(ActionEvent event) throws IOException{
+    	
+    	 Products = FXMLLoader.load(getClass().getResource("../gui/Product.fxml"));
+         setNode(Products);
+    	
+    }    
 
     @FXML
     private void switchExit(ActionEvent event) throws Exception {

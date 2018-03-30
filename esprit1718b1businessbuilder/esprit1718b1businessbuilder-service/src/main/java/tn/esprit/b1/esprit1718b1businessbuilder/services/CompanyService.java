@@ -36,7 +36,7 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	@Override
 	public Company findAllCompanyByName(String name) {
 
-		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name OR c.sector =:name",Company.class) ;
+		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name = :name",Company.class) ;
 		Company c = null  ;
 		try{
 		c =	q.setParameter("name", name).getSingleResult() ;
@@ -47,12 +47,9 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 		return c ;
 	}
 	@Override
-
 	public void AddCompanyReserche(Reserche r, Company c  ) {
-	  
 		r.setCompanyR(c);
 		em.persist(r);
-		
 	}
 	@Override
 	public Company findBy(long id) {
@@ -68,6 +65,30 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 		return companies;
 	}
 	
+
+	@Override
+	public List <String> FindBySector(String sector)
+	{
+		TypedQuery<String> q = em.createQuery("select c.name from Company c WHERE c.sector=:sector", String.class ) ;
+		//List <String> names = q.getResultList() ;
+		//return names;
+		return q.setParameter("sector", sector).getResultList();
+	}
+	
+	@Override
+	public List <String> getAllSectors()
+	{
+		TypedQuery<String> q = em.createQuery("select c.sector from Company c", String.class ) ;
+		List <String> sectors = q.getResultList() ;
+		return sectors;
+		
+	}
+	@Override
+	public void add(Company c) {
+		em.persist(c);
+		
+	}
+
 	
 
 }

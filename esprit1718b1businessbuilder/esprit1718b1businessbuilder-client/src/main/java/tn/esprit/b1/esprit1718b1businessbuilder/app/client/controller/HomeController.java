@@ -10,8 +10,10 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,6 +35,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 
 
@@ -56,12 +59,21 @@ public class HomeController implements Initializable {
     @FXML
     private ListView<Company> list_company;
     @FXML
-    private ListView<Company> list_Recommandation;
-    private ObservableList<Company> cplist3 ;
+    private ListView<Produit> list_Recommandation;
+    
+    
+    
+
+  
+    //private ObservableList<String> cplist3s ;
     private ObservableList<Company> cplist ;
+    private Set<Company> hs = new HashSet<Company>();
     private ObservableList<Company> cplistservice ;
     private List<String> cplistname  = new ArrayList<>();
     private List<String> listservice  = new ArrayList<>();
+    private List<String> cplist3s  = new ArrayList<>();
+    private List<Company> test  = new ArrayList<>();
+   
     /**
      * Initializes the controller class.
      */
@@ -121,25 +133,8 @@ public class HomeController implements Initializable {
 				e.printStackTrace();
 			}
 	    	 TextFields.bindAutoCompletion(search, cplistname) ; 
-	///////////////////////////////////////////////INITILIZATIONRECOMMANDATION/////////////////////////////////////////////////////////////////////////////////////////////////////
-	    	 String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-				CompanyServiceRemote proxy3;
-				try {
-					 Context	context3 = new InitialContext();
-					 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName3);
-					cplist3 = FXCollections.observableArrayList(proxy3.findAllCompany());
-				} catch (NamingException e) {
-					e.printStackTrace();
-				}
-				list_Recommandation.setItems(cplist3);
-				list_Recommandation.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
-		        {
-					@Override
-					public ListCell<Company> call(ListView<Company> param) {
-						 return new CompanyRowReController();
-					}
-		        });
-	    	 
+	
+	    		    	 
     }    
 
     @FXML
@@ -151,19 +146,14 @@ public class HomeController implements Initializable {
 		proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
 		ServiceServiceRemote proxys = (ServiceServiceRemote) context1.lookup(jndiNames);
 
-    	//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
-			Reserche reserche = new Reserche() ;
-	 	 	reserche.setReserche(search.getText());
-	 	 	Company c =proxy.findBy(16);
-	 	 	//System.out.println(c);
-			proxy.AddCompanyReserche(reserche, c);
+    	
 		//////////////////////////////////AFFICHAGE RECHERCHE/////////////////////////////////////////
     	String str = search.getText() ;
     	if (!str.equals("") ){
     		cplistservice =  FXCollections.observableArrayList(proxy.findAllCompanyByService(str));
     		cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
     		cplist.addAll(cplistservice);
-    	  //  System.out.println(cplist.toString());
+    	    System.out.println(cplist.toString());
      		list_company.setItems(cplist);
      		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
             {
@@ -172,6 +162,12 @@ public class HomeController implements Initializable {
     				 return new CompanyRowController();
     			}
             });
+     		//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
+     		Reserche reserche = new Reserche() ;
+     		reserche.setReserche(search.getText());
+     		Company c =proxy.findBy(16);
+     		System.out.println(c);
+     		proxy.AddCompanyReserche(reserche, c);
     	}
     	else {
 

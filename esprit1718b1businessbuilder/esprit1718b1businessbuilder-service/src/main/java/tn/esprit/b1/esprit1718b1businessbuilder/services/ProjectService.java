@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
@@ -16,9 +18,11 @@ public class ProjectService implements ProjectRemote{
 	EntityManager em ;
 
 	@Override
-	public void addProject(Project p) {
+	public void addProject(Project p ,Bilan b) {
 	
 		em.persist(p);
+		b.setProject(p);
+		em.persist(b);
 		
 	}
 

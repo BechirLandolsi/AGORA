@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +25,8 @@ public class Service implements Serializable{
 	
 	private Long id;
 	private String name;
-    
+	@OneToOne
+    private Synonyme synonyme ;
 	@ManyToMany (mappedBy="services")
 	private List<Company> companies ;
 
@@ -55,6 +57,16 @@ public class Service implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public Synonyme getSynonyme() {
+		return synonyme;
+	}
+
+
+	public void setSynonyme(Synonyme synonyme) {
+		this.synonyme = synonyme;
 	}
 
 

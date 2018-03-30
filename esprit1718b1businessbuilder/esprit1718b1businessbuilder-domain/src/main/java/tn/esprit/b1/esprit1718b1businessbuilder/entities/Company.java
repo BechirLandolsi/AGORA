@@ -330,6 +330,7 @@ public class Company extends User {
 
 	@Override
 	public String toString() {
+
 		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
 				+ "]";
 	}

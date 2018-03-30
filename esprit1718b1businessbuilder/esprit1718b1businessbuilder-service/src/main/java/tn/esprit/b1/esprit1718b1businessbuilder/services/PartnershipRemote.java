@@ -8,7 +8,7 @@ import javax.ejb.Remote;
 public interface PartnershipRemote {
 
 	
- public String getPartnerByProject(Long ProjectId);
+ public List <String> getPartnerByProject(Long ProjectId);
 	
 	
 	

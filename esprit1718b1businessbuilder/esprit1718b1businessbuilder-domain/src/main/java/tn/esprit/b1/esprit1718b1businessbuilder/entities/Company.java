@@ -3,8 +3,8 @@ package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -330,20 +330,9 @@ public class Company extends User {
 
 	@Override
 	public String toString() {
-		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
-				+ ", reference=" + reference + ", partner=" + partner + ", sector=" + sector + ", rate=" + rate
-				+ ", resultTest=" + resultTest + ", image=" + image + ", CompanyOwner=" + CompanyOwner
-				+ ", CompanyPartner=" + CompanyPartner + ", project=" + project + ", services=" + services
-				+ ", produits=" + produits + ", orders=" + orders + ", myClaims=" + myClaims + ", Recevedclaims="
-				+ Recevedclaims + ", recommandations1=" + recommandations1 + ", recommandations2=" + recommandations2
-				+ ", reserche=" + reserche + ", events=" + events + "]";
+		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
+				+ "]";
 	}
-
-
-
-
-	
-	
 
     
 }

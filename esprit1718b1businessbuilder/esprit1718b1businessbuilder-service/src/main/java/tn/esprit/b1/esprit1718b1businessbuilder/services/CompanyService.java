@@ -9,12 +9,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
-public class CompanyService implements CompanyServiceRemote{
+public class CompanyService extends UserService implements CompanyServiceRemote{
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 
 	
@@ -62,12 +60,14 @@ public class CompanyService implements CompanyServiceRemote{
 		
 		return q.setParameter("id", id).getSingleResult();
 	}
+	
 	@Override
 	public List<Company> findAllCompanyByService(String service){
 		TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name LIKE :service",Company.class) ;
 		List<Company> companies = q.setParameter("service", "%" + service+ "%").getResultList() ;
 		return companies;
 	}
+	
 	
 
 }

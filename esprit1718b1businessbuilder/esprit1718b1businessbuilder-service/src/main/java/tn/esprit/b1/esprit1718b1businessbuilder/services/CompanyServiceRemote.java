@@ -5,8 +5,9 @@ import java.util.List;
 import javax.ejb.Remote;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 @Remote
-public interface CompanyServiceRemote {
+public interface CompanyServiceRemote extends UserServiceRemote {
 	
 
 	    public List<Company> findAllCompany() ; 

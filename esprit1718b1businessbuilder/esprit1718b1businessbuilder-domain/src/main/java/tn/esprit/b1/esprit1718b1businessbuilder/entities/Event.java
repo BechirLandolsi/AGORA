@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,28 +16,6 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tab_Event")
 public class Event implements Serializable {
-
-	public Event() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-
-	@Override
-	public String toString() {
-		return "Event [event_name=" + event_name + ", event_adress=" + event_adress + ", event_date=" + event_date
-				+ "]";
-	}
-
-
-	public Event(String event_name, String event_adress, Date event_date) {
-		super();
-		this.event_name = event_name;
-		this.event_adress = event_adress;
-		this.event_date = event_date;
-	}
-
-
 	/**
 	 * 
 	 */
@@ -53,9 +33,24 @@ public class Event implements Serializable {
 	@Column(name = "EVENT_ADDRESS")
 	private String event_adress;
 	
+	@Column(name = "EVENT_SECTOR")
+	private String event_sector;
+	
+	@Column(name = "EVENT_PROFITABLE")
+	private Boolean event_profitable;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EVENT_DATE")
 	private Date event_date;
+	
+	
+	/*Associations*/
+	@ManyToOne
+	@JoinColumn(name="idCompany",referencedColumnName="USR_ID",insertable=false,updatable=false)
+	private Company company_organizer ;
+	
+	
+	/* Getters And Setters*/
 
 	public Long getId_event() {
 		return id_event;
@@ -89,8 +84,55 @@ public class Event implements Serializable {
 		this.event_date = event_date;
 	}
 
+	public String getEvent_sector() {
+		return event_sector;
+	}
+
+	public void setEvent_sector(String event_sector) {
+		this.event_sector = event_sector;
+	}
+
+	public Boolean getEvent_profitable() {
+		return event_profitable;
+	}
+
+	public void setEvent_profitable(Boolean event_profitable) {
+		this.event_profitable = event_profitable;
+	}
+ 
+	public Company getCompany_organizer() {
+		return company_organizer;
+	}
+
+	public void setCompany_organizer(Company company_organizer) {
+		this.company_organizer = company_organizer;
+	}
+	
+
+	/* constructors */
+	
+	
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Event(String event_name, String event_adress, String event_sector, Boolean event_profitable,
+			Date event_date) {
+		super();
+		this.event_name = event_name;
+		this.event_adress = event_adress;
+		this.event_sector = event_sector;
+		this.event_profitable = event_profitable;
+		this.event_date = event_date;
+	}
 
 	
-	
+	@Override
+	public String toString() {
+		return "Event [event_name=" + event_name + ", event_adress=" + event_adress + ", event_sector=" + event_sector
+				+ ", event_profitable=" + event_profitable + ", event_date=" + event_date + "]";
+	}
 
 }

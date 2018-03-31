@@ -3,33 +3,18 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.EventController">
    <children>
-      <JFXButton fx:id="createevent" layoutX="103.0" layoutY="46.0" onAction="#onclick_create" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #26B99A;" text="Create Event" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="EXTERNAL_LINK" size="16" wrappingWidth="25.0" />
-         </graphic>
-      </JFXButton>
-      <JFXButton fx:id="myevent" layoutX="510.0" layoutY="37.0" onAction="#onclick_myevent" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #26B99A;" text="My Events" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView fill="WHITE" glyphName="EXTERNAL_LINK" size="16" wrappingWidth="25.0" />
-         </graphic>
-      </JFXButton>
-      <AnchorPane fx:id="addanchorepane" layoutX="24.0" layoutY="90.0" prefHeight="482.0" prefWidth="375.0" visible="false">
+      <AnchorPane fx:id="addanchorepane" layoutX="71.0" layoutY="50.0" prefHeight="571.0" prefWidth="375.0">
          <children>
-            <JFXTextField fx:id="eventname" layoutX="173.0" layoutY="50.0" />
+            <JFXTextField fx:id="eventname" layoutX="173.0" layoutY="50.0" promptText="Enter Event Name" />
             <Label fx:id="en" layoutX="49.0" layoutY="62.0" prefHeight="17.0" prefWidth="94.0" text="Event Name :">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
@@ -40,14 +25,59 @@
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="eventname1" layoutX="173.0" layoutY="125.0" />
+            <JFXTextField fx:id="eventaddress" layoutX="173.0" layoutY="125.0" promptText="Enter Event Address" />
             <Label fx:id="ed" layoutX="61.0" layoutY="221.0" prefHeight="20.0" prefWidth="127.0" text="Event Date :">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
             </Label>
-            <JFXDatePicker layoutX="173.0" layoutY="203.0" />
+            <JFXDatePicker fx:id="eventdate" layoutX="173.0" layoutY="203.0" promptText="Enter a valid date" />
+            <JFXButton fx:id="createeventbutt" layoutX="112.0" layoutY="431.0" onAction="#onclick_createevent" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="Create Event" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="es" layoutX="61.0" layoutY="295.0" prefHeight="20.0" prefWidth="127.0" text="Event Sector :">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="eventsector" layoutX="173.0" layoutY="283.0" promptText="Enter Event Sector" />
+            <Label fx:id="ep" layoutX="80.0" layoutY="358.0" prefHeight="20.0" prefWidth="127.0" text="Profitable :">
+               <font>
+                  <Font name="Roboto Medium" size="14.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="yes" layoutX="167.0" layoutY="340.0" text="yes" />
+            <Label fx:id="alert_label" contentDisplay="CENTER" layoutX="12.0" layoutY="514.0" prefHeight="42.0" prefWidth="360.0" text="islem" textFill="#b50606">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
+      <TableView fx:id="event_tab" layoutX="534.0" layoutY="127.0" onMouseClicked="#eventclicked" prefHeight="337.0" prefWidth="561.0">
+        <columns>
+          <TableColumn fx:id="evname" prefWidth="125.6666259765625" text="Event Name" />
+          <TableColumn fx:id="evaddress" prefWidth="118.3333740234375" text="Event Address" />
+            <TableColumn fx:id="evdate" prefWidth="102.66668701171875" text="Event Date" />
+            <TableColumn fx:id="evsector" prefWidth="127.3333740234375" text="Event Sector" />
+            <TableColumn fx:id="evprofitable" prefWidth="87.33331298828125" text="Profitable" />
+        </columns>
+      </TableView>
+      <Label layoutX="558.0" layoutY="81.0" prefHeight="32.0" prefWidth="143.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" text="All My Events :" />
+      <JFXButton fx:id="invite_butt" layoutX="674.0" layoutY="494.0" onAction="#oninvitebutt_clicked" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="Invite Companies" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="view_details_butt" layoutX="865.0" layoutY="494.0" onAction="#onviewdetails_clicked" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="View Details" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
+
+
+  

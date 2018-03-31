@@ -16,14 +16,16 @@ public class IslemMain {
 	public static void main(String[] args) throws NamingException, ParseException {
 	
 		String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
-		
 		Context context = new InitialContext();
 		
 		EventServiceRemote proxy = (EventServiceRemote) context.lookup(jndiName1);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date =dateFormat.parse("31/12/2018");
-		Event e= new Event("Foire Samsung","Tunis",date);
+		Event e= new Event("Foire Samsung","Tunis","Mobile",false,date);
 		proxy.addEvent(e);
-		System.out.println(proxy.findEvent(1));
+		Event event2=proxy.findEvent(4);
+		System.out.println(e);
+		proxy.removeEvent((long)15);
+		System.out.println("suppression succeded");
 	}
 }

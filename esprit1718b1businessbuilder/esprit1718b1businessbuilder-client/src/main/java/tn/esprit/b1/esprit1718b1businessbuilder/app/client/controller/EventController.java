@@ -86,67 +86,66 @@ public class EventController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
+    //////////******************************************************************************************
     private ObservableList<Event> event_list = FXCollections.observableArrayList();
+    
     
 	 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
 	 Context context1;
 	 Company c = null;
 
+	 
+	/////////**********************************************************************************************
     
+	 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	 try{
-    	    	context1 = new InitialContext();
-    			EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
-    			
-    			
+    	 try {
+    	    context1 = new InitialContext();
+    		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+   			
     	     event_list = FXCollections.observableArrayList(proxy.findAll());
-    	    	
+    	    
     	     evname.setCellValueFactory(new PropertyValueFactory<>("event_name"));
     	     evaddress.setCellValueFactory(new PropertyValueFactory<>("event_adress"));
     	     evdate.setCellValueFactory(new PropertyValueFactory<>("event_date"));
     	     evprofitable.setCellValueFactory(new PropertyValueFactory<>("event_profitable"));
     	     evsector.setCellValueFactory(new PropertyValueFactory<>("event_sector"));
-    	     
+    	  
     	     event_tab.setItems( event_list); 
+    	     
     	} catch (NamingException e) {
     			
     			e.printStackTrace();
     		}
-    	 
-    	 
-    	 //for (Event event : ((TableView<Event>) event_list).getItems()) {
-    	//	 if(event.getEvent_date())
-    	// }
-    	// }
 
     }    
-
+    
+    
+    /////////**********************************************************************************************
+    
     @FXML
     private void onclick_createevent(ActionEvent event) throws NamingException, ParseException {
+    	
     	Event e = new Event();
     	Company c = new Company();
     	c.setId((long) 2);
     	System.out.println(c.getId());
-    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    	
-    	
+
+        //the data entered by the user
     	e.setEvent_name(eventname.getText());
     	e.setEvent_adress(eventaddress.getText());
     	e.setEvent_profitable(yes.isSelected());
     	e.setEvent_sector(eventsector.getText());
-    	
-    	String format = "dd/MM/yy H:mm:ss"; 
-
-		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
-		java.util.Date da = new java.util.Date(); 
-		//System.out.println( formater.format( da ) ); 
-    	
-		
     	LocalDate a = eventdate.getValue();
     	java.sql.Date d = java.sql.Date.valueOf(a);
-    
+    	
+    	///get the system date
+    	String format = "dd/MM/yy H:mm:ss";
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date da = new java.util.Date(); 
+		
+    	//control datepicker so the user can not enter a previous date
     	if(d.after(da)){
     	e.setEvent_date(d);
     	}
@@ -166,6 +165,10 @@ public class EventController implements Initializable {
 		
     }
 
+    
+    
+    /////////**********************************************************************************************
+   
     @FXML
     private void eventclicked(MouseEvent event) {
     	if (event_tab.getSelectionModel().getSelectedItem() != null) {

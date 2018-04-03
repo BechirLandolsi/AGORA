@@ -22,10 +22,17 @@ public class IslemMain {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date =dateFormat.parse("31/12/2018");
 		Event e= new Event("Foire Samsung","Tunis","Mobile",false,date);
-		proxy.addEvent(e);
-		Event event2=proxy.findEvent(4);
+		proxy.save(e);
+		Event event2=proxy.find((long)4);
 		System.out.println(e);
-		proxy.removeEvent((long)15);
-		System.out.println("suppression succeded");
+		//proxy.removeEvent((long)15);
+		//System.out.println("suppression succeded");
+		
+		String format = "dd/MM/yy H:mm:ss"; 
+
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date da = new java.util.Date(); 
+
+		System.out.println( formater.format( date ) ); 
 	}
 }

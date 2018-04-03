@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -100,7 +101,7 @@ public class EventController implements Initializable {
     			EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
     			
     			
-    	     event_list = FXCollections.observableArrayList(proxy.findAllEvent());
+    	     event_list = FXCollections.observableArrayList(proxy.findAll());
     	    	
     	     evname.setCellValueFactory(new PropertyValueFactory<>("event_name"));
     	     evaddress.setCellValueFactory(new PropertyValueFactory<>("event_adress"));
@@ -113,6 +114,13 @@ public class EventController implements Initializable {
     			
     			e.printStackTrace();
     		}
+    	 
+    	 
+    	 //for (Event event : ((TableView<Event>) event_list).getItems()) {
+    	//	 if(event.getEvent_date())
+    	// }
+    	// }
+
     }    
 
     @FXML
@@ -129,9 +137,23 @@ public class EventController implements Initializable {
     	e.setEvent_profitable(yes.isSelected());
     	e.setEvent_sector(eventsector.getText());
     	
-    	//String date=dateFormat.format(eventdate.getValue());
-    	//java.util.Date date1 = dateFormat.parse(date);
-    	//e.setEvent_date(date1);
+    	String format = "dd/MM/yy H:mm:ss"; 
+
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date da = new java.util.Date(); 
+		//System.out.println( formater.format( da ) ); 
+    	
+		
+    	LocalDate a = eventdate.getValue();
+    	java.sql.Date d = java.sql.Date.valueOf(a);
+    
+    	if(d.after(da)){
+    	e.setEvent_date(d);
+    	}
+    	else
+    	{
+    	System.out.println("error date");
+    	}
     	e.setCompany_organizer(c);
     	System.out.println(e.getCompany_organizer());
     	
@@ -139,7 +161,7 @@ public class EventController implements Initializable {
     	context1 = new InitialContext();
 		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
 		//if(alert_label.equals("")){
-		proxy.addEvent(e);
+		proxy.save(e);
 		System.out.println("ajout avec succes");
 		
     }

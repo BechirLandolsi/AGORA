@@ -36,7 +36,26 @@ import javafx.scene.layout.AnchorPane;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
+
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+
 
 public class EventController implements Initializable {
 
@@ -67,22 +86,31 @@ public class EventController implements Initializable {
     @FXML
     private TableView<Event> event_tab;
     @FXML
-    private TableColumn<Event,String> evname;
+    private TableColumn<Event, String> evname;
     @FXML
-    private TableColumn<Event,String> evaddress;
+    private TableColumn<Event, String> evaddress;
     @FXML
-    private TableColumn<Event,Date> evdate;
+    private TableColumn<Event, Date> evdate;
     @FXML
-    private TableColumn<Event,String> evsector;
+    private TableColumn<Event, String> evsector;
     @FXML
-    private TableColumn<Event,Boolean> evprofitable;
+    private TableColumn<Event, Boolean> evprofitable;
     @FXML
     private Label alert_label;
     @FXML
     private JFXButton invite_butt;
     @FXML
     private JFXButton view_details_butt;
-
+    @FXML
+    private JFXButton delete_butt;
+    @FXML
+    private JFXComboBox<String> combo_search;
+    @FXML
+    private JFXTextField search_field;
+    @FXML
+    private JFXDatePicker search_picker;
+    @FXML
+    private JFXButton search_butt;
     /**
      * Initializes the controller class.
      */
@@ -92,8 +120,11 @@ public class EventController implements Initializable {
     
 	 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
 	 Context context1;
-	 Company c = null;
+	 //Company c = null;
 
+
+	 String jndiName4 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
+	 Context context4;
 	 
 	/////////**********************************************************************************************
     
@@ -118,6 +149,8 @@ public class EventController implements Initializable {
     			
     			e.printStackTrace();
     		}
+    	 ObservableList<String> type_list = FXCollections.observableArrayList("Event Name","Event Date");
+    	 combo_search.setItems(type_list);
 
     }    
     
@@ -127,6 +160,9 @@ public class EventController implements Initializable {
     @FXML
     private void onclick_createevent(ActionEvent event) throws NamingException, ParseException {
     	
+    	context4 = new InitialContext();
+       	CompanyServiceRemote proxy2 = (CompanyServiceRemote) context4.lookup(jndiName4);
+       	
     	Event e = new Event();
     	Company c = new Company();
     	c.setId((long) 2);
@@ -170,13 +206,23 @@ public class EventController implements Initializable {
     /////////**********************************************************************************************
    
     @FXML
-    private void eventclicked(MouseEvent event) {
+    private void eventclicked(MouseEvent event) throws NamingException {
     	if (event_tab.getSelectionModel().getSelectedItem() != null) {
-          Event e = event_tab.getSelectionModel().getSelectedItem();
-          Long id = e.getId_event();
+          //Event e = event_tab.getSelectionModel().getSelectedItem();
+        //  Long id = e.getId_event();
+          
     	}
-    	
-    }
+    	try {
+			context1 = new InitialContext();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+		
+    	proxy.delete(proxy.find(event_tab.getSelectionModel().getSelectedItem().getId_event()));
+    	int selectedIndex = event_tab.getSelectionModel().getSelectedIndex();
+    	event_tab.getItems().remove(selectedIndex);    }
 
     @FXML
     private void oninvitebutt_clicked(ActionEvent event) {
@@ -187,6 +233,31 @@ public class EventController implements Initializable {
     private void onviewdetails_clicked(ActionEvent event) {
     	
     }
+    
+    @FXML
+    private void ondeletebutt_clicked(ActionEvent event) {
+    	if (event_tab.getSelectionModel().getSelectedItem() != null) {
+            Event e = event_tab.getSelectionModel().getSelectedItem();
+            Long id = e.getId_event();
+    	}
+		
+    	
+    }
+
+    @FXML
+    private void onsearchbutt_clicked(ActionEvent event) {
+     String type = combo_search.getValue();
+     if(type=="Event Name"){
+    	 search_field.setVisible(true);
+    	 search_picker.setVisible(false);
+     }
+     if(type=="Event Date"){
+    	 search_picker.setVisible(true);
+    	 search_field.setVisible(false);
+    	 
+     }
+    }
+
 
     
 }

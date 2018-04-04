@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
@@ -32,7 +33,7 @@
                </font>
             </Label>
             <JFXDatePicker fx:id="eventdate" layoutX="173.0" layoutY="203.0" promptText="Enter a valid date" />
-            <JFXButton fx:id="createeventbutt" layoutX="112.0" layoutY="431.0" onAction="#onclick_createevent" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="Create Event" textFill="WHITE">
+            <JFXButton fx:id="createeventbutt" layoutX="120.0" layoutY="442.0" onAction="#onclick_createevent" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #2A3F54;" text="Create Event" textFill="WHITE">
                <font>
                   <Font name="Roboto Medium" size="14.0" />
                </font>
@@ -49,14 +50,10 @@
                </font>
             </Label>
             <JFXToggleButton fx:id="yes" layoutX="167.0" layoutY="340.0" text="yes" />
-            <Label fx:id="alert_label" contentDisplay="CENTER" layoutX="12.0" layoutY="514.0" prefHeight="42.0" prefWidth="360.0" text="islem" textFill="#b50606">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
+            <Label fx:id="alert_label" contentDisplay="CENTER" layoutX="12.0" layoutY="514.0" prefHeight="42.0" prefWidth="360.0" text="msg" textFill="#b50606" />
          </children>
       </AnchorPane>
-      <TableView fx:id="event_tab" layoutX="534.0" layoutY="127.0" onMouseClicked="#eventclicked" prefHeight="337.0" prefWidth="561.0">
+      <TableView fx:id="event_tab" layoutX="534.0" layoutY="186.0" onMouseClicked="#eventclicked" prefHeight="259.0" prefWidth="561.0">
         <columns>
           <TableColumn fx:id="evname" prefWidth="125.6666259765625" text="Event Name" />
           <TableColumn fx:id="evaddress" prefWidth="118.3333740234375" text="Event Address" />
@@ -65,19 +62,35 @@
             <TableColumn fx:id="evprofitable" prefWidth="87.33331298828125" text="Profitable" />
         </columns>
       </TableView>
-      <Label layoutX="558.0" layoutY="81.0" prefHeight="32.0" prefWidth="143.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" text="All My Events :" />
-      <JFXButton fx:id="invite_butt" layoutX="674.0" layoutY="494.0" onAction="#oninvitebutt_clicked" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="Invite Companies" textFill="WHITE">
+      <JFXButton fx:id="invite_butt" layoutX="572.0" layoutY="524.0" onAction="#oninvitebutt_clicked" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #2A3F54;" text="Invite Companies" textFill="WHITE">
          <font>
             <Font name="Roboto Medium" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="view_details_butt" layoutX="865.0" layoutY="494.0" onAction="#onviewdetails_clicked" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #00C0EF;" text="View Details" textFill="WHITE">
+      <JFXButton fx:id="view_details_butt" layoutX="739.0" layoutY="524.0" onAction="#onviewdetails_clicked" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #2A3F54;" text="View Details" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="delete_butt" layoutX="899.0" layoutY="524.0" onAction="#ondeletebutt_clicked" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: #2A3F54;" text="Delete" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXComboBox fx:id="combo_search" layoutX="554.0" layoutY="67.0" prefHeight="20.0" prefWidth="186.0" />
+      <JFXTextField fx:id="search_field" layoutX="554.0" layoutY="122.0" prefHeight="20.0" prefWidth="186.0" visible="false" />
+      <JFXDatePicker fx:id="search_picker" layoutX="562.0" layoutY="121.0" visible="false" />
+      <JFXButton fx:id="search_butt" layoutX="763.0" layoutY="65.0" onAction="#onsearchbutt_clicked" prefHeight="20.0" prefWidth="86.0" style="-fx-background-color: #2A3F54;" text="Search" textFill="WHITE">
          <font>
             <Font name="Roboto Medium" size="14.0" />
          </font>
       </JFXButton>
    </children>
 </AnchorPane>
+
+
+
+
 
 
   

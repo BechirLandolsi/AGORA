@@ -39,6 +39,12 @@ public class Event implements Serializable {
 	@Column(name = "EVENT_PROFITABLE")
 	private Boolean event_profitable;
 	
+	@Column(name = "INVITATION_NUMBER")
+	private int invitation_number;
+	
+	@Column(name = "PARTICIPANT_NUMBER")
+	private String participant_number;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EVENT_DATE")
 	private Date event_date;
@@ -46,7 +52,6 @@ public class Event implements Serializable {
 	
 	/*Associations*/
 	@ManyToOne
-	@JoinColumn(name="idCompany",referencedColumnName="USR_ID",insertable=false,updatable=false)
 	private Company company_organizer ;
 	
 	

@@ -38,7 +38,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 ////****************************** Get all the companies sectors **************************
 	@Override
 	public List<String> DisplaySector() {
-		TypedQuery<String> q =  em.createQuery("select c.sector from Company c",String.class) ;
+		TypedQuery<String> q =  em.createQuery("select DISTINCT c.sector from Company c",String.class) ;
 		List<String> allsectors = q.getResultList() ;
 		return allsectors;
 	}
@@ -50,21 +50,23 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		String format = "dd/MM/yy H:mm:ss"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date da = new java.util.Date(); 
-		for (Event event : eventlist) {
-			
-	    Date a = event.getEvent_date();
-	    Calendar c = Calendar.getInstance();
-	    Calendar c1 = Calendar.getInstance();
-	    c.setTime(a);
+		Calendar c1 = Calendar.getInstance();
 	    c1.setTime(da);
-	    int dayOfyear = c.get(Calendar.DAY_OF_YEAR);
-	    int year =c.get(Calendar.YEAR);
 	    int today=c1.get(Calendar.DAY_OF_YEAR);
 	    int thisyear = c1.get(Calendar.YEAR);
 	    
+		for (Event event : eventlist) {
+	    Date a = event.getEvent_date();
+	    Calendar c = Calendar.getInstance();
+	    c.setTime(a);
+	    int dayOfyear = c.get(Calendar.DAY_OF_YEAR);
+	    int year =c.get(Calendar.YEAR);
 	    if((year==thisyear)&&(today-dayOfyear==2)){
 	    eventsoon.add(event);
 	    }
+		}
+		for (Event event : eventlist){
+			System.out.println(event);
 		}
 		return eventsoon;	
 	}

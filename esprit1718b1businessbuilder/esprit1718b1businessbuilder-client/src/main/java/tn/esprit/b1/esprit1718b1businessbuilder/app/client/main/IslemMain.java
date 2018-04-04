@@ -34,16 +34,23 @@ public class IslemMain {
 		
 		//*************************************************************************
 		Company com1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
-		proxy2.add(com1);
+		Company loggedUser=(Company)proxy2.login("vermeglogin", "vermegpass");
+		System.out.println(loggedUser);
+		System.out.println(loggedUser.getId());
+		//proxy2.add(com1);
+
+		//System.out.println(loggedUser.getEvents());
+		//System.out.println(com1.getId());
+		System.out.println(proxy.findEventByCompany((long)4));
 		///************************* Adding Test **********************************
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datep =dateFormat.parse("31/12/2018");
 		Event e= new Event("Foire Samsung","Tunis","Mobile",false,datep);
-		//proxy.save(e);
+		e.setCompany_organizer(loggedUser);
+		proxy.save(e);
+		System.out.println("ajout avec succes");
 		
 		//**************************** Find Event By Id ****************************
-		//Event event2=proxy.find((long)4);
-		//System.out.println(e);
 		
 		//***************************** Removing Event ******************************
 		//proxy.delete(proxy.find((long)4));

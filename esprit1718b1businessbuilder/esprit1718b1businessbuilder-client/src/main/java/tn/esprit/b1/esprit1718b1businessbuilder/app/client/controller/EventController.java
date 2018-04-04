@@ -122,7 +122,7 @@ public class EventController implements Initializable {
     //////////******************************************************************************************
     private ObservableList<Event> event_list = FXCollections.observableArrayList();
     private ObservableList<String> all_sectors = FXCollections.observableArrayList();
-
+    private ObservableList<Event> remind_list = FXCollections.observableArrayList();
     
 	 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
 	 Context context1;
@@ -181,14 +181,12 @@ public class EventController implements Initializable {
        	
     	Event e = new Event();
     	Company c = new Company();
-    	c.setId((long) 2);
-    	System.out.println(c.getId());
 
         //the data entered by the user
     	e.setEvent_name(eventname.getText());
     	e.setEvent_adress(eventaddress.getText());
     	e.setEvent_profitable(yes.isSelected());
-    	e.setEvent_sector(eventsector.getText());
+    	e.setEvent_sector(combo_sector.getValue());
     	LocalDate a = eventdate.getValue();
     	java.sql.Date d = java.sql.Date.valueOf(a);
     	
@@ -213,6 +211,8 @@ public class EventController implements Initializable {
 		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
 		//if(alert_label.equals("")){
 		proxy.save(e);
+		event_list = FXCollections.observableArrayList(proxy.findAll());
+		event_tab.setItems(event_list);
 		System.out.println("ajout avec succes");
 		
     }
@@ -223,21 +223,7 @@ public class EventController implements Initializable {
    
     @FXML
     private void eventclicked(MouseEvent event) throws NamingException {
-    	if (event_tab.getSelectionModel().getSelectedItem() != null) {
-          //Event e = event_tab.getSelectionModel().getSelectedItem();
-        //  Long id = e.getId_event();
-          
-    	}
-    	try {
-			context1 = new InitialContext();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
-		
-    	proxy.delete(proxy.find(event_tab.getSelectionModel().getSelectedItem().getId_event()));
-    	event_tab.setItems(event_list);
+    	
     }
 
     @FXML
@@ -246,32 +232,69 @@ public class EventController implements Initializable {
     }
 
     @FXML
-    private void onviewdetails_clicked(ActionEvent event) {
+    private void onviewdetails_clicked(ActionEvent event) throws NamingException {
     	
+    	try {
+  			context1 = new InitialContext();
+  		} catch (NamingException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+  		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+  		List<Event> event_list = new ArrayList<Event>();
+  		remind_list=FXCollections.observableArrayList(proxy.EventReminder(event_list));
+  		
+  		event_tab.setItems(remind_list);
+  		System.out.println("reminder");
     }
     
     @FXML
-    private void ondeletebutt_clicked(ActionEvent event) {
+    private void ondeletebutt_clicked(ActionEvent event) throws NamingException {
     	if (event_tab.getSelectionModel().getSelectedItem() != null) {
-            Event e = event_tab.getSelectionModel().getSelectedItem();
-            Long id = e.getId_event();
-    	}
-		
+            //Event e = event_tab.getSelectionModel().getSelectedItem();
+          //  Long id = e.getId_event();
+            
+      	}
+      	try {
+  			context1 = new InitialContext();
+  		} catch (NamingException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+  		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+  		
+      	proxy.delete(proxy.find(event_tab.getSelectionModel().getSelectedItem().getId_event()));
+      	event_list = FXCollections.observableArrayList(proxy.findAll());
+  		event_tab.setItems(event_list);
+      	
     	
     }
 
     @FXML
-    private void onsearchbutt_clicked(ActionEvent event) {
+    private void onsearchbutt_clicked(ActionEvent event) throws NamingException {
      String type = combo_search.getValue();
+ 	try {
+			context1 = new InitialContext();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+		
      if(type=="Event Name"){
+    	 String name=search_field.getText();
     	 search_field.setVisible(true);
     	 search_picker.setVisible(false);
+    	 event_list=FXCollections.observableArrayList(proxy.findEventByName(name));
+    	 event_tab.setItems(event_list);
+    	 
      }
      if(type=="Event Date"){
     	 search_picker.setVisible(true);
     	 search_field.setVisible(false);
     	 
      }
+     
     }
 
 

@@ -48,6 +48,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		String format = "dd/MM/yy H:mm:ss"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date da = new java.util.Date(); 
+		
 		Calendar c1 = Calendar.getInstance();
 	    c1.setTime(da);
 	    int today=c1.get(Calendar.DAY_OF_YEAR);
@@ -56,11 +57,13 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		for (Event event : eventlist) {
 	    Date a = event.getEvent_date();
 	    Calendar c = Calendar.getInstance();
+	    
 	    c.setTime(a);
 	    int dayOfyear = c.get(Calendar.DAY_OF_YEAR);
 	    int year =c.get(Calendar.YEAR);
 	    if((year==thisyear)&&(today-dayOfyear==2)){
-	    eventsoon.add(event);System.out.println(event);
+	    eventsoon.add(event);
+	    System.out.println(event);
 	    
 	    }
 		}

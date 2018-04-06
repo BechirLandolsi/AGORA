@@ -32,7 +32,9 @@ public class SkeletonController implements Initializable {
     @FXML
     private AnchorPane holderPane;
     
-    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Tender;
+
+    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Events,Tender;
+
     @FXML
     private JFXButton btnHome;
     @FXML
@@ -101,7 +103,9 @@ public class SkeletonController implements Initializable {
     }
 
     @FXML
-    private void switchEvents(ActionEvent event) {
+    private void switchEvents(ActionEvent event) throws IOException {
+    	 Events = FXMLLoader.load(getClass().getResource("../gui/Event.fxml"));
+         setNode(Events);
     }
 
     @FXML

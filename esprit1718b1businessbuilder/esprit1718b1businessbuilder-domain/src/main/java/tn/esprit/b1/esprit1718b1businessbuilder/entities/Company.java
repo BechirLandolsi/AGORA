@@ -90,7 +90,7 @@ public class Company extends User {
 	
 
 	
-	  @OneToMany
+	  @OneToMany(mappedBy = "company_organizer" )
       private List<Event> events;
 
 	/***********************/

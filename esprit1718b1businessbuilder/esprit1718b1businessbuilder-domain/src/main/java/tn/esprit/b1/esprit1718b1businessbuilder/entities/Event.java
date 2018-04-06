@@ -176,10 +176,6 @@ public class Event implements Serializable {
 	
 	/* constructors */
 	
-	
-
-
-
 	public List<Invitation> getInvitation() {
 		return invitation;
 	}

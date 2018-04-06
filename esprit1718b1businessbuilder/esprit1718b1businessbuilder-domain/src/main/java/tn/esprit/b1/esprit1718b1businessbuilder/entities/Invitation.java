@@ -26,7 +26,7 @@ public class Invitation implements Serializable {
 	@JoinColumn(name="idEvent",referencedColumnName="EVENT_ID",insertable=false,updatable=false)
 	private Event Event ;
 	@ManyToOne
-	@JoinColumn(name="idguest",referencedColumnName="USR_ID",insertable=false,updatable=false)
+	@JoinColumn(name="idCompanyGuest",referencedColumnName="USR_ID",insertable=false,updatable=false)
 	private Company guest ;
 	
 	

@@ -2,6 +2,8 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,7 +20,9 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ITender;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ITenderCategory;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ITenderQualification;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderCategoryService;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderQualificationService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderService;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
 
@@ -34,8 +38,9 @@ public class TenderTest {
 		ITenderCategory proxyCategory = (ITenderCategory) context.lookup(jndiNameCategory);
 		
 		TenderCategory HelpDesk = new TenderCategory("HelpDesk");
+		TenderCategory DevJava = new TenderCategory("DevJava");
 
-		//proxyCategory.save(HelpDesk);
+		//proxyCategory.save(DevJava);
 		
 		//**********************************************TenderQualification************************************
 		
@@ -43,7 +48,7 @@ public class TenderTest {
 		ITenderQualification proxyQualification = (ITenderQualification) context.lookup(jndiNameQualification);
 		
 		TenderQualification SameCountry = new TenderQualification("Same Country");
-
+		
 		//proxyQualification.save(SameCountry);
 		
 		
@@ -55,21 +60,32 @@ public class TenderTest {
 		String jndiNameCompany ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
 		CompanyServiceRemote proxyCompany = (CompanyServiceRemote) context.lookup(jndiNameCompany);
 		
+		TenderService ts = new TenderService();
 		
-		Company loggedUser=(Company)proxyCompany.login("vermeglogin", "vermegpass");
+		User loggedUser=proxyCompany.login("vermeglogin", "vermegpass");
+
+		TenderCategory tc= proxyCategory.find(DevJava);
 		
-		//System.out.println(loggedUser);
 		
 		
 		Tender tender = new Tender("Looking for Java web development Expert",
-				new SimpleDateFormat("MM/dd/yyyy").parse("29/04/2018"), "I need someone who has expert level experiences in Java web development.", 
-				new SimpleDateFormat("MM/dd/yyyy").parse("29/03/2018"));
+				new SimpleDateFormat("dd/MM/yyyy").parse("29/04/2018"), "I need someone who has expert level experiences in Java web development.", 
+				new SimpleDateFormat("dd/MM/yyyy").parse("29/03/2018"));
+		
+		ts.affectTenderToCompanyCategory(tender, loggedUser, tc);
+		
+		
+		//proxyQualification.save(SameCountry);
+		//Long id =proxyTender.add(tender);
+		//tender.setId(id);
+		
+		//SameCountry=proxyQualification.find((long) 1);
+		//tender=proxyTender.find((long) 2);
+		//proxyTender.affectTenderToQualification(tender, SameCountry);
 
-		//tender.setCompanyTender(loggedUser);
-		//tender.setCategory(HelpDesk);
-		//proxyTender.save(tender);
-		long id = 3;
-		System.out.println(proxyCompany.find(id));
+		//************************************************* Affect Qualification to tender*************************************
+		
+		
 	}
 
 }

@@ -346,7 +346,11 @@ public class Company extends User {
 
 		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
 				+ "]";
-	}
+	}    public void stream() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
     
 }

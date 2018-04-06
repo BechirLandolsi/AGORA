@@ -5,18 +5,19 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderCategory;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderQualification;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.GenericDAO;
 
 @Stateless
 public class TenderService extends GenericDAO<Tender> implements ITender {
 
-	@PersistenceContext
-	private EntityManager entityManager;
 	
+	@PersistenceContext
+	private EntityManager em;
+
 	public TenderService() {
 		super(Tender.class);
 	}
@@ -28,16 +29,32 @@ public class TenderService extends GenericDAO<Tender> implements ITender {
 	}
 
 	@Override
-	public void affectTenderToCompanyCategory(Tender tender, Company loggedUser) {
+	public void affectTenderToCompanyCategory(Tender tender, User loggedUser, TenderCategory tc) {
 		
-		/*this.find(tender.getId());
+		tender.setCompanyTender(loggedUser);
+		tender.setCategory(tc);
+	}
+
+	@Override
+	public void saveTender(Tender tender) {
 		
-		System.out.println(tender);
-		System.out.println(loggedUser);
-		//tender.setCompanyTender(loggedUser);
+		tender.setId(add(tender));
 		
-		category= entityManager.find(TenderCategory.class, categoryId );
-		tender.setCategory(category);*/
+	}
+
+	@Override
+	public long add(Tender tender) {
+		
+		em.persist(tender);
+		
+		return tender.getId();
+	}
+
+	@Override
+	public void affectTenderToQualification(Tender tender, TenderQualification qualification) {
+		tender = em.find(Tender.class, tender.getId());
+		qualification = em.find(TenderQualification.class,qualification.getId());
+		tender.getQualifications().add(qualification);
 	}
 
 }

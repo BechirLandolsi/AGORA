@@ -32,7 +32,7 @@ public class SkeletonController implements Initializable {
     @FXML
     private AnchorPane holderPane;
     
-    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products;
+    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Tender;
     @FXML
     private JFXButton btnHome;
     @FXML
@@ -41,8 +41,6 @@ public class SkeletonController implements Initializable {
     private JFXButton btnContacts;
     @FXML
     private JFXButton btnTenders;
-    @FXML
-    private JFXButton btnAlerts;
     @FXML
     private JFXButton btnProfile;
     @FXML
@@ -59,7 +57,6 @@ public class SkeletonController implements Initializable {
         try {
             // here you must put the path of our node 
         	Home = FXMLLoader.load(getClass().getResource("../gui/Home.fxml"));
-             
             setNode(Home);
         } catch (IOException ex) {
             Logger.getLogger(SkeletonController.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +105,9 @@ public class SkeletonController implements Initializable {
     }
 
     @FXML
-    private void switchTenders(ActionEvent event) {
+    private void switchTenders(ActionEvent event)throws IOException {
+          Tender = FXMLLoader.load(getClass().getResource("../gui/Tender.fxml"));
+          setNode(Tender);
     }
 
     @FXML

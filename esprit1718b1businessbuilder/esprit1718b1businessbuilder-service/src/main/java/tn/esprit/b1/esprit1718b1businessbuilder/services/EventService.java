@@ -29,11 +29,9 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 ////***************************** Get Events of a Company ************************
 	@Override
 	public List<Event> findEventByCompany(long companyId) {
-		 TypedQuery <Event> ev = em.createQuery("select e from Event e where e.company_organizer.id="+companyId,Event.class);
+		 TypedQuery <Event> ev = em.createQuery("select e from Event e where e.company_organizer.id="+companyId+"AND e.event_state="+true,Event.class);
 			List<Event> eventlist = ev.getResultList();
 			return eventlist;
-		
-
 	}
 ////****************************** Get all the companies sectors **************************
 	@Override
@@ -62,12 +60,13 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 	    int dayOfyear = c.get(Calendar.DAY_OF_YEAR);
 	    int year =c.get(Calendar.YEAR);
 	    if((year==thisyear)&&(today-dayOfyear==2)){
-	    eventsoon.add(event);
+	    eventsoon.add(event);System.out.println(event);
+	    
 	    }
 		}
-		for (Event event : eventlist){
+		/*for (Event event : eventlist){
 			System.out.println(event);
-		}
+		}*/
 		return eventsoon;	
 	}
 
@@ -90,4 +89,34 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		event=query.setParameter("event_date" , date).getResultList();
 		return event;
 		}
+	@Override
+	public void AffectAnEventToCompany(Event e, Company c) {
+		List<Event> event = new ArrayList<Event>();
+		event=c.getEvents();
+		if(e!=null){
+		event.add(e);
+		c.setEvents(event);
+		}
+	}
+	
+////*************************** Display all the archived events ************************************
+	//the time the event'date passed the event will be archived and not deleted so the 
+	//user can display the past events he organized 
+	@Override
+	public List<Event> DisplayArchivedEvents(Event e) {
+		List<Event> event = new ArrayList<Event>();
+		TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE e.event_state="+true, Event.class);
+		event=query.getResultList();
+		return event;	
+	}
+	
+
+////******************************************Archive an event ************************************	
+	@Override
+	public void ArchiveAnEvent(Event e) {
+		e.setEvent_state(true);
+	}
+
+	
+
 }

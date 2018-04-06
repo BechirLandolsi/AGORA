@@ -23,18 +23,74 @@ public class Invitation implements Serializable {
 	
 	
 	@ManyToOne
-	@JoinColumn(name="idCompany",referencedColumnName="USR_ID",insertable=false,updatable=false)
-	private Company company ;
+	@JoinColumn(name="idEvent",referencedColumnName="EVENT_ID",insertable=false,updatable=false)
+	private Event Event ;
 	@ManyToOne
 	@JoinColumn(name="idguest",referencedColumnName="USR_ID",insertable=false,updatable=false)
 	private Company guest ;
 	
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "invitationDate")
+	@Column(name = "INVITATION_DATE")
 	private Date invitationDate;
 	
-	@Column(name = "guestResponse")
-	private String guestResponse;
+	@Column(name = "GUEST_RESPONSE")
+	private boolean guest_Response;
+	
+	@Column(name = "PARTICIPATION_PRICE")
+	private float participation_price;
+
+	public InvitationPK getInvitationPK() {
+		return invitationPK;
+	}
+
+	public void setInvitationPK(InvitationPK invitationPK) {
+		this.invitationPK = invitationPK;
+	}
+
+	
+
+	public Event getEvent() {
+		return Event;
+	}
+
+	public void setEvent(Event event) {
+		Event = event;
+	}
+
+	public Company getGuest() {
+		return guest;
+	}
+
+	public void setGuest(Company guest) {
+		this.guest = guest;
+	}
+
+	public Date getInvitationDate() {
+		return invitationDate;
+	}
+
+	public void setInvitationDate(Date invitationDate) {
+		this.invitationDate = invitationDate;
+	}
+
+	public boolean isGuest_Response() {
+		return guest_Response;
+	}
+
+	public void setGuest_Response(boolean guest_Response) {
+		this.guest_Response = guest_Response;
+	}
+
+	public float getParticipation_price() {
+		return participation_price;
+	}
+
+	public void setParticipation_price(float participation_price) {
+		this.participation_price = participation_price;
+	}
+	
+	
+	
 
 }

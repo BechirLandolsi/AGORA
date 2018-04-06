@@ -12,22 +12,21 @@ public class InvitationPK implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int idCompany;
-	private int idGuest;
+	/// company guest id
+	private int idComanyGuest;
+	
+	/// event in invitation id
 	private int idEvent;
 	
+
 	
-	public int getIdCompany() {
-		return idCompany;
+	/*  Getters and Setters*/
+	
+	public int getIdComanyGuest() {
+		return idComanyGuest;
 	}
-	public void setIdCompany(int idCompany) {
-		this.idCompany = idCompany;
-	}
-	public int getIdGuest() {
-		return idGuest;
-	}
-	public void setIdGuest(int idGuest) {
-		this.idGuest = idGuest;
+	public void setIdComanyGuest(int idComanyGuest) {
+		this.idComanyGuest = idComanyGuest;
 	}
 	public int getIdEvent() {
 		return idEvent;
@@ -35,15 +34,21 @@ public class InvitationPK implements Serializable {
 	public void setIdEvent(int idEvent) {
 		this.idEvent = idEvent;
 	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idCompany;
+		result = prime * result + idComanyGuest;
 		result = prime * result + idEvent;
-		result = prime * result + idGuest;
 		return result;
 	}
+	
+	
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,20 +58,12 @@ public class InvitationPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		InvitationPK other = (InvitationPK) obj;
-		if (idCompany != other.idCompany)
+		if (idComanyGuest != other.idComanyGuest)
 			return false;
 		if (idEvent != other.idEvent)
 			return false;
-		if (idGuest != other.idGuest)
-			return false;
 		return true;
 	}
-
-	
-	
-	
-	
-	
 	
 
 }

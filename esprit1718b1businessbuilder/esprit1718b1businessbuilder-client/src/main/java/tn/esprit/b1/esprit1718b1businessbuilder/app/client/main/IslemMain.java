@@ -41,14 +41,16 @@ public class IslemMain {
 
 		//System.out.println(loggedUser.getEvents());
 		//System.out.println(com1.getId());
-		System.out.println(proxy.findEventByCompany((long)4));
+		
 		///************************* Adding Test **********************************
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datep =dateFormat.parse("31/12/2018");
-		Event e= new Event("Foire Samsung","Tunis","Mobile",false,datep);
+		Event e= new Event("Foire Samsung","Tunis","Mobile",true,datep);
 		e.setCompany_organizer(loggedUser);
 		proxy.save(e);
+		proxy.AffectAnEventToCompany(e,loggedUser);
 		System.out.println("ajout avec succes");
+		System.out.println(proxy.findEventByCompany((long)4));
 		
 		//**************************** Find Event By Id ****************************
 		

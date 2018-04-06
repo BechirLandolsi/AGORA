@@ -92,6 +92,9 @@ public class Company extends User {
 	
 	  @OneToMany(mappedBy = "company_organizer" )
       private List<Event> events;
+	  
+	  @OneToMany(mappedBy = "guest" )
+	  private List<Invitation> invitation;
 
 	/***********************/
 	
@@ -325,6 +328,16 @@ public class Company extends User {
 
 	public void setSubDate(Date subDate) {
 		this.subDate = subDate;
+	}
+
+ 
+	public List<Invitation> getInvitation() {
+		return invitation;
+	}
+
+
+	public void setInvitation(List<Invitation> invitation) {
+		this.invitation = invitation;
 	}
 
 

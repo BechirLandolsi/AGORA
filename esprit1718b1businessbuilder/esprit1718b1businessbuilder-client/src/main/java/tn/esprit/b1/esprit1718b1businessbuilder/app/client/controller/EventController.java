@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXToggleButton;
 
 import java.lang.reflect.Proxy;
 import java.net.URL;
+import java.text.BreakIterator;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -181,6 +182,8 @@ public class EventController implements Initializable {
        	
     	Event e = new Event();
     	Company c = new Company();
+    	boolean check=true;
+    	boolean verify=true;
 
         //the data entered by the user
     	e.setEvent_name(eventname.getText());
@@ -201,16 +204,26 @@ public class EventController implements Initializable {
     	}
     	else
     	{
-    	System.out.println("error date");
+    	check=false;
     	}
     	e.setCompany_organizer(c);
     	System.out.println(e.getCompany_organizer());
-    	
+    	System.out.println(check);
     	
     	context1 = new InitialContext();
 		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
-		//if(alert_label.equals("")){
+		if(eventname.getText().equals("") || eventaddress.getText().equals("") || combo_sector.getValue().equals("") || eventdate.getValue()!=null)
+		{
+		alert_label.setText("All Fiels should not be empty");
+		}
+		else if(check==false)
+		
+		{ alert_label.setText("You can't enter an anterior date");}	
+		
+		else
+		{
 		proxy.save(e);
+		}
 		event_list = FXCollections.observableArrayList(proxy.findAll());
 		event_tab.setItems(event_list);
 		System.out.println("ajout avec succes");
@@ -223,6 +236,18 @@ public class EventController implements Initializable {
    
     @FXML
     private void eventclicked(MouseEvent event) throws NamingException {
+    	if (event_tab.getSelectionModel().getSelectedItem() != null) {
+            Event e = event_tab.getSelectionModel().getSelectedItem();
+            Long id = e.getId_event();
+            
+            eventname.setText(e.getEvent_name());
+            eventaddress.setText(e.getEvent_adress());
+            eventdate.setDisable(true);;
+            combo_sector.setValue(e.getEvent_sector());
+            if(e.getEvent_profitable()){yes.selectedProperty();}
+         
+            
+      	}
     	
     }
 
@@ -250,11 +275,7 @@ public class EventController implements Initializable {
     
     @FXML
     private void ondeletebutt_clicked(ActionEvent event) throws NamingException {
-    	if (event_tab.getSelectionModel().getSelectedItem() != null) {
-            //Event e = event_tab.getSelectionModel().getSelectedItem();
-          //  Long id = e.getId_event();
-            
-      	}
+    	
       	try {
   			context1 = new InitialContext();
   		} catch (NamingException e) {

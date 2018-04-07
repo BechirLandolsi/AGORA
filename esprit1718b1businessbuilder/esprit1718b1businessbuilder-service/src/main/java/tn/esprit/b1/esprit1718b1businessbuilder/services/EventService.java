@@ -49,27 +49,26 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date da = new java.util.Date(); 
 		
+		
 		Calendar c1 = Calendar.getInstance();
 	    c1.setTime(da);
+	    //day of the year of system date
 	    int today=c1.get(Calendar.DAY_OF_YEAR);
+	    //the year of the system date
 	    int thisyear = c1.get(Calendar.YEAR);
 	    
 		for (Event event : eventlist) {
 	    Date a = event.getEvent_date();
 	    Calendar c = Calendar.getInstance();
-	    
 	    c.setTime(a);
 	    int dayOfyear = c.get(Calendar.DAY_OF_YEAR);
 	    int year =c.get(Calendar.YEAR);
+	    System.out.println(today-dayOfyear);
 	    if((year==thisyear)&&(today-dayOfyear==2)){
 	    eventsoon.add(event);
 	    System.out.println(event);
-	    
 	    }
 		}
-		/*for (Event event : eventlist){
-			System.out.println(event);
-		}*/
 		return eventsoon;	
 	}
 

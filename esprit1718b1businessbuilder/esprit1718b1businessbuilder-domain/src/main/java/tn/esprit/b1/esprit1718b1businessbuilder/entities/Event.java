@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -54,6 +53,9 @@ public class Event implements Serializable {
 	@Column(name = "EVENT_STATE")
 	private boolean event_state;
 	
+	@Column(name = "EVENT_PRIVACY")
+	private boolean event_privacy;
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EVENT_DATE")
 	private Date event_date;
@@ -80,6 +82,7 @@ public class Event implements Serializable {
 		this.id_event = id_event;
 	}
 
+	
 	public String getEvent_name() {
 		return event_name;
 	}
@@ -172,10 +175,7 @@ public class Event implements Serializable {
 		this.event_profitable = event_profitable;
 	}
 	
-	
-	
-	/* constructors */
-	
+
 	public List<Invitation> getInvitation() {
 		return invitation;
 	}
@@ -183,7 +183,16 @@ public class Event implements Serializable {
 	public void setInvitation(List<Invitation> invitation) {
 		this.invitation = invitation;
 	}
+	
+	public boolean isEvent_privacy() {
+		return event_privacy;
+	}
 
+	public void setEvent_privacy(boolean event_privacy) {
+		this.event_privacy = event_privacy;
+	}
+
+	/* constructors */
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub

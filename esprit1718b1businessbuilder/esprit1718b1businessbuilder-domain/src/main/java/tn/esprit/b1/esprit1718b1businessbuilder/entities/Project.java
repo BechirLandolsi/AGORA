@@ -78,16 +78,29 @@ public class Project implements Serializable {
 	private boolean state;
 	
 	@Column(name = "quality")
-	private int quality;
+	private double quality;
+	
+	@Column(name = "count")
+	private int count;
+	
+	@Column(name = "product")
+	private String product;
 	
 	public Project() {
 		super();
+		
+		this.count=0;
+		this.quality=0.0;
+		
 	}
+
+
+	
 
 	public Project(Long id, List<Partnership> partnerships, Company projectOwner, Bilan bilan, String name,
 			String service, String projectNature, Integer stock, float priceUnit, float purchase, float energyCost,
-			float transportCost, float employeeSalaire, float interestOnLoans, float rentCost, boolean state,
-			int quality,float capital) {
+			float transportCost, float employeeSalaire, float interestOnLoans, float rentCost, float capital,
+			boolean state, double quality, int count, String product) {
 		super();
 		this.id = id;
 		this.partnerships = partnerships;
@@ -104,10 +117,15 @@ public class Project implements Serializable {
 		this.employeeSalaire = employeeSalaire;
 		this.interestOnLoans = interestOnLoans;
 		this.rentCost = rentCost;
+		this.capital = capital;
 		this.state = state;
 		this.quality = quality;
-		this.capital=capital;
+		this.count = count;
+		this.product = product;
 	}
+
+
+
 
 	public Long getId() {
 		return id;
@@ -237,11 +255,11 @@ public class Project implements Serializable {
 		this.state = state;
 	}
 
-	public int getQuality() {
+	public double getQuality() {
 		return quality;
 	}
 
-	public void setQuality(int quality) {
+	public void setQuality(double quality) {
 		this.quality = quality;
 	}
 	
@@ -255,6 +273,34 @@ public class Project implements Serializable {
 		this.capital = capital;
 	}
 
+	
+	
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	
+	
+
+	public String getProduct() {
+		return product;
+	}
+
+
+
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+
+
+
 	@Override
 	public String toString() {
 		return "Project [id=" + id + ", partnerships=" + partnerships + ", ProjectOwner=" + ProjectOwner + ", bilan="
@@ -262,8 +308,13 @@ public class Project implements Serializable {
 				+ stock + ", priceUnit=" + priceUnit + ", purchase=" + purchase + ", energyCost=" + energyCost
 				+ ", transportCost=" + transportCost + ", employeeSalaire=" + employeeSalaire + ", interestOnLoans="
 				+ interestOnLoans + ", rentCost=" + rentCost + ", capital=" + capital + ", state=" + state
-				+ ", quality=" + quality + "]";
+				+ ", quality=" + quality + ", count=" + count + ", product=" + product + "]";
 	}
+
+
+
+
+	
 
 
 

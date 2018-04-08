@@ -2,9 +2,12 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-
+import org.ocpsoft.prettytime.PrettyTime;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -62,17 +65,17 @@ public class TenderTest {
 		
 		TenderService ts = new TenderService();
 		
-		User loggedUser=proxyCompany.login("vermeglogin", "vermegpass");
+		User loggedUser=proxyCompany.login("FISlogin", "FISpass");
 
 		TenderCategory tc= proxyCategory.find(DevJava);
 		
 		
 		
-		Tender tender = new Tender("Looking for Java web development Expert",
-				new SimpleDateFormat("dd/MM/yyyy").parse("29/04/2018"), "I need someone who has expert level experiences in Java web development.", 
-				new SimpleDateFormat("dd/MM/yyyy").parse("29/03/2018"));
+		Tender tender = new Tender("CUSTOMER SERVICE SUPPORT!",
+				new SimpleDateFormat("dd/MM/yyyy").parse("29/04/2018"), "Peak Support is a customer service and business process outsourcing company.  We are seeking Email Support representatives from the Philippines to join our growing team. ", 
+				new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())));
 		
-		ts.affectTenderToCompanyCategory(tender, loggedUser, tc);
+		//ts.affectTenderToCompanyCategory(tender, loggedUser, tc);
 		
 		
 		//proxyQualification.save(SameCountry);
@@ -80,11 +83,10 @@ public class TenderTest {
 		//tender.setId(id);
 		
 		//SameCountry=proxyQualification.find((long) 1);
-		//tender=proxyTender.find((long) 2);
+		//tender=proxyTender.find((long) 8);
 		//proxyTender.affectTenderToQualification(tender, SameCountry);
 
 		//************************************************* Affect Qualification to tender*************************************
-		
 		
 	}
 

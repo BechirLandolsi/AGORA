@@ -135,6 +135,10 @@ public class ProjectController implements Initializable {
     private JFXTextField capital;
     
     @FXML
+    private JFXTextField product;
+
+    
+    @FXML
     private JFXComboBox <String> natureproectcombobox;
     
 
@@ -267,7 +271,7 @@ public class ProjectController implements Initializable {
 		context1 = new InitialContext();
 		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
 		
-		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(2));
+		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany((long) 2));
     	
  	     // col_project.setId("1");
     	  //col_project.cellFactoryProperty();
@@ -381,6 +385,7 @@ public class ProjectController implements Initializable {
         if (  interestonloans.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
         if (  rentcost.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
         if (  capital.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
+        if (  product.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
         //if (  natureproectcombobox.getValue()!="" ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
       //  if (  sectorcombobox.getValue()!="") { n=true; remplirchampLabel.setText("Please fill in all the fields"); }
 
@@ -395,6 +400,7 @@ public class ProjectController implements Initializable {
     	if (n==false)
     	{context1 = new InitialContext();
 		 ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
+		 
 		 p = new Project();
 	    	
 	    	
@@ -410,6 +416,7 @@ public class ProjectController implements Initializable {
 	    	p.setInterestOnLoans(Float.parseFloat(interestonloans.getText()));
 	    	p.setRentCost(Float.parseFloat(rentcost.getText()));
 	    	p.setCapital(Float.parseFloat(capital.getText()));
+	    	p.setProduct(product.getText());
 	    	p.setState(false);
 	    	p.setProjectOwner(c);
 
@@ -429,12 +436,14 @@ public class ProjectController implements Initializable {
 	    	{
 	    		happyimg.setVisible(true);
 	    		StateLabel.setTextFill(Color.GREEN);
+	    		p.setState(true);
 	    		StateLabel.setText("Your financial state is stable");
 	    	}
 	    	
 	    	if (FR<0)
 	    	{
 	    		sadimg.setVisible(true);
+	    		p.setState(false);
 	    		StateLabel.setTextFill(Color.RED);
 	    		StateLabel.setText("Your financial state is in danger");
 
@@ -680,6 +689,14 @@ void floatkey9(KeyEvent event) {
     else{
     	remplirLabel.setVisible(false);
         }
+}
+
+
+@FXML
+void floatkey10(KeyEvent event) {
+	
+
+
 }
     
 @FXML

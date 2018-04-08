@@ -16,8 +16,10 @@ public interface CompanyServiceRemote {
 		public void AddCompanyReserche(Reserche r,  Company c );
 		public List<Company> findAllCompanyByService(String service) ;
 		public List <String> FindBySector(String sector);
+		public List<Company> findCompanyBySector2(String sector) ;
+		public List <String> FindBySectorButCompany(Long c,String sector);
 		public List <String> getAllSectors();
-
+		
 		
 }
 

@@ -83,12 +83,12 @@
                </font>
             </Label>
             <JFXTextField fx:id="purchase" accessibleRole="MENU_BUTTON" layoutX="728.0" layoutY="320.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey2" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label layoutX="67.0" layoutY="423.0" prefHeight="53.0" prefWidth="158.0" text="Employee salaries (DT)" textFill="#060514">
+            <Label layoutX="67.0" layoutY="450.0" prefHeight="53.0" prefWidth="158.0" text="Employee salaries (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="369.0" prefHeight="60.0" prefWidth="129.0" text="Energy costs (DT)" textFill="#060514">
+            <Label layoutX="78.0" layoutY="396.0" prefHeight="60.0" prefWidth="129.0" text="Energy costs (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
@@ -109,11 +109,11 @@
                </font>
             </Label>
             <JFXTextField fx:id="transpcost" layoutX="731.0" layoutY="373.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey4" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXTextField fx:id="salaire" layoutX="243.0" layoutY="416.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey5" prefHeight="44.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="salaire" layoutX="243.0" layoutY="445.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey5" prefHeight="44.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <JFXTextField fx:id="interestonloans" layoutX="723.0" layoutY="416.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey6" prefHeight="44.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <JFXTextField fx:id="rentcost" layoutX="246.0" layoutY="507.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey7" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <JFXComboBox fx:id="natureproectcombobox" layoutX="254.0" layoutY="97.0" prefHeight="25.0" prefWidth="196.0" />
-            <Label layoutX="100.0" layoutY="275.0" prefHeight="31.0" prefWidth="78.0" text="Stock(unit)" textFill="#060514">
+            <Label layoutX="96.0" layoutY="317.0" prefHeight="31.0" prefWidth="78.0" text="Stock(unit)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
@@ -124,13 +124,13 @@
                </font>
             </Label>
             <JFXTextField fx:id="price" accessibleRole="MENU_BUTTON" layoutX="726.0" layoutY="265.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey1" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <JFXTextField fx:id="energycost" accessibleRole="MENU_BUTTON" layoutX="247.0" layoutY="374.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey3" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="energycost" accessibleRole="MENU_BUTTON" layoutX="247.0" layoutY="409.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey3" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <Label fx:id="remplirLabel" layoutX="90.0" layoutY="553.0" prefHeight="37.0" prefWidth="388.0" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font></Label>
-            <JFXTextField fx:id="stock" accessibleRole="MENU_BUTTON" layoutX="245.0" layoutY="265.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey8" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
-            <Label fx:id="stockLabel" layoutX="162.0" layoutY="297.0" prefHeight="31.0" prefWidth="304.0" textFill="#060514">
+            <JFXTextField fx:id="stock" accessibleRole="MENU_BUTTON" layoutX="240.0" layoutY="311.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey8" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <Label fx:id="stockLabel" layoutX="165.0" layoutY="336.0" prefHeight="31.0" prefWidth="304.0" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
@@ -140,12 +140,12 @@
                   <Font name="Sitka Heading" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="96.0" layoutY="313.0" prefHeight="61.0" prefWidth="83.0" text="Capital (DT)" textFill="#060514">
+            <Label layoutX="95.0" layoutY="344.0" prefHeight="61.0" prefWidth="83.0" text="Capital (DT)" textFill="#060514">
                <font>
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="capital" accessibleRole="MENU_BUTTON" layoutX="244.0" layoutY="322.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey9" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
+            <JFXTextField fx:id="capital" accessibleRole="MENU_BUTTON" layoutX="244.0" layoutY="360.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey9" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
             <Label layoutX="151.0" layoutY="207.0" prefHeight="31.0" prefWidth="690.0" style="-fx-alignment: center; -fx-background-color: #1E90FF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="Give us your estimated values about your future project">
                <opaqueInsets>
                   <Insets />
@@ -162,6 +162,12 @@
                   <Font name="Sitka Heading" size="16.0" />
                </font>
             </Label>
+            <Label layoutX="105.0" layoutY="279.0" prefHeight="31.0" prefWidth="78.0" text="Product" textFill="#060514">
+               <font>
+                  <Font name="Sitka Heading" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="product" accessibleRole="MENU_BUTTON" layoutX="243.0" layoutY="273.0" maxWidth="196.0" minWidth="196.0" onKeyReleased="#floatkey10" prefHeight="31.0" prefWidth="196.0" unFocusColor="#1a0cb2" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchor3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="604.0" prefWidth="1010.0" visible="false">
@@ -233,7 +239,7 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Margin on variable cost" textFill="#2485d3" GridPane.rowIndex="4">
+                  <Label text="Margin/variable cost" textFill="#2485d3" GridPane.rowIndex="4">
                      <font>
                         <Font name="Sitka Heading Bold" size="22.0" />
                      </font>

@@ -70,8 +70,7 @@ public class CompanyService implements CompanyServiceRemote{
 	public List <String> FindBySector(String sector)
 	{
 		TypedQuery<String> q = em.createQuery("select c.name from Company c WHERE c.sector=:sector", String.class ) ;
-		//List <String> names = q.getResultList() ;
-		//return names;
+	
 		return q.setParameter("sector", sector).getResultList();
 	}
 	
@@ -87,6 +86,24 @@ public class CompanyService implements CompanyServiceRemote{
 	public void add(Company c) {
 		em.persist(c);
 		
+	}
+	
+	@Override
+	public List<String> FindBySectorButCompany(Long companyId, String sector) {
+		
+		TypedQuery<String> k = em.createQuery("select c.name from Company c where c.sector=:sector", String.class ) ;
+		 k.setParameter("sector", sector).getResultList();
+		
+		 return k.setParameter("companyId", companyId).getResultList();
+
+		
+	}
+	@Override
+	public List<Company> findCompanyBySector2(String sector) {
+
+		TypedQuery<Company> q = em.createQuery("select c from Company c WHERE c.sector=:sector", Company.class ) ;
+	
+		return q.setParameter("sector", sector).getResultList();
 	}
 	
 	

@@ -5,6 +5,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import org.hibernate.loader.Loader;
 
 /*
@@ -22,6 +26,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
 
 
 /**
@@ -69,8 +74,13 @@ public class EventRowController extends ListCell<Event>  {
      * Initializes the controller class.
      */
      
+	
+	//*******************************************************************************************
+	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
+	Context context1;
+	//*******************************************************************************************
     @Override
-    protected void updateItem (Event ev, boolean empty){
+    protected void updateItem (Event ev, boolean empty) {
        EventController ec = new EventController();
         
         if (empty || ev == null) {
@@ -104,8 +114,24 @@ public class EventRowController extends ListCell<Event>  {
              setGraphic(row);
             
             view_details_butt.setOnAction(event->entier=ev.getId_event());
-            //cancel_butt.setOnAction(event->
-            // row.setOnMouseClicked(event->ec.setLblLocation((ev.getCompany_organizer().getCEO())));
+            cancel_butt.setOnAction(event->{
+            	entier=ev.getId_event();
+            	Event e = new Event();
+
+            	try {
+        			context1 = new InitialContext();
+        			EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+        			e=proxy.find(entier);
+        			proxy.delete(e);
+        		} catch (NamingException e1) {
+        			// TODO Auto-generated catch block
+        			e1.printStackTrace();
+        		}
+            	
+        		
+            	
+            });
+           
          }
     }
 

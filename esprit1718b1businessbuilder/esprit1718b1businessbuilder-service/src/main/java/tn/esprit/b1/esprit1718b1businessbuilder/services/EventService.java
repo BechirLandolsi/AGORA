@@ -43,7 +43,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 
 ////******************************* remind the user of the upcoming event before two days of its date *****************
 	@Override
-	public List<Event> EventReminder(List<Event> eventlist) {
+	public List<Event> EventReminder() {
 		List<Event> eventsoon = new ArrayList<Event>();
 		String format = "dd/MM/yy H:mm:ss"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
@@ -57,7 +57,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 	    //the year of the system date
 	    int thisyear = c1.get(Calendar.YEAR);
 	    
-		for (Event event : eventlist) {
+		/*for (Event event : eventlist) {
 	    Date a = event.getEvent_date();
 	    Calendar c = Calendar.getInstance();
 	    c.setTime(a);
@@ -68,7 +68,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 	    eventsoon.add(event);
 	    System.out.println(event);
 	    }
-		}
+		}*/
 		return eventsoon;	
 	}
 
@@ -112,13 +112,33 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		return event;	
 	}
 	
-
-////******************************************Archive an event ************************************	
+	
+////******************************************Upcoming events ************************************	
 	@Override
-	public void ArchiveAnEvent(Event e) {
-		e.setEvent_state(true);
+	public List<Event> UpComingEvents() {
+		List<Event> upcomingonly = new ArrayList<Event>();
+		TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e WHERE e.event_state="+false, Event.class);
+		upcomingonly=query.getResultList();
+		return upcomingonly;	
+		
 	}
+	
+////******************************************Archive an old event by changing state ************************************	
+	@Override
+	public void ArchiveAnEvent(List<Event> e) {
 
+    	///get the system date
+    	String format = "dd/MM/yy H:mm:ss";
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date da = new java.util.Date(); 
+		
+		for(Event event : e ){
+			Date a = event.getEvent_date();
+			if(a.after(da)){
+			 event.setEvent_state(true);	
+			}
+		}
+	}	
 	
 
 }

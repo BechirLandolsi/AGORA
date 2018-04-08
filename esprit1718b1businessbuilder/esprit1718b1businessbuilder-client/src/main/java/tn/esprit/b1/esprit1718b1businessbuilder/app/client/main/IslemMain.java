@@ -41,7 +41,14 @@ public class IslemMain {
 
 		//System.out.println(loggedUser.getEvents());
 		//System.out.println(com1.getId());
-		
+		//************************************************************************
+		List<Event> all = new ArrayList<Event>();
+	    List<Event> upcomingonly = new ArrayList<Event>();
+	    all=proxy.findAll();
+	   // upcomingonly=proxy.ArchiveOldEvents();
+	    
+	    for (Event event : upcomingonly) 
+	    {System.out.println(event);}
 		///************************* Adding Test **********************************
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datep =dateFormat.parse("31/12/2018");
@@ -76,6 +83,7 @@ public class IslemMain {
 	    
 	    System.out.println(year);
 	    System.out.println(da);
+	    //**************************************************************************
 	    
 	    //******************************Searching event by name Test ****************
 	    List<Event> eventlist = new ArrayList<Event>();

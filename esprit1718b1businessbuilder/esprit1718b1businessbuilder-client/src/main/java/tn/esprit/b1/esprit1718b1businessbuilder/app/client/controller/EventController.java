@@ -85,18 +85,20 @@ public class EventController implements Initializable{
     private FontAwesomeIconView success_img;
     @FXML
     private Label success_label;
-
+    @FXML
+    private JFXButton refresh_butt;
 	
 	
 	/**
      * Initializes the controller class.
      */
 	
-	
+	//this variable give us the id of the event from the list view (from another controller )
+    //that's why it is declared a static variable
     private static long nombre;
     private ObservableList<Event> event_list;
     private ObservableList<String> all_sectors = FXCollections.observableArrayList();
-   
+    private ObservableList<Event> comingonly;
     
     /* Getters And Setters */
     public static long getNombre() {
@@ -108,28 +110,32 @@ public class EventController implements Initializable{
 	}
     
     
+	//*********************************************************************************************************
     String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
 	Context context1;
 	 
-	String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
+	String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ;
 	Context context2;
+	
+    //**********************************************************************************************************
 
+	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	 
 	    try {
-	    	
 			context1 = new InitialContext();
+		    EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
 		
-		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
-			
-		//************* Displaying Events in the List view  **************************************************
-		
+		    
+//************************************************ Displaying Events in the List view  **************************************************
+//***************************************************************************************************************************************		
 	
-	     event_list = FXCollections.observableArrayList(proxy.findAll());
+	     event_list = FXCollections.observableArrayList(proxy.UpComingEvents());
 	     //remind_list= FXCollections.observableArrayList(proxy.EventReminder(event_list));
 	     all_sectors=FXCollections.observableArrayList(proxy.DisplaySector());
-	    //List view
+	     //comingonly = FXCollections.observableArrayList(proxy.UpComingEvents());
+	     //List view
 	     event_list_view.setItems(event_list);
 	     event_list_view.setCellFactory(new Callback<ListView<Event>, javafx.scene.control.ListCell<Event>>()
 	        {
@@ -138,18 +144,22 @@ public class EventController implements Initializable{
 					 return new EventRowController();
 				}
 	        });
+	     
 	    } catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    
-	    //setting combo values
+	    
+	    //setting combox values
 	    combo_sector.getItems().addAll(all_sectors);
 	    combo_type.getItems().addAll("Product Launch"," Company Milestones","Trade Shows","Appreciation Events");
     }    
 
 
 
+  //************************************************ View the details in the fields  **************************************************
+  //***************************************************************************************************************************************	    
     @FXML
     private void on_search_clicked(ActionEvent event) throws NamingException {
     	Event e = new Event();
@@ -178,10 +188,14 @@ public class EventController implements Initializable{
     	updatebutt.setDisable(false);
         saveevent.setDisable(true);
         
-        //set the date picker
-    	/*Date d = proxy.find(nombre).getEvent_date();
-    	DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String text = df.format(d);*/
+      //set the date picker
+        if(proxy.find(nombre).getEvent_date()!=null){
+        LocalDate ld = ((java.sql.Date) proxy.find(nombre).getEvent_date()).toLocalDate();
+        eventdate.setValue(ld); 
+            }
+        else eventdate.setValue(null); 
+        
+    	
         
         //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
        // LocalDate localDate = LocalDate.parse(text, formatter);
@@ -190,9 +204,13 @@ public class EventController implements Initializable{
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String text = df.format(d);
    
-        eventdate.setAccessibleText(text);
+       
       
     }
+    
+    
+  //************************************************ Adding a new Event  **************************************************
+  //***************************************************************************************************************************************	
 
     @FXML
     private void on_save_clicked(ActionEvent event) throws NamingException {
@@ -202,8 +220,7 @@ public class EventController implements Initializable{
     	Event e = new Event();
     	Company c = new Company();
     	boolean check=true;
-    	boolean verify=true;
-
+        //eventdate.setValue(null);
         //the data entered by the user
     	e.setEvent_name(eventname.getText());
     	e.setEvent_adress(eventaddress.getText());
@@ -234,51 +251,106 @@ public class EventController implements Initializable{
 		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
 		
 		//data control : empty fields 
-		if(eventname.getText().equals("") || eventaddress.getText().equals("") || combo_sector.getValue().equals("") || combo_type.getValue().equals("")|| eventdate.getValue()==null)
+		
+		System.out.println(verifyempty());
+		if(verifyempty())
 		{
-		verify=false;
-		}
-		if(verify==false)
-		{alert_label.setText("All Field Are Required");
+		alert_label.setText("All Field Are Required");
 		alert_img.setVisible(true);
 		success_img.setVisible(false);
 		success_label.setText("");}
-		else 
-	    if(check==false)
-		
-		{ alert_label.setText("You Can't Enter An Anterior Date");
+		else  if(check==false)
+		{
+		alert_label.setText("You Can't Enter An Anterior Date");
 		alert_img.setVisible(true);
 		success_img.setVisible(false);
 		success_label.setText("");;
-		  }	
+	     }	
 		
-		else
+		else if(check && !(verifyempty()))
 		{
+			
 		proxy.save(e);
 		alert_label.setText("");
 		alert_img.setVisible(false);
 		success_img.setVisible(true);
 		success_label.setText("Your Event Has Been Added Successfully");
+		//emptyfields();
 		}
 		//event_list = FXCollections.observableArrayList(proxy.findAll());
 
     }
-
+   
+    
+  //************************************************ Update an existing Event  **************************************************
+  //***************************************************************************************************************************************	
+  
     @FXML
-    private void update_clicked(ActionEvent event) {
+    private void update_clicked(ActionEvent event) throws NamingException {
+    	Event e = new Event();
+
+    	try {
+			context1 = new InitialContext();
+		} catch (NamingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    	
+		EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+    	nombre=EventRowController.getEntier();
+    	e=proxy.find(nombre);
+    	e.setEvent_name(eventname.getText());
+    	e.setEvent_adress(eventaddress.getText());
+    	e.setEvent_profitable(yes.isSelected());
+    	e.setEvent_sector(combo_sector.getValue());
+    	e.setEvent_privacy(privacy.isSelected());
+    	e.setEvent_type(combo_type.getValue());
+    	LocalDate a = eventdate.getValue();
+    	java.sql.Date d = java.sql.Date.valueOf(a);
+    	
+    	if(verifyempty())
+    	{
+    		alert_label.setText("All Field Are Required");
+    		alert_img.setVisible(true);
+    		success_img.setVisible(false);
+    		success_label.setText("");}
+    	else
+    	{proxy.update(e);}
     	updatebutt.setDisable(true);
     	saveevent.setDisable(false);
-    	eventaddress.setText("");
+    	emptyfields();
+    }
+
+  //************************************************  Empty Fields After Action **************************************************
+  //***************************************************************************************************************************************	
+    private void emptyfields()
+    {
+     	eventaddress.setText("");
     	eventname.setText("");
     	combo_sector.setValue("");
     	combo_type.setValue("");
     	privacy.setSelected(false);
     	yes.setSelected(false);
+    	eventdate.setValue(null);
     }
 
+  //************************************************ Controle Saisie Empty fields  **************************************************
+  //***************************************************************************************************************************************	
+   
+    
+    private boolean verifyempty(){
+    	if(eventname.getText().equals("") || eventaddress.getText().equals("") || combo_sector.getValue().equals("") || combo_type.getValue().equals("")|| eventdate.getValue()==null)	
+    	{return true;}
+    	else{return false;}
+    }
+    
+    
+    
+    @FXML
+    private void on_refresh_clicked(ActionEvent event) {
+    }
 
-
-
-
+  //************************************************ Controle Saisie Anterior Date  **************************************************
+  //***************************************************************************************************************************************	
     
 }

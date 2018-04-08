@@ -42,7 +42,7 @@ public class LoginController implements Initializable {
     @FXML
     private void doLogin(ActionEvent event) throws IOException {
         btnLogin.getScene().getWindow().hide();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); // c'est la même ligne eli f netbeans
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
         Stage mainStage=new Stage();
         Scene scene=new Scene(root);
         mainStage.setScene(scene);

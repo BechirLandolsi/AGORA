@@ -9,7 +9,7 @@ public interface IGenericDAO<T> {
 
 	public T update(T entity);
 
-	public T find(Long entityID);
+	public T find(int i);
 
 	public List<T> findAll();
 

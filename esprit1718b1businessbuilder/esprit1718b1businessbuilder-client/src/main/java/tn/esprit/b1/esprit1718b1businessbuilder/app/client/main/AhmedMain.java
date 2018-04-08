@@ -28,15 +28,15 @@ public class AhmedMain {
 		Context context = new InitialContext();
 		CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName1);
 		
-		Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
-		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
-		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F12","IT",5,"excellent","vermeg.jpg");
+		/*Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",71322111,"0T1","Telecommunication",4,"good","orange.jpg");
+		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",339585789,"0F1","Sport",5,"excellent","adidas.jpg");
+		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",339585789,"0F12","IT",5,"excellent","vermeg.jpg");
 	   
 		proxy.add(c1);
 	    proxy.add(c2);
 	    proxy.add(c3);
 		
-		//System.out.println(proxy.findCompanyBysynonyme("passat"));
+		//System.out.println(proxy.findCompanyBysynonyme("passat"));*/
 	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
 	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	

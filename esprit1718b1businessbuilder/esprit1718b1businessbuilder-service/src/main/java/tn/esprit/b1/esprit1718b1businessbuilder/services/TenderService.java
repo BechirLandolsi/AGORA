@@ -40,4 +40,10 @@ public class TenderService extends GenericDAO<Tender> implements ITender {
 		tender.setCategory(category);*/
 	}
 
+	@Override
+	public Tender find(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

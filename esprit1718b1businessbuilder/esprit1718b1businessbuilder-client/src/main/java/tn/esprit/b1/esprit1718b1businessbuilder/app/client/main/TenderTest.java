@@ -68,7 +68,7 @@ public class TenderTest {
 		//tender.setCompanyTender(loggedUser);
 		//tender.setCategory(HelpDesk);
 		//proxyTender.save(tender);
-		long id = 3;
+		int id = 3;
 		System.out.println(proxyCompany.find(id));
 	}
 

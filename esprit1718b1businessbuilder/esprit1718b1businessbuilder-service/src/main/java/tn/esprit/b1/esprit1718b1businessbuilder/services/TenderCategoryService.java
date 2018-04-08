@@ -12,4 +12,10 @@ public class TenderCategoryService extends GenericDAO<TenderCategory> implements
 		super(TenderCategory.class);
 	}
 
+	@Override
+	public TenderCategory find(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

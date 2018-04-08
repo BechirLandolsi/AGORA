@@ -20,7 +20,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Column(name = "USR_ID")
-	protected Long id;
+	protected int id;
 	
 	@Column(name = "USR_NAME")
 	protected String name;
@@ -36,12 +36,22 @@ public class User implements Serializable {
 	
 	@Column(name = "USR_ROLE")
 	protected String role;
+	
+	protected Double progress ;
 
-	public Long getId() {
+	public Double getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Double progress) {
+		this.progress = progress;
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

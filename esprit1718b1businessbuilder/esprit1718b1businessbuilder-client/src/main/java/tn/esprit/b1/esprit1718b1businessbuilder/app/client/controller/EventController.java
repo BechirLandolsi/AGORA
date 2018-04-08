@@ -119,7 +119,7 @@ public class EventController implements Initializable {
     private void onclick_createevent(ActionEvent event) throws NamingException, ParseException {
     	Event e = new Event();
     	Company c = new Company();
-    	c.setId((long) 2);
+    	//c.setId((long) 2);
     	System.out.println(c.getId());
     	SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     	

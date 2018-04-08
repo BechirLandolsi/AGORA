@@ -11,4 +11,10 @@ public class TenderQualificationService extends GenericDAO<TenderQualification> 
 	public TenderQualificationService() {
 		super(TenderQualification.class);
 	}
+
+	@Override
+	public TenderQualification find(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -52,10 +52,15 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 		em.persist(r);
 	}
 	@Override
-	public Company findBy(long id) {
-		TypedQuery<Company> q =  em.createQuery("select c from Company c where c.id=:id",Company.class) ;
+	public Company findBy(int id) {
 		
-		return q.setParameter("id", id).getSingleResult();
+		Company c =null ;
+		c = em.createQuery("SELECT c FROM Company c WHERE c.id=:id",Company.class)
+									.setParameter("id",id)
+									.getSingleResult();
+		
+		return c ;
+		
 	}
 	
 	@Override
@@ -85,6 +90,14 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	}
 	@Override
 	public void add(Company c) {
+		em.merge(c);
+		//em.persist(c);
+		
+	}
+	
+	@Override
+	public void save(Company c) {
+		//em.merge(c);
 		em.persist(c);
 		
 	}

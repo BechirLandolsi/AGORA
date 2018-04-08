@@ -87,8 +87,9 @@ public class SkeletonController implements Initializable {
     }
 
     @FXML
-    private void switchProfile(ActionEvent event) {
-        
+    private void switchProfile(ActionEvent event) throws IOException {
+    	profiles = FXMLLoader.load(getClass().getResource("../gui/Profile.fxml"));
+         setNode(profiles);  
     }
 
 

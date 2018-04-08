@@ -23,6 +23,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 
 import org.controlsfx.control.Rating;
@@ -104,10 +106,33 @@ public class TenderController implements Initializable {
     }    
 
     @FXML
-    private void doSearch(ActionEvent event) {
+    private void doSearch(ActionEvent event) throws NamingException {
     	
+    	String jndiNameTender="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/TenderService!tn.esprit.b1.esprit1718b1businessbuilder.services.ITender";
+        ITender proxy;
+        Context context = new InitialContext();
+        proxy = (ITender) context.lookup(jndiNameTender);
+        
+    	if(search.getText().isEmpty() || search.getText().equals(" ")){
+    		tendersList = FXCollections.observableArrayList(proxy.findAll()).sorted(Comparator.comparing(Tender::getPublishedDate).reversed());
+    	}
+    	else{
+    		tendersList = FXCollections.observableArrayList(proxy.findAll()).filtered(t->t.getTitle().toLowerCase().contains(search.getText().toLowerCase()) 
+					|| t.getCompanyTender().getName().toLowerCase().equals(search.getText().toLowerCase()))
+					.sorted(Comparator.comparing(Tender::getPublishedDate).reversed());
+    	}
+			 				
+		list_Tenders.setItems(tendersList);
+ 		list_Tenders.setCellFactory(new Callback<ListView<Tender>, javafx.scene.control.ListCell<Tender>>()
+        {
+			@Override
+			public ListCell<Tender> call(ListView<Tender> param) {
+				 return new TenderRowController();
+			}
+			
+        });
           
-  }
+    }
     @FXML
     private void getDetails(ActionEvent event) {
     	entreprise=TenderRowController.getEntreprise();
@@ -121,6 +146,38 @@ public class TenderController implements Initializable {
         Image logo = new Image(file.toURI().toString());
         logoCompany.setImage(logo);
     }
-    
+
+    @FXML
+    private void Search(KeyEvent event) throws NamingException {
+    	
+    	String jndiNameTender="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/TenderService!tn.esprit.b1.esprit1718b1businessbuilder.services.ITender";
+        ITender proxy;
+        Context context = new InitialContext();
+        proxy = (ITender) context.lookup(jndiNameTender);
+        
+        if (event.getCode().equals(KeyCode.ENTER))
+        {
+        	if(search.getText().isEmpty() || search.getText().equals(" ")){
+        		tendersList = FXCollections.observableArrayList(proxy.findAll()).sorted(Comparator.comparing(Tender::getPublishedDate).reversed());
+        	}
+        	else{
+        		tendersList = FXCollections.observableArrayList(proxy.findAll()).filtered(t->t.getTitle().toLowerCase().contains(search.getText().toLowerCase()) 
+    					|| t.getCompanyTender().getName().toLowerCase().equals(search.getText().toLowerCase()))
+    					.sorted(Comparator.comparing(Tender::getPublishedDate).reversed());
+        	}
+    			 				
+    		list_Tenders.setItems(tendersList);
+     		list_Tenders.setCellFactory(new Callback<ListView<Tender>, javafx.scene.control.ListCell<Tender>>()
+            {
+    			@Override
+    			public ListCell<Tender> call(ListView<Tender> param) {
+    				 return new TenderRowController();
+    			}
+    			
+            });
+        }
+      }
+                 
+   
     
 }

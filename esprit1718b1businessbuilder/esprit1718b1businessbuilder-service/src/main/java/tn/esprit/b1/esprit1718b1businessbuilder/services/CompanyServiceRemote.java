@@ -17,8 +17,10 @@ public interface CompanyServiceRemote extends UserServiceRemote {
 		public void AddCompanyReserche(Reserche r,  Company c );
 		public List<Company> findAllCompanyByService(String service) ;
 		public List <String> FindBySector(String sector);
+		public List<Company> findCompanyBySector2(String sector) ;
+		public List <String> FindBySectorButCompany(Long companyId, String sector);
 		public List <String> getAllSectors();
-
+		
 		
 }
 

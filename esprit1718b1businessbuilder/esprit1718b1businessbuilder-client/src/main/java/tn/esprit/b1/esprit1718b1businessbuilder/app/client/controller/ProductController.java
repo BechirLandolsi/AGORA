@@ -47,14 +47,35 @@ public class ProductController   implements Initializable {
 	    @FXML
 	    private ListView<Produit> listPRe;
 	    private ObservableList<Produit> ProductList ;
-        private ObservableList<Company> cplist3 ;
+        private ObservableList<Produit> cplist3 ;
         private List<Company> test  = new ArrayList<>();
+        private List<Produit> testP  = new ArrayList<>();
         private List<String> cplist3s  = new ArrayList<>();
         private Set<Company> hs = new HashSet<Company>();
         private ObservableList<Produit> listefinale  = FXCollections.<Produit>observableArrayList();
-    @FXML
-    void makeSearch(ActionEvent event) {
+    
+        
+        
+        @FXML
+    void makeSearch(ActionEvent event) throws NamingException {
+    	 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ; 	
     	
+    	String str = searchP.getText() ;
+    	if (!str.equals("") ){
+    		 Context	context1 = new InitialContext();
+    		 ProductServiceRemote proxyP = (ProductServiceRemote) context1.lookup(jndiName1);
+    		cplist3 =  FXCollections.observableArrayList(proxyP.findProductByName(str));
+    		
+    	   // System.out.println(cplist.toString());
+    		ListP.setItems(cplist3);
+    		ListP.setCellFactory(new Callback<ListView<Produit>, javafx.scene.control.ListCell<Produit>>()
+            {
+    			@Override
+    			public ListCell<Produit> call(ListView<Produit> param) {
+    				 return new ProductRowController();
+    			}
+            });
+       }
     }
 	
     @Override
@@ -129,8 +150,7 @@ public class ProductController   implements Initializable {
       /////////////////////////////////////////////////INITIALIAZE PRODUCT/////////////////////////////////////////////////////////////////////////
 		
 			   String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ; 	
-			 
-			     try {
+			 			     try {
 			         Parent rroot = lloader.load();
 			     } catch (IOException ex) {
 			        

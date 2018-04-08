@@ -3,8 +3,8 @@ package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -90,7 +90,7 @@ public class Company extends User {
 	
 
 	
-	  @OneToMany
+	  @OneToMany(mappedBy = "company_organizer" )
       private List<Event> events;
 
 	/***********************/
@@ -330,18 +330,14 @@ public class Company extends User {
 
 	@Override
 	public String toString() {
-		return "Company [CEO=" + CEO + ", creationDate=" + creationDate + ", adress=" + adress + ", number=" + number
-				+ ", reference=" + reference + ", partner=" + partner + ", sector=" + sector + ", rate=" + rate
-				+ ", resultTest=" + resultTest + ", image=" + image + "]";
-	}
+
+		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
+				+ "]";
+	}    public void stream() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
-	
-
-
-
-	
-	
 
     
 }

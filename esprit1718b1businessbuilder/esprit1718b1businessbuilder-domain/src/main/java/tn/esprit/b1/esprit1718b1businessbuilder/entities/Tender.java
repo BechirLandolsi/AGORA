@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,10 +51,10 @@ public class Tender implements Serializable {
 	@OneToMany(mappedBy="tender")
 	private List <TenderApplication> tenderApplications;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne
 	private TenderCategory category;
 	
-	@ManyToMany(mappedBy="tenders", cascade=CascadeType.PERSIST)
+	@ManyToMany
 	private List<TenderQualification> qualifications;
 
 	public Long getId() {
@@ -105,8 +105,10 @@ public class Tender implements Serializable {
 		return companyTender;
 	}
 
-	public void setCompanyTender(Company companyTender) {
-		this.companyTender = companyTender;
+	public void setCompanyTender(User loggedCompany) {
+		if (loggedCompany instanceof Company){
+			this.companyTender = (Company) loggedCompany;
+		}
 	}
 	
 	
@@ -138,16 +140,12 @@ public class Tender implements Serializable {
 		super();
 	}
 
-	public Tender(String title, Date deadline, String content, Date publishedDate, Company companyTender,
-			TenderCategory category, List<TenderQualification> qualifications) {
+	public Tender(String title, Date deadline, String content, Date publishedDate) {
 		super();
 		this.title = title;
 		this.deadline = deadline;
 		this.content = content;
 		this.publishedDate = publishedDate;
-		this.companyTender = companyTender;
-		this.category = category;
-		this.qualifications = qualifications;
 	}
 
 	@Override

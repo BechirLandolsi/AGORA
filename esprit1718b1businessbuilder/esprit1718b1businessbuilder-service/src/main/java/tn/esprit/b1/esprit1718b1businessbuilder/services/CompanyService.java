@@ -9,12 +9,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
-public class CompanyService implements CompanyServiceRemote{
+public class CompanyService extends UserService implements CompanyServiceRemote{
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 
 	
@@ -59,6 +58,7 @@ public class CompanyService implements CompanyServiceRemote{
 		
 		return q.setParameter("id", id).getSingleResult();
 	}
+	
 	@Override
 	public List<Company> findAllCompanyByService(String service){
 		TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name LIKE :service",Company.class) ;
@@ -66,6 +66,7 @@ public class CompanyService implements CompanyServiceRemote{
 		return companies;
 	}
 	
+
 	@Override
 	public List <String> FindBySector(String sector)
 	{
@@ -89,14 +90,12 @@ public class CompanyService implements CompanyServiceRemote{
 	}
 	
 	@Override
-	public List<String> FindBySectorButCompany(Long companyId, String sector) {
+public List<String> FindBySectorButCompany(Long companyId, String sector) {
 		
 		TypedQuery<String> k = em.createQuery("select c.name from Company c where c.sector=:sector", String.class ) ;
 		 k.setParameter("sector", sector).getResultList();
 		
 		 return k.setParameter("companyId", companyId).getResultList();
-
-		
 	}
 	@Override
 	public List<Company> findCompanyBySector2(String sector) {
@@ -105,6 +104,7 @@ public class CompanyService implements CompanyServiceRemote{
 	
 		return q.setParameter("sector", sector).getResultList();
 	}
+	
 	
 	
 

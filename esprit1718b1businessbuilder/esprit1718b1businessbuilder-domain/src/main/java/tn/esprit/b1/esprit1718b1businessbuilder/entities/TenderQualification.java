@@ -2,7 +2,6 @@ package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +27,7 @@ public class TenderQualification implements Serializable {
 	@Column(name="nameQualification")
 	private String nameQualification;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy="qualifications")
 	private List<Tender>tenders;
 
 	public Long getId() {

@@ -90,6 +90,18 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		
+		<dependency>
+			   <groupId>org.ocpsoft.prettytime</groupId>
+			   <artifactId>prettytime</artifactId>
+			   <version>4.0.1.Final</version>
+		</dependency>
+
+		<!-- To use snapshots, you must also use the Sonatype Snapshots respository -->
+		<repository>
+		   <id>sonatype-snapshots</id>
+		   <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+		
 
 		<dependency>
     <groupId>javax.mail</groupId>

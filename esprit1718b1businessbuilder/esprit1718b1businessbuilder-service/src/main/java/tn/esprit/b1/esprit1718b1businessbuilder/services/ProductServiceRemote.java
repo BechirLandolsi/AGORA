@@ -15,6 +15,7 @@ public interface ProductServiceRemote {
 	public Produit findProduct(int id);
 	
 	public List<Produit> findAllProduct(); 
-
+	public List<Produit> findProductByName(String p);
+	public List<Object []> findBestProduct () ;
 	
 }

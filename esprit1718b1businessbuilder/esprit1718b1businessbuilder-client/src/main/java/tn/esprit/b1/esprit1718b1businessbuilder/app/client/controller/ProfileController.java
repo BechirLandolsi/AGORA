@@ -242,8 +242,8 @@ public class ProfileController implements Initializable  {
 	      c.setName(name.getText());
 	      c.setAdress(adress.getText());
 	      c.setCEO(ceo.getText());
-	      int i1 = Integer.parseInt(nbr.getText()); 
-	      c.setNumber(i1);
+	     // int i1 = Integer.parseInt(nbr.getText()); 
+	      c.setNumber(Long.parseLong(nbr.getText()));
 	      c.setReference(ref.getText());
 	      c.setSector(sector.getValue());	      
 	      proxyCategory.add(c);

@@ -63,7 +63,7 @@ public class Company extends User {
 	
 	private String adress ;
 	
-	private int number ;
+	private Long number ;
 	
 	private String reference ;
 	
@@ -129,6 +129,9 @@ public class Company extends User {
 	
 	  @OneToMany(mappedBy = "company_organizer" )
       private List<Event> events;
+	  
+	  @OneToMany(mappedBy = "guest" )
+	  private List<Invitation> invitation;
 
 	/***********************/
 	
@@ -148,7 +151,7 @@ public class Company extends User {
 
 
 
-	public Company(String name, String login, String password, String email,String cEO, String adress, int number, String reference,
+	public Company(String name, String login, String password, String email,String cEO, String adress, long number, String reference,
 			
 		String sector, int rate, String resultTest, String image) {
 		super(name, login, password, email);
@@ -253,11 +256,11 @@ public class Company extends User {
 		this.adress = adress;
 	}
 
-	public int getNumber() {
+	public Long getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(Long number) {
 		this.number = number;
 	}
 
@@ -364,13 +367,27 @@ public class Company extends User {
 		this.subDate = subDate;
 	}
 
+ 
+	public List<Invitation> getInvitation() {
+		return invitation;
+	}
+
+
+	public void setInvitation(List<Invitation> invitation) {
+		this.invitation = invitation;
+	}
+
 
 	@Override
 	public String toString() {
 
 		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
 				+ "]";
-	}
+	}    public void stream() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
     
 }

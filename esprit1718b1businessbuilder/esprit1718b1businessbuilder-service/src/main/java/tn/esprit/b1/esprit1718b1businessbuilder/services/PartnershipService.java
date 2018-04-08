@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Partnership;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.PartnershipPK;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
@@ -28,6 +30,17 @@ public class PartnershipService implements PartnershipRemote{
 		
 		
 	}
+
+	@Override
+	public void addPartner(Partnership part, Company owner, Company partner, Project project) {
+		PartnershipPK PartnershipPK = new PartnershipPK(project.getId(),owner.getId(),partner.getId());
+		part.setPartnershipPK(PartnershipPK);
+		
+		em.persist(part);
+		
+	}
+	
+	
 
 	
 	

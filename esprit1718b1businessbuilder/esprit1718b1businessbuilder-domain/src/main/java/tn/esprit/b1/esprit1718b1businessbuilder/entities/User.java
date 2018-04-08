@@ -20,7 +20,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Column(name = "USR_ID")
-	protected int id;
+	protected Long id;
 	
 	@Column(name = "USR_NAME")
 	protected String name;
@@ -47,11 +47,11 @@ public class User implements Serializable {
 		this.progress = progress;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

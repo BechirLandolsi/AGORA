@@ -193,7 +193,7 @@ public class HomeController implements Initializable {
      		//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
      		Reserche reserche = new Reserche() ;
      		reserche.setReserche(search.getText());
-     		Company c =proxy.findBy(33);
+     		Company c =proxy.findBy((long)33);
      		System.out.println(c);
      		proxy.AddCompanyReserche(reserche, c);
     	}

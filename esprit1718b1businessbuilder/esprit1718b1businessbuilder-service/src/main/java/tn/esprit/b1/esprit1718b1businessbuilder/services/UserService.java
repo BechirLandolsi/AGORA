@@ -98,7 +98,7 @@ public class UserService extends GenericDAO<User> implements UserServiceRemote, 
 	}
 
 	@Override
-	public User find(int i) {
+	public User find(Long i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

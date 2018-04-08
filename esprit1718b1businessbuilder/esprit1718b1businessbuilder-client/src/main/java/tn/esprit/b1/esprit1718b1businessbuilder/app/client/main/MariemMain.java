@@ -33,7 +33,7 @@ public class MariemMain {
     CompanyServiceRemote proxy = (CompanyServiceRemote) contextt.lookup(jndiName);
     
     Company companies = new Company();
-    companies = proxy.findBy(20);
+    companies = proxy.findBy((long)20);
     System.out.println(companies);
        
     

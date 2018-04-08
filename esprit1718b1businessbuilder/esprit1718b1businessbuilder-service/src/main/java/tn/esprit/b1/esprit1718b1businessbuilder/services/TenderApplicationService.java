@@ -14,7 +14,7 @@ public class TenderApplicationService extends GenericDAO<TenderApplication> impl
 	}
 
 	@Override
-	public TenderApplication find(int i) {
+	public TenderApplication find(Long i) {
 		// TODO Auto-generated method stub
 		return null;
 	}

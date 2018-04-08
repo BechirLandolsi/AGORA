@@ -28,13 +28,15 @@ public class AhmedMain {
 		Context context = new InitialContext();
 		CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName1);
 		
-		/*Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",71322111,"0T1","Telecommunication",4,"good","orange.jpg");
-		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",339585789,"0F1","Sport",5,"excellent","adidas.jpg");
-		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",339585789,"0F12","IT",5,"excellent","vermeg.jpg");
-	   
-		proxy.add(c1);
-	    proxy.add(c2);
-	    proxy.add(c3);
+	/*	Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
+		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
+		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F12","IT",5,"excellent","vermeg.jpg");
+		Company c4 = new Company("FIS","FISlogin","vermegpass","FIS@gmail.com","CEO_FIS","France",(long)339585789,"0F12","IT",5,"excellent","FIS.jpg");
+		
+		//proxy.add(c4);
+	    //proxy.add(c2);
+	    //proxy.add(c3);
+
 		
 		//System.out.println(proxy.findCompanyBysynonyme("passat"));*/
 	    
@@ -54,18 +56,21 @@ public class AhmedMain {
  	 	//Company c =proxy1.findBy(30) ;
  	 	//proxy1.AddCompanyReserche(reserche,c);
  	/**********************************************Service*************************************************************************************/
- 	 	Service service = new Service () ;
- 	 	//service.setName("car manufacturing");
- 	 	//service.setName("wheel manufacturing");
- 	 	//service.setName("furniture manufacturing");
- 	 	//service.setName("steel manufacturing");
- 	    //service.setName("smartphone manufacturing");
- 	    //service.setName("simcard sale ");
- 	 	//service.setName("merchandise  sale ");
- 	    //service.setName("computer   sale ");
- 	 	//                       proxy.ajouterService(service);
- 	 	/*proxy.affecterServiceACompany(30, 10);
- 	 	proxy.affecterServiceACompany(30, 12 );
+ 	 	String jndiNameService="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote";
+ 	 	ServiceServiceRemote proxyService = (ServiceServiceRemote)context.lookup(jndiNameService);
+	    
+	    Service service = new Service () ;
+ 	 	service.setName("car manufacturing");
+ 	 	service.setName("wheel manufacturing");
+ 	 	service.setName("furniture manufacturing");
+ 	 	service.setName("steel manufacturing");
+ 	    service.setName("smartphone manufacturing");
+ 	    service.setName("simcard sale ");
+ 	 	service.setName("merchandise  sale ");
+ 	    service.setName("computer   sale ");
+ 	   //proxyService.ajouterService(service);
+ 	   //proxyService.affecterServiceACompany(4, 1);
+ 	 	/*proxy.affecterServiceACompany(30, 12 );
  	 	proxy.affecterServiceACompany(31, 13 );
  	 	proxy.affecterServiceACompany(31, 15 );
  	 	proxy.affecterServiceACompany(33, 2 );

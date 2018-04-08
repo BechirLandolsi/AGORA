@@ -161,7 +161,7 @@ public class SignupController implements Initializable {
     	u.setPassword(password2.getText());
     	u.setRole("member");
     	
-    	u.setNumber(0);
+    	u.setNumber((long)0);
     	u.setRate(0);
     	
     	if(password.getText().equals(password2.getText())){

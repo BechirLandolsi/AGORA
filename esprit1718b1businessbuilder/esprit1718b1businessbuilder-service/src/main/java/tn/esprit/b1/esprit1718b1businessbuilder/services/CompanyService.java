@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -87,6 +88,21 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	public void add(Company c) {
 		em.persist(c);
 		
+	}
+	@Override
+	public List<Object []> bestCompany() {
+		 Query  q =  em.createQuery("select count(p) , p.supplier from Produit p GROUP BY p.supplier ") ;
+		 List<Object []> company = q.getResultList() ;
+			return company;
+		
+		
+	}
+	@Override
+	public long nbProjectByCompany(Company c) {
+		TypedQuery<Long> q = em.createQuery("select count(p) from Project p WHERE p.ProjectOwner =:id", Long.class ) ;
+		//List <String> names = q.getResultList() ;
+		//return names;
+		return q.setParameter("id", c).getSingleResult();
 	}
 
 	

@@ -18,8 +18,8 @@ public interface CompanyServiceRemote extends UserServiceRemote {
 		public List<Company> findAllCompanyByService(String service) ;
 		public List <String> FindBySector(String sector);
 		public List <String> getAllSectors();
-
-		
+		public List<Object []> bestCompany() ;
+		public long nbProjectByCompany(Company c) ;
 }
 
 	

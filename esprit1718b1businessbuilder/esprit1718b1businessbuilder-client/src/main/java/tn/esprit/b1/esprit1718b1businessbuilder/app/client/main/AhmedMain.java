@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.OrderLine;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
@@ -32,9 +33,9 @@ public class AhmedMain {
 		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
 		Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F12","IT",5,"excellent","vermeg.jpg");
 	   
-		proxy.add(c1);
-	    proxy.add(c2);
-	    proxy.add(c3);
+		//proxy.add(c1);
+	    //proxy.add(c2);
+	    //proxy.add(c3);
 		
 		//System.out.println(proxy.findCompanyBysynonyme("passat"));
 	    
@@ -42,8 +43,16 @@ public class AhmedMain {
 	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 		 
 
-	    //Context context1 = new InitialContext();
-		//CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
+	    Context context1 = new InitialContext();
+		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
+		System.out.println();
+		List<Object[]> list = proxy1.bestCompany();
+	    for (Object[] o : list){
+	    	Company company = (Company)o[1] ; 
+	    	System.out.println(company.toString());
+	    	long count = (long)o[0] ; 
+	    	System.out.println(count);
+	    }
  		//List <Company> list = new ArrayList<>() ;
  	 	//list = proxy1.findAllCompanyNames();
 	    //System.out.println(list);    
@@ -54,7 +63,7 @@ public class AhmedMain {
  	 	//Company c =proxy1.findBy(30) ;
  	 	//proxy1.AddCompanyReserche(reserche,c);
  	/**********************************************Service*************************************************************************************/
- 	 	Service service = new Service () ;
+ 	 	//Service service = new Service () ;
  	 	//service.setName("car manufacturing");
  	 	//service.setName("wheel manufacturing");
  	 	//service.setName("furniture manufacturing");

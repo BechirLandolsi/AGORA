@@ -292,12 +292,13 @@ public class ProjectController implements Initializable {
     	
     }    
 
+    static Project o;
 
    @FXML
     void tableclick(MouseEvent event) {
 
     	if (tab_project.getSelectionModel().getSelectedItem() != null) {
-    		 Project o = new Project();
+    		 o = new Project();
     		 o = tab_project.getSelectionModel().getSelectedItem();
       	     Long id = o.getId();
           
@@ -347,7 +348,7 @@ public class ProjectController implements Initializable {
    
    @FXML
    void btnajouterpartner1(ActionEvent event) throws IOException {
-   	
+   		
 	     Stage news=new Stage();
 	     Parent root=FXMLLoader.load(getClass().getResource("../gui/Partnership.fxml"));
 	     Scene s=new Scene(root);

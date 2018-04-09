@@ -43,6 +43,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Partnership;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
@@ -209,6 +210,8 @@ public class PartnershipController implements Initializable {
 		 
 		 private ObservableList<Project> listproject = FXCollections.observableArrayList();
 		 
+		 User loggedcompany = LoginController.LoggedUser;
+
 		 //static Project o;
    
 		    public void PieChart(Company c) throws NamingException {
@@ -238,7 +241,7 @@ public class PartnershipController implements Initializable {
 		   	context1 = new InitialContext();
 		   	CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
 		   	
-		   	Company company =proxy.findBy((long)2);
+		   	Company company =proxy.findBy(loggedcompany.getId());
 		   	
 		   	Set <String> hashset = new HashSet<>();
 		   	
@@ -281,8 +284,8 @@ public class PartnershipController implements Initializable {
 		   
 		    	sector=sectorcombo.getValue();
 		    	
-		    	Company company =proxy.findBy((long)2);
-		    	//System.out.println(company.getName());
+		    	Company company =proxy.findBy(loggedcompany.getId());
+		    	System.out.println(company);
 	
 	
 	
@@ -296,7 +299,7 @@ public class PartnershipController implements Initializable {
 		    	
 		    			       if(company.getName().equals(c)) {
 		    			        	
-		    			    	   System.out.println("name==name");
+		    			    	    System.out.println("name==name");
 		    			        	Allcompanies.remove(company.getName());
 		    			        	
 		    			          
@@ -508,7 +511,7 @@ public class PartnershipController implements Initializable {
 	    	
 	    	context1 = new InitialContext();
 			   CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1); 	
-	       	Company c =proxy.findBy((long)2);
+	       	Company c =proxy.findBy(loggedcompany.getId());
 	    	context4 = new InitialContext();
 			   PartnershipRemote proxy2 = (PartnershipRemote) context4.lookup(jndiName4);
 			   Partnership part = new Partnership();
@@ -523,6 +526,13 @@ public class PartnershipController implements Initializable {
 			   {   part.setPartnershipDate(cal.getTime());
 				   proxy2.addPartner(part,c, companypartner, projectController.o); 
 			   
+				   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			         //alert.initOwner(adresse.getScene().getWindow());
+			         alert.setTitle("Confirmation");
+			         alert.setHeaderText(null);
+			         alert.setContentText("Partner request sent");
+			         alert.showAndWait();
+			         
 			   
 	    	/**********************************************************************************************/
 	                       
@@ -557,7 +567,7 @@ public class PartnershipController implements Initializable {
 	             }
 	         }); */
 
-	    }
+			         }
 	 
 	    }
 	  

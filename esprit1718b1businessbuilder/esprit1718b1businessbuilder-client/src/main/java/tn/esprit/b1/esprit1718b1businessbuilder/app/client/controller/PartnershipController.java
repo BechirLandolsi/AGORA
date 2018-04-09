@@ -423,6 +423,8 @@ public class PartnershipController implements Initializable {
 	 @FXML
 	    void btnback(ActionEvent event) {
 		 
+		 
+		 
 		 anchor2.setVisible(false);
 		 anchor1.setVisible(true);
 		 sadimg.setVisible(false);
@@ -529,7 +531,7 @@ public class PartnershipController implements Initializable {
 	                
 	         
 	           
-	                envoyer(pwd,mail);
+	              //  envoyer(pwd,mail);
 			   
 			   
 	    	/* Mail emailS = new Mail();

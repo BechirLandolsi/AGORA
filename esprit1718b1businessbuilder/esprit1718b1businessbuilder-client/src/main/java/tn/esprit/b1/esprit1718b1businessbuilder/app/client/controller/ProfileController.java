@@ -1,7 +1,9 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.RoundingMode;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -25,6 +27,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
@@ -75,6 +80,53 @@ public class ProfileController implements Initializable  {
 
     @FXML
     private Label lblComplete;
+    
+    @FXML
+    private Label labName;
+
+    @FXML
+    private Label labmail;
+
+    @FXML
+    private Label labceo;
+
+    @FXML
+    private Label labadress;
+
+    @FXML
+    private Label labsector;
+
+    @FXML
+    private Label labenbr;
+    @FXML
+    private JFXTextField updatename;
+
+    @FXML
+    private JFXComboBox<String> updatesector;
+
+    @FXML
+    private JFXTextField updateref;
+
+    @FXML
+    private JFXTextField updatenbr;
+
+    @FXML
+    private JFXDatePicker updatedate;
+
+    @FXML
+    private JFXTextField updateceo;
+
+    @FXML
+    private JFXTextField udateadress;
+    
+    @FXML
+    private JFXButton updatesubmit;
+    
+    @FXML
+    private ImageView img;
+    
+    @FXML
+    private JFXButton logo;
 
     @FXML
     private JFXComboBox<String> sector;
@@ -112,7 +164,7 @@ public class ProfileController implements Initializable  {
 	   progress10= logged.getProgress()/100;
 	   progressPersonal.setProgress(progress10);
 	   lblComplete.setText(decimalFormat.format(progress10 * 100) + "% complete");
-	    if ( logged.getProgress() < 100.0) {
+	    if ( logged.getProgress() < 80.0) {
 	    	missing.setVisible(true);
 	    
 	    	updateProgress2();
@@ -122,9 +174,49 @@ public class ProfileController implements Initializable  {
 	    }
 	    /***********************************************************************************************/
 		sector.setItems(list);
+		updatesector.setItems(list);
 		/***********************************************************************************************/
-		
-		
+		 String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote";
+		    Context context2 = null;
+			try {
+				context2 = new InitialContext();
+			} catch (NamingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    CompanyServiceRemote proxy;
+			try {
+				proxy = (CompanyServiceRemote) context2.lookup(jndiName);
+				 Company c =proxy.findBy(logged.getId());
+				 //System.out.println(c.getAdress());
+				 labadress.setText(c.getAdress());
+				 labceo.setText(c.getCEO());
+				 labmail.setText(c.getEmail());
+				 labName.setText(c.getName());
+				 labenbr.setText(c.getNumber().toString());
+				 labsector.setText(c.getSector());
+				 
+				/* File file = new File("C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
+	             Image imgg = new Image(file.toURI().toString());
+	             img.setImage(imgg);*/
+	             
+				 /************************************************************/
+				 updateceo.setText(c.getCEO());
+				 updatename.setText(c.getName());
+				 updateref.setText(c.getReference());
+				 updatesector.setValue(c.getSector());
+				 updatenbr.setText(c.getNumber().toString());
+				 udateadress.setText(c.getAdress());
+				 
+				 
+			} catch (NamingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			/**********************************************************************************************/
+		    
+		     
+		      
 	}
 	
 	 public Double updateProgress2() {
@@ -245,10 +337,54 @@ public class ProfileController implements Initializable  {
 	     // int i1 = Integer.parseInt(nbr.getText()); 
 	      c.setNumber(Long.parseLong(nbr.getText()));
 	      c.setReference(ref.getText());
-	      c.setSector(sector.getValue());	      
+	      c.setSector(sector.getValue());
+	      c.setProgress(updateProgress2());
 	      proxyCategory.add(c);
 	      
 	 }
+	  
+	  @FXML
+	    void updatesubmitbtn(ActionEvent event) throws NamingException {
+		  String jndiNameCategory ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote";
+		  Context context = new InitialContext();
+		  CompanyServiceRemote proxyCategory = (CompanyServiceRemote) context.lookup(jndiNameCategory);
+		    
+		  Company c =proxyCategory.findBy(logged.getId());
+		  c.setName(updatename.getText());
+	      c.setAdress(udateadress.getText());
+	      c.setCEO(updateceo.getText());
+	     
+	      c.setNumber(Long.parseLong(updatenbr.getText()));
+	      c.setReference(updateref.getText());
+	      c.setSector(updatesector.getValue());
+	    
+	      proxyCategory.update(c);
+		  
+		  
+		  
+	    }
+	  
+	  @FXML
+	    void uploadlogo(ActionEvent event) throws MalformedURLException, NamingException {
+	        /* FileChooser fc = new FileChooser();
+	         File selectedFile = fc.showOpenDialog(null);
+	         if (selectedFile != null) {
+	            
+	          String imageFile = selectedFile.toURI().toURL().toString();         
+	          Image image = new Image(imageFile);
+	          img.setImage(image);
+	          String jndiNameCategory ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote";
+	   		  Context context = new InitialContext();
+	   		  CompanyServiceRemote proxyCategory = (CompanyServiceRemote) context.lookup(jndiNameCategory);	   		    
+	   		  Company c =proxyCategory.findBy(logged.getId());
+	   		  c.setImage(imageFile);
+
+	         } else {
+	             System.out.println("file doesn't exist");
+	         }*/
+	  }
+
+	    
 	
 	
 

@@ -8,23 +8,37 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 import com.jfoenix.controls.JFXButton;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 import org.controlsfx.control.Rating;
@@ -58,6 +72,9 @@ public class TenderController implements Initializable {
     private Label lblLocation;
     @FXML
     private Rating CompanyRate;
+    public static StackPane mainRootPane;
+    @FXML
+    private StackPane rootPane;
     
     private ObservableList<Tender> tendersList;
     
@@ -74,6 +91,8 @@ public class TenderController implements Initializable {
     private ImageView logoCompany;
     @FXML
     private JFXButton getDetails;
+    @FXML
+    private JFXButton Post;
 
 	/**
      * Initializes the controller class.
@@ -142,7 +161,8 @@ public class TenderController implements Initializable {
     	lblPhone.setText(entreprise.getNumber().toString());
     	CompanyRate.setRating(entreprise.getRate());
     	
-    	File file = new File("../images/" + entreprise.getImage());
+ 	
+    	File file = new File("D:/Users/Beshir/Documents/MEGA/Esprit/4Info_B/Semestre 2/JEE Project/Agora/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + entreprise.getImage());
         Image logo = new Image(file.toURI().toString());
         logoCompany.setImage(logo);
     }
@@ -177,6 +197,42 @@ public class TenderController implements Initializable {
             });
         }
       }
+
+    @FXML
+    private void OnPostClicked(ActionEvent event) {
+    	setStage("../gui/AddMyTender.fxml");
+    }
+    
+    
+    private void setStage(String fxml) {
+        try {
+            //dim overlay on new stage opening
+            Region veil = new Region();
+            veil.setPrefSize(1100, 650);
+            veil.setStyle("-fx-background-color:rgba(0,0,0,0.3)");
+            Stage newStage = new Stage();
+            Parent parent = FXMLLoader.load(getClass().getResource(fxml));
+            
+            Scene scene = new Scene(parent);
+            scene.setFill(Color.TRANSPARENT);
+            newStage.setScene(scene);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.initStyle(StageStyle.TRANSPARENT);
+            newStage.getScene().getRoot().setEffect(new DropShadow());
+            newStage.showingProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    rootPane.getChildren().add(veil);
+                } else if (rootPane.getChildren().contains(veil)) {
+                    rootPane.getChildren().removeAll(veil);
+                }
+                
+            });
+            newStage.centerOnScreen();
+            newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
                  
    
     

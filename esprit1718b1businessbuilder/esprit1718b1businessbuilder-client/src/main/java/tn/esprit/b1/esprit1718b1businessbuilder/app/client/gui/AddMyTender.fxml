@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="772.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.AddMyTenderController">
+<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.AddMyTenderController">
     <children>
       <AnchorPane layoutX="723.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: FF0200;">
          <children>
@@ -20,9 +20,12 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextArea layoutX="38.0" layoutY="97.0" prefHeight="218.0" prefWidth="705.0" style="-fx-border-color: #37a000;" />
-      <ComboBox layoutX="77.0" layoutY="335.0" prefHeight="35.0" prefWidth="190.0" style="-fx-background-color: #2DB000;" />
-      <ComboBox layoutX="501.0" layoutY="337.0" prefHeight="35.0" prefWidth="198.0" style="-fx-background-color: #2DB000;" />
+      <TextArea layoutX="38.0" layoutY="97.0" prefHeight="218.0" prefWidth="705.0" promptText="Type Your Tender Offer Here..." style="-fx-border-color: #37a000;">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <ComboBox fx:id="combo_qualif" layoutX="77.0" layoutY="335.0" prefHeight="35.0" prefWidth="190.0" promptText="Qualifications" style="-fx-border-color: #2DB000;" />
+      <ComboBox fx:id="combo_cat" layoutX="501.0" layoutY="337.0" prefHeight="35.0" prefWidth="198.0" promptText="Categories" style="-fx-border-color: #2DB000;" />
       <JFXButton fx:id="post" layoutX="286.0" layoutY="407.0" onAction="#post" prefHeight="50.0" prefWidth="190.0" style="-fx-background-color: #37a000;" text="Post" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="23.0" />

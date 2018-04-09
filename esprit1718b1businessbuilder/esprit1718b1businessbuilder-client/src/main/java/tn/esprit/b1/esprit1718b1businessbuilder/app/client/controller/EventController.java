@@ -17,7 +17,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -28,7 +28,7 @@ import javax.naming.NamingException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -98,7 +98,7 @@ public class EventController implements Initializable{
     private static long nombre;
     private ObservableList<Event> event_list;
     private ObservableList<String> all_sectors = FXCollections.observableArrayList();
-    private ObservableList<Event> comingonly;
+    //private ObservableList<Event> comingonly;
     
     /* Getters And Setters */
     public static long getNombre() {
@@ -158,6 +158,8 @@ public class EventController implements Initializable{
 
 
 
+    
+    
   //************************************************ View the details in the fields  **************************************************
   //***************************************************************************************************************************************	    
     @FXML
@@ -207,7 +209,11 @@ public class EventController implements Initializable{
        
       
     }
-    
+     
+   void refresh (Event e){
+    	event_list_view.getItems().clear();
+		event_list_view.getItems().addAll(e);
+    }
     
   //************************************************ Adding a new Event  **************************************************
   //***************************************************************************************************************************************	
@@ -253,6 +259,7 @@ public class EventController implements Initializable{
 		//data control : empty fields 
 		
 		System.out.println(verifyempty());
+		
 		if(verifyempty())
 		{
 		alert_label.setText("All Field Are Required");
@@ -275,7 +282,10 @@ public class EventController implements Initializable{
 		alert_img.setVisible(false);
 		success_img.setVisible(true);
 		success_label.setText("Your Event Has Been Added Successfully");
+		//rafraichir l'affichage dans list view 
+		refresh(e);
 		//emptyfields();
+		
 		}
 		//event_list = FXCollections.observableArrayList(proxy.findAll());
 
@@ -332,6 +342,7 @@ public class EventController implements Initializable{
     	privacy.setSelected(false);
     	yes.setSelected(false);
     	eventdate.setValue(null);
+    	
     }
 
   //************************************************ Controle Saisie Empty fields  **************************************************

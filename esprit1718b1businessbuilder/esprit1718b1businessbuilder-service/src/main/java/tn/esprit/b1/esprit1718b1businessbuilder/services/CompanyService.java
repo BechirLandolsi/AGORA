@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -96,6 +97,24 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	}
 
 	@Override
+	public List<Object []> bestCompany() {
+		 Query  q =  em.createQuery("select count(p) , p.supplier from Produit p GROUP BY p.supplier ") ;
+		 List<Object []> company = q.getResultList() ;
+			return company;
+		
+		
+	}
+	@Override
+	public long nbProjectByCompany(Company c) {
+		TypedQuery<Long> q = em.createQuery("select count(p) from Project p WHERE p.ProjectOwner =:id", Long.class ) ;
+		//List <String> names = q.getResultList() ;
+		//return names;
+		return q.setParameter("id", c).getSingleResult();
+	}
+
+
+
+	@Override
 public List<String> FindBySectorButCompany(Long companyId, String sector) {
 		
 		TypedQuery<String> k = em.createQuery("select c.name from Company c where c.sector=:sector", String.class ) ;
@@ -112,6 +131,7 @@ public List<String> FindBySectorButCompany(Long companyId, String sector) {
 	}
 	
 	
+
 	
 
 }

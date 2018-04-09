@@ -369,10 +369,9 @@ public class ProjectController implements Initializable {
     	 	
     	
     	Company c = new Company();
-    //	c.setId((long) 2);
-    	
-    	
-          	
+
+    	c.setId((long) 31);
+   	
         boolean n = false;
     	
         if ( projectnameEntry.getText().equals("") ) { n=true; remplirchampLabel.setText("Please fill in all the fields"); }

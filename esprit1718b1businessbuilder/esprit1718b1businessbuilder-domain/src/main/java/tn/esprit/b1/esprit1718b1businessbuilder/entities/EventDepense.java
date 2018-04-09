@@ -29,4 +29,5 @@ public class EventDepense implements Serializable {
 	@OneToOne(mappedBy = "Event_Dep")
 	private Event event ;
 
+	
 }

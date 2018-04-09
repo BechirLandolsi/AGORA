@@ -51,11 +51,12 @@ public class ProductService implements ProductServiceRemote{
 
 	@Override
 	public List<Object []> findBestProduct () {
-		Query  q =  em.createQuery("select SUM (p.quantite) , p from OrderLine p GROUP BY p.prod   ") ;
+		Query  q =  em.createQuery("select SUM (p.quantity) , p from OrderLine p GROUP BY p.prod") ;
 		 List<Object []> produits = q.getResultList() ;
 		return produits;
 		
 	}
+	
 
     
 

@@ -198,6 +198,21 @@ public class Event implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public Event(String event_name, String event_adress, String event_sector, String event_type,
+			boolean event_profitable, boolean event_privacy, Date event_date) {
+		super();
+		this.event_name = event_name;
+		this.event_adress = event_adress;
+		this.event_sector = event_sector;
+		this.event_type = event_type;
+		this.event_profitable = event_profitable;
+		this.event_privacy = event_privacy;
+		this.event_date = event_date;
+		
+	}
+
 	public Event(String event_name, String event_adress, String event_sector, Boolean event_profitable,
 			Date event_date) {
 		super();

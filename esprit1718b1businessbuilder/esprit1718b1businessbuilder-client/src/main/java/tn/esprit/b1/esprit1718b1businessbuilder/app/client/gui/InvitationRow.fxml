@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="row" prefHeight="250.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="company_name_label" layoutX="74.0" layoutY="14.0" prefHeight="49.0" prefWidth="589.0" text="Company Name " textFill="#277190">
+         <font>
+            <Font name="Times New Roman Bold" size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="94.0" prefHeight="31.0" prefWidth="126.0" text="Company Address :" textFill="#12214a">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="129.0" prefHeight="31.0" prefWidth="143.0" text="Company Number :">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="164.0" prefHeight="31.0" prefWidth="126.0" text="Company Sector    :">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="70.0" layoutY="202.0" prefHeight="31.0" prefWidth="126.0" text="Company Email      :">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="ceo_label" layoutX="196.0" layoutY="65.0" prefHeight="22.0" prefWidth="160.0" text="Label" textFill="#277190">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#293d52" glyphName="MAP_MARKER" layoutX="36.0" layoutY="119.0" size="22.0" text="" wrappingWidth="42.428571701049805" />
+      <FontAwesomeIconView fill="#293d52" glyphName="SUITCASE" layoutX="39.0" layoutY="187.0" size="22.0" wrappingWidth="30.428571701049805" />
+      <Label fx:id="number_label" layoutX="196.0" layoutY="134.0" prefHeight="22.0" prefWidth="160.0" text="Label" textFill="#277190">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="sector_label" layoutX="196.0" layoutY="168.0" prefHeight="22.0" prefWidth="126.0" text="Label" textFill="#277190">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="mail_label" layoutX="193.0" layoutY="209.0" prefHeight="22.0" prefWidth="185.0" text="Label" textFill="#277190">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#293d52" glyphName="PHONE" layoutX="34.0" layoutY="154.0" size="26.0" text="" wrappingWidth="23.428571701049805" />
+      <FontAwesomeIconView fill="#293d52" glyphName="ENVELOPE_ALT" layoutX="39.0" layoutY="226.0" size="22.0" text="" wrappingWidth="30.428579449653625" />
+      <Label layoutX="64.0" layoutY="60.0" prefHeight="31.0" prefWidth="126.0" text="Company 's CEO  :">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <FontAwesomeIconView fill="#293d52" glyphName="PENCIL" layoutX="30.0" layoutY="82.0" size="22.0" wrappingWidth="30.428579449653625" />
+      <Label fx:id="address_label" layoutX="196.0" layoutY="100.0" prefHeight="22.0" prefWidth="160.0" text="Label" textFill="#277190">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="invite_company_butt" buttonType="RAISED" layoutX="353.0" layoutY="61.0" prefHeight="31.0" prefWidth="118.0" style="-fx-background-color: #008F82;" text="Invite" textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="13.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="EXTERNAL_LINK" size="16" wrappingWidth="25.0" />
+         </graphic>
+      </JFXButton>
+      <FontAwesomeIconView fx:id="tick_label" fill="#008f82" glyphName="CHECK_SQUARE_ALT" layoutX="389.0" layoutY="164.0" size="50" visible="false" wrappingWidth="53.42856204509735" />
+      <Label fx:id="already_label" layoutX="353.0" layoutY="182.0" prefHeight="22.0" prefWidth="126.0" text="Already Invited" textFill="#008f82" visible="false">
+         <font>
+            <Font name="Bodoni MT" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

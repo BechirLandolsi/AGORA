@@ -200,11 +200,16 @@ public class HomeController implements Initializable {
 					 AdressPRE.setText(ord.getProd().getSupplier().getAdress());
 					 companyPRE.setText(ord.getProd().getSupplier().getName());
 					 
+<<<<<<< HEAD
 					 File file = new File("C:/Users/bn/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
 		             Image img = new Image(file.toURI().toString());
+=======
+					// File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
+		            // Image img = new Image(file.toURI().toString());
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 		            
 		             //imgPRE.setImage(img);
-		             circle.setFill(new ImagePattern(img));
+		            // circle.setFill(new ImagePattern(img));
 		            
 				} catch (NamingException e) {
 					e.printStackTrace();
@@ -240,9 +245,15 @@ public class HomeController implements Initializable {
 				    
 				    nbrProject_C_RE.setText(String.valueOf(proxyC.nbProjectByCompany(c)));
 				   // System.out.println( proxyC.nbProjectByCompany(c));
+<<<<<<< HEAD
 				    File file = new File("C:/Users/bn/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
 		            Image img = new Image(file.toURI().toString());
 		            circleCompanyRE.setFill(new ImagePattern(img));
+=======
+				   // File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
+		           // Image img = new Image(file.toURI().toString());
+		           // circleCompanyRE.setFill(new ImagePattern(img));
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 				    
 				} catch (NamingException e) {
 					// TODO Auto-generated catch block

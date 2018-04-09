@@ -23,6 +23,8 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
@@ -88,13 +90,9 @@ public class LoginController implements Initializable {
     	UserServiceRemote proxyCategory = (UserServiceRemote) context.lookup(jndiNameCategory);
  
     	if ( (proxyCategory.findByLogin(login.getText()) == true) && (proxyCategory.findByPassword(password.getText()) == true) )  {
-    	System.out.println("aa");
-        btnLogin.getScene().getWindow().hide();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
-        Stage mainStage=new Stage();
-        Scene scene=new Scene(root);
-        mainStage.setScene(scene);
-        mainStage.show();
+    	//System.out.println("aa");
+    	 LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;
+    	
         
         /*String base32Secret = "NY4A5CPJZ46LXZCP";
     	String keyId = "user@j256.com";*/
@@ -111,7 +109,24 @@ public class LoginController implements Initializable {
     	else {
     		erreur.setText("Invalid UserName or Password !");
     }
-    	 LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
+    	 if(LoggedUser!=null && LoggedUser instanceof Company) {
+    	        btnLogin.getScene().getWindow().hide();
+    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
+    	        Stage mainStage=new Stage();
+    	        Scene scene=new Scene(root);
+    	        mainStage.setScene(scene);
+    	        mainStage.show();
+    	    	 }
+    	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
+    	        btnLogin.getScene().getWindow().hide();
+    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 
+    	        Stage mainStage=new Stage();
+    	        Scene scene=new Scene(root);
+    	        mainStage.setScene(scene);
+    	        mainStage.show();
+    	       
+    	    	 }
+    	 //LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
     }
 
     @FXML

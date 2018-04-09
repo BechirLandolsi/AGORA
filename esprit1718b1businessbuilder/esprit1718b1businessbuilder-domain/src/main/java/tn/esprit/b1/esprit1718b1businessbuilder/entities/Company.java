@@ -360,6 +360,7 @@ public class Company extends User {
  
 	public List<Invitation> getInvitation() {
 		return invitation;
+
 	}
 
 

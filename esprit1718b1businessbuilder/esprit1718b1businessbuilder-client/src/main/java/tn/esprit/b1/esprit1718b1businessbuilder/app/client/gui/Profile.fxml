@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1071.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProfileController">
+   <children>
+      <TitledPane fx:id="missing" animated="false" layoutX="45.0" layoutY="20.0" prefHeight="581.0" prefWidth="443.0" text="Missing Informations">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="441.0">
+               <children>
+                  <JFXTextField fx:id="adress" layoutX="53.0" layoutY="442.0" prefHeight="38.0" prefWidth="335.0" promptText="Adress" />
+                  <JFXTextField fx:id="ceo" layoutX="55.0" layoutY="337.0" prefHeight="33.0" prefWidth="323.0" promptText="CEO of the Company" />
+                  <JFXTextField fx:id="name" layoutX="61.0" layoutY="110.0" prefHeight="36.0" prefWidth="311.0" promptText="Company Name" />
+                  <JFXTextField fx:id="nbr" layoutX="52.0" layoutY="391.0" prefHeight="36.0" prefWidth="329.0" promptText="Phone Number" />
+                  <JFXDatePicker fx:id="date" layoutX="55.0" layoutY="278.0" prefHeight="35.0" prefWidth="324.0" promptText="Creation Date" />
+                  <JFXTextField fx:id="ref" layoutX="55.0" layoutY="220.0" prefHeight="38.0" prefWidth="323.0" promptText="Reference" />
+                  <JFXComboBox fx:id="sector" layoutX="58.0" layoutY="168.0" prefHeight="33.0" prefWidth="319.0" promptText="Sector" />
+                  <JFXButton fx:id="submit" layoutX="47.0" layoutY="501.0" onAction="#submitbtn" prefHeight="40.0" prefWidth="340.0" style="-fx-background-color: #76c2da;" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </JFXButton>
+                  <Pane layoutX="-1.0" prefHeight="89.0" prefWidth="443.0" style="-fx-background-color: #76c2da;">
+                     <children>
+                        <ProgressBar fx:id="progressPersonal" layoutX="98.0" layoutY="27.0" prefHeight="18.0" prefWidth="248.0" progress="0.0" />
+                        <Label fx:id="lblComplete" alignment="CENTER" layoutX="157.0" layoutY="45.0" prefHeight="18.0" prefWidth="129.0" text="0% complete" textFill="WHITE">
+                           <font>
+                              <Font name="Roboto Black" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <TitledPane fx:id="update" animated="false" layoutX="45.0" layoutY="16.0" prefHeight="508.0" prefWidth="419.0" text="Update Informations" visible="false">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="674.0">
+               <children>
+                  <JFXTextField layoutX="51.0" layoutY="32.0" prefHeight="33.0" prefWidth="300.0" promptText="Company Name" />
+                  <JFXComboBox layoutX="49.0" layoutY="79.0" prefHeight="39.0" prefWidth="303.0" promptText="Sector" />
+                  <JFXTextField layoutX="47.0" layoutY="129.0" prefHeight="39.0" prefWidth="303.0" promptText="Reference" />
+                  <JFXTextField layoutX="49.0" layoutY="288.0" prefHeight="37.0" prefWidth="310.0" promptText="Phone Number" />
+                  <JFXDatePicker layoutX="51.0" layoutY="178.0" prefHeight="41.0" prefWidth="314.0" promptText="Creation Date" />
+                  <JFXTextField layoutX="49.0" layoutY="237.0" prefHeight="38.0" prefWidth="309.0" promptText="CEO of the Company" />
+                  <JFXTextField layoutX="49.0" layoutY="346.0" prefHeight="40.0" prefWidth="313.0" promptText="Adress" />
+                  <JFXButton layoutX="47.0" layoutY="415.0" prefHeight="39.0" prefWidth="317.0" style="-fx-background-color: #76c2da;" text="Submit" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

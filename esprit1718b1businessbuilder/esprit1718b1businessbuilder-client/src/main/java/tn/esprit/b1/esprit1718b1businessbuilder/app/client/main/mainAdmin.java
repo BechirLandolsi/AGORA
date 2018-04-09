@@ -45,8 +45,8 @@ public class mainAdmin {
 			
 		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
-	  		System.out.println(proxy2.findBy(3));
-				Company c1 = proxy2.findBy(3) ; 
+	  		System.out.println(proxy2.findBy((long)3));
+				Company c1 = proxy2.findBy((long)3) ; 
 				 
 				Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
 				Produit p2 = new Produit("Ballons de foot",(long)500,null,(float)39,(float)50,null);

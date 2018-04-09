@@ -369,7 +369,7 @@ public class ProjectController implements Initializable {
     	 	
     	
     	Company c = new Company();
-    	c.setId((long) 2);
+    //	c.setId((long) 2);
     	
     	
           	

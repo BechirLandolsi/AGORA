@@ -57,4 +57,10 @@ public class TenderService extends GenericDAO<Tender> implements ITender {
 		tender.getQualifications().add(qualification);
 	}
 
+	@Override
+	public Tender find(Long i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="cellre" prefHeight="224.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imgRowre" fitHeight="138.0" fitWidth="178.0" layoutX="15.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="158.0" layoutY="175.0" text="Stock:" />
+      <Label layoutX="15.0" layoutY="175.0" text="Price :" />
+      <Label fx:id="nameP" layoutX="2.0" layoutY="1.0" prefHeight="30.0" prefWidth="204.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #6a7d9a;" />
+      <JFXButton layoutX="203.0" layoutY="87.0" prefHeight="30.0" prefWidth="71.0" style="-fx-background-color: #3C8DBC;" text="View " textFill="WHITE">
+         <font>
+            <Font name="Roboto Medium" size="15.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="stockP" layoutX="214.0" layoutY="177.0" prefHeight="8.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label fx:id="priceP" layoutX="71.0" layoutY="176.0" prefHeight="20.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1219.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.EventController">
+   <children>
+      <AnchorPane fx:id="addanchorepane" layoutX="14.0" layoutY="58.0" prefHeight="597.0" prefWidth="338.0">
+         <children>
+            <JFXDatePicker fx:id="eventdate" layoutX="30.0" layoutY="218.0" prefHeight="30.0" prefWidth="283.0" promptText="Enter a valid date" />
+            <JFXToggleButton fx:id="yes" layoutX="26.0" layoutY="372.0" text="Profitable" />
+            <Label fx:id="alert_label" contentDisplay="CENTER" layoutX="44.0" layoutY="515.0" prefHeight="42.0" prefWidth="255.0" textFill="#b50606" />
+            <JFXComboBox fx:id="combo_sector" layoutX="26.0" layoutY="295.0" prefHeight="30.0" prefWidth="255.0" promptText="Select Event Sector" />
+            <JFXTextField fx:id="eventname" focusColor="#00add8" labelFloat="true" layoutX="34.0" layoutY="83.0" prefHeight="32.0" prefWidth="243.0" promptText="Event Name " unFocusColor="#868282" />
+            <JFXTextField fx:id="eventaddress" focusColor="#00add8" labelFloat="true" layoutX="33.0" layoutY="148.0" prefHeight="30.0" prefWidth="243.0" promptText="Event Address " unFocusColor="#868282" />
+            <JFXComboBox fx:id="combo_type" layoutX="34.0" layoutY="20.0" prefHeight="30.0" prefWidth="243.0" promptText="Select Event Type" />
+            <JFXToggleButton fx:id="privacy" layoutX="179.0" layoutY="372.0" text="Private" />
+            <JFXButton fx:id="saveevent" buttonType="RAISED" layoutX="99.0" layoutY="457.0" onAction="#on_save_clicked" prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: #008F82;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Medium" size="13.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHECK_SQUARE_ALT" size="16.0" wrappingWidth="21.571428298950195" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="updatebutt" buttonType="RAISED" layoutX="213.0" layoutY="457.0" onAction="#update_clicked" prefHeight="34.0" prefWidth="93.0" style="-fx-background-color: #70b858;" text="Update" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Roboto Medium" size="13.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL_SQUARE_ALT" size="16.0" wrappingWidth="21.571428298950195" />
+               </graphic>
+            </JFXButton>
+            <FontAwesomeIconView fx:id="alert_img" fill="#b20505" glyphName="EXCLAMATION" layoutX="20.0" layoutY="543.0" size="20" visible="false" wrappingWidth="11.428571224212646" />
+            <FontAwesomeIconView fx:id="success_img" fill="#086b1d" glyphName="CHECK_SQUARE_ALT" layoutX="15.0" layoutY="541.0" size="16.0" visible="false" wrappingWidth="21.571428298950195" />
+            <Label fx:id="success_label" contentDisplay="CENTER" layoutX="44.0" layoutY="514.0" prefHeight="42.0" prefWidth="255.0" textFill="#1a7c0d" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="search_button" ellipsisString="" layoutX="1050.0" layoutY="33.0" onAction="#on_search_clicked" prefHeight="42.0" prefWidth="60.0" style="-fx-alignment: left;" styleClass="nav-button" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <FontAwesomeIconView fill="#bcc2cd" glyphName="SEARCH" layoutX="1063.0" layoutY="64.0" size="30" text="" wrappingWidth="34.91675089672208" />
+      <TextField fx:id="searching" layoutX="409.0" layoutY="33.0" prefHeight="42.0" prefWidth="617.0" promptText="Search here" styleClass="search-box" />
+      <ListView fx:id="event_list_view" layoutX="409.0" layoutY="90.0" prefHeight="513.0" prefWidth="617.0" />
+      <FontAwesomeIconView fill="#bcc2cd" glyphName="COMPRESS" layoutX="1071.0" layoutY="121.0" size="30" wrappingWidth="20.714285850524902" />
+      <JFXButton fx:id="refresh_butt" ellipsisString="" layoutX="1051.0" layoutY="90.0" onAction="#on_refresh_clicked" prefHeight="42.0" prefWidth="60.0" style="-fx-alignment: left;" styleClass="nav-button" textFill="WHITE">
+         <font>
+            <Font name="Roboto Bold" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

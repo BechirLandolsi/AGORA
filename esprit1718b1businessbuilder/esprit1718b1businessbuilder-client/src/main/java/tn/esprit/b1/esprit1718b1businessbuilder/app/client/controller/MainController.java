@@ -133,12 +133,12 @@ public class MainController  implements Initializable {
     @FXML
     private void showScheduling(MouseEvent event) throws IOException {
         
-    	 menuScheduling.getScene().getWindow().hide();
+    	/* menuScheduling.getScene().getWindow().hide();
          Stage news=new Stage();
          Parent root=FXMLLoader.load(getClass().getResource("../gui/Project.fxml"));
          Scene s=new Scene(root);
          news.setScene(s);
-         news.show();
+         news.show();*/
     	
     }
 

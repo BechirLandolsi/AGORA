@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -43,6 +44,22 @@ public class ProductService implements ProductServiceRemote{
 		Produit p = em.find(Produit.class, id);
 		return p;
 	}
+	
+	@Override
+	public List<Produit> findProductByName(String p) {
+		TypedQuery<Produit> q =  em.createQuery("select p from Produit p WHERE p.description LIKE :name",Produit.class) ;
+		List<Produit> produit = q.setParameter("name", "%" + p + "%").getResultList() ;
+		return produit ;	
+	}
+
+	@Override
+	public List<Object []> findBestProduct () {
+		Query  q =  em.createQuery("select SUM (p.quantity) , p from OrderLine p GROUP BY p.prod") ;
+		 List<Object []> produits = q.getResultList() ;
+		return produits;
+		
+	}
+	
 
 
 	@Override
@@ -117,10 +134,6 @@ public class ProductService implements ProductServiceRemote{
 		return list;
 	}
 	
-
-
-
-
 
 
 

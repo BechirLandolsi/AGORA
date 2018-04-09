@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="row" prefHeight="250.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="TenderTitle" contentDisplay="CENTER" layoutX="100.0" prefHeight="39.0" prefWidth="381.0" text="Tender Title" textFill="#37a000">
+         <font>
+            <Font name="Arial" size="28.0" />
+         </font></Label>
+      <JFXButton fx:id="Apply" layoutX="477.0" layoutY="197.0" prefHeight="42.0" prefWidth="201.0" style="-fx-background-color: #37a000;" text="Submit a Proposal" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </JFXButton>
+      <TextArea fx:id="TenderContent" editable="false" layoutX="35.0" layoutY="42.0" prefHeight="149.0" prefWidth="642.0" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font></TextArea>
+      <JFXButton fx:id="DatePost" layoutX="39.0" layoutY="203.0" prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: BFBFFF;" text="Posted 2 hours ago" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="Status" layoutX="529.0" layoutY="5.0" prefHeight="17.0" prefWidth="148.0" style="-fx-background-color: BFBFFF;" text="Status" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

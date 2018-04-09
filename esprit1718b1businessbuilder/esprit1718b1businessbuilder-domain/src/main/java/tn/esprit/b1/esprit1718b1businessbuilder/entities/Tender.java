@@ -2,12 +2,17 @@ package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,18 +28,34 @@ public class Tender implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TDR_ID")
+	@Column(name = "TenderId")
 	private Long id;
 	
-	@Column(name="TDR_TITLE")
+	@Column(name="title")
 	private String title;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name="TDR_EXPIRATION")
-	private Date expirationDate;
+	@Column(name="deadline")
+	private Date deadline;
 	
-	@Column(name="TDR_CONTENT")
+	@Column(name="content")
 	private String content;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="publishedDate")
+	private Date publishedDate;
+	
+	@ManyToOne
+	private Company companyTender;
+	
+	@OneToMany(mappedBy="tender")
+	private List <TenderApplication> tenderApplications;
+	
+	@ManyToOne
+	private TenderCategory category;
+	
+	@ManyToMany
+	private List<TenderQualification> qualifications;
 
 	public Long getId() {
 		return id;
@@ -52,12 +73,12 @@ public class Tender implements Serializable {
 		this.title = title;
 	}
 
-	public Date getExpirationDate() {
-		return expirationDate;
+	public Date getDeadline() {
+		return deadline;
 	}
 
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
 	}
 
 	public String getContent() {
@@ -67,23 +88,95 @@ public class Tender implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
+
+	public Date getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
+	}
+	
+	
+
+	public Company getCompanyTender() {
+		return companyTender;
+	}
+
+	public void setCompanyTender(User loggedCompany) {
+		if (loggedCompany instanceof Company){
+			this.companyTender = (Company) loggedCompany;
+		}
+	}
+	
+	
+	public List<TenderApplication> getTenderApplications() {
+		return tenderApplications;
+	}
+
+	public void setTenderApplications(List<TenderApplication> tenderApplications) {
+		this.tenderApplications = tenderApplications;
+	}
+
+	public TenderCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(TenderCategory category) {
+		this.category = category;
+	}
+	
+	public List<TenderQualification> getQualifications() {
+		return qualifications;
+	}
+
+	public void setQualifications(List<TenderQualification> qualifications) {
+		this.qualifications = qualifications;
+	}
 
 	public Tender() {
 		super();
 	}
 
-	public Tender(String title, Date expirationDate, String content) {
+	public Tender(String title, Date deadline, String content, Date publishedDate) {
 		super();
 		this.title = title;
-		this.expirationDate = expirationDate;
+		this.deadline = deadline;
 		this.content = content;
+		this.publishedDate = publishedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Tender [title=" + title + "]";
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((content == null) ? 0 : content.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tender other = (Tender) obj;
+		if (content == null) {
+			if (other.content != null)
+				return false;
+		} else if (!content.equals(other.content))
+			return false;
+		return true;
+	}
 	
 	
 	

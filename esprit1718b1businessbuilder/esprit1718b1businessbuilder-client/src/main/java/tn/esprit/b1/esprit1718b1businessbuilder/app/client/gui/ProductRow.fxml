@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane fx:id="cellP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="177.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imgRowP" fitHeight="150.0" fitWidth="200.0" layoutX="6.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="desc" layoutX="319.0" layoutY="13.0" text="aaaa" />
+      <Label layoutX="206.0" layoutY="13.0" text="Product Name :" />
+      <Label layoutX="210.0" layoutY="58.0" prefHeight="21.0" prefWidth="103.0" text="Stock  :" />
+      <Label fx:id="stock" layoutX="279.0" layoutY="59.0" prefHeight="20.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="210.0" layoutY="110.0" prefHeight="21.0" prefWidth="56.0" text="Price  :" />
+      <Label fx:id="price" layoutX="279.0" layoutY="111.0" prefHeight="20.0" prefWidth="49.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="javafx">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <ImageView fx:id="imgRowC" fitHeight="116.0" fitWidth="156.0" layoutX="368.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="company" layoutX="622.0" layoutY="24.0" prefHeight="21.0" prefWidth="67.0" text="comapny" />
+      <Label fx:id="address" layoutX="633.0" layoutY="69.0" prefHeight="21.0" prefWidth="76.0" text="adresse" />
+      <Label layoutX="546.0" layoutY="69.0" text="Located in :" />
+      <Rating fx:id="rate" layoutX="527.0" layoutY="105.0" prefHeight="28.0" prefWidth="170.0" />
+      <Label layoutX="553.0" layoutY="24.0" text="Supplier :" />
+   </children>
+</AnchorPane>

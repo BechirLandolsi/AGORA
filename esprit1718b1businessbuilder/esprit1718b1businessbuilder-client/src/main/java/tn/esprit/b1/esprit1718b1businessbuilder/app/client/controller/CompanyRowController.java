@@ -61,8 +61,10 @@ public class CompanyRowController  extends ListCell<Company> {
              ceo.setText(company.getCEO());
              adress.setText(company.getAdress());
              email.setText(company.getEmail());
-             number.setText(company.getNumber().toString());
+             /*int i1 = Integer.parseInt(number.getText()); 
+             company.setNumber(i1);*/
              sector.setText(company.getSector());
+            
              File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + company.getImage());
              Image img = new Image(file.toURI().toString());
              imgRow.setImage(img);

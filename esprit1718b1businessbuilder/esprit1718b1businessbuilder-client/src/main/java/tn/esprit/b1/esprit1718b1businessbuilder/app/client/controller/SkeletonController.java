@@ -32,17 +32,15 @@ public class SkeletonController implements Initializable {
     @FXML
     private AnchorPane holderPane;
     
-    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects;
+
+    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Events,Tender,MyTenders;
+
     @FXML
     private JFXButton btnHome;
     @FXML
     private JFXButton btnEvents;
     @FXML
-    private JFXButton btnContacts;
-    @FXML
     private JFXButton btnTenders;
-    @FXML
-    private JFXButton btnAlerts;
     @FXML
     private JFXButton btnProfile;
     @FXML
@@ -51,13 +49,16 @@ public class SkeletonController implements Initializable {
     private JFXButton btnExit;
     @FXML
     private JFXButton btnProjects;
-
+    @FXML
+    private JFXButton btnProduct;
+    @FXML
+    private JFXButton btnMyTenders;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             // here you must put the path of our node 
         	Home = FXMLLoader.load(getClass().getResource("../gui/Home.fxml"));
-             
             setNode(Home);
         } catch (IOException ex) {
             Logger.getLogger(SkeletonController.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,13 +81,9 @@ public class SkeletonController implements Initializable {
     }
 
     @FXML
-    private void switchContacts(ActionEvent event) {
-        
-    }
-
-    @FXML
-    private void switchProfile(ActionEvent event) {
-        
+    private void switchProfile(ActionEvent event) throws IOException {
+    	profiles = FXMLLoader.load(getClass().getResource("../gui/Profile.fxml"));
+         setNode(profiles);  
     }
 
 
@@ -102,11 +99,15 @@ public class SkeletonController implements Initializable {
     }
 
     @FXML
-    private void switchEvents(ActionEvent event) {
+    private void switchEvents(ActionEvent event) throws IOException {
+    	 Events = FXMLLoader.load(getClass().getResource("../gui/Event.fxml"));
+         setNode(Events);
     }
 
     @FXML
-    private void switchTenders(ActionEvent event) {
+    private void switchTenders(ActionEvent event)throws IOException {
+          Tender = FXMLLoader.load(getClass().getResource("../gui/Tender.fxml"));
+          setNode(Tender);
     }
 
     @FXML
@@ -116,17 +117,29 @@ public class SkeletonController implements Initializable {
          setNode(Projects);
     	
     }
+    @FXML
+    private void switchProduct(ActionEvent event) throws IOException{
+    	
+    	 Products = FXMLLoader.load(getClass().getResource("../gui/Product.fxml"));
+         setNode(Products);
+    	
+    }    
 
     @FXML
     private void switchExit(ActionEvent event) throws Exception {
     	
     	btnExit.getScene().getWindow().hide();
         Stage news=new Stage();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/Login.fxml"));
         Scene s=new Scene(root);
         news.setScene(s);
         news.show();
-    	
+    }
+
+    @FXML
+    private void switchMyTenders (ActionEvent event) throws IOException{
+	MyTenders = FXMLLoader.load(getClass().getResource("../gui/MyTenders.fxml"));
+         setNode(MyTenders);
     }
 
 }

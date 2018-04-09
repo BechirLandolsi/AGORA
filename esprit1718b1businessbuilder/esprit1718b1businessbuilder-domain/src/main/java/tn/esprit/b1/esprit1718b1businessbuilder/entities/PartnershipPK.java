@@ -29,6 +29,16 @@ public class PartnershipPK implements Serializable {
 		super();
 	}
 
+	
+
+	public PartnershipPK(Long projectId, Long companyOwnerId, Long companyPartnerId) {
+		super();
+		ProjectId = projectId;
+		CompanyOwnerId = companyOwnerId;
+		CompanyPartnerId = companyPartnerId;
+	}
+
+
 
 	public Long getProjectId() {
 		return ProjectId;

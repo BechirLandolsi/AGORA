@@ -16,6 +16,7 @@ public interface ProductServiceRemote {
 	public Produit findProduct(int id);
 	
 	public List<Produit> findAllProduct(); 
+
 	public Long nbProbuit();
 	public Long nbProjet(); 
 	public Long nbPartnershp(); 
@@ -26,5 +27,8 @@ public interface ProductServiceRemote {
 	public List<Object[]> bestSales();
 	
 
+
+	public List<Produit> findProductByName(String p);
+	public List<Object []> findBestProduct () ;
 	
 }

@@ -158,6 +158,8 @@ public class EventController implements Initializable{
 
 
 
+    
+    
   //************************************************ View the details in the fields  **************************************************
   //***************************************************************************************************************************************	    
     @FXML
@@ -207,7 +209,11 @@ public class EventController implements Initializable{
        
       
     }
-    
+     
+   void refresh (Event e){
+    	event_list_view.getItems().clear();
+		event_list_view.getItems().addAll(e);
+    }
     
   //************************************************ Adding a new Event  **************************************************
   //***************************************************************************************************************************************	
@@ -275,7 +281,10 @@ public class EventController implements Initializable{
 		alert_img.setVisible(false);
 		success_img.setVisible(true);
 		success_label.setText("Your Event Has Been Added Successfully");
+		//rafraichir l'affichage dans list view 
+		refresh(e);
 		//emptyfields();
+		
 		}
 		//event_list = FXCollections.observableArrayList(proxy.findAll());
 

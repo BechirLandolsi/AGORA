@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.logging.Level;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.hibernate.loader.Loader;
+
+import java.util.logging.Logger;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,11 +23,14 @@ import org.hibernate.loader.Loader;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
+
 import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
 
 
@@ -79,8 +84,9 @@ public class EventRowController extends ListCell<Event>  {
 	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
 	Context context1;
 	//*******************************************************************************************
-    @Override
-    protected void updateItem (Event ev, boolean empty) {
+    
+	@Override
+    protected  void updateItem (Event ev, boolean empty) {
        EventController ec = new EventController();
         
         if (empty || ev == null) {
@@ -113,6 +119,24 @@ public class EventRowController extends ListCell<Event>  {
              setText(null);
              setGraphic(row);
             
+            invite_butt.setOnAction(event->{
+            	
+            	Parent root;
+				try {
+				
+					Stage Stage=new Stage();
+					root = FXMLLoader.load(getClass().getResource("../gui/Invitation.fxml"));
+		            Scene scene=new Scene(root);
+		            Stage.setScene(scene);
+		            Stage.show();
+		            	
+				} catch (IOException e) {
+					Logger.getLogger(EventRowController.class.getName()).log(Level.SEVERE, null,e);
+				} 
+               
+            	
+            	
+            });
             view_details_butt.setOnAction(event->entier=ev.getId_event());
             cancel_butt.setOnAction(event->{
             	entier=ev.getId_event();
@@ -127,7 +151,7 @@ public class EventRowController extends ListCell<Event>  {
         			// TODO Auto-generated catch block
         			e1.printStackTrace();
         		}
-            	
+            
         		
             	
             });

@@ -194,17 +194,22 @@ public class HomeController implements Initializable {
 					    	}
 					    }
 		
-					 System.out.println(ord.getProd().getDescription());	 
+					// System.out.println(ord.getProd().getDescription());	 
 					 //produitRe.add(ord.getProd()) ;
 					 namePRE.setText(ord.getProd().getDescription());
 					 AdressPRE.setText(ord.getProd().getSupplier().getAdress());
 					 companyPRE.setText(ord.getProd().getSupplier().getName());
 					 
-					 File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
+
+					 File file = new File("C:/Users/bn/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
 		             Image img = new Image(file.toURI().toString());
+
+					// File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
+		            // Image img = new Image(file.toURI().toString());
+
 		            
 		             //imgPRE.setImage(img);
-		             circle.setFill(new ImagePattern(img));
+		            // circle.setFill(new ImagePattern(img));
 		            
 				} catch (NamingException e) {
 					e.printStackTrace();
@@ -240,9 +245,15 @@ public class HomeController implements Initializable {
 				    
 				    nbrProject_C_RE.setText(String.valueOf(proxyC.nbProjectByCompany(c)));
 				   // System.out.println( proxyC.nbProjectByCompany(c));
-				    File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
+
+				    File file = new File("C:/Users/bn/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
 		            Image img = new Image(file.toURI().toString());
 		            circleCompanyRE.setFill(new ImagePattern(img));
+
+				   // File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
+		           // Image img = new Image(file.toURI().toString());
+		           // circleCompanyRE.setFill(new ImagePattern(img));
+
 				    
 				} catch (NamingException e) {
 					// TODO Auto-generated catch block

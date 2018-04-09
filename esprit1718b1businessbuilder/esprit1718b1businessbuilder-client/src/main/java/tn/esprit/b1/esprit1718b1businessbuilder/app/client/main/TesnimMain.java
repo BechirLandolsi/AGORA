@@ -58,7 +58,7 @@ public class TesnimMain {
 		
 		//System.out.println(p);
 		
-		System.out.println(proxy.FindBySectorButCompany(c.getId(), "Sport"));
+		//System.out.println(proxy.FindBySectorButCompany(c.getId(), "Sport"));
 		
 		
 	}

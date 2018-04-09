@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,6 +15,11 @@
    <children>
       <VBox prefHeight="761.0" prefWidth="174.0" style="-fx-background-color: #004060;">
          <children>
+            <MaterialDesignIconView fx:id="iconClose" fill="WHITE" glyphName="CLOSE" onMouseClicked="#closeApp" size="28.0" strokeDashOffset="9.0" strokeType="OUTSIDE" strokeWidth="6.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MaterialDesignIconView>
             <Label prefHeight="120.0" prefWidth="140.0" style="-fx-alignment: center; -fx-font-size: 20; -fx-text-fill: #7387A8; -fx-border-color: #7387A8; -fx-border-width: 0 0 2 0;">
                <graphic>
                   <ImageView fitHeight="174.0" fitWidth="169.0" pickOnBounds="true" smooth="false">
@@ -30,12 +37,12 @@
                   <FontAwesomeIconView fill="#a1aec4" glyphName="DASHBOARD" size="17.0" text="" wrappingWidth="43.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnInbox" layoutX="10.0" layoutY="109.0" onAction="#switchInbox" prefHeight="69.0" prefWidth="176.0" style="-fx-alignment: left; -fx-background-color: #004060;" styleClass="nav-button" text="   Inbox" textFill="#a1aec4">
+            <JFXButton fx:id="btnSales" layoutX="10.0" layoutY="109.0" onAction="#switchInbox" prefHeight="69.0" prefWidth="176.0" style="-fx-alignment: left; -fx-background-color: #004060;" styleClass="nav-button" text="Sales view" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="#a1aec4" glyphName="" size="17.0" text="" wrappingWidth="28.0" />
+                  <FontAwesomeIconView fill="#a1aec4" glyphName="" size="17.0" text="" wrappingWidth="28.0" />
                </graphic>
             </JFXButton>
             <JFXButton fx:id="btnProfile" layoutX="10.0" layoutY="193.0" onAction="#switchProfile" prefHeight="76.0" prefWidth="173.0" style="-fx-alignment: left; -fx-background-color: #004060;" styleClass="nav-button" text="Profiles" textFill="#a1aec4">

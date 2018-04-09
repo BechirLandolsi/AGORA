@@ -33,6 +33,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Partnership;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.PartnershipRemote;
@@ -233,7 +234,8 @@ public class ProjectController implements Initializable {
 	 String jndiName5 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/BilanService!tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote" ; 
 	 Context context5;
 	 	 
-	 Company c = null;
+	 User loggedcompany = LoginController.LoggedUser;
+	
 	 //ProjectRemote proxy;
 
    //  static Project o  ;
@@ -292,12 +294,13 @@ public class ProjectController implements Initializable {
     	
     }    
 
+    static Project o;
 
    @FXML
     void tableclick(MouseEvent event) {
 
     	if (tab_project.getSelectionModel().getSelectedItem() != null) {
-    		 Project o = new Project();
+    		 o = new Project();
     		 o = tab_project.getSelectionModel().getSelectedItem();
       	     Long id = o.getId();
           
@@ -347,7 +350,7 @@ public class ProjectController implements Initializable {
    
    @FXML
    void btnajouterpartner1(ActionEvent event) throws IOException {
-   	
+   		
 	     Stage news=new Stage();
 	     Parent root=FXMLLoader.load(getClass().getResource("../gui/Partnership.fxml"));
 	     Scene s=new Scene(root);
@@ -367,10 +370,10 @@ public class ProjectController implements Initializable {
     @FXML
     void btnajouterproject(ActionEvent event) throws IOException, NamingException {
     	 	
-    	
-    	Company c = new Company();
+    
+    	//Company c = new Company();
 
-    	c.setId((long) 31);
+    	//c.setId((long) 31);
    	
         boolean n = false;
     	
@@ -417,7 +420,7 @@ public class ProjectController implements Initializable {
 	    	p.setCapital(Float.parseFloat(capital.getText()));
 	    	p.setProduct(product.getText());
 	    	p.setState(false);
-	    	p.setProjectOwner(c);
+	    	p.setProjectOwner((Company) loggedcompany);
 
 	    	float CA = p.getStock()*p.getPriceUnit();
 	    	float CV =p.getPurchase()+p.getEnergyCost()+p.getTransportCost();

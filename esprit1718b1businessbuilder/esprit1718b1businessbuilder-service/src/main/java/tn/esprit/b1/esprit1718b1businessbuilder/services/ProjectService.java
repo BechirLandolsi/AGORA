@@ -79,9 +79,9 @@ public class ProjectService implements ProjectRemote{
 	}
 
 	@Override
-	public long CountStableProjects() {
-	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=1",Long.class);
-		
+	public long CountStableProjects(Company c) {
+	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=1 and p.ProjectOwner= :c",Long.class);
+	k.setParameter("c", c);	
 	long nbr = k.getSingleResult();
 		
 				
@@ -89,10 +89,10 @@ public class ProjectService implements ProjectRemote{
 	}
 
 	@Override
-	public long CountUnstableProjects() {
+	public long CountUnstableProjects(Company c) {
 		
-	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=0",Long.class);
-		
+	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=0 and p.ProjectOwner= :c",Long.class);
+	k.setParameter("c", c);	
 	long nbr = k.getSingleResult();
 		
 				

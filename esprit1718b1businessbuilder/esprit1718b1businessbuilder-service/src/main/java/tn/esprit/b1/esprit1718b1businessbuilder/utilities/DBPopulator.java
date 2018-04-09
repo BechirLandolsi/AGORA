@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
@@ -48,8 +49,11 @@ public class DBPopulator {
 		Event e5 = new Event("Vitalait Product launch", "china , pekin", "Food","Product launch",true,true,dat5);
 		Event e6 = new Event("Channel New Perfum", "Korea , Seoul", "cosmetics","Product launch",false,false,dat6);
 		Event e7 = new Event("Dolce & Gabana Opening", "Tunisia , tataouine", "cosmetics","Trade Show",false,true,dat7);
-		Event e8 = new Event("Wolkswagen Exhibition", "Tunisia , Nabeul", "cars","Exhibition",true,false,dat8);
+		Event e8 = new Event("Wolkswagen Exhibition", "Tunisia , Nabeul", "cars","Exhibition",true,false,dat8);*/
 		//*******************************************************************
-*/		//userServiceLocal.update(user);
+	//userServiceLocal.update(user);
+		
+		User u = new Admin("Admin","Adminlog","adminpass","admin@agora.com"); 
+		userServiceLocal.save(u);
 	}
 }

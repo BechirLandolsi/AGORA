@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
@@ -27,5 +28,7 @@ public class BilanService implements BilanRemote{
 		
 	}
 
+
+	
 
 }

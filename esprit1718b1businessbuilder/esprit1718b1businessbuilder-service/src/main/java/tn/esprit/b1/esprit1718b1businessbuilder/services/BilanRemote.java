@@ -11,7 +11,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 public interface BilanRemote {
 
 	public void addBilan(Bilan b ,long idP ) ;
-	
+		
 	
 	
 }

@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
@@ -39,7 +40,7 @@ public class ProjectService implements ProjectRemote{
 	
 
 	@Override
-	public List<Project> getProjectsByCompany(int companyId) {
+	public List<Project> getProjectsByCompany(Long companyId) {
 		
 	//TypedQuery <Project> k = em.createQuery("select pr.service, par.CompanyPartner.name,par.partnershipDuration from Partnership par inner join par.Project pr on (pr.id=par.project.id) where pr.ProjectOwner.id="+companyId,Project.class);
 	
@@ -52,7 +53,65 @@ public class ProjectService implements ProjectRemote{
 	
 	return listproject;
 		
+	}
+
+	
+	@Override
+	public List <Long> countProjectsByCompanyName(Company c) {
+		
+		TypedQuery <Long> k= em.createQuery("select count (p) from Project p where p.ProjectOwner="+c.getId(),Long.class);
+		
+		List<Long> nbr = k.getResultList();
+		
+				
+		return nbr;
 	} 
+	
+	
+	@Override
+	public void Edit(Project p,double quality,int count)
+	{
+		Project project = em.find(Project.class,p.getId());
+		project.setCount(count);
+		project.setQuality(quality);
+		
+		
+	}
+
+	@Override
+	public long CountStableProjects() {
+	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=1",Long.class);
+		
+	long nbr = k.getSingleResult();
+		
+				
+		return nbr;
+	}
+
+	@Override
+	public long CountUnstableProjects() {
+		
+	TypedQuery <Long> k= em.createQuery("select count (p) from Project p where state=0",Long.class);
+		
+	long nbr = k.getSingleResult();
+		
+				
+		return nbr;
+	}
+
+	@Override
+	public List<Project> getRateByCompany(Company c) {
+		TypedQuery <Project> k= em.createQuery("select p from Project p where p.ProjectOwner= :company group by quality",Project.class);
+		
+		List<Project> projects = k.setParameter("company",c).getResultList() ;
+		
+				
+		return projects;
+	
+	}
+	
+	
+	
 	
 	
 	

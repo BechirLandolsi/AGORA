@@ -18,6 +18,43 @@ public class Company extends User {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private String name ;
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public List<Partnership> getCompanyOwner() {
+		return CompanyOwner;
+	}
+
+
+	public void setCompanyOwner(List<Partnership> companyOwner) {
+		CompanyOwner = companyOwner;
+	}
+
+
+	public List<Reserche> getReserche() {
+		return reserche;
+	}
+
+
+	public void setReserche(List<Reserche> reserche) {
+		this.reserche = reserche;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 	private String CEO ;
 	
@@ -90,8 +127,11 @@ public class Company extends User {
 	
 
 	
-	  @OneToMany
+	  @OneToMany(mappedBy = "company_organizer" )
       private List<Event> events;
+	  
+	  @OneToMany(mappedBy = "guest" )
+	  private List<Invitation> invitation;
 
 	/***********************/
 	
@@ -111,7 +151,7 @@ public class Company extends User {
 
 
 
-	public Company(String name, String login, String password, String email,String cEO, String adress, Long number, String reference,
+	public Company(String name, String login, String password, String email,String cEO, String adress, long number, String reference,
 			
 		String sector, int rate, String resultTest, String image) {
 		super(name, login, password, email);
@@ -327,13 +367,27 @@ public class Company extends User {
 		this.subDate = subDate;
 	}
 
+ 
+	public List<Invitation> getInvitation() {
+		return invitation;
+	}
+
+
+	public void setInvitation(List<Invitation> invitation) {
+		this.invitation = invitation;
+	}
+
 
 	@Override
 	public String toString() {
 
 		return "Company [CEO=" + CEO + ", adress=" + adress + ", sector=" + sector + ", toString()=" + super.toString()
 				+ "]";
-	}
+	}    public void stream() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
     
 }

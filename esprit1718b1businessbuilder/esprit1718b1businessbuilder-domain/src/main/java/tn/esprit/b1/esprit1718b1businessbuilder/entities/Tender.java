@@ -54,7 +54,7 @@ public class Tender implements Serializable {
 	@ManyToOne
 	private TenderCategory category;
 	
-	@ManyToMany(mappedBy="tenders")
+	@ManyToMany
 	private List<TenderQualification> qualifications;
 
 	public Long getId() {

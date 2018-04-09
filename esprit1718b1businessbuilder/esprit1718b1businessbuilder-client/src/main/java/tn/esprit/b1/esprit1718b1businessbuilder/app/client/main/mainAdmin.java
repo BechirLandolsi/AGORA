@@ -50,9 +50,9 @@ public class mainAdmin {
 		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
 
-<<<<<<< HEAD
+
 		/*List<Object[]> list = proxy1.findBestProduct();
-=======
+
 		  // System.out.println( proxy1.salesPerCompany());
 		   /*for (Object[] o : proxy1.salesPerProduit()){
 	    	//System.out.println((long)o[0]) ; 
@@ -87,18 +87,17 @@ public class mainAdmin {
 
 
 		List<Object[]> list = proxy1.findBestProduct();
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 		    for (Object[] o : list){
 		    	OrderLine sector = (OrderLine)o[1] ; 
 		    	System.out.println(sector.toString());
 		    	long count = (long)o[0] ; 
 		    	System.out.println(count);
-<<<<<<< HEAD
-		    }*/
-=======
+
 		    }
 
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
+		    
+
+
 	  		//System.out.println(proxy3.findBy(32));
 
 			/*	Company c1 = proxy2.findBy(36) ; 
@@ -138,24 +137,18 @@ public class mainAdmin {
 
 			//	proxy1.addProduct(p5,c1); 
 
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 		 //********************************************************************************\\
 
 		//*******************************Order****************************************\\
 		    //OrderService
-<<<<<<< HEAD
 		   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-=======
 		/*   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 			
 
-<<<<<<< HEAD
 		   OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 		Company c6 = proxy2.findBy((long) 3) ; 
 		 Produit p = proxy1.findProduct(3);
 		 proxy.addProductToOrder(p, c6, 100);
-=======
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 
 		    Company c1 = proxy2.findBy(33) ; 
@@ -165,7 +158,6 @@ public class mainAdmin {
 		/*Company c6 = proxy2.findBy(35) ; 
 		 Produit p1 = proxy1.findProduct(4);
 		 proxy.addProductToOrder(p1, c6, 60);*/
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 
 		 //   OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 		// Company c1 = proxy2.findBy(34) ; 

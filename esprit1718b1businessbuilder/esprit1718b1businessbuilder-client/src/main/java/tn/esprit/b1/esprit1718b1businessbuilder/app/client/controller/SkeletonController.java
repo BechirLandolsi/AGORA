@@ -33,14 +33,12 @@ public class SkeletonController implements Initializable {
     private AnchorPane holderPane;
     
 
-    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Events,Tender;
+    AnchorPane contacts,alerts,Home,profiles,widgets,controls,main,Projects,Products,Events,Tender,MyTenders;
 
     @FXML
     private JFXButton btnHome;
     @FXML
     private JFXButton btnEvents;
-    @FXML
-    private JFXButton btnContacts;
     @FXML
     private JFXButton btnTenders;
     @FXML
@@ -53,6 +51,8 @@ public class SkeletonController implements Initializable {
     private JFXButton btnProjects;
     @FXML
     private JFXButton btnProduct;
+    @FXML
+    private JFXButton btnMyTenders;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,11 +78,6 @@ public class SkeletonController implements Initializable {
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
         ft.play();
-    }
-
-    @FXML
-    private void switchContacts(ActionEvent event) {
-        
     }
 
     @FXML
@@ -135,11 +130,16 @@ public class SkeletonController implements Initializable {
     	
     	btnExit.getScene().getWindow().hide();
         Stage news=new Stage();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/Login.fxml"));
         Scene s=new Scene(root);
         news.setScene(s);
         news.show();
-    	
+    }
+
+    @FXML
+    private void switchMyTenders (ActionEvent event) throws IOException{
+	MyTenders = FXMLLoader.load(getClass().getResource("../gui/MyTenders.fxml"));
+         setNode(MyTenders);
     }
 
 }

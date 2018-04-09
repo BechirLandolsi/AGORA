@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="HolderAnchor" prefHeight="763.0" prefWidth="1185.0" style="-fx-background-color: 004060;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProfilesAdmlnController">
+   <children>
+      <AnchorPane fx:id="initialPane" layoutX="571.0" layoutY="18.0" prefHeight="723.0" prefWidth="602.0">
+         <children>
+            <Pane layoutX="155.0" layoutY="22.0" prefHeight="356.0" prefWidth="305.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+               <children>
+                  <AnchorPane layoutY="74.0" prefHeight="282.0" prefWidth="305.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+                     <children>
+                        <Separator layoutX="13.0" layoutY="167.0" prefHeight="4.0" prefWidth="288.0" />
+                        <Separator layoutX="13.0" layoutY="197.0" prefHeight="4.0" prefWidth="288.0" />
+                        <Separator layoutX="14.0" layoutY="227.0" prefHeight="4.0" prefWidth="288.0" />
+                        <Label layoutX="14.0" layoutY="171.0" prefHeight="17.0" prefWidth="94.0" text="quantity">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="201.0" prefHeight="20.0" prefWidth="124.0" text="sales $">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutY="-3.0" prefHeight="131.0" prefWidth="305.0" style="-fx-background-color: white;">
+                           <children>
+                              <Label fx:id="companyName" layoutX="92.0" layoutY="28.0" prefHeight="30.0" prefWidth="143.0" style="-fx-text-fill: #162E3B; -fx-font-weight: bold;" text="Dan Mlayah" textFill="#fffefe">
+                                 <font>
+                                    <Font name="Roboto Medium" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="companyCEO" layoutX="84.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" style="-fx-text-fill: #162E3B;" text="Lead developer" textFill="WHITE">
+                                 <font>
+                                    <Font name="Roboto Medium" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Label layoutX="12.0" layoutY="141.0" prefHeight="17.0" prefWidth="94.0" text="Product sold">
+                           <font>
+                              <Font name="Roboto Light" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ps" layoutX="147.0" layoutY="125.0" prefHeight="41.0" prefWidth="150.0" style="-fx-alignment: center; -fx-background-color: #3C8DBC; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="31">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="quantity" layoutX="228.0" layoutY="170.0" prefHeight="25.0" prefWidth="67.0" style="-fx-alignment: center; -fx-background-color: #DD4B39; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="5">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                        <Label fx:id="sales" layoutX="226.0" layoutY="201.0" prefHeight="25.0" prefWidth="67.0" style="-fx-alignment: center; -fx-background-color: #00A65A; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 12; -fx-font-weight: bold;" text="12">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Pane prefHeight="73.0" prefWidth="305.0" style="-fx-background-color: #00C0EF; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+                     <children>
+                        <Label layoutX="18.0" layoutY="14.0" prefHeight="33.0" prefWidth="270.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;" text="    BEST SALES COMPANY" />
+                        <Pane layoutY="54.0" prefHeight="18.0" prefWidth="305.0" style="-fx-background-color: #009ABF;" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <JFXListView fx:id="listview" layoutX="21.0" layoutY="65.0" prefHeight="658.0" prefWidth="537.0" />
+      <JFXTextField fx:id="search" layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="295.0" promptText="select a company or tape to find it ... " style="-fx-text-fill: #73879C;" unFocusColor="#368fe8">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </JFXTextField>
+      <AnchorPane fx:id="dashbord" layoutX="566.0" layoutY="65.0" prefHeight="658.0" prefWidth="610.0" visible="false">
+         <children>
+            <Pane layoutX="3.0" layoutY="2.0" prefHeight="87.0" prefWidth="213.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+               <children>
+                  <Pane prefHeight="87.0" prefWidth="67.0" style="-fx-background-color: #00C0EF;" />
+                  <VBox layoutX="70.0" layoutY="11.0" prefHeight="66.0" prefWidth="135.0">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="155.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="SALES" />
+                        <Label fx:id="sales" prefHeight="27.0" prefWidth="106.0" style="-fx-font-size: 20; -fx-font-weight: BOLD;" text="1,414" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane layoutX="221.0" layoutY="1.0" prefHeight="87.0" prefWidth="213.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+               <children>
+                  <Pane prefHeight="87.0" prefWidth="67.0" style="-fx-background-color: #00C0EF;" />
+                  <VBox layoutX="70.0" layoutY="10.0" prefHeight="66.0" prefWidth="135.0">
+                     <children>
+                        <Label prefHeight="36.0" prefWidth="155.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="NET INCOME" />
+                        <Label fx:id="net" prefHeight="27.0" prefWidth="106.0" style="-fx-font-size: 20; -fx-font-weight: BOLD;" text="1,414" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

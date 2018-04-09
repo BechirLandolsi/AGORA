@@ -10,6 +10,7 @@ import javax.naming.NamingException;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Order;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.OrderLine;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote;
@@ -45,8 +46,40 @@ public class mainAdmin {
 			
 		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
+		  // System.out.println( proxy1.salesPerCompany());
+		   /*for (Object[] o : proxy1.salesPerProduit()){
+	    	//System.out.println((long)o[0]) ; 
+	    	//System.out.println((Produit)o[1]) ;
+	    	 Produit p = new Produit();
+	    	 Order o1 = new Order() ; 
+	    	 int qt = (int)o[0] ; 
+ 	    	   p= (Produit)o[1] ;
+ 	    	   o1 = (Order)o[2];
+ 	    	  System.out.println(o1.getOrderDate().toString()) ;
+ 	    	   System.out.println(p.getDescription());
+ 	    	    String PATTERN="yyyy-MM-dd";
+			    SimpleDateFormat dateFormat=new SimpleDateFormat();
+			    dateFormat.applyPattern(PATTERN);
+			    Calendar cal = Calendar.getInstance();
+			    cal.setTime(o1.getOrderDate()); 
+	   	    	int week = cal.get(Calendar.WEEK_OF_YEAR);
+	   	    	   System.out.println(week);
+	    	
+	    }*/
+		/*for (Object[] o : proxy1.bestSales()){
+	    	
+	    	 Produit p = new Produit();
+	    	
+ 	    	   p= (Produit)o[1] ;
+ 	    	  
+ 	    	  
+ 		      System.out.println(p.getDescription()) ;
+	    	
+	    }*/
+		   
 	  		//System.out.println(proxy3.findBy(32));
 			/*	Company c1 = proxy2.findBy(36) ; 
+			 
 				 
 				Produit p1 = new Produit("pot peinture rouge",(long)300,null,(float)39,(float)50,null);
 				Produit p2 = new Produit("pot peinture blanche",(long)450,null,(float)39,(float)50,null);
@@ -58,6 +91,10 @@ public class mainAdmin {
 				proxy1.addProduct(p3,c1);
 				proxy1.addProduct(p4,c1);
 				proxy1.addProduct(p5,c1); */
+		
+				// System.out.println(proxy1.nbProbuit()); 
+				 //System.out.println(proxy1.nbPartnershp());
+				
 		 //********************************************************************************\\
 
 		//*******************************Order****************************************\\
@@ -66,10 +103,10 @@ public class mainAdmin {
 			
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 		    Company c1 = proxy2.findBy(33) ; 
-		  //System.out.println(proxy.findActiveOrder(c1));  
-		    Produit p1 = proxy1.findProduct(15);
+		 // System.out.println(c1.getId());  
+		    Produit p1 = proxy1.findProduct(17);
 		   // proxy.addProductToOrder(p1, c1, 55);
-		proxy.payOrder(c1); 
+		//proxy.payOrder(c1); 
 		   //System.out.println(proxy.salesPermonth().toString());
 		   /* Date current = new Date() ; 
 		    String PATTERN="yyyy-MM-dd";

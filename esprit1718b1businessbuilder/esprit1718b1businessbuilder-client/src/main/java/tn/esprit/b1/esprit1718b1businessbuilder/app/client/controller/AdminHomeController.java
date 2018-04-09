@@ -7,6 +7,8 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 
 import com.jfoenix.controls.JFXButton;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +21,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -29,12 +35,18 @@ import javafx.util.Duration;
  */
 public class AdminHomeController implements Initializable {
 
-    @FXML
-    private JFXButton btnHome;
+	 @FXML
+	    private MaterialDesignIconView iconClose;
+
+	    @FXML
+	    private JFXButton btnHome;
+
+	    @FXML
+	    private JFXButton btnSales;
+
     @FXML
     private JFXButton btnProfile;
-    @FXML
-    private JFXButton btnInbox;
+ 
     @FXML
     private JFXButton btnClaims;
     @FXML
@@ -42,7 +54,7 @@ public class AdminHomeController implements Initializable {
     @FXML
     private AnchorPane HolderAnchor;
     
-    AnchorPane Home ;
+    AnchorPane Home , Sales ,Profiles ;
 
     /**
      * Initializes the controller class.
@@ -77,15 +89,21 @@ public class AdminHomeController implements Initializable {
 
 
     @FXML
-    private void switchProfile(ActionEvent event) {
+    private void switchProfile(ActionEvent event) throws IOException {
+    	Profiles = FXMLLoader.load(getClass().getResource("../gui/ProfilesAdmin.fxml"));
+        setNode(Profiles);
     }
 
     @FXML
-    private void switchHome(ActionEvent event) {
+    private void switchHome(ActionEvent event) throws IOException {
+    	Home = FXMLLoader.load(getClass().getResource("../gui/AdminDashboard.fxml"));
+        setNode(Home);
     }
 
     @FXML
-    private void switchInbox(ActionEvent event) {
+    private void switchInbox(ActionEvent event) throws IOException {
+    	Sales = FXMLLoader.load(getClass().getResource("../gui/GlobalViewAdmin.fxml"));
+        setNode(Sales);
     }
 
     @FXML
@@ -96,4 +114,15 @@ public class AdminHomeController implements Initializable {
     private void switchSettings(ActionEvent event) {
     }
     
+    @FXML
+    void closeApp(MouseEvent event)throws Exception {
+    	
+    	iconClose.getScene().getWindow().hide();
+        Stage news=new Stage();
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/Login.fxml"));
+        Scene s=new Scene(root);
+        news.setScene(s);
+        news.show();
+
+    }
 }

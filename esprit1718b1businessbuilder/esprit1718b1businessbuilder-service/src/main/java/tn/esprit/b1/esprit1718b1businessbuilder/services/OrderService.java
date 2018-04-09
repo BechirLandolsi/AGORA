@@ -2,6 +2,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -105,7 +106,8 @@ public class OrderService implements OrderServiceRemote {
 		TypedQuery<OrderLine> q =  em.createQuery("select o from OrderLine o where o.ord= :order  ",OrderLine.class) ;
 		 List<OrderLine> listO = q.setParameter("order", o).getResultList();	
 		 for(OrderLine ol : listO){
-			 ammount = ammount + ol.getProd().getPrice()*ol.getQuantity() ; 
+			 ammount = ammount + ol.getProd().getPrice()*ol.getQuantity() ;
+			 
 		 }
 		return ammount;
 	}
@@ -133,11 +135,7 @@ public class OrderService implements OrderServiceRemote {
 
 	@Override
 	public List<Object[]> salesPermonth() {
-		String PATTERN="yyyy-MM-dd";
-	    SimpleDateFormat dateFormat=new SimpleDateFormat();
-	    dateFormat.applyPattern(PATTERN);
-	    String date1=dateFormat.format(Calendar.getInstance().getTime());
-	    int mois = Integer.parseInt((date1.toString().substring(5,7))); 
+		
 		 
 		Query q =  em.createQuery("select  SUM(c.amount) , c.orderDate from Order c group by c.orderDate " ) ;
 		    
@@ -145,6 +143,20 @@ public class OrderService implements OrderServiceRemote {
 		
 		List<Object[]> l = q.getResultList(); 
 		return l ;
+	}
+	
+	@Override
+	public List<Company> findAllCompanyByName(String name) {
+
+		TypedQuery<Company> q =  em.createQuery("select c from Company c WHERE c.name LIKE :name ",Company.class) ;
+		List<Company > c = new ArrayList<>() ;
+		try{
+		c =	q.setParameter("name", "%" + name+ "%").getResultList() ;
+		}catch(NoResultException e){
+			
+		}
+		
+		return c ;
 	}
 
 }

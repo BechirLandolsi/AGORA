@@ -200,11 +200,11 @@ public class HomeController implements Initializable {
 					 AdressPRE.setText(ord.getProd().getSupplier().getAdress());
 					 companyPRE.setText(ord.getProd().getSupplier().getName());
 					 
-					// File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
-		            // Image img = new Image(file.toURI().toString());
+		           /*  File file = new File(("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/"+ord.getProd().getPath()));
+		            Image img = new Image(file.toURI().toString());
 		            
-		             //imgPRE.setImage(img);
-		            // circle.setFill(new ImagePattern(img));
+		            //imgPRE.setImage(img);
+		            circle.setFill(new ImagePattern(img));*/
 		            
 				} catch (NamingException e) {
 					e.printStackTrace();
@@ -240,9 +240,9 @@ public class HomeController implements Initializable {
 				    
 				    nbrProject_C_RE.setText(String.valueOf(proxyC.nbProjectByCompany(c)));
 				   // System.out.println( proxyC.nbProjectByCompany(c));
-				   // File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
-		           // Image img = new Image(file.toURI().toString());
-		           // circleCompanyRE.setFill(new ImagePattern(img));
+				   File file = new File("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + c.getImage());
+		           Image img = new Image(file.toURI().toString());
+		           circleCompanyRE.setFill(new ImagePattern(img));
 				    
 				} catch (NamingException e) {
 					// TODO Auto-generated catch block

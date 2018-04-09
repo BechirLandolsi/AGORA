@@ -11,7 +11,9 @@ import javax.ejb.Startup;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
 @Singleton
@@ -52,8 +54,10 @@ public class DBPopulator {
 		Event e8 = new Event("Wolkswagen Exhibition", "Tunisia , Nabeul", "cars","Exhibition",true,false,dat8);*/
 		//*******************************************************************
 	//userServiceLocal.update(user);
-		
+		/***** Add Admin *****/
 		User u = new Admin("Admin","Adminlog","adminpass","admin@agora.com"); 
 		userServiceLocal.save(u);
+		/******************************/
+				
 	}
 }

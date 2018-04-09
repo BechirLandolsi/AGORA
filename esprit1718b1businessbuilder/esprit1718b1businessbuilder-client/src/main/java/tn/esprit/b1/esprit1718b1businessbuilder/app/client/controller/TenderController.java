@@ -142,7 +142,7 @@ public class TenderController implements Initializable {
     	lblPhone.setText(entreprise.getNumber().toString());
     	CompanyRate.setRating(entreprise.getRate());
     	
-    	File file = new File("../images/" + entreprise.getImage());
+    	File file = new File("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + entreprise.getImage());
         Image logo = new Image(file.toURI().toString());
         logoCompany.setImage(logo);
     }

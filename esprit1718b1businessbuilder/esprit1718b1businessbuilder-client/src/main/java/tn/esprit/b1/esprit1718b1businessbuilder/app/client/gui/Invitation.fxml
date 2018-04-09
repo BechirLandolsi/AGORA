@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="713.0" stylesheets="@custom.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.InvitationController">
+   <children>
+      <JFXToolbar layoutY="14.0" prefHeight="42.0" prefWidth="848.0" style="-fx-min-height: 42; -fx-background-color: #222D32;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Label prefHeight="30.0" prefWidth="238.0" style="-fx-font-size: 20; -fx-text-fill: #7387A8; -fx-font-weight: bold;" text="Invite Companies" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </Label>
+         </center>
+      </JFXToolbar>
+      <AnchorPane fx:id="holderPane" layoutX="-2.0" layoutY="41.0" prefHeight="554.0" prefWidth="713.0">
+         <children>
+            <ListView fx:id="invitationcompany_list_view" layoutX="73.0" layoutY="20.0" prefHeight="515.0" prefWidth="567.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
+
+
+
+
+
+   

@@ -93,10 +93,9 @@ public class ServiceService implements ServiceServiceRemote  {
 
 	@Override
 	public List<Company> findCompanyBysynonyme(String r) {
-		 TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name IN (select s.service from Synonyme s where s.synonyme1 LIKE "
-		 		+ ":service OR s.synonyme2 LIKE :service OR s.synonyme3 LIKE :service)",Company.class) ;
+		 TypedQuery<Company> q =  em.createQuery("select c from Company c INNER JOIN c.services s where s.name IN (select s.service from Synonyme s where   s.synonyme1 LIKE :service OR s.synonyme2 LIKE :service OR s.synonyme3 LIKE :service OR s.synonyme4 LIKE :service OR s.synonyme5 LIKE :service)",Company.class) ;
 		 
-		 List<Company> companies  =	q.setParameter("service", "%" + r+ "%").getResultList();
+		 List<Company> companies  =	q.setParameter("service",  "%" + r + "%" ).getResultList();
 		return companies;
 	}
 

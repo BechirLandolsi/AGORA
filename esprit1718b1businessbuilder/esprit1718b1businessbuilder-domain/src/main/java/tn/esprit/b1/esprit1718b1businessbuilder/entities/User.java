@@ -36,12 +36,22 @@ public class User implements Serializable {
 	
 	@Column(name = "USR_ROLE")
 	protected String role;
+	
+	protected Double progress ;
 
-	public Long getId() {
+	public Double getProgress() {
+		return progress;
+	}
+
+	public void setProgress(Double progress) {
+		this.progress = progress;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

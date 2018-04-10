@@ -199,7 +199,7 @@ public class HomeController implements Initializable {
 					 namePRE.setText(ord.getProd().getDescription());
 					 AdressPRE.setText(ord.getProd().getSupplier().getAdress());
 					 companyPRE.setText(ord.getProd().getSupplier().getName());
-					 
+					/* 
 		             File file = new File(("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/"+ord.getProd().getPath()));
 		            Image img = new Image(file.toURI().toString());
 
@@ -210,10 +210,11 @@ public class HomeController implements Initializable {
 					// File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + ord.getProd().getPath());
 		            // Image img = new Image(file.toURI().toString());
 
-*/
+
 		            
-		            //imgPRE.setImage(img);
+		            //imgPRE.setImage(img)
 		            circle.setFill(new ImagePattern(img));
+		            */
 		            
 				} catch (NamingException e) {
 					e.printStackTrace();

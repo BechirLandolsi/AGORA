@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
@@ -20,14 +21,14 @@ public class PearMain {
 		String ServiceJNDI ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 		String ProductJNDI ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
 		String OrderJNDI="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-			
+			    	
 
 		OrderServiceRemote Orderproxy = (OrderServiceRemote) context.lookup(OrderJNDI);
 		ProductServiceRemote productProxy = (ProductServiceRemote) context.lookup(ProductJNDI);
 		CompanyServiceRemote companyProxy = (CompanyServiceRemote) context.lookup(companyJNDI) ; 
 		ServiceServiceRemote ServiceProxy = (ServiceServiceRemote) context.lookup(ServiceJNDI);
 		
-		
+	/************************ORDERS************************************/	
 	Company c1 = companyProxy.findBy((long)32) ; 
 	Company c2 = companyProxy.findBy((long)36) ; 
 	
@@ -44,11 +45,24 @@ public class PearMain {
 	Produit p6 = productProxy.findProduct(36);
 	Produit p7 = productProxy.findProduct(32);
 	Produit p8 = productProxy.findProduct(35);
-	Orderproxy.addProductToOrder(p6, c1, 60);
-	Orderproxy.addProductToOrder(p7, c1, 50);
-	Orderproxy.addProductToOrder(p8, c1, 100);
+	//Orderproxy.addProductToOrder(p6, c1, 60);
+	//Orderproxy.addProductToOrder(p7, c1, 50);
+	//Orderproxy.addProductToOrder(p8, c1, 100);
 	
-	Orderproxy.payOrder(c1);
+	//Orderproxy.payOrder(c1);
 	
+	/*********************************************SERVICES************************************/
+		Service service = new Service () ;
+	 	service.setName("car manufacturing");
+	 	//service.setName("wheel manufacturing");
+	 	//service.setName("furniture manufacturing");
+	 	//service.setName("steel manufacturing");
+	    //service.setName("smartphone manufacturing");
+	    //service.setName("simcard sale ");
+	 	//service.setName("merchandise  sale ");
+	    //service.setName("computer   sale ");
+	    ServiceProxy.ajouterService(service);
+	    ServiceProxy.affecterServiceACompany(32, 10);
+	    ServiceProxy.affecterServiceACompany(32, 12 );
 }
 }

@@ -15,6 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -44,8 +46,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.OrderLine;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
-
-
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
@@ -194,7 +195,7 @@ public class HomeController implements Initializable {
 					    	}
 					    }
 		
-					 System.out.println(ord.getProd().getDescription());	 
+					// System.out.println(ord.getProd().getDescription());	 
 					 //produitRe.add(ord.getProd()) ;
 					 namePRE.setText(ord.getProd().getDescription());
 					 AdressPRE.setText(ord.getProd().getSupplier().getAdress());
@@ -254,7 +255,7 @@ public class HomeController implements Initializable {
 				
 				
     }    
-
+    
     @FXML
     private void makeSearch(ActionEvent event) throws NamingException {
     	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
@@ -266,14 +267,35 @@ public class HomeController implements Initializable {
 
     	
 		//////////////////////////////////AFFICHAGE RECHERCHE/////////////////////////////////////////
-    	String str = search.getText() ;
+    	
+		
+		
+		
+		String str = search.getText() ;
     	if (!str.equals("") ){
     		cplistservice =  FXCollections.observableArrayList(proxy.findAllCompanyByService(str));
     		cplist = FXCollections.observableArrayList(proxy.findAllCompanyByName(search.getText()));
-    		cplistSyn = FXCollections.observableArrayList(proxys.findCompanyBysynonyme(search.getText()));
+    		
+    		
+    		  Pattern p = Pattern.compile("[a-zA-Z]+");
+    	         
+    	        Matcher m1 = p.matcher(str);
+    	        while (m1.find()) {
+    	        	if (!(proxys.findCompanyBysynonyme(m1.group())).isEmpty() ){
+    	        		System.out.println(m1.group());
+    	        		cplistSyn = FXCollections.observableArrayList(proxys.findCompanyBysynonyme(m1.group()));
+    	        		cplist.addAll(cplistSyn);
+    	        	}
+    	        	     
+    	        }
+    		
+    		
+    		
+    		
+    		
     		cplist.addAll(cplistservice);
-    		cplist.addAll(cplistSyn);
-    	    System.out.println(cplist.toString());
+    		
+    	   // System.out.println(cplist.toString());
      		list_company.setItems(cplist);
      		list_company.setCellFactory(new Callback<ListView<Company>, javafx.scene.control.ListCell<Company>>()
             {
@@ -285,8 +307,9 @@ public class HomeController implements Initializable {
      		//////////////////////////AJOUT DE RECHERCHE//////////////////////////////////////
      		Reserche reserche = new Reserche() ;
      		reserche.setReserche(search.getText());
-     		Company c =proxy.findBy((long)33);
-     		System.out.println(c);
+     		User u = LoginController.LoggedUser ;
+     		Company c =proxy.findBy(u.getId());
+     		//System.out.println(c);
      		proxy.AddCompanyReserche(reserche, c);
     	}
     	else {

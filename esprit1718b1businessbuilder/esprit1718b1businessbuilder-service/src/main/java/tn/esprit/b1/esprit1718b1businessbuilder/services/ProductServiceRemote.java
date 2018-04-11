@@ -17,5 +17,5 @@ public interface ProductServiceRemote {
 	public List<Produit> findAllProduct(); 
 	public List<Produit> findProductByName(String p);
 	public List<Object []> findBestProduct () ;
-	
+	public  float currencyConvertion(String from,String to , float price) ;
 }

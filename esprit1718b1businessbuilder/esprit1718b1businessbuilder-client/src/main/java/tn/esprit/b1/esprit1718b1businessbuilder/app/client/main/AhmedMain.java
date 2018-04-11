@@ -3,10 +3,15 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import org.json.JSONObject;
+
+import com.github.kevinsawicki.http.HttpRequest;
 
 import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
@@ -20,14 +25,10 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 
 public class AhmedMain {
 
-	/**
-	 * @param args
-	 * @throws NamingException
-	 */
 	public static void main(String[] args) throws NamingException {
-        String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
+    /*    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
 		Context context = new InitialContext();
-		CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName1);
+		CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName1);*/
 		
 	/*	Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
 		Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
@@ -43,21 +44,21 @@ public class AhmedMain {
 
 		
 		//System.out.println(proxy.findCompanyBysynonyme("passat"));*/
-	    
+//System.out.println(getSentence("ben amri", "ben")) ;	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
-	    String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+	 /*   String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 		 
 
 	    Context context1 = new InitialContext();
 		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
-		System.out.println();
+		//System.out.println();
 		List<Object[]> list = proxy1.bestCompany();
 	    for (Object[] o : list){
 	    	Company company = (Company)o[1] ; 
-	    	System.out.println(company.toString());
+	    	//System.out.println(company.toString());
 	    	long count = (long)o[0] ; 
-	    	System.out.println(count);
-	    }
+	    	//System.out.println(count);
+	    }*/
 	
  		//List <Compa}ny> list = new ArrayList<>() ;
  	 	//list = proxy1.findAllCompanyNames();
@@ -107,8 +108,21 @@ public class AhmedMain {
  	 	proxy.affecterServiceACompany(35, 14 );*/
  	    //System.out.println( proxy1.findAllCompanyByService("orange"));
  	    //list.addAll(proxy1.findAllCompanyByService("sim"));
- 	   // System.out.println(proxy1.findAllCompanyByService("orange"));
+ 	    //System.out.println(proxy1.findAllCompanyByService("orange"));
  	 	//System.out.println(proxy.ResercheListe(31));
+	    
+		//currencyConvertion("TND","EUR") ;
  	 	
     }
+	public static float currencyConvertion(String from,String to , float price)
+	{
+		String response = HttpRequest
+				.get("https://v3.exchangerate-api.com/bulk/428d417084fe51418dc991a4/"+from)
+				.accept("application/json").body();
+		JSONObject jsonObject = new JSONObject(response);
+		//
+		JSONObject status = jsonObject.getJSONObject("rates");
+		Double eur = status.getDouble(to);
+		return (float) (eur * price) ;
+	}
 }

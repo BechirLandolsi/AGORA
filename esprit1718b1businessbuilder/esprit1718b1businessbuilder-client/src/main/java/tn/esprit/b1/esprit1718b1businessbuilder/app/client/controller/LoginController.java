@@ -88,7 +88,7 @@ public class LoginController implements Initializable {
     	UserServiceRemote proxyCategory = (UserServiceRemote) context.lookup(jndiNameCategory);
  
     	if ( (proxyCategory.findByLogin(login.getText()) == true) && (proxyCategory.findByPassword(password.getText()) == true) )  {
-    	System.out.println("aa");
+    	//System.out.println("aa");
         btnLogin.getScene().getWindow().hide();
         Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
         Stage mainStage=new Stage();

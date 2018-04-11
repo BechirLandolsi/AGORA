@@ -32,7 +32,12 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import javafx.util.Duration;
+
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
@@ -111,6 +116,7 @@ public class LoginController implements Initializable {
 		}
  
     	if ( (proxyCategory.findByLogin(login.getText()) == true) && (proxyCategory.findByPassword(password.getText()) == true) )  {
+
     		
     	LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
     	System.out.println("aa");
@@ -180,12 +186,31 @@ public class LoginController implements Initializable {
     	}
       
        
+
        }
     	
     	else {   		
     		erreur.setText("Invalid UserName or Password !"); 		
     }
-    		
+    	if(LoggedUser!=null && LoggedUser instanceof Company) {
+    	        btnLogin.getScene().getWindow().hide();
+    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
+    	        Stage mainStage=new Stage();
+    	        Scene scene=new Scene(root);
+    	        mainStage.setScene(scene);
+    	        mainStage.show();
+    	    	 }
+    	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
+    	        btnLogin.getScene().getWindow().hide();
+    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 
+    	        Stage mainStage=new Stage();
+    	        Scene scene=new Scene(root);
+    	        mainStage.setScene(scene);
+    	        mainStage.show();
+    	       
+    	    	 }
+    	 //LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
+
     }
 
     @FXML

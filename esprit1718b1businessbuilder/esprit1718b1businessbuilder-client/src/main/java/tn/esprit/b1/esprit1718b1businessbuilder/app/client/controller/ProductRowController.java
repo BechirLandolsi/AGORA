@@ -70,6 +70,7 @@ public class ProductRowController extends ListCell<Produit>{
              company.setText( produit.getSupplier().getName());
              address.setText(produit.getSupplier().getAdress());
              rate.setRating(produit.getSupplier().getRate());
+            
 
             
              File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + produit.getPath());

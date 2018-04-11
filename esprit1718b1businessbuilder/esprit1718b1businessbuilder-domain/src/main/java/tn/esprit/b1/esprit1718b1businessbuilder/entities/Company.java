@@ -19,8 +19,6 @@ public class Company extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
-
 
 	public List<Partnership> getCompanyOwner() {
 		return CompanyOwner;
@@ -361,6 +359,7 @@ public class Company extends User {
  
 	public List<Invitation> getInvitation() {
 		return invitation;
+
 	}
 
 

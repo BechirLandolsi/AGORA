@@ -81,17 +81,13 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <Label fx:id="chartLabel" layoutX="667.0" layoutY="98.0" prefHeight="203.0" prefWidth="249.0" text="Label">
-               <graphic>
-                  <PieChart fx:id="pieChart1" prefHeight="225.0" prefWidth="252.0" />
-               </graphic>
-            </Label>
+            <PieChart fx:id="pieChart1" layoutX="589.0" layoutY="158.0" prefHeight="365.0" prefWidth="414.0" />
             <Label fx:id="has1" layoutX="32.0" layoutY="440.0" prefHeight="73.0" prefWidth="479.0" text="For more informations on a project just click on it" textAlignment="CENTER" textFill="#0b485b">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <BarChart layoutX="645.0" layoutY="307.0" prefHeight="275.0" prefWidth="293.0">
+            <BarChart layoutX="645.0" layoutY="307.0" prefHeight="275.0" prefWidth="293.0" visible="false">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -99,6 +95,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
+            <JFXButton fx:id="btnpartner" layoutX="223.0" layoutY="513.0" onAction="#btnpartner" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Be my partner" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchor2" layoutX="-8.0" layoutY="-2.0" prefHeight="555.0" prefWidth="1030.0" visible="false">
@@ -201,7 +198,6 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnpartner" layoutX="852.0" layoutY="32.0" onAction="#btnpartner" prefHeight="45.0" prefWidth="145.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Be my partner" />
          </children>
       </AnchorPane>
    </children>

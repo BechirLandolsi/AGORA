@@ -95,19 +95,20 @@ public class ProductController   implements Initializable {
 		 Context context;
 		 Context contexts;
     	 CompanyServiceRemote proxy3;
-			
+    	 
 			try {
 				 String service ;
 				 Context	context3 = new InitialContext();
 				 contexts = new InitialContext();
 				 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName2);
 				 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
-				 cplist3s = proxys.ResercheListe(31);
-				// System.out.println(cplist3s);
+				 cplist3s = proxys.ResercheListe(33);
+				//System.out.println(cplist3s);
 		     for( String s : cplist3s  ){			    	 
-		    	 //System.out.println(s);
+		    	    // System.out.println(s);
 					 test = proxy3.findAllCompanyByService(s);
-					// System.out.println(cplist3);
+					 
+					// System.out.println(test);
 					 for(Company c : test){		
 						// System.out.println(c);
 						 // System.out.println(",yntbrve");
@@ -127,19 +128,22 @@ public class ProductController   implements Initializable {
 				contexts = new InitialContext();
 				 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
 				 
-				 
+				//System.out.println(hs);
 					for(Company c : hs) {
-						listp=	proxys.findProductByCompany(c) ;
+						listp.addAll(proxys.findProductByCompany(c)) ;
+						
 					}
-					
+										
 			} catch (NamingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
-			
+			// System.out.println(listp);
 			listefinale.addAll(listp); 
+			
 			listPRe.setItems(listefinale);
+			
 			listPRe.setCellFactory(new Callback<ListView<Produit>, javafx.scene.control.ListCell<Produit>>()
 	        {
 				@Override

@@ -284,7 +284,7 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="PointMortLabel" prefHeight="21.0" prefWidth="214.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label fx:id="PointMortLabel" prefHeight="21.0" prefWidth="214.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <font>
                         <Font name="Arial" size="18.0" />
                      </font>
@@ -299,7 +299,7 @@
                         <Font name="Sitka Heading Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Dead point" textFill="#2485d3" GridPane.rowIndex="3">
+                  <Label text="Dead point" textFill="#2485d3" visible="false" GridPane.rowIndex="3">
                      <font>
                         <Font name="Sitka Heading Bold" size="20.0" />
                      </font>

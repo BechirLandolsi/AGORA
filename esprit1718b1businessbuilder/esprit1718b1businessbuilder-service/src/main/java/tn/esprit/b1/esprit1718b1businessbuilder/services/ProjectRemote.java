@@ -21,9 +21,9 @@ public interface ProjectRemote {
 
 	public void Edit(Project p, double quality, int count);
 	
-	public long CountStableProjects();
+	public long CountStableProjects(Company c);
 	
-	public long CountUnstableProjects();
+	public long CountUnstableProjects(Company c);
 	
 	public List<Project> getRateByCompany(Company c);
 	

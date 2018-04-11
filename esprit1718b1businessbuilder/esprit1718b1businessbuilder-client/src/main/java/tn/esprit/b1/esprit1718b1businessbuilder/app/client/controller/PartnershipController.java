@@ -6,16 +6,23 @@ import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+
 
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -24,6 +31,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
@@ -35,6 +43,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Partnership;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
@@ -63,14 +72,30 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.NoResultException;
 
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
 
 import javafx.scene.control.TextField;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * FXML Controller class
@@ -164,7 +189,7 @@ public class PartnershipController implements Initializable {
 	    @FXML
 	    private Label countLabel;
 	   
-	
+	ProjectController projectController;
 /***********************************************************************************************************************/
 	    
 	    
@@ -185,38 +210,26 @@ public class PartnershipController implements Initializable {
 		 
 		 private ObservableList<Project> listproject = FXCollections.observableArrayList();
 		 
-		 //static Project o;
+		 User loggedcompany = LoginController.LoggedUser;
 
-			
-		   
-		    
-		    public void PieChart() throws NamingException {
-		    	Stage stage = new Stage();
+		 //static Project o;
+   
+		    public void PieChart(Company c) throws NamingException {
 		    	context2 = new InitialContext();
 		 	   ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName2);
-		 	   long i1=proxy2.CountStableProjects();
-		 	    long i2=proxy2.CountUnstableProjects();
-		    
-		       Scene scene = new Scene(new Group());
-		       // stage.setTitle("Imported Fruits");
-		        stage.setWidth(500);
-		        stage.setHeight(500);
+		 	   long i1=proxy2.CountStableProjects(c);
+		 	    long i2=proxy2.CountUnstableProjects(c);
+		
+		 	    pieChart1.setTitle("Projects' State");
 		    
 		    ObservableList<PieChart.Data> pieChartData =
 	               FXCollections.observableArrayList(
 	               new PieChart.Data("In Stable State",i1),
 	               new PieChart.Data("In danger", i2));
+		   // pieChart1.setLegendSide(Side.LEFT);
+		    pieChart1.setData(pieChartData);
+		 
 		    
-		    pieChart1 = new PieChart(pieChartData);
-		    //pieChart1.setTitle("Imported Fruits");
-		    
-	     
-	       ((Group) scene.getRoot()).getChildren().add(pieChart1);
-	       stage.setScene(scene);
-	       stage.show();
-		    
-		 //   pieChart1 = new PieChart(pieChartData);
-		  //  pieChart1.setTitle("Projects'State");
 	     
 		    }
 		    
@@ -227,8 +240,13 @@ public class PartnershipController implements Initializable {
 		try {
 		   	context1 = new InitialContext();
 		   	CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
+		   	
+		   	Company company =proxy.findBy(loggedcompany.getId());
+		   	
 		   	Set <String> hashset = new HashSet<>();
+		   	
 		   	hashset.addAll(proxy.getAllSectors());
+		   	
 		   	ObservableList<String> sectors = FXCollections.observableArrayList(hashset);
 		   	sectorcombo.setItems(sectors);
 		   	
@@ -266,12 +284,33 @@ public class PartnershipController implements Initializable {
 		   
 		    	sector=sectorcombo.getValue();
 		    	
-		    	Company company =proxy.findBy((long)2);
-		   
- ObservableList<String> Allcompanies = FXCollections.observableArrayList(proxy.FindBySector(sector));
+		    	Company company =proxy.findBy(loggedcompany.getId());
+		    	System.out.println(company);
+	
+	
+	
+	//ObservableList<String> Allcompaniesname = FXCollections.observableArrayList(proxy.findAllCompanyNames());
+
+		    	ObservableList<String> Allcompanies = FXCollections.observableArrayList(proxy.FindBySector(sector));
+
+		    			
+		    for(String c : Allcompanies) 
+		    {
+		    	
+		    			       if(company.getName().equals(c)) {
+		    			        	
+		    			    	    System.out.println("name==name");
+		    			        	Allcompanies.remove(company.getName());
+		    			        	
+		    			          
+		    			        }
+		    			        
+		    }
+		    			       companiescombo.setItems(Allcompanies);
+		    			 	
 		    	
 
-				companiescombo.setItems(Allcompanies);
+				//companiescombo.setItems(Allcompanies);
 				
 				/*companynameLabel.setVisible(true);
 				ProjectsLabel.setVisible(true);
@@ -326,7 +365,7 @@ public class PartnershipController implements Initializable {
 		    	  tab_project.setItems(listproject); 
 		    	  
 		    	  //System.out.println("aaaaaaaaaaaaaaaaaaaaa");
-		    	  PieChart();
+		    	  PieChart(companypartner);
 				
 		   	}
 		    }
@@ -387,9 +426,12 @@ public class PartnershipController implements Initializable {
 	 @FXML
 	    void btnback(ActionEvent event) {
 		 
+		 
+		 
 		 anchor2.setVisible(false);
 		 anchor1.setVisible(true);
-
+		 sadimg.setVisible(false);
+		 happyimg.setVisible(false);
 		 
 	    }
 
@@ -424,23 +466,87 @@ public class PartnershipController implements Initializable {
 	    }
 	  
 	  
+	  public void envoyer(String pwd, String mail)
+      {
+          Properties props = new Properties();
+          props.put("mail.smtp.auth", "true");
+          props.put("mail.smtp.starttls.enable", "true");
+          props.put("mail.smtp.host", "smtp.gmail.com");
+          props.put("mail.smtp.port", "587");
+          
+          Session session = Session.getInstance(props,new javax.mail.Authenticator(){
+              protected PasswordAuthentication getPasswordAuthentication(){
+                  return new PasswordAuthentication("tesnim.dahmeni@esprit.tn", "22121995missou");
+              }
+          }); 
+          try
+          {
+              Message message = new MimeMessage(session);
+              message.setFrom(new InternetAddress("tesnim.dahmeni@esprit.tn"));
+              message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+              message.setSubject("Salut");
+              message.setText("coucou");
+              Transport.send(message);
+              Notifications nb = Notifications.create().darkStyle().hideAfter(Duration.seconds(5)).title("Logout")
+                      .text("Mail sent successfully !");
+                    
+              nb.showConfirm();
+   
+          }
+          catch(MessagingException e){
+              
+                   Alert alert = new Alert(Alert.AlertType.ERROR);
+                      alert.setTitle("Failure to send");
+                      alert.setHeaderText("Please check your informations !!");
+
+                      alert.showAndWait();
+                  
+               }      
+          
+      }
+	  
+	  
 	    @FXML
 	    void btnpartner(ActionEvent event) throws NamingException {
 	    	
 	    	context1 = new InitialContext();
 			   CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1); 	
-	       	Company c =proxy.findBy((long)2);
+	       	Company c =proxy.findBy(loggedcompany.getId());
 	    	context4 = new InitialContext();
 			   PartnershipRemote proxy2 = (PartnershipRemote) context4.lookup(jndiName4);
 			   Partnership part = new Partnership();
-			   proxy2.addPartner(part,c, companypartner, o);
+			  
+			if (part!=null && companypartner!=null  ) {
+			}
+			
+			  
+			Calendar cal = Calendar.getInstance();
+	       //sdf.format(cal.getTime());
+		        
+			   {   part.setPartnershipDate(cal.getTime());
+				   proxy2.addPartner(part,c, companypartner, projectController.o); 
 			   
+				   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+			         //alert.initOwner(adresse.getScene().getWindow());
+			         alert.setTitle("Confirmation");
+			         alert.setHeaderText(null);
+			         alert.setContentText("Partner request sent");
+			         alert.showAndWait();
+			         
 			   
 	    	/**********************************************************************************************/
-	    	
-	    	 Mail emailS = new Mail();
+	                       
+	                String mail="tesnim.dahmeni@esprit.tn";
+	                String pwd ="22121995missou";    
+	                
+	         
+	           
+	              //  envoyer(pwd,mail);
+			   
+			   
+	    	/* Mail emailS = new Mail();
 	         String[] to = {companypartner.getEmail()};
-	         String adresse = "tesnim.dahmeni@esprit.tn";
+	        String adresse = c.getEmail();
 	         System.out.println(adresse);
 	         String subject = "partnership request";
 	         String messageText = "Dear Sir/Madam\n Each year we work with more than 100 companies from all over the "
@@ -448,7 +554,7 @@ public class PartnershipController implements Initializable {
 	+ "introductory profile in PDFformat for your perusal."
 	+ "\n Thank you very much, and we hope to receive your favorably response soon.Best regards";
 
-	         if (emailS.sendMail(adresse,"22121995missou", messageText, subject, to)) {
+	         if (emailS.sendMail(adresse,c.getPassword(), messageText, subject, to)) {
 	         }
 	         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 	         //alert.initOwner(adresse.getScene().getWindow());
@@ -459,11 +565,11 @@ public class PartnershipController implements Initializable {
 	             if (response == ButtonType.OK) {
 
 	             }
-	         });
+	         }); */
 
-	    }
+			         }
 	 
-	    
+	    }
 	  
 
 	

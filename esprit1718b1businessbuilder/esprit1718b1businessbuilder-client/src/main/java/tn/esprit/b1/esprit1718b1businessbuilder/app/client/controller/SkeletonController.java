@@ -40,8 +40,6 @@ public class SkeletonController implements Initializable {
     @FXML
     private JFXButton btnEvents;
     @FXML
-    private JFXButton btnContacts;
-    @FXML
     private JFXButton btnTenders;
     @FXML
     private JFXButton btnProfile;
@@ -78,11 +76,6 @@ public class SkeletonController implements Initializable {
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
         ft.play();
-    }
-
-    @FXML
-    private void switchContacts(ActionEvent event) {
-        
     }
 
     @FXML
@@ -135,11 +128,10 @@ public class SkeletonController implements Initializable {
     	
     	btnExit.getScene().getWindow().hide();
         Stage news=new Stage();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml"));
+        Parent root=FXMLLoader.load(getClass().getResource("../gui/Login.fxml"));
         Scene s=new Scene(root);
         news.setScene(s);
         news.show();
-    	
     }
 
 }

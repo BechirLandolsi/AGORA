@@ -1,5 +1,6 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 
+
 import java.math.RoundingMode;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -14,13 +15,17 @@ import java.util.regex.Pattern;
 import javafx.beans.value.ChangeListener;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+
+import javafx.scene.control.TextField;
 import javax.naming.NamingException;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.scene.control.Alert;
+
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -33,6 +38,8 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,6 +69,9 @@ public class SignupController implements Initializable {
 	private JFXTextField email;
 
 	@FXML
+	private JFXTextField number;
+
+	@FXML
 	private JFXTextField login;
 
 	@FXML
@@ -69,6 +79,8 @@ public class SignupController implements Initializable {
 
 	@FXML
 	private JFXPasswordField password2;
+	@FXML
+	private Label warningnumber;
 
 	@FXML
 	private JFXButton register;
@@ -80,11 +92,29 @@ public class SignupController implements Initializable {
 	private Label warning;
 
 	public static Double progress;
+	
+	 @FXML
+	    private JFXComboBox<String> combosecret;
+	 private ObservableList<String> list = FXCollections.observableArrayList(
+			 	"What is the last name of the teacher who gave you your first failing grade?",
+				"What was the name of your elementary / primary school?",
+				"In what city or town does your nearest sibling live?",
+				"What time of the day were you born?");
+
+	    @FXML
+	    private TextField rep;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		combosecret.setItems(list);
 		// TODO Auto-generated method stub
 		updateProgress();
+		if (email.getText().length() != 0 && number.getText().length() != 0 && login.getText().length() != 0
+				&& password.getText().length() != 0 && password2.getText().length() != 0) {
+			register.setDisable(false);
+		}
+		register.setDisable(true);
 
 	}
 
@@ -165,7 +195,7 @@ public class SignupController implements Initializable {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Enregistrement de l'appareil ");
 		alert.setContentText("voulez vous enregistrer cet appareil comme appareil de confiance ?");
-		alert.showAndWait();
+		// alert.showAndWait();
 		Optional<ButtonType> result = alert.showAndWait();
 
 		/***************************************************************/
@@ -174,12 +204,11 @@ public class SignupController implements Initializable {
 		// System.out.println("Current IP address : " + ip.getHostAddress());
 		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 		byte[] mac = network.getHardwareAddress();
-		//System.out.print("Current MAC address : ");
+		// System.out.print("Current MAC address : ");
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < mac.length; i++) {
 			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
 		}
-		
 
 		/*****************************************************************/
 
@@ -187,32 +216,32 @@ public class SignupController implements Initializable {
 		u.setEmail(email.getText());
 		u.setLogin(login.getText());
 		u.setPassword(password2.getText());
-		
-
-		u.setNumber((long) 0);
+		u.setNumber(Long.parseLong(number.getText()));
 		u.setRate(0);
-		
+		u.setSecretquestion(combosecret.getValue());
+		u.setResponse(rep.getText());
+		String format = "dd/MM/yy H:mm:ss";
+		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+		java.util.Date da = new java.util.Date(); 
+		u.setSubDate(da);
+
 		if (result.get() == ButtonType.OK) {
 			System.out.println(sb.toString());
 			u.setMac(sb.toString());
 		}
-		
+
 		if (password.getText().equals(password2.getText())) {
 			register.setDisable(false);
 			progress = updateProgress();
 			u.setProgress(progress);
+
 			proxyCategory.save(u);
-			
 
 		} else {
 			// register.setDisable(true);
 			warning.setText(" Password do not matches ! ");
 		}
-		
-	
-		
 
-		
 	}
 
 	@FXML
@@ -224,6 +253,7 @@ public class SignupController implements Initializable {
 
 		if (controler.matches()) {
 			warning1.setVisible(false);
+			warning1.setText(" ");
 			System.out.println("lol");
 			register.setDisable(false);
 		} else {
@@ -240,12 +270,33 @@ public class SignupController implements Initializable {
 		UserServiceRemote proxyCategory = (UserServiceRemote) context.lookup(jndiNameCategory);
 		Boolean r = proxyCategory.findByLogin(login.getText());
 		warning2.setVisible(false);
+		warning2.setText(" ");
 
 		if (r == true) {
 			warning2.setVisible(true);
 			warning2.setText("Login already exists !");
 		}
 
+	}
+
+	@FXML
+	private void test3(KeyEvent event) {
+
+		if (number.getText().trim().length() > 0) {
+			try {
+				int i = Integer.parseInt(number.getText());
+			} catch (NumberFormatException e) {
+				warningnumber.setVisible(true);
+				warningnumber.setText("please type only numbers !");
+				register.setDisable(true);
+			}
+		}
+
+		else {
+			warningnumber.setText("");
+			// warning.setVisible(false);
+			register.setDisable(false);
+		}
 	}
 
 }

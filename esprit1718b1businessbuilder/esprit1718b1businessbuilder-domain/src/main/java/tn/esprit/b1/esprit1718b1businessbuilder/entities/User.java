@@ -38,9 +38,28 @@ public class User implements Serializable {
 	protected String mac;
 	
 	protected Double progress ;
+	protected String secretquestion ;
+	protected String response ;
 	
 	
 	
+	
+	public String getSecretquestion() {
+		return secretquestion;
+	}
+
+	public void setSecretquestion(String secretquestion) {
+		this.secretquestion = secretquestion;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
+
 	public Double getProgress() {
 		return progress;
 	}

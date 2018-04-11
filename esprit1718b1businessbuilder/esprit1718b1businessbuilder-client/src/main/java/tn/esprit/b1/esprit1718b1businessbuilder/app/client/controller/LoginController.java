@@ -14,6 +14,7 @@ import java.net.SocketException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.security.GeneralSecurityException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.TimeBasedOneTimePasswordUtil;
@@ -86,6 +88,7 @@ public class LoginController implements Initializable {
    
     public static final String ACCOUNT_SID = "ACb12b823cb956312800f45ad12ffdb72b";
 	public static final String AUTH_TOKEN = "47af9a87502d0a04ad82036e1d7f463a";
+	//long dureest= (depart.getTime()- retour.getTime())/86400000 ;
 
     /**
      * Initializes the controller class.
@@ -144,13 +147,34 @@ public class LoginController implements Initializable {
     	    		System.out.println(sb.toString());
     	    		
     	    		if (LoggedUser.getMac().equals(sb.toString()) ){
-    	    			System.out.println("2");
-    	    			 btnLogin.getScene().getWindow().hide();
-    	    		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
-    	    		        Stage mainStage=new Stage();
-    	    		        Scene scene=new Scene(root);
-    	    		        mainStage.setScene(scene);
-    	    		        mainStage.show();
+    	    			
+    	    			//Security question
+    	        		String format = "dd/MM/yy H:mm:ss";
+    	        		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+    	        		java.util.Date da = new java.util.Date(); 
+    	        		String jndiName = "esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote";
+    	        		Context contextt = new InitialContext();
+    	        		CompanyServiceRemote proxy = (CompanyServiceRemote) contextt.lookup(jndiName);
+    	        		Company c = proxy.findBy(LoggedUser.getId());
+    	        		
+    	        		
+    	        		long dureest= (da.getTime() - c.getSubDate().getTime())/86400000 ;
+    	        		System.out.println(dureest);
+    	        		if (dureest > 30){
+    	        			System.out.println(dureest);
+    	        			setStage("../gui/SecretQuestion.fxml");
+    	        		}
+    	        		else{
+    	        			System.out.println("2");
+       	    			 btnLogin.getScene().getWindow().hide();
+       	    		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
+       	    		        Stage mainStage=new Stage();
+       	    		        Scene scene=new Scene(root);
+       	    		        mainStage.setScene(scene);
+       	    		        mainStage.show();
+    	        		}
+    	        		
+    	    			
     	    		        
     	    	   }
     	    		else {
@@ -169,7 +193,16 @@ public class LoginController implements Initializable {
     	    		e.printStackTrace();
     	    			
     	    	}
+    	    	
+    	    	
+        		
     	   }
+    		
+    		
+    		
+    		
+    		
+    		
     	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
     	        btnLogin.getScene().getWindow().hide();
     	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 

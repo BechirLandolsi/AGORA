@@ -11,17 +11,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.SignupController">
    <children>
-      <AnchorPane layoutY="-10.0" prefHeight="126.0" prefWidth="611.0" style="-fx-background-color: #76c2da;">
+      <AnchorPane layoutY="-10.0" prefHeight="126.0" prefWidth="611.0" style="-fx-background-color: #374fb1;">
          <children>
             <MaterialDesignIconView fx:id="iconClose" fill="WHITE" glyphName="CLOSE" layoutX="575.0" layoutY="33.0" onMouseClicked="#closeStage" size="22.0" />
-            <Label layoutX="135.0" layoutY="11.0" prefHeight="50.0" prefWidth="341.0" text="Registraion Form" textFill="#878787">
+            <Label layoutX="135.0" layoutY="11.0" prefHeight="50.0" prefWidth="341.0" text="Registraion Form" textFill="WHITE">
                <font>
                   <Font name="Broadway" size="33.0" />
                </font>
             </Label>
-            <Pane layoutX="134.0" layoutY="63.0" prefHeight="61.0" prefWidth="317.0" style="-fx-background-color: #76c2da;">
+            <Pane layoutX="134.0" layoutY="63.0" prefHeight="61.0" prefWidth="317.0" style="-fx-background-color: #374fb1;">
                <children>
                   <ProgressBar fx:id="progressPersonal" layoutX="35.0" layoutY="14.0" prefHeight="18.0" prefWidth="248.0" progress="0.0" />
                   <Label fx:id="lblComplete" alignment="CENTER" layoutX="88.0" layoutY="43.0" prefHeight="18.0" prefWidth="129.0" text="0% complete" textFill="WHITE">
@@ -41,7 +41,7 @@
             <JFXPasswordField fx:id="password2" promptText="Confirm Password" />
          </children>
       </VBox>
-      <JFXButton fx:id="register" layoutX="55.0" layoutY="353.0" onAction="#register" prefHeight="44.0" prefWidth="359.0" style="-fx-background-color: #76c2da;" text="Register" textFill="#fffefe">
+      <JFXButton fx:id="register" layoutX="140.0" layoutY="353.0" onAction="#register" prefHeight="44.0" prefWidth="359.0" style="-fx-background-color: #374fb1;" text="Register" textFill="#fffefe">
          <font>
             <Font size="18.0" />
          </font>

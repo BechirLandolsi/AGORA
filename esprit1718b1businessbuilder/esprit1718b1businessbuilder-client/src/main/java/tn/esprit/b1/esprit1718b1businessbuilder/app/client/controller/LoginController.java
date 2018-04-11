@@ -3,9 +3,17 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.twilio.Twilio;
+import com.twilio.type.PhoneNumber;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.security.GeneralSecurityException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +22,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,10 +32,12 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.TimeBasedOneTimePasswordUtil;
+
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -65,8 +76,11 @@ public class LoginController implements Initializable {
     private StackPane rootPane;
     @FXML
     private Label erreur;
-    
-    
+    @FXML
+    private ImageView qr2;
+   
+    public static final String ACCOUNT_SID = "ACb12b823cb956312800f45ad12ffdb72b";
+	public static final String AUTH_TOKEN = "47af9a87502d0a04ad82036e1d7f463a";
 
     /**
      * Initializes the controller class.
@@ -81,37 +95,97 @@ public class LoginController implements Initializable {
     }    
 
     @FXML
-    private void doLogin(ActionEvent event) throws IOException, NamingException {
+    private void doLogin(ActionEvent event) throws IOException, NamingException, GeneralSecurityException, InterruptedException {
     	
     	String jndiNameCategory ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/UserService!tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote";
     	Context context = new InitialContext();
     	UserServiceRemote proxyCategory = (UserServiceRemote) context.lookup(jndiNameCategory);
+    	
+    	String base32Secret = "NY4A5CPJZ46LXZCP";
+		String code;
+		try {
+			code = TimeBasedOneTimePasswordUtil.generateCurrentNumberString(base32Secret);
+		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
  
     	if ( (proxyCategory.findByLogin(login.getText()) == true) && (proxyCategory.findByPassword(password.getText()) == true) )  {
+    		
+    	LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
     	System.out.println("aa");
-        btnLogin.getScene().getWindow().hide();
-        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
-        Stage mainStage=new Stage();
-        Scene scene=new Scene(root);
-        mainStage.setScene(scene);
-        mainStage.show();
-        
-        /*String base32Secret = "NY4A5CPJZ46LXZCP";
-    	String keyId = "user@j256.com";*/
-       // System.out.println("Image url = " + TimeBasedOneTimePasswordUtil.qrImageUrl(keyId, base32Secret));
-       // qr.setId(TimeBasedOneTimePasswordUtil.qrImageUrl(keyId, base32Secret));
-        
-       /* final String imageURI = "http://www.developpez.com/template/images/logo.png"; 
-        final Image image = new Image(imageURI);
-        final ImageView imageView = new ImageView(image); 
-        final Pane root = new Pane(); 
-        root.getChildren().setAll(imageView); */
-        
+       
+        /**************************************************************/
+
+    	InetAddress ip;
+    	try {
+    			
+    		ip = InetAddress.getLocalHost();
+    		//System.out.println("Current IP address : " + ip.getHostAddress());
+    		
+    		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+    			
+    		byte[] mac = network.getHardwareAddress();
+    			
+    		System.out.print("Current MAC address : ");
+    			
+    		StringBuilder sb = new StringBuilder();
+    		for (int i = 0; i < mac.length; i++) {
+    			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));		
+    		}
+    		System.out.println(sb.toString());
+    		if (LoggedUser.getMac().equals(sb.toString()) ){
+    			 btnLogin.getScene().getWindow().hide();
+    		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
+    		        Stage mainStage=new Stage();
+    		        Scene scene=new Scene(root);
+    		        mainStage.setScene(scene);
+    		        mainStage.show();
+    		        
+    	   }
+    		else {
+    			
+    			
+    			setStage("../gui/Security.fxml");
+    	
+                ////////////////////////////////////////////////////**************************/////////////////////////////////
+    			 /* while (SecurityController.asked==false) {
+    					long diff = TimeBasedOneTimePasswordUtil.DEFAULT_TIME_STEP_SECONDS
+    							- ((System.currentTimeMillis() / 1000) % TimeBasedOneTimePasswordUtil.DEFAULT_TIME_STEP_SECONDS);
+    					
+    						code = TimeBasedOneTimePasswordUtil.generateCurrentNumberString(base32Secret);
+    						System.out.println("Secret code = " + code + ", change in " + diff + " seconds");
+    						Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    			            com.twilio.rest.api.v2010.account.Message msg =
+    			            com.twilio.rest.api.v2010.account.Message.creator(new PhoneNumber("+21692339150"),
+    			            new PhoneNumber("+12109085729"),code).create();
+    						Thread.sleep(10000);
+ 					
+    				}*/
+    			
+    		
+
+    	    
+    		}
+            
+    			
+    	} catch (UnknownHostException e) {
+    		
+    		e.printStackTrace();
+    		
+    	} catch (SocketException e){
+    			
+    		e.printStackTrace();
+    			
+    	}
+      
+       
        }
-    	else {
-    		erreur.setText("Invalid UserName or Password !");
+    	
+    	else {   		
+    		erreur.setText("Invalid UserName or Password !"); 		
     }
-    	 LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
+    		
     }
 
     @FXML
@@ -150,6 +224,5 @@ public class LoginController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+        
 }

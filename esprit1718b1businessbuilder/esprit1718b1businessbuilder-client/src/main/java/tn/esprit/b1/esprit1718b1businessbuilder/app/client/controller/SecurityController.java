@@ -23,6 +23,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,7 +41,14 @@ public class SecurityController implements Initializable {
 	public static final String ACCOUNT_SID = "AC4d4a4742b636ad7fd321f43800a2d11c";
 	public static final String AUTH_TOKEN = "457aba64823219cdc55fe1b73465963e";
 	
-	
+	   @FXML
+	    private Label one;
+
+	    @FXML
+	    private Label two;
+
+	    @FXML
+	    private Label three;
     @FXML
     private TextField code;
     @FXML
@@ -71,8 +79,7 @@ public class SecurityController implements Initializable {
     	
     	
     	
-    img1.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
-        //txt1.setText("Checking for updates");
+   
         rotateTransition1 = new RotateTransition(Duration.seconds(5), img1);
         rotateTransition2 = new RotateTransition(Duration.seconds(5), img2);
         rotateTransition3 = new RotateTransition(Duration.seconds(5), img3);
@@ -89,21 +96,6 @@ public class SecurityController implements Initializable {
         }
 
         
-        
-
-       /* rotateTransition2.setOnFinished((ActionEvent event2) -> {
-            img2.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/ok.png"));
-           // lbl2.setStyle("-fx-background-color:#47A563");
-            img3.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
-            //txt3.setText("Scanning Memory");
-            rotateTransition3.play();
-        });
-
-        rotateTransition3.setOnFinished((ActionEvent event2) -> {
-            img3.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/ok.png"));
-        });	
-        */
-      
 
     }
 
@@ -117,13 +109,14 @@ public class SecurityController implements Initializable {
     		asked=true ;
     		//Thread.currentThread().interrupt();
     		if ( codefinal.equals(code.getText())){
-    			 rotateTransition2.play();
+    			 img2.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
+    	          two.setVisible(true);
+    	            rotateTransition2.play();
+    		
     			rotateTransition2.setOnFinished((ActionEvent event2) -> {
     	            img2.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/ok.png"));
     	           // lbl2.setStyle("-fx-background-color:#47A563");
-    	            img3.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
-    	            //txt3.setText("Scanning Memory");
-    	            rotateTransition3.play();
+    	          
     	        });
     		}
     }
@@ -171,13 +164,12 @@ public class SecurityController implements Initializable {
     	    
     	};
     	new Thread(task).start();
-    	
+    img1.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
+        one.setVisible(true);
     	rotateTransition1.setOnFinished((ActionEvent event1) -> {
             img1.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/ok.png"));
            // lbl1.setStyle("-fx-background-color:#47A563");
-            img2.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
-           // txt2.setText("Pre-scan Operations");
-            rotateTransition2.play();
+           
         });
         rotateTransition1.play();
 			
@@ -185,6 +177,9 @@ public class SecurityController implements Initializable {
     
     @FXML
     void checkregister(ActionEvent event) throws NamingException, UnknownHostException, SocketException {
+    	  img3.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/synching.png"));
+         three.setVisible(true);
+          rotateTransition3.play();
     	rotateTransition3.setOnFinished((ActionEvent event2) -> {
             img3.setImage(new Image("file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/ok.png"));
         });	

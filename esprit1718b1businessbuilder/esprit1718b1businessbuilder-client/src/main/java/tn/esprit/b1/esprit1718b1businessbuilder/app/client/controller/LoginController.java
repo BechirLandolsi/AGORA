@@ -116,90 +116,60 @@ public class LoginController implements Initializable {
 		}
  
     	if ( (proxyCategory.findByLogin(login.getText()) == true) && (proxyCategory.findByPassword(password.getText()) == true) )  {
-
-    		
+    	System.out.println("1");
     	LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
-    	System.out.println("aa");
-       
-        /**************************************************************/
+		
+    		if(LoggedUser!=null && LoggedUser instanceof Company) {
+    			System.out.println("3");
+    			
+    			
+    	        /**************************************************************/
 
-    	InetAddress ip;
-    	try {
-    			
-    		ip = InetAddress.getLocalHost();
-    		//System.out.println("Current IP address : " + ip.getHostAddress());
-    		
-    		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-    			
-    		byte[] mac = network.getHardwareAddress();
-    			
-    		System.out.print("Current MAC address : ");
-    			
-    		StringBuilder sb = new StringBuilder();
-    		for (int i = 0; i < mac.length; i++) {
-    			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));		
-    		}
-    		System.out.println(sb.toString());
-    		if (LoggedUser.getMac().equals(sb.toString()) ){
-    			 btnLogin.getScene().getWindow().hide();
-    		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Main.fxml")); 
-    		        Stage mainStage=new Stage();
-    		        Scene scene=new Scene(root);
-    		        mainStage.setScene(scene);
-    		        mainStage.show();
-    		        
-    	   }
-    		else {
-    			
-    			
-    			setStage("../gui/Security.fxml");
-    	
-                ////////////////////////////////////////////////////**************************/////////////////////////////////
-    			 /* while (SecurityController.asked==false) {
-    					long diff = TimeBasedOneTimePasswordUtil.DEFAULT_TIME_STEP_SECONDS
-    							- ((System.currentTimeMillis() / 1000) % TimeBasedOneTimePasswordUtil.DEFAULT_TIME_STEP_SECONDS);
-    					
-    						code = TimeBasedOneTimePasswordUtil.generateCurrentNumberString(base32Secret);
-    						System.out.println("Secret code = " + code + ", change in " + diff + " seconds");
-    						Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-    			            com.twilio.rest.api.v2010.account.Message msg =
-    			            com.twilio.rest.api.v2010.account.Message.creator(new PhoneNumber("+21692339150"),
-    			            new PhoneNumber("+12109085729"),code).create();
-    						Thread.sleep(10000);
- 					
-    				}*/
-    			
-    		
-
+    	    	InetAddress ip;
+    	    	try {
+    	    			
+    	    		ip = InetAddress.getLocalHost();
+    	    		//System.out.println("Current IP address : " + ip.getHostAddress());
+    	    		
+    	    		NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+    	    			
+    	    		byte[] mac = network.getHardwareAddress();
+    	    			
+    	    			
+    	    		StringBuilder sb = new StringBuilder();
+    	    		for (int i = 0; i < mac.length; i++) {
+    	    			sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));		
+    	    		}
+    	    		
+    	    		System.out.println(sb.toString());
+    	    		
+    	    		if (LoggedUser.getMac().equals(sb.toString()) ){
+    	    			System.out.println("2");
+    	    			 btnLogin.getScene().getWindow().hide();
+    	    		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
+    	    		        Stage mainStage=new Stage();
+    	    		        Scene scene=new Scene(root);
+    	    		        mainStage.setScene(scene);
+    	    		        mainStage.show();
+    	    		        
+    	    	   }
+    	    		else {
+    	    			   			
+    	    			setStage("../gui/Security.fxml");
     	    
-    		}
-            
-    			
-    	} catch (UnknownHostException e) {
-    		
-    		e.printStackTrace();
-    		
-    	} catch (SocketException e){
-    			
-    		e.printStackTrace();
-    			
-    	}
-      
-       
-
-       }
-    	
-    	else {   		
-    		erreur.setText("Invalid UserName or Password !"); 		
-    }
-    	if(LoggedUser!=null && LoggedUser instanceof Company) {
-    	        btnLogin.getScene().getWindow().hide();
-    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
-    	        Stage mainStage=new Stage();
-    	        Scene scene=new Scene(root);
-    	        mainStage.setScene(scene);
-    	        mainStage.show();
-    	    	 }
+    	    		}
+    	            
+    	    			
+    	    	} catch (UnknownHostException e) {
+    	    		
+    	    		e.printStackTrace();
+    	    		
+    	    	} catch (SocketException e){
+    	    			
+    	    		e.printStackTrace();
+    	    			
+    	    	}
+    	   }
     	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
     	        btnLogin.getScene().getWindow().hide();
     	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 
@@ -209,7 +179,19 @@ public class LoginController implements Initializable {
     	        mainStage.show();
     	       
     	    	 }
-    	 //LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
+
+
+    		
+    	
+      
+       
+
+       }
+    	
+    	else {   		
+    		erreur.setText("Invalid UserName or Password !"); 		
+    }
+    	    	 //LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
 
     }
 

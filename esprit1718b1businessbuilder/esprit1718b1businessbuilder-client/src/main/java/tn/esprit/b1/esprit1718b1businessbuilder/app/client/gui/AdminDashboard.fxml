@@ -21,7 +21,7 @@
    <children>
       <AnchorPane id="AnchorPane" layoutX="14.0" layoutY="14.0" prefHeight="729.0" prefWidth="866.0" stylesheets="@styleAdmin.css">
          <children>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="169.0" prefWidth="213.0" styleClass="card">
+            <Pane layoutX="14.0" layoutY="14.0" prefHeight="160.0" prefWidth="193.0" styleClass="card">
                <children>
                   <Text layoutX="13.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of subscribers" wrappingWidth="199.99999914318323" />
                   <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
@@ -39,9 +39,9 @@
                   <Text layoutX="99.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers" wrappingWidth="91.99999914318323" />
                </children>
             </Pane>
-            <Pane layoutX="14.0" layoutY="195.0" prefHeight="157.0" prefWidth="213.0" styleClass="card">
+            <Pane layoutX="14.0" layoutY="195.0" prefHeight="141.0" prefWidth="193.0" styleClass="card">
                <children>
-                  <Text layoutX="13.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of subscribers of the day" wrappingWidth="199.99999914318323" />
+                  <Text layoutX="13.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of subscribers of the day" wrappingWidth="92.00000613927841" />
                   <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
                      <children>
                         <VBox />
@@ -49,15 +49,15 @@
                         <VBox />
                      </children>
                   </VBox>
-                  <Label fx:id="lbSubnumberDay" layoutX="14.0" layoutY="14.0" prefHeight="116.0" prefWidth="170.0" text="100">
+                  <Label fx:id="lbSubnumberDay" layoutX="59.0" layoutY="4.0" prefHeight="115.0" prefWidth="118.0" text="10">
                      <font>
                         <Font size="96.0" />
                      </font>
                   </Label>
-                  <Text layoutX="108.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers" wrappingWidth="91.99999914318323" />
+                  <Text layoutX="97.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers" wrappingWidth="91.99999914318323" />
                </children>
             </Pane>
-            <PieChart fx:id="pieBookings" focusTraversable="true" layoutX="264.0" layoutY="14.0" prefHeight="345.0" prefWidth="554.0" styleClass="card" />
+            <PieChart fx:id="pieBookings" focusTraversable="true" layoutX="264.0" layoutY="14.0" prefHeight="339.0" prefWidth="526.0" styleClass="card" />
             <Label fx:id="lbvalue" layoutX="520.0" layoutY="146.0" prefHeight="40.0" prefWidth="47.0" textFill="#070000">
                <font>
                   <Font name="System Bold Italic" size="26.0" />

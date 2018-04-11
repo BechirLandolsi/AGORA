@@ -1,5 +1,7 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -14,8 +16,9 @@ import org.json.JSONObject;
 import com.github.kevinsawicki.http.HttpRequest;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Order;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+
 
 @Stateless
 public class ProductService implements ProductServiceRemote{
@@ -60,6 +63,7 @@ public class ProductService implements ProductServiceRemote{
 		return produits;
 		
 	}
+
 	public  float currencyConvertion(String from,String to , float price)
 	{
 		String response = HttpRequest
@@ -70,5 +74,90 @@ public class ProductService implements ProductServiceRemote{
 		Double eur = status.getDouble(to);
 		return (float) (eur * price) ;
 	}
+
+	
+
+
+	@Override
+	public Long nbProbuit() {
+		TypedQuery<Long> q =  em.createQuery("select Count(c) from Produit c ",Long.class) ;
+		return q.getSingleResult() ;
+	}
+
+
+	@Override
+	public Long nbProjet() {
+		TypedQuery<Long> q =  em.createQuery("select Count(c) from Project c ",Long.class) ;
+		return q.getSingleResult() ;
+	}
+
+
+	@Override
+	public Long nbPartnershp() {
+		TypedQuery<Long> q =  em.createQuery("select Count(c) from Partnership c ",Long.class) ;
+		return q.getSingleResult() ;
+	}
+
+
+	@Override
+	public Long nbTender() {
+		TypedQuery<Long> q =  em.createQuery("select Count(c) from Tender c ",Long.class) ;
+		return q.getSingleResult() ;
+	}
+	
+	
+	@Override
+	public List<Object[]> salesPerCompany() {
+		 
+		Query q =  em.createQuery("select SUM(o.quantity) , o.prod from OrderLine o inner join o.prod p where o.prod = p.id group by o.prod ") ;
+		 List<Object[]> listO = q.getResultList();
+		return listO;
+	}
+
+
+	@Override
+	public List<Object[]> salesPerProduit() {
+		Query q =  em.createQuery("select o.quantity , o.prod , o.ord from OrderLine o ") ;
+		 List<Object[]> listO = q.getResultList();
+		return listO;
+	}
+
+
+	@Override
+	public List<Object[]> salesPerSector() {
+		 Query q =  em.createQuery("select o , COUNT(o) from OrderLine o inner join o.prod p inner join p.supplier s where p.supplier = s.id  group by s.sector ") ;
+		 List<Object[]> listO = q.getResultList();
+		return listO;
+	}
+	
+	@Override
+	public List<Object[]> bestSales() {
+		Query q =  em.createQuery("select SUM(o.quantity) , o.prod , o.ord from OrderLine o GROUP BY o.prod ") ;
+		 List<Object[]> listO = q.getResultList();
+		 List<Object[]> list = new ArrayList<>() ;
+		 long max = 0 ; 
+		 Object[] m = null ; 
+		 for (Object[] o : listO){
+		    long qt = (long)o[0] ; 
+ 	    	  
+ 	    	 if (qt>max){
+ 	    		 max= qt ; 
+ 	    		 m=o ; 
+ 	    	 }
+ 	    list.add(m);	 
+	    	
+	    }
+		return list;
+	}
+	
+
+
+
+
+
+
+
+
+	
 
 }

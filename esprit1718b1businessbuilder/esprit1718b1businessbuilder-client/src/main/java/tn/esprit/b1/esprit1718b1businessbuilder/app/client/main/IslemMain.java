@@ -86,10 +86,10 @@ public class IslemMain {
 	    //**************************************************************************
 	    
 	    //******************************Searching event by name Test ****************
-	    List<Event> eventlist = new ArrayList<Event>();
+	   /* List<Event> eventlist = new ArrayList<Event>();
 	    eventlist=proxy.findEventByName("company opening");
 	    for (Event event : eventlist) 
-	    {System.out.println(event);}
+	    {System.out.println(event);}*/
 	    
 	   //******************************Searching event by Date Test ****************
 	    /*List<Event> eventlista = new ArrayList<Event>();

@@ -17,9 +17,14 @@ public class Mail {
 	        props.put("mail.smtp.host", host);
 	        props.put("mail.smtp.user", from);
 	        props.put("mail.smtp.password", password);
-	        props.put("mail.smtp.port", 587);
+	        props.put("mail.smtp.port", "587");
 	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+	        props.put("mail.debug", "true");
+	        props.put("mail.store.protocol", "pop3");
+	        props.put("mail.transport.protocol", "smtp");
+	       // props.setProperty("mail.smtp.port", "8083");
+	        //props.put("mail.smtp.port",850);
+	      
 	        Session session = Session.getDefaultInstance(props, null);
 	        MimeMessage mimeMessage = new MimeMessage(session);
 	        try {

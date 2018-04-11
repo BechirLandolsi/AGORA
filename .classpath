@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java"/>
+	<classpathentry kind="src" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-domain/src/main/java"/>
+	<classpathentry kind="src" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-service/src/main/java"/>
+	<classpathentry kind="src" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-service/src/test/java"/>
+	<classpathentry kind="src" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-web/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes"/>
+</classpath>

@@ -74,6 +74,12 @@ public class OrderLine implements Serializable{
 
 	public OrderLine() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "OrderLine [orderLineFK=" + orderLineFK + ", quantity=" + quantity + ", prod=" + prod + ", ord=" + ord
+				+ "]";
 	} 
 	
 	

@@ -41,14 +41,6 @@
                   <MaterialDesignIconView fill="#a1aec4" glyphName="SHOPPING" size="17.0" wrappingWidth="42.99997329711914" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnContacts" layoutX="10.0" layoutY="109.0" onAction="#switchContacts" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Contacts" textFill="#a1aec4">
-               <font>
-                  <Font name="Roboto Bold" size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="#a1aec4" glyphName="GROUP" size="17.0" wrappingWidth="43.0" />
-               </graphic>
-            </JFXButton>
             <JFXButton fx:id="btnProduct" onAction="#switchProduct" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Products" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
@@ -81,7 +73,7 @@
                   <FontAwesomeIconView fill="#a1aec4" glyphName="USER" size="17.0" wrappingWidth="43.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnControls" onAction="#switchControls" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Controls" textFill="#a1aec4">
+            <JFXButton fx:id="btnControls" onAction="#switchControls" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="About" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
@@ -89,7 +81,7 @@
                   <FontAwesomeIconView fill="#a1aec4" glyphName="ASTERISK" size="17.0" wrappingWidth="43.0" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnExit" onAction="#switchExit" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Exit" textFill="#a1aec4">
+            <JFXButton fx:id="btnExit" onAction="#switchExit" prefHeight="42.0" prefWidth="139.0" style="-fx-alignment: left;" styleClass="nav-button" text="Log out" textFill="#a1aec4">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>

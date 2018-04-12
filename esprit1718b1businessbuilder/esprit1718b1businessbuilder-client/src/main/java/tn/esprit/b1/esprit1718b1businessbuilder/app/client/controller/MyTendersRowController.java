@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -19,11 +21,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import org.apache.http.impl.io.SocketOutputBuffer;
 import org.ocpsoft.prettytime.PrettyTime;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ITender;
@@ -50,9 +64,26 @@ public class MyTendersRowController extends ListCell<Tender> {
     
     private FXMLLoader MytenderLoader;
     
+    @FXML
+    private TextField title;
+    
+    public static StackPane mainRootPane;
+    private StackPane rootPane;
+    
     final Tooltip tooltip = new Tooltip();
+    
+    private static long idTender;
+    
+    
+    public static long getIdTender() {
+		return idTender;
+	}
 
-    @Override
+	public static void setIdTender(long idTender) {
+		MyTendersRowController.idTender = idTender;
+	}
+
+	@Override
     protected void updateItem (Tender tender, boolean empty){
     	
     	String jndiNameTender="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/TenderService!tn.esprit.b1.esprit1718b1businessbuilder.services.ITender";
@@ -92,6 +123,8 @@ public class MyTendersRowController extends ListCell<Tender> {
      			e1.printStackTrace();
      		}
              
+             update.setOnAction(event->System.out.println(tender.getId()));
+             //idTender=tender.getId();
              setText(null);
              setGraphic(row);
             
@@ -99,5 +132,35 @@ public class MyTendersRowController extends ListCell<Tender> {
          }
         
     }
-
+    
+    /*private void setStage(String fxml) {
+        try {
+            //dim overlay on new stage opening
+            Region veil = new Region();
+            veil.setPrefSize(1100, 650);
+            veil.setStyle("-fx-background-color:rgba(0,0,0,0.3)");
+            Stage newStage = new Stage();
+            Parent parent = FXMLLoader.load(getClass().getResource(fxml));
+            
+            Scene scene = new Scene(parent);
+            scene.setFill(Color.TRANSPARENT);
+            newStage.setScene(scene);
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            newStage.initStyle(StageStyle.TRANSPARENT);
+            newStage.getScene().getRoot().setEffect(new DropShadow());
+            newStage.showingProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    rootPane.getChildren().add(veil);
+                } else if (rootPane.getChildren().contains(veil)) {
+                    rootPane.getChildren().removeAll(veil);
+                }
+                
+            });
+            newStage.centerOnScreen();
+            newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+*/
 }

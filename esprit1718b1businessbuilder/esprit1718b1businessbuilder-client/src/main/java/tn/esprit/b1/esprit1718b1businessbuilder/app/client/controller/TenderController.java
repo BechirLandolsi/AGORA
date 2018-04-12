@@ -31,6 +31,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -115,6 +116,8 @@ public class TenderController implements Initializable {
     
     public static StackPane mainRootPane;
     private StackPane rootPane;
+    
+    final Tooltip tooltip = new Tooltip();
     /**
      * Initializes the controller class.
      */
@@ -123,7 +126,25 @@ public class TenderController implements Initializable {
     @FXML
     private Tab MyTenders;
     @FXML
-    private Pane paneVbox;
+    private Label status1;
+    @FXML
+    private Label status2;
+    @FXML
+    private Label status3;
+    @FXML
+    private Label sttatus4;
+    @FXML
+    private Label status5;
+    @FXML
+    private Label sameCountry;
+    @FXML
+    private Label has4stars;
+    @FXML
+    private Label has3stars;
+    @FXML
+    private Label has3projects;
+    @FXML
+    private Label has80profile;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -213,6 +234,9 @@ public class TenderController implements Initializable {
 
     @FXML
     private void getDetails(ActionEvent event){
+    	
+    	
+    	Company loggedUser = (Company)LoginController.LoggedUser ;
     	entreprise=TenderRowController.getEntreprise();
     	qualifications=TenderRowController.getQualifications();
     	int nbrQualif = TenderRowController.getNbrQualif();
@@ -227,32 +251,81 @@ public class TenderController implements Initializable {
         Image logo = new Image(file.toURI().toString());
         logoCompany.setImage(logo);
         
-        VBox v = new VBox();
-        v.setPadding(new Insets(10, 50, 50, 50));
-        v.setSpacing(10);
-        int i =0;
-        
-        
-        do{
-        	Label qualif = new Label();
-        	Label status = new Label();
-        	
-        	qualif.setText(qualifications.get(i).getNameQualification());
-        	qualif.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        	
-        	v.getChildren().add(qualif);
-           
-           
-            status.setText("status");
-            status.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-            
-            v.getChildren().add(status);
-            i=i+1;
-        }while (i<nbrQualif);
-        
-        
-     
-        paneVbox.getChildren().add(v);
+        for(int i=0;i<=nbrQualif;i++){
+        	switch (qualifications.get(i).getNameQualification()){
+        		case "Same Country" :
+        			if(entreprise.getAdress().equals(loggedUser.getAdress())){
+        				status1.setText("Yes");
+        				status1.setStyle("-fx-background-color: #37a000;");
+        				tooltip.setText("You meet this qualification");
+        				status1.setTooltip(tooltip);
+        			}
+        			else{
+        				status1.setText("No");
+        				status1.setStyle("-fx-background-color: #FF0000;");
+        				tooltip.setText("You don't meet this qualification");
+        				status1.setTooltip(tooltip);
+        			}
+        			break;
+        		case "Has at least 4 stars" :
+        			if(loggedUser.getRate()==4){
+        				status2.setText("Yes");
+        				status2.setStyle("-fx-background-color: #37a000;");
+        				tooltip.setText("You meet this qualification");
+        				status2.setTooltip(tooltip);
+        			}
+        			else{
+        				status2.setText("No");
+        				status2.setStyle("-fx-background-color: #FF0000;");
+        				tooltip.setText("You don't meet this qualification");
+        				status2.setTooltip(tooltip);
+        			}
+        			break;
+        		case "Has at least 3 stars" :
+        			if(loggedUser.getRate()==3){
+        				status3.setText("Yes");
+        				status3.setStyle("-fx-background-color: #37a000;");
+        				tooltip.setText("You meet this qualification");
+        				status3.setTooltip(tooltip);
+        			}
+        			else{
+        				status3.setText("No");
+        				status3.setStyle("-fx-background-color: #FF0000;");
+        				tooltip.setText("You don't meet this qualification");
+        				status3.setTooltip(tooltip);
+        			}
+        			break;
+        		case "Has worked on 3 projects" :
+        			if(loggedUser.getRate()==3){
+        				sttatus4.setText("Yes");
+        				sttatus4.setStyle("-fx-background-color: #37a000;");
+        				tooltip.setText("You meet this qualification");
+        				sttatus4.setTooltip(tooltip);
+        			}
+        			else{
+        				sttatus4.setText("No");
+        				sttatus4.setStyle("-fx-background-color: #FF0000;");
+        				tooltip.setText("You don't meet this qualification");
+        				sttatus4.setTooltip(tooltip);
+        			}
+        			break;
+        		case "At least 80% reached on profile" :
+        			if(loggedUser.getProgress()>=80){
+        				status5.setText("Yes");
+        				status5.setStyle("-fx-background-color: #37a000;");
+        				tooltip.setText("You meet this qualification");
+        				status5.setTooltip(tooltip);
+        			}
+        			else{
+        				status5.setText("No");
+        				status5.setStyle("-fx-background-color: #FF0000;");
+        				tooltip.setText("You don't meet this qualification");
+        				status1.setTooltip(tooltip);
+        			}
+        			break;
+        		
+        	}
+        }
         
     }
 

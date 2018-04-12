@@ -105,6 +105,7 @@ public class TenderRowController extends ListCell<Tender> {
 
 	@Override
     protected void updateItem (Tender tender, boolean empty){
+		Company loggedUser = (Company)LoginController.LoggedUser ;
 		PrettyTime p = new PrettyTime();
 	    
 		String jndiNameQualification ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/TenderQualificationService!tn.esprit.b1.esprit1718b1businessbuilder.services.ITenderQualification" ; 
@@ -148,6 +149,10 @@ public class TenderRowController extends ListCell<Tender> {
             	 Status.setText(tender.getDeadline().toString());
              }
              
+             if(tender.getCompanyTender().equals(loggedUser)){
+            	 Apply.setText("You are the owner");
+            	 Apply.setDisable(true);
+             }
             //Apply.setOnAction(event->tender.getCompanyTender().getName());
             
             try {

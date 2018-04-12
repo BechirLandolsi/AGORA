@@ -43,7 +43,7 @@ public class TenderTest {
 		TenderCategory HelpDesk = new TenderCategory("HelpDesk");
 		TenderCategory DevJava = new TenderCategory("DevJava");
 
-		proxyCategory.save(DevJava);
+		//proxyCategory.save(DevJava);
 		
 		//**********************************************TenderQualification************************************
 		
@@ -52,7 +52,7 @@ public class TenderTest {
 		
 		TenderQualification SameCountry = new TenderQualification("Same Country");
 		
-		proxyQualification.save(SameCountry);
+		//proxyQualification.save(SameCountry);
 		
 		
 		//******************************************** Test Logged User in adding Tender***************************
@@ -67,7 +67,7 @@ public class TenderTest {
 		
 		User loggedUser=proxyCompany.login("FISlogin", "FISpass");
 
-		TenderCategory tc= proxyCategory.find(DevJava);
+		//TenderCategory tc= proxyCategory.find(DevJava);
 		
 		
 		
@@ -86,11 +86,11 @@ public class TenderTest {
 		tender=proxyTender.find((long) 10);
 		proxyTender.affectTenderToQualification(tender, SameCountry);*/
 		
-		//long id = 10;
+		long id = 4;
 		//System.out.println(proxyQualification.findAllQualifByTender(id));
 
 		//************************************************* Affect Qualification to tender*************************************
-		
+		System.out.println(proxyTender.findAll());
 
 	}
 

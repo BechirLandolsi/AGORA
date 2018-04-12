@@ -75,16 +75,19 @@ public class TenderTest {
 				new SimpleDateFormat("dd/MM/yyyy").parse("29/04/2018"), "Peak Support is a customer service and business process outsourcing company.  We are seeking Email Support representatives from the Philippines to join our growing team. ", 
 				new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date())));
 		
-		ts.affectTenderToCompanyCategory(tender, loggedUser, tc);
+		//ts.affectTenderToCompanyCategory(tender, loggedUser, tc);
 		
 		
 		//proxyQualification.save(SameCountry);
-		Long id =proxyTender.add(tender);
-		tender.setId(id);
+		//Long id =proxyTender.add(tender);
+		//tender.setId(id);
 		
-		SameCountry=proxyQualification.find((long) 1);
-		tender=proxyTender.find((long) 8);
-		proxyTender.affectTenderToQualification(tender, SameCountry);
+		/*SameCountry=proxyQualification.find((long) 1);
+		tender=proxyTender.find((long) 10);
+		proxyTender.affectTenderToQualification(tender, SameCountry);*/
+		
+		//long id = 10;
+		//System.out.println(proxyQualification.findAllQualifByTender(id));
 
 		//************************************************* Affect Qualification to tender*************************************
 		

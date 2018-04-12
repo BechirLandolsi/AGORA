@@ -65,7 +65,7 @@ public class TenderQualification implements Serializable {
 
 	@Override
 	public String toString() {
-		return "TenderQualification [nameQualification=" + nameQualification + "]";
+		return nameQualification;
 	}
 
 	@Override

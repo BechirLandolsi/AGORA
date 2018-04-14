@@ -32,7 +32,7 @@ public class PearMain {
 	Company c1 = companyProxy.findBy((long)32) ; 
 	Company c2 = companyProxy.findBy((long)36) ; 
 	
-	Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
+	Produit p1 = new Produit("tibo",(long)300,null,(float)39,(float)50,null);
 	Produit p2 = new Produit("Ballons de foot",(long)500,null,(float)39,(float)50,null);
 	Produit p3 = new Produit("peinture speciale grise",(long)250,null,(float)44,(float)60,null);
 	Produit p4 = new Produit("peinture dain champagne ",(long)120,null,(float)49,(float)63,null);
@@ -41,28 +41,20 @@ public class PearMain {
 	//productProxy.addProduct(p2, c1);
 	//productProxy.addProduct(p3, c2);
 	//productProxy.addProduct(p4, c2);
-	//productProxy.addProduct(p5, c2);0
-	Produit p6 = productProxy.findProduct(36);
-	Produit p7 = productProxy.findProduct(32);
-	Produit p8 = productProxy.findProduct(35);
-	//Orderproxy.addProductToOrder(p6, c1, 60);
-	//Orderproxy.addProductToOrder(p7, c1, 50);
-	//Orderproxy.addProductToOrder(p8, c1, 100);
+	//productProxy.addProduct(p5, c2);
+	Produit p6 = productProxy.findProduct(23);
+	Produit p7 = productProxy.findProduct(12);
+	Produit p8 = productProxy.findProduct(25);
+	Orderproxy.addProductToOrder(p6, c1, 125);
+	Orderproxy.addProductToOrder(p7, c1, 10000);
+	Orderproxy.addProductToOrder(p8, c1, 1285);
 	
-	//Orderproxy.payOrder(c1);
+	Orderproxy.payOrder(c1);
 	
-	/*********************************************SERVICES************************************/
-		Service service = new Service () ;
-	 	service.setName("car manufacturing");
-	 	//service.setName("wheel manufacturing");
-	 	//service.setName("furniture manufacturing");
-	 	//service.setName("steel manufacturing");
-	    //service.setName("smartphone manufacturing");
-	    //service.setName("simcard sale ");
-	 	//service.setName("merchandise  sale ");
-	    //service.setName("computer   sale ");
-	    ServiceProxy.ajouterService(service);
-	    ServiceProxy.affecterServiceACompany(32, 10);
-	    ServiceProxy.affecterServiceACompany(32, 12 );
+	//p6.setDescription("Baskets");
+	
+	//productProxy.editProduct(p6);
+	//productProxy.removeProduct(p6);
+	 //System.out.println(productProxy.findAllProduct()); 
 }
 }

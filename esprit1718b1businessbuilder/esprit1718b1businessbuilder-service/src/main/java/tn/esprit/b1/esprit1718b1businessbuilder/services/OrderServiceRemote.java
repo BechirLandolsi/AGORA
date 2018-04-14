@@ -26,6 +26,11 @@ public interface OrderServiceRemote {
 	public List<Object[]> nbSubscriberPertype() ; 
 	
 	public List<Object[]> salesPermonth() ; 
-	public List<Company> findAllCompanyByName(String name) ; 
+	public List<Company> findAllCompanyByName(String name) ;
+	public List<Object[]> salesPerCompany(Company c);
+	public List<Produit> findAllProduct(Company c);
+	public List<Produit> findAllProductOutStock(Company c) ; 
+	public List<Object[]> productSales(Company c);
+	public List<Object[]> salesPerProduit(Produit p,Company c);
 
 }

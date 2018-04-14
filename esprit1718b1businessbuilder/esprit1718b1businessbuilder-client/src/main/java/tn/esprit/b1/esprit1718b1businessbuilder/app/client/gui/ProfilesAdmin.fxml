@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
 
 <AnchorPane fx:id="HolderAnchor" prefHeight="763.0" prefWidth="1185.0" style="-fx-background-color: 004060;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProfilesAdmlnController">
    <children>
-      <AnchorPane fx:id="initialPane" layoutX="571.0" layoutY="18.0" prefHeight="723.0" prefWidth="602.0">
+      <AnchorPane fx:id="initialPane" layoutX="571.0" layoutY="18.0" prefHeight="723.0" prefWidth="602.0" visible="false">
          <children>
-            <Pane layoutX="155.0" layoutY="22.0" prefHeight="356.0" prefWidth="305.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+            <Pane layoutX="267.0" layoutY="14.0" prefHeight="356.0" prefWidth="305.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
                <children>
-                  <AnchorPane layoutY="74.0" prefHeight="282.0" prefWidth="305.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+                  <AnchorPane layoutY="73.0" prefHeight="282.0" prefWidth="305.0" style="-fx-background-color: white; -fx-background-radius: 3; -fx-border-radius: 3; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
                      <children>
                         <Separator layoutX="13.0" layoutY="167.0" prefHeight="4.0" prefWidth="288.0" />
                         <Separator layoutX="13.0" layoutY="197.0" prefHeight="4.0" prefWidth="288.0" />
@@ -77,37 +91,132 @@
             </Pane>
          </children>
       </AnchorPane>
-      <JFXListView fx:id="listview" layoutX="21.0" layoutY="65.0" prefHeight="658.0" prefWidth="537.0" />
+      <JFXListView fx:id="listview" layoutX="21.0" layoutY="91.0" prefHeight="658.0" prefWidth="537.0" />
       <JFXTextField fx:id="search" layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="295.0" promptText="select a company or tape to find it ... " style="-fx-text-fill: #73879C;" unFocusColor="#368fe8">
          <font>
             <Font name="System Italic" size="15.0" />
          </font>
       </JFXTextField>
-      <AnchorPane fx:id="dashbord" layoutX="566.0" layoutY="65.0" prefHeight="658.0" prefWidth="610.0" visible="false">
+      <AnchorPane fx:id="dashbord" layoutX="567.0" layoutY="47.0" prefHeight="709.0" prefWidth="610.0" styleClass="card-unpadded" stylesheets="@Style2.css">
          <children>
-            <Pane layoutX="3.0" layoutY="2.0" prefHeight="87.0" prefWidth="213.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+            <VBox layoutX="136.0" layoutY="14.0" prefHeight="131.0" prefWidth="448.0" style="-fx-background-color: #00A8FF;" styleClass="card-unpadded">
                <children>
-                  <Pane prefHeight="87.0" prefWidth="67.0" style="-fx-background-color: #00C0EF;" />
-                  <VBox layoutX="70.0" layoutY="11.0" prefHeight="66.0" prefWidth="135.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="320.0" spacing="20.0" style="-fx-background-color: #00A0F3;">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="155.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="SALES" />
-                        <Label fx:id="sales" prefHeight="27.0" prefWidth="106.0" style="-fx-font-size: 20; -fx-font-weight: BOLD;" text="1,414" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../../../../../../template/FX/Hospital-Management-System-in-JAVAFX-master/src/imgs/appoint.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="26.0" prefWidth="205.0" style="-fx-font-weight: bold; -fx-text-fill: white; -fx-font-size: 17px;" text="Statistics" />
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <VBox prefHeight="62.0" prefWidth="298.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label prefHeight="35.0" prefWidth="191.0" style="-fx-text-fill: black; -fx-font-size: 13px; -fx-font-weight: bold;" text="Sales">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="100.0" spacing="20.0">
+                           <children>
+                              <JFXProgressBar fx:id="progressSales" style="-fx-background-color: red;" />
+                              <Label fx:id="valueSales" prefHeight="30.0" prefWidth="174.0" style="-fx-font-weight: bold; -fx-font-size: 15pt; -fx-text-fill: #26B99A;" text="123" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="58.0" prefWidth="320.0" style="-fx-background-color: white;">
+                     <children>
+                        <Label prefHeight="35.0" prefWidth="181.0" style="-fx-text-fill: black; -fx-font-size: 13px; -fx-font-weight: bold;" text="Net Income">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="100.0" spacing="20.0">
+                           <children>
+                              <JFXProgressBar fx:id="progressNet" style="-fx-background-color: #26B99A;" />
+                              <Label fx:id="valueNet" prefHeight="30.0" prefWidth="154.0" style="-fx-font-weight: bold; -fx-font-size: 15pt; -fx-text-fill: #26B99A;" text="39" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
-            </Pane>
-            <Pane layoutX="221.0" layoutY="1.0" prefHeight="87.0" prefWidth="213.0" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
-               <children>
-                  <Pane prefHeight="87.0" prefWidth="67.0" style="-fx-background-color: #00C0EF;" />
-                  <VBox layoutX="70.0" layoutY="10.0" prefHeight="66.0" prefWidth="135.0">
+            </VBox>
+            <TitledPane animated="false" layoutX="7.0" layoutY="452.0" prefHeight="250.0" prefWidth="597.0" styleClass="blue-titledPane" stylesheets="@Style2.css" text="Products view">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="678.0" styleClass="blue-titledPane">
                      <children>
-                        <Label prefHeight="36.0" prefWidth="155.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="NET INCOME" />
-                        <Label fx:id="net" prefHeight="27.0" prefWidth="106.0" style="-fx-font-size: 20; -fx-font-weight: BOLD;" text="1,414" />
+                        <TableView fx:id="tableview" layoutX="171.0" layoutY="14.0" onMouseClicked="#selectProduct" prefHeight="200.0" prefWidth="416.0">
+                           <columns>
+                              <TableColumn fx:id="p_description" prefWidth="179.0" text="description" />
+                              <TableColumn fx:id="p_price" prefWidth="83.0" text="price" />
+                              <TableColumn fx:id="p_cost" prefWidth="63.0" text="cost" />
+                              <TableColumn fx:id="p_stock" prefWidth="89.0" text="stock" />
+                           </columns>
+                        </TableView>
+                        <AnchorPane layoutX="10.0" layoutY="12.0" prefHeight="87.0" prefWidth="157.0" styleClass="card-unpadded">
+                           <children>
+                              <VBox layoutX="15.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" spacing="10.0">
+                                 <children>
+                                    <ToggleSwitch fx:id="outstock" prefHeight="20.0" prefWidth="73.0" text="Out of stock" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
                      </children>
-                  </VBox>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <LineChart fx:id="linechart" layoutX="-3.0" layoutY="147.0" prefHeight="297.0" prefWidth="602.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <ToggleSwitch fx:id="showAll" layoutX="14.0" layoutY="105.0" prefHeight="20.0" prefWidth="73.0" style="c: #B22222;" text="show all" />
+            <ImageView fx:id="faza" fitHeight="87.0" fitWidth="75.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/Preloader_2.gif" />
+               </image>
+            </ImageView>
+            <Pane fx:id="alert" layoutX="-131.0" layoutY="147.0" prefHeight="131.0" prefWidth="314.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;" visible="false">
+               <children>
+                  <Label layoutX="70.0" layoutY="36.0" prefHeight="30.0" prefWidth="181.0" style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #7387A8;" text="Mail Sent Successfully !" />
+                  <JFXButton fx:id="alertClose" buttonType="RAISED" layoutX="102.0" layoutY="80.0" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #F39C12;" text="Close" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </Pane>
          </children>
       </AnchorPane>
+      <JFXButton fx:id="show" layoutX="401.0" layoutY="28.0" onAction="#showDashboard" prefHeight="32.0" prefWidth="157.0" style="-fx-background-color: #26B99A; -fx-text-fill: white; -fx-font-size: 14;" text="       show dashboard">
+         <graphic>
+            <HBox alignment="CENTER" spacing="3.0" />
+         </graphic>
+      </JFXButton>
+      <FontAwesomeIconView fill="#fffdfd" glyphName="USER" layoutX="406.0" layoutY="49.0" size="14" wrappingWidth="18.0" />
+      <MaterialDesignIconView fill="WHITE" glyphName="EYE" layoutX="420.0" layoutY="51.0" size="16.0" />
+      <JFXButton fx:id="mailtest" layoutX="1042.0" layoutY="5.0" onAction="#send" prefHeight="31.0" prefWidth="124.0" style="-fx-background-color: #00A65A;" text="Mail it" textFill="WHITE">
+         <graphic>
+            <FontAwesomeIconView fill="WHITE" glyphName="UPLOAD" size="24.0" wrappingWidth="25.285715103149414" />
+         </graphic>
+         <font>
+            <Font name="Roboto Medium" size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

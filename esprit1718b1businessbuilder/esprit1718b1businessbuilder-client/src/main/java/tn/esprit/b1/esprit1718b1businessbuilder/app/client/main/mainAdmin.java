@@ -86,7 +86,7 @@ public class mainAdmin {
 		   
 
 
-		List<Object[]> list = proxy1.findBestProduct();
+		/*List<Object[]> list = proxy1.findBestProduct();
 		    for (Object[] o : list){
 		    	OrderLine sector = (OrderLine)o[1] ; 
 		    	System.out.println(sector.toString());
@@ -95,7 +95,7 @@ public class mainAdmin {
 
 		    }
 
-		    
+		   */ 
 
 
 	  		//System.out.println(proxy3.findBy(32));
@@ -142,12 +142,13 @@ public class mainAdmin {
 		//*******************************Order****************************************\\
 		    //OrderService
 		   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-		/*   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
+		  //String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 			
 
 		   OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
-		Company c6 = proxy2.findBy((long) 3) ; 
-		 Produit p = proxy1.findProduct(3);
+		Company c6 = proxy2.findBy((long) 31) ; 
+		System.out.println(proxy.productSales(c6));
+		/* Produit p = proxy1.findProduct(3);
 		 proxy.addProductToOrder(p, c6, 100);
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 

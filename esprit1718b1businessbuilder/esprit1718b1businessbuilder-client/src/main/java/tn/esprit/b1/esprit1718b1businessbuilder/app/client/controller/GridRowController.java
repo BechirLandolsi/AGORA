@@ -10,14 +10,17 @@ import org.controlsfx.control.GridCell;
 import org.controlsfx.control.Rating;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -52,11 +55,24 @@ public class GridRowController extends ListCell<Company> {
     @FXML
     private Circle circle;
     
+
     @FXML
-    private JFXButton show;
+    private JFXCheckBox check;
 
     private FXMLLoader mLLoader;
     
+    private static Company entreprise;
+    
+   	public static Company getEntreprise() {
+   		return entreprise;
+   	}
+
+
+
+   	public static void setEntreprise(Company entreprise) {
+   		GridRowController.entreprise = entreprise;
+   	}
+       
     @Override
     protected void updateItem(Company company, boolean empty) {
     	 if (empty || company == null) {
@@ -83,20 +99,22 @@ public class GridRowController extends ListCell<Company> {
              telefone.setText(company.getNumber().toString());
              sector.setText(company.getSector());
              rate.setRating(company.getRate());
-             
+            // show.onMouseClickedProperty(new ActionEvent
              File file = new File(("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/"+company.getImage()));
            
              Image img1 = new Image(file.toURI().toString());
-             img.setImage(img1);
+             //img.setImage(img1);
              
              circle.setFill(new ImagePattern(img1));
+             check.setOnMouseClicked(event->entreprise=company);
+             
              setText(null);
              setGraphic(cell);
          }
-    
+        
     }
     @FXML
 	    void showDashboard(ActionEvent event) {
-
+             
 	    }
 }

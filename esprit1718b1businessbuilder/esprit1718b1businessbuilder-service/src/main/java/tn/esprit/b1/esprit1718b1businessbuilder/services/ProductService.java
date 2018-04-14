@@ -133,6 +133,20 @@ public class ProductService implements ProductServiceRemote{
 	    }
 		return list;
 	}
+
+
+	@Override
+	public void editProduct(Produit P) {
+		em.merge(P);
+		
+	}
+	
+	@Override
+	public void removeProduct(Produit P) {
+		
+		em.remove(em.contains(P) ? P : em.merge(P));
+		
+	}
 	
 
 

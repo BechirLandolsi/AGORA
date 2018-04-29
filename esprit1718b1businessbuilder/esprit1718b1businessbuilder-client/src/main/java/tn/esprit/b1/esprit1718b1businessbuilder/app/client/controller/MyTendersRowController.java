@@ -123,7 +123,7 @@ public class MyTendersRowController extends ListCell<Tender> {
      			e1.printStackTrace();
      		}
              
-             update.setOnAction(event->System.out.println(tender.getId()));
+             //update.setOnAction(event->System.out.println(tender.getId()));
              //idTender=tender.getId();
              setText(null);
              setGraphic(row);
@@ -133,34 +133,5 @@ public class MyTendersRowController extends ListCell<Tender> {
         
     }
     
-    /*private void setStage(String fxml) {
-        try {
-            //dim overlay on new stage opening
-            Region veil = new Region();
-            veil.setPrefSize(1100, 650);
-            veil.setStyle("-fx-background-color:rgba(0,0,0,0.3)");
-            Stage newStage = new Stage();
-            Parent parent = FXMLLoader.load(getClass().getResource(fxml));
-            
-            Scene scene = new Scene(parent);
-            scene.setFill(Color.TRANSPARENT);
-            newStage.setScene(scene);
-            newStage.initModality(Modality.APPLICATION_MODAL);
-            newStage.initStyle(StageStyle.TRANSPARENT);
-            newStage.getScene().getRoot().setEffect(new DropShadow());
-            newStage.showingProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue) {
-                    rootPane.getChildren().add(veil);
-                } else if (rootPane.getChildren().contains(veil)) {
-                    rootPane.getChildren().removeAll(veil);
-                }
-                
-            });
-            newStage.centerOnScreen();
-            newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-*/
+    
 }

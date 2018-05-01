@@ -87,7 +87,7 @@ public class EventRowController extends ListCell<Event>  {
     
 	@Override
     protected  void updateItem (Event ev, boolean empty) {
-       EventController ec = new EventController();
+
         
         if (empty || ev == null) {
 
@@ -120,6 +120,7 @@ public class EventRowController extends ListCell<Event>  {
              setGraphic(row);
             
             invite_butt.setOnAction(event->{
+            	entier=ev.getId_event();
             	
             	Parent root;
 				try {
@@ -137,11 +138,30 @@ public class EventRowController extends ListCell<Event>  {
             	
             	
             });
-            view_details_butt.setOnAction(event->entier=ev.getId_event());
+            view_details_butt.setOnAction(
+            		event->{ 
+            		entier=ev.getId_event();
+            		Parent root;
+    				try {
+    				
+    					Stage Stage=new Stage();
+    					root = FXMLLoader.load(getClass().getResource("../gui/EventDetails.fxml"));
+    		            Scene scene=new Scene(root);
+    		            Stage.setScene(scene);
+    		            Stage.show();
+    		            	
+    				} catch (IOException e) {
+    					Logger.getLogger(EventRowController.class.getName()).log(Level.SEVERE, null,e);
+    				} 
+            		
+            		
+            		}
+            		
+            		);
             cancel_butt.setOnAction(event->{
             	entier=ev.getId_event();
+            	
             	Event e = new Event();
-
             	try {
         			context1 = new InitialContext();
         			EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);

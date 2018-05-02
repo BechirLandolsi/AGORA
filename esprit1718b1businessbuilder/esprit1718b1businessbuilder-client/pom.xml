@@ -108,35 +108,27 @@
 		</dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-<<<<<<< HEAD
 
-
-<!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>smtp</artifactId>
 			<version>1.5.4</version>
 		</dependency>
-=======
+
 
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 
-<<<<<<< HEAD
 <dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.1</version>
 		</dependency>
 		
-=======
 
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 	</dependencies>
 
 	<build>

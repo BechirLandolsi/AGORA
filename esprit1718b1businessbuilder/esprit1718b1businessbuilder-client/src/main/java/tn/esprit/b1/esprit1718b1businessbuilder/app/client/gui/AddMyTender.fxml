@@ -1,35 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="475.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.AddMyTenderController">
+<AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="860.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.AddMyTenderController">
     <children>
-      <AnchorPane layoutX="723.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: FF0200;">
+      <AnchorPane layoutX="811.0" prefHeight="43.0" prefWidth="49.0" style="-fx-background-color: FF0200;">
          <children>
             <MaterialDesignIconView fx:id="iconClose" fill="WHITE" glyphName="CLOSE" layoutX="13.0" layoutY="31.0" onMouseClicked="#closeStage" size="22.0" />
          </children>
       </AnchorPane>
-      <TextField layoutX="134.0" layoutY="25.0" prefHeight="43.0" prefWidth="516.0" promptText="Your Title here..." style="-fx-border-color: #37a000;">
+      <TextField fx:id="title" layoutX="62.0" layoutY="24.0" prefHeight="43.0" prefWidth="516.0" promptText="Your Title here..." style="-fx-border-color: #37a000;">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <TextArea layoutX="38.0" layoutY="97.0" prefHeight="218.0" prefWidth="705.0" promptText="Type Your Tender Offer Here..." style="-fx-border-color: #37a000;">
+      <TextArea fx:id="content" layoutX="60.0" layoutY="97.0" prefHeight="218.0" prefWidth="705.0" promptText="Type Your Tender Offer Here..." style="-fx-border-color: #37a000;" wrapText="true">
          <font>
             <Font size="18.0" />
          </font></TextArea>
-      <ComboBox fx:id="combo_qualif" layoutX="77.0" layoutY="335.0" prefHeight="35.0" prefWidth="190.0" promptText="Qualifications" style="-fx-border-color: #2DB000;" />
-      <ComboBox fx:id="combo_cat" layoutX="501.0" layoutY="337.0" prefHeight="35.0" prefWidth="198.0" promptText="Categories" style="-fx-border-color: #2DB000;" />
-      <JFXButton fx:id="post" layoutX="286.0" layoutY="407.0" onAction="#post" prefHeight="50.0" prefWidth="190.0" style="-fx-background-color: #37a000;" text="Post" textFill="WHITE">
+      <JFXButton fx:id="post" layoutX="293.0" layoutY="445.0" onAction="#post" prefHeight="50.0" prefWidth="190.0" style="-fx-background-color: #37a000;" text="Post" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="23.0" />
          </font>
       </JFXButton>
+      <JFXCheckBox fx:id="sameCountry" checkedColor="#37a000" layoutX="69.0" layoutY="340.0" prefHeight="35.0" prefWidth="160.0" text="Same Country" unCheckedColor="#4d4d4d">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="has4stars" checkedColor="#37a000" layoutX="210.0" layoutY="340.0" prefHeight="35.0" prefWidth="160.0" text="Has at least 4 stars">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="has3stars" checkedColor="#37a000" layoutX="388.0" layoutY="340.0" prefHeight="35.0" prefWidth="160.0" text="Has at least 3 stars">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="has3projects" checkedColor="#37a000" layoutX="557.0" layoutY="340.0" prefHeight="35.0" prefWidth="198.0" text="Has worked on 3 projects">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXCheckBox fx:id="has80profile" checkedColor="#37a000" layoutX="167.0" layoutY="384.0" prefHeight="35.0" prefWidth="234.0" text="At least 80% reached on profile">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXCheckBox>
+      <JFXComboBox fx:id="combo_cat" focusColor="#37a000" layoutX="579.0" layoutY="23.0" prefHeight="43.0" prefWidth="143.0" promptText="Categories" unFocusColor="BLACK" />
+      <JFXDatePicker fx:id="deadline" defaultColor="#37a000" layoutX="501.0" layoutY="385.0" promptText="Deadline" />
    </children>
 </AnchorPane>

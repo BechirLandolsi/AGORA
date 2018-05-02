@@ -11,15 +11,18 @@ import com.jfoenix.controls.JFXButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.InvitationServiceRemote;
 
 
 /**
@@ -49,15 +52,52 @@ public class InvitationRowController extends ListCell<Company> {
     private FontAwesomeIconView tick_label;
     @FXML
     private Label already_label;
+    
     private FXMLLoader companyLoader;
 
-    /**
+    private static long nombre;
+    private static long count;
+    private static long guestnombre;
+    
+    
+    public static long getGuestnombre() {
+		return guestnombre;
+	}
+
+
+	public static void setGuestnombre(long guestnombre) {
+		InvitationRowController.guestnombre = guestnombre;
+	}
+
+
+	public static long getCount() {
+		return count;
+	}
+
+
+	public static void setCount(long count) {
+		InvitationRowController.count = count;
+	}
+
+
+	/**
      * Initializes the controller class.
      */
        
     
+    
+    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/InvitationService!tn.esprit.b1.esprit1718b1businessbuilder.services.InvitationServiceRemote" ; 
+	Context context1;
+	
+	String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ;
+	Context context2;
+	
+	String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ;
+	Context context3;
+	
+    
     @Override
-    protected void updateItem(Company company, boolean empty) {
+    protected void updateItem(Company company, boolean empty){
     	 if (empty || company == null) {
 
              setText(null);
@@ -86,10 +126,45 @@ public class InvitationRowController extends ListCell<Company> {
              setText(null);
              setGraphic(row);
              
+             
+     		
+             
              invite_company_butt.setOnAction(event->{
+            	 String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
+         		Context context2;
+				
+         			
+           	    try {
+					context1 = new InitialContext();
+					InvitationServiceRemote proxy = (InvitationServiceRemote ) context1.lookup(jndiName1);
+					
+						context2 = new InitialContext();
+						EventServiceRemote proxy2 = (EventServiceRemote) context2.lookup(jndiName2);
+		         		
+					
+					//proxy.InviteCompanyToAnEvent(1, 84);
+					nombre=EventRowController.getEntier();
+					//System.out.println(nombre);
+					//System.out.println(company.getId());
+					proxy.InviteCompanyToAnEvent(company.getId(),nombre);
+				    count=proxy.countnumberinvitation(proxy2.find(nombre));
+				    guestnombre=proxy.countnumberguest(proxy2.find(nombre));
+				    
+					System.out.println(Long.toString(count));
+				} catch (NamingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+           		 
+           		
+           		
+           		
+           		
             	 invite_company_butt.setDisable(true);
             	 tick_label.setVisible(true);
             	 already_label.setVisible(true);
+            	 
+            	 
              });
          }
     

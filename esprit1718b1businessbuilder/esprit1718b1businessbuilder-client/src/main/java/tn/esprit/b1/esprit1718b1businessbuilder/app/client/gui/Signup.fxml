@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="626.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.SignupController">
    <children>
-      <AnchorPane layoutY="-10.0" prefHeight="126.0" prefWidth="611.0" style="-fx-background-color: #374fb1;">
+      <AnchorPane layoutY="-10.0" prefHeight="126.0" prefWidth="614.0" style="-fx-background-color: #374fb1;">
          <children>
             <MaterialDesignIconView fx:id="iconClose" fill="WHITE" glyphName="CLOSE" layoutX="575.0" layoutY="33.0" onMouseClicked="#closeStage" size="22.0" />
             <Label layoutX="135.0" layoutY="11.0" prefHeight="50.0" prefWidth="341.0" text="Registraion Form" textFill="WHITE">
@@ -33,21 +35,30 @@
             </Pane>
          </children>
       </AnchorPane>
-      <VBox layoutX="55.0" layoutY="131.0" prefHeight="179.0" prefWidth="359.0" spacing="20.0">
+      <VBox layoutX="55.0" layoutY="131.0" prefHeight="274.0" prefWidth="359.0" spacing="20.0">
          <children>
-            <JFXTextField fx:id="email" onKeyReleased="#test1" prefHeight="32.0" prefWidth="443.0" promptText="Email" />
-            <JFXTextField fx:id="login" onKeyReleased="#test2" prefHeight="32.0" prefWidth="443.0" promptText="Login" />
-            <JFXPasswordField fx:id="password" promptText="Password" />
-            <JFXPasswordField fx:id="password2" promptText="Confirm Password" />
+            <JFXTextField fx:id="email" labelFloat="true" onKeyReleased="#test1" prefHeight="32.0" prefWidth="443.0" promptText="Email" />
+            <JFXTextField fx:id="number" labelFloat="true" onKeyReleased="#test3" prefHeight="35.0" prefWidth="359.0" promptText="Phone number" />
+            <JFXTextField fx:id="login" labelFloat="true" onKeyReleased="#test2" prefHeight="31.0" prefWidth="359.0" promptText="Login" />
+            <JFXPasswordField fx:id="password" labelFloat="true" promptText="Password" />
+            <JFXPasswordField fx:id="password2" labelFloat="true" prefHeight="35.0" prefWidth="359.0" promptText="Confirm Password" />
          </children>
       </VBox>
-      <JFXButton fx:id="register" layoutX="140.0" layoutY="353.0" onAction="#register" prefHeight="44.0" prefWidth="359.0" style="-fx-background-color: #374fb1;" text="Register" textFill="#fffefe">
+      <JFXButton fx:id="register" layoutX="113.0" layoutY="568.0" onAction="#register" prefHeight="44.0" prefWidth="359.0" style="-fx-background-color: #374fb1;" text="Register" textFill="#fffefe">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <Label fx:id="warning1" layoutX="417.0" layoutY="149.0" prefHeight="25.0" prefWidth="190.0" />
-      <Label fx:id="warning2" layoutX="431.0" layoutY="197.0" prefHeight="32.0" prefWidth="160.0" />
-      <Label fx:id="warning" layoutX="431.0" layoutY="294.0" prefHeight="25.0" prefWidth="169.0" />
+      <Label fx:id="warning1" layoutX="416.0" layoutY="137.0" prefHeight="25.0" prefWidth="190.0" />
+      <Label fx:id="warning2" layoutX="437.0" layoutY="236.0" prefHeight="32.0" prefWidth="160.0" />
+      <Label fx:id="warning" layoutX="427.0" layoutY="345.0" prefHeight="25.0" prefWidth="169.0" />
+      <Label fx:id="warningnumber" layoutX="442.0" layoutY="186.0" prefHeight="25.0" prefWidth="160.0" />
+      <Label layoutX="55.0" layoutY="405.0" prefHeight="25.0" prefWidth="430.0" text="Please choose a Security question and answer for it . It may be needed later">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="combosecret" layoutX="55.0" layoutY="438.0" prefHeight="35.0" prefWidth="417.0" promptText="Secret Questions" />
+      <TextField fx:id="rep" layoutX="55.0" layoutY="492.0" prefHeight="31.0" prefWidth="417.0" promptText="response" />
    </children> 
 </AnchorPane>

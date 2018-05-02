@@ -13,6 +13,8 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,8 @@ import java.time.LocalDate;
 
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,15 +34,20 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
 
@@ -88,6 +97,9 @@ public class EventController implements Initializable{
     @FXML
     private JFXButton refresh_butt;
 	
+    User loggedcompany = LoginController.LoggedUser;
+    
+    
 	
 	/**
      * Initializes the controller class.
@@ -95,10 +107,15 @@ public class EventController implements Initializable{
 	
 	//this variable give us the id of the event from the list view (from another controller )
     //that's why it is declared a static variable
+    private static long idloggeduse;
+    
+    public static long getIdloggeduse() {
+		return idloggeduse;
+	}
     private static long nombre;
     private ObservableList<Event> event_list;
     private ObservableList<String> all_sectors = FXCollections.observableArrayList();
-    //private ObservableList<Event> comingonly;
+    private ObservableList<Event> remind_list;
     
     /* Getters And Setters */
     public static long getNombre() {
@@ -126,16 +143,20 @@ public class EventController implements Initializable{
 	    try {
 			context1 = new InitialContext();
 		    EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+		    idloggeduse=loggedcompany.getId();
 		
 		    
 //************************************************ Displaying Events in the List view  **************************************************
 //***************************************************************************************************************************************		
-	
-	     event_list = FXCollections.observableArrayList(proxy.UpComingEvents());
-	     //remind_list= FXCollections.observableArrayList(proxy.EventReminder(event_list));
+		 remind_list= FXCollections.observableArrayList(proxy.findAll());
+	     
+	     java.util.Date da = new java.util.Date();
+	     for(Event e :remind_list){
+	    	 if(e.getEvent_date().before(da)){e.setEvent_state(true);
+	    	 System.out.println(e);}
+	     }
+	     event_list = FXCollections.observableArrayList(proxy.findEventByCompany(idloggeduse));
 	     all_sectors=FXCollections.observableArrayList(proxy.DisplaySector());
-	     //comingonly = FXCollections.observableArrayList(proxy.UpComingEvents());
-	     //List view
 	     event_list_view.setItems(event_list);
 	     event_list_view.setCellFactory(new Callback<ListView<Event>, javafx.scene.control.ListCell<Event>>()
 	        {
@@ -153,7 +174,7 @@ public class EventController implements Initializable{
 	    
 	    //setting combox values
 	    combo_sector.getItems().addAll(all_sectors);
-	    combo_type.getItems().addAll("Product Launch"," Company Milestones","Trade Shows","Appreciation Events");
+	    combo_type.getItems().addAll("Product_Launch"," Company_Milestones","Trade_Shows","Appreciation_Events");
     }    
 
 
@@ -169,7 +190,7 @@ public class EventController implements Initializable{
     	try {
 			context1 = new InitialContext();
 		} catch (NamingException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
     	
@@ -210,9 +231,12 @@ public class EventController implements Initializable{
       
     }
      
-   void refresh (Event e){
+   void refresh (Event e) {
     	event_list_view.getItems().clear();
 		event_list_view.getItems().addAll(e);
+		
+		
+		
     }
     
   //************************************************ Adding a new Event  **************************************************
@@ -236,6 +260,8 @@ public class EventController implements Initializable{
     	e.setEvent_type(combo_type.getValue());
     	LocalDate a = eventdate.getValue();
     	java.sql.Date d = java.sql.Date.valueOf(a);
+    	e.setCompany_organizer((Company)loggedcompany);
+    	
     	
     	///get the system date
     	String format = "dd/MM/yy H:mm:ss";
@@ -278,6 +304,8 @@ public class EventController implements Initializable{
 		{
 			
 		proxy.save(e);
+		proxy.AffectAnEventToCompany(e,(Company)loggedcompany);
+		
 		alert_label.setText("");
 		alert_img.setVisible(false);
 		success_img.setVisible(true);
@@ -358,7 +386,15 @@ public class EventController implements Initializable{
     
     
     @FXML
-    private void on_refresh_clicked(ActionEvent event) {
+    private void on_refresh_clicked(ActionEvent event) throws IOException {
+    	Parent root;
+		Stage Stage=new Stage();
+		root = FXMLLoader.load(getClass().getResource("../gui/Reply.fxml"));
+        Scene scene=new Scene(root);
+        Stage.setScene(scene);
+        Stage.show();
+       System.out.println("done");
+        	
     }
 
   //************************************************ Controle Saisie Anterior Date  **************************************************

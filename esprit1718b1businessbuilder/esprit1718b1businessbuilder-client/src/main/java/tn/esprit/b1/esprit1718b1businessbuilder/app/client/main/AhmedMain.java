@@ -46,11 +46,11 @@ public class AhmedMain {
 		//System.out.println(proxy.findCompanyBysynonyme("passat"));*/
 //System.out.println(getSentence("ben amri", "ben")) ;	    
 	/*********************************************TESTCOMPANY*******************************************************************************************************************************************/
-	 /*   String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+	   String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 		 
 
 	    Context context1 = new InitialContext();
-		CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
+		/*CompanyServiceRemote proxy1 = (CompanyServiceRemote) context.lookup(jndiName);
 		//System.out.println();
 		List<Object[]> list = proxy1.bestCompany();
 	    for (Object[] o : list){
@@ -81,23 +81,29 @@ public class AhmedMain {
  	 	//service.setName("merchandise  sale ");
  	    //service.setName("computer   sale ");
  	 	//                       proxy.ajouterService(service);
- 	 	/*proxy.affecterServiceACompany(30, 10);
- 	 	proxy.affecterServiceACompany(30, 12 );
+ 	 	//proxy.affecterServiceACompany(30, 10);
+ 	 //	proxy.affecterServiceACompany(30, 12 );
 
  	 	String jndiNameService="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote";
- 	 	ServiceServiceRemote proxyService = (ServiceServiceRemote)context.lookup(jndiNameService);
+ 	 	ServiceServiceRemote proxyService = (ServiceServiceRemote)context1.lookup(jndiNameService);
 	    
 	    Service service = new Service () ;
- 	 	service.setName("car manufacturing");
+	    //service.setName("aabb");
+ 	 	/*service.setName("car manufacturing");
  	 	service.setName("wheel manufacturing");
  	 	service.setName("furniture manufacturing");
  	 	service.setName("steel manufacturing");
  	    service.setName("smartphone manufacturing");
  	    service.setName("simcard sale ");
  	 	service.setName("merchandise  sale ");
- 	    service.setName("computer   sale ");
- 	   //proxyService.ajouterService(service);
- 	   //proxyService.affecterServiceACompany(4, 1);
+ 	    service.setName("computer   sale ");*/
+ 	  // long  x= 0 ;
+ 			 //  x = proxyService.ajouterService(service);
+ 	   //Service s1 = proxyService.findService();
+ 	  // s1.setName("ahmed");
+ 	 // proxyService.editService(s1);
+ 	   //proxyService.removeService(19);
+ 	  // proxyService.affecterServiceACompany(4, 1);
  	 	/*proxy.affecterServiceACompany(30, 12 );
 
  	 	proxy.affecterServiceACompany(31, 13 );
@@ -114,7 +120,7 @@ public class AhmedMain {
 		//currencyConvertion("TND","EUR") ;
  	 	
     }
-	public static float currencyConvertion(String from,String to , float price)
+/*	public static float currencyConvertion(String from,String to , float price)
 	{
 		String response = HttpRequest
 				.get("https://v3.exchangerate-api.com/bulk/428d417084fe51418dc991a4/"+from)
@@ -124,5 +130,6 @@ public class AhmedMain {
 		JSONObject status = jsonObject.getJSONObject("rates");
 		Double eur = status.getDouble(to);
 		return (float) (eur * price) ;
-	}
+	} */
+	
 }

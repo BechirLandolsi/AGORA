@@ -53,11 +53,16 @@
       <FontAwesomeIconView fill="#bcc2cd" glyphName="SEARCH" layoutX="1063.0" layoutY="64.0" size="30" text="" wrappingWidth="34.91675089672208" />
       <TextField fx:id="searching" layoutX="409.0" layoutY="33.0" prefHeight="42.0" prefWidth="617.0" promptText="Search here" styleClass="search-box" />
       <ListView fx:id="event_list_view" layoutX="409.0" layoutY="90.0" prefHeight="513.0" prefWidth="617.0" />
-      <FontAwesomeIconView fill="#bcc2cd" glyphName="COMPRESS" layoutX="1071.0" layoutY="121.0" size="30" wrappingWidth="20.714285850524902" />
       <JFXButton fx:id="refresh_butt" ellipsisString="" layoutX="1051.0" layoutY="90.0" onAction="#on_refresh_clicked" prefHeight="42.0" prefWidth="60.0" style="-fx-alignment: left;" styleClass="nav-button" textFill="WHITE">
          <font>
             <Font name="Roboto Bold" size="14.0" />
          </font>
       </JFXButton>
+      <FontAwesomeIconView fill="#bcc2cd" glyphName="ENVELOPE_ALT" layoutX="1065.0" layoutY="121.0" size="30" wrappingWidth="29.916739910840988" />
    </children>
 </AnchorPane>
+
+
+
+
+      

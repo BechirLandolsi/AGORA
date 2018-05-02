@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>tn.esprit.b1</groupId>
@@ -8,14 +9,16 @@
 	</parent>
 	<artifactId>esprit1718b1businessbuilder-client</artifactId>
 	<name>esprit1718b1businessbuilder-client</name>
-	
+
 	<repositories>
+	
     <repository>
       <id>snapshots-repo</id>
       <name>Sonatype Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
   </repositories>
+
 
 	<dependencies>
 		<dependency>
@@ -32,7 +35,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ant-javafx</artifactId>
@@ -40,47 +43,47 @@
 			<systemPath>${java.home}/../lib/ant-javafx.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
-					
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.10.Final</version>
-   		</dependency>
-					
-					
-	<!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
-	
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
+
 		<dependency>
 			<groupId>com.jfoenix</groupId>
 			<artifactId>jfoenix</artifactId>
 			<version>1.4.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
-<dependency>
-    <groupId>org.controlsfx</groupId>
-    <artifactId>controlsfx</artifactId>
-    <version>8.40.12</version>
-</dependency>
-		
+		<dependency>
+		    <groupId>org.controlsfx</groupId>
+		    <artifactId>controlsfx</artifactId>
+		    <version>8.40.12</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
 		<dependency>
-		    <groupId>de.jensd</groupId>
-		    <artifactId>fontawesomefx</artifactId>
-		    <version>8.9</version>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx</artifactId>
+			<version>8.9</version>
 		</dependency>
 		<!-- TILESFX -->
 		<dependency>
-  			<groupId>eu.hansolo</groupId>
-  			<artifactId>tilesfx</artifactId>
- 			 <version>1.5.2</version>
+			<groupId>eu.hansolo</groupId>
+			<artifactId>tilesfx</artifactId>
+			<version>1.5.2</version>
 		</dependency>
-		<!-- jfxtras -->  
-      <dependency>
-           <groupId>org.jfxtras</groupId>
-           <artifactId>jfxtras-all</artifactId>
-           <version>8.0-r6-SNAPSHOT</version>
-       </dependency>
-   	
+		<!-- jfxtras -->
+		<dependency>
+			<groupId>org.jfxtras</groupId>
+			<artifactId>jfxtras-all</artifactId>
+			<version>8.0-r6-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
@@ -89,21 +92,24 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-		
+
 		<dependency>
-			   <groupId>org.ocpsoft.prettytime</groupId>
-			   <artifactId>prettytime</artifactId>
-			   <version>4.0.1.Final</version>
+			<groupId>org.ocpsoft.prettytime</groupId>
+			<artifactId>prettytime</artifactId>
+			<version>4.0.1.Final</version>
 		</dependency>
 
-		<!-- To use snapshots, you must also use the Sonatype Snapshots respository -->
-		<repository>
-		   <id>sonatype-snapshots</id>
-		   <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
 		
+		
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>7.17.0</version>
+		</dependency>
+
 
 	<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+<<<<<<< HEAD
 
 
 <!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
@@ -112,13 +118,25 @@
 			<artifactId>smtp</artifactId>
 			<version>1.5.4</version>
 		</dependency>
+=======
 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
+
+<<<<<<< HEAD
 <dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.1</version>
 		</dependency>
 		
+=======
+
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 	</dependencies>
 
 	<build>
@@ -137,7 +155,8 @@
 						</goals>
 						<configuration>
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>tn.bettaieb.bitbox.starter.app.client.gui.MainGUI</mainClass>
 								</transformer>
 							</transformers>

@@ -34,10 +34,31 @@ public class User implements Serializable {
 	@Column(name = "USR_EMAIL")
 	protected String email;
 	
-	@Column(name = "USR_ROLE")
-	protected String role;
+	@Column(name = "USR_MAC")
+	protected String mac;
 	
 	protected Double progress ;
+	protected String secretquestion ;
+	protected String response ;
+	
+	
+	
+	
+	public String getSecretquestion() {
+		return secretquestion;
+	}
+
+	public void setSecretquestion(String secretquestion) {
+		this.secretquestion = secretquestion;
+	}
+
+	public String getResponse() {
+		return response;
+	}
+
+	public void setResponse(String response) {
+		this.response = response;
+	}
 
 	public Double getProgress() {
 		return progress;
@@ -55,12 +76,12 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getRole() {
-		return role;
+	public String getMac() {
+		return mac;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setMac(String mac) {
+		this.mac = mac;
 	}
 	public String getName() {
 		return name;
@@ -146,7 +167,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", email=" + email + ", role=" + role + "]";
+		return "User [name=" + name + ", email=" + email + ", mac=" + mac + "]";
 	}
 
 }

@@ -92,7 +92,7 @@ public class TenderCategory implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Category [nameCategory=" + nameCategory + "]";
+		return nameCategory;
 	}
 	
 

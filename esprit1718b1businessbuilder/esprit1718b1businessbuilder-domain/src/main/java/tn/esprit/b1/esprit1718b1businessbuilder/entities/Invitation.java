@@ -18,6 +18,10 @@ import javax.persistence.TemporalType;
 public class Invitation implements Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private InvitationPK invitationPK;
 	
@@ -25,6 +29,7 @@ public class Invitation implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idEvent",referencedColumnName="EVENT_ID",insertable=false,updatable=false)
 	private Event Event ;
+	
 	@ManyToOne
 	@JoinColumn(name="idCompanyGuest",referencedColumnName="USR_ID",insertable=false,updatable=false)
 	private Company guest ;
@@ -88,6 +93,22 @@ public class Invitation implements Serializable {
 
 	public void setParticipation_price(float participation_price) {
 		this.participation_price = participation_price;
+	}
+
+	public Invitation(tn.esprit.b1.esprit1718b1businessbuilder.entities.Event event, Company guest) {
+		super();
+		Event = event;
+		this.guest = guest;
+	}
+
+	public Invitation() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Invitation [Event=" + Event + ", guest=" + guest + ", invitationDate=" + invitationDate
+				+ ", guest_Response=" + guest_Response + ", participation_price=" + participation_price + "]";
 	}
 	
 	

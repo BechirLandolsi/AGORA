@@ -19,7 +19,6 @@ public class Company extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-			
 
 	public List<Partnership> getCompanyOwner() {
 		return CompanyOwner;

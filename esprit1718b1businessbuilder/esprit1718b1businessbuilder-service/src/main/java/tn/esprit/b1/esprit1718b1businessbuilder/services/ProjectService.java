@@ -100,17 +100,55 @@ public class ProjectService implements ProjectRemote{
 	}
 
 	@Override
-	public List<Project> getRateByCompany(Company c) {
-		TypedQuery <Project> k= em.createQuery("select p from Project p where p.ProjectOwner= :company group by quality",Project.class);
+	public List<String> getProjectsNameByCompany(Company c) {
 		
-		List<Project> projects = k.setParameter("company",c).getResultList() ;
+		TypedQuery <String> k= em.createQuery("select p.name from Project p where p.ProjectOwner= :company group by quality",String.class);
+		
+		List<String> projects = k.setParameter("company",c).getResultList() ;
 		
 				
 		return projects;
 	
 	}
 	
+	@Override
+	public List<Number> getProjectsQualityByCompany(Company c) {
+		
+		TypedQuery <Number> k= em.createQuery("select p.quality from Project p where p.ProjectOwner= :company group by quality",Number.class);
+		
+		List<Number> projects = k.setParameter("company",c).getResultList() ;
+		
+				
+		return projects;
 	
+	}
+
+	@Override
+	public void delete(Project p) 
+	{
+		TypedQuery <Bilan> k= em.createQuery("select b from Bilan b where b.project= :p",Bilan.class);
+		Bilan b1=k.setParameter("p", p).getSingleResult();
+		em.remove(em.contains(b1) ? b1 : em.merge(b1));
+		em.remove(em.contains(p) ? p : em.merge(p));
+		
+		
+	}
+
+	@Override
+	public Project Edit(Project p) {
+		em.merge(p);
+		return p;
+	}
+
+	@Override
+	public List<Project> findProjectById(Long id) {
+		
+     TypedQuery <Project> k= em.createQuery("select p from Project p where p.id="+id,Project.class);
+		
+		List<Project> p = k.getResultList() ;
+		
+		return p;
+	}
 	
 	
 	

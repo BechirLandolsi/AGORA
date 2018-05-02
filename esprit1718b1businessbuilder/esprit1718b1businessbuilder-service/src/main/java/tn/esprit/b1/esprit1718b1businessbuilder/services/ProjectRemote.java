@@ -25,9 +25,15 @@ public interface ProjectRemote {
 	
 	public long CountUnstableProjects(Company c);
 	
-	public List<Project> getRateByCompany(Company c);
+	public List<String> getProjectsNameByCompany(Company c);
 	
-
+	public List<Number> getProjectsQualityByCompany(Company c);
+	
+	public void delete(Project p);
+	
+	public Project Edit (Project p);
+	
+	public List<Project> findProjectById(Long id);
 
 	
 	

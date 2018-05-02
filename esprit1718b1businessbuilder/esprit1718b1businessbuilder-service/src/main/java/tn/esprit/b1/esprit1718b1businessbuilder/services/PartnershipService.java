@@ -28,7 +28,6 @@ public class PartnershipService implements PartnershipRemote{
 		
 		return listproject;
 		
-		
 	}
 
 	@Override
@@ -37,6 +36,16 @@ public class PartnershipService implements PartnershipRemote{
 		part.setPartnershipPK(PartnershipPK);
 		
 		em.persist(part);
+		
+	}
+
+	@Override
+	public List<Partnership> PartnershipByProject(Project p) {
+		TypedQuery <Partnership> k = em.createQuery("select p from Partnership p where p.project=: p",Partnership.class);
+		k.setParameter("p", p);
+		List <Partnership> listproject = k.getResultList();
+		
+		return listproject;
 		
 	}
 	

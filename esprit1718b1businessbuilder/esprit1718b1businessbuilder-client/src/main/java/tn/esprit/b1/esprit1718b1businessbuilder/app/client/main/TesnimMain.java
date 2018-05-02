@@ -7,9 +7,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote;
 
@@ -20,6 +22,8 @@ public class TesnimMain {
         String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProjectService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote" ; 
 		
         String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
+       
+        String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/BilanService!tn.esprit.b1.esprit1718b1businessbuilder.services.BilanRemote" ; 
 
        
         
@@ -38,7 +42,7 @@ public class TesnimMain {
 		
 	//	ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName1);
 		
-		Company c =proxy.findBy((long)2);
+		//Company c =proxy.findBy((long)2);
 		
 		//System.out.println(c);
 		//System.out.println(c.getId());
@@ -59,6 +63,39 @@ public class TesnimMain {
 		//System.out.println(p);
 		
 		//System.out.println(proxy.FindBySectorButCompany(c.getId(), "Sport"));
+
+/*******************************************************************************************************************************/		
+		
+		/*List<Project> p = new ArrayList<>();
+		
+		ProjectRemote proxy1 = (ProjectRemote) context.lookup(jndiName1);
+		p = proxy1.findProjectById((long)13);
+		if (p.isEmpty())
+		{
+			System.out.println("Project not found");
+		}
+		else {
+			p.get(0).setName("test Edit");
+			proxy1.Edit(p.get(0));
+			System.out.println("Edit validé");
+			}
+		*/
+		
+/**************************************************************************************************************/		
+		ProjectRemote proxy1 = (ProjectRemote) context.lookup(jndiName1);
+		//BilanRemote proxy2 = (BilanRemote) context.lookup(jndiName2);
+		
+		//List<Bilan> b = new ArrayList<>();
+		
+		//b=proxy2.findBilan((long) 21);
+
+		List<Project> p = new ArrayList<>();
+		
+		p = proxy1.findProjectById((long)15);
+		proxy1.delete(p.get(0));
+		
+		
+		
 		
 		
 	}

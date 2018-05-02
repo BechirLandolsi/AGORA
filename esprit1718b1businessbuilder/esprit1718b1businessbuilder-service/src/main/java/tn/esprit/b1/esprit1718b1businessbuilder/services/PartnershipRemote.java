@@ -12,9 +12,11 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 public interface PartnershipRemote {
 
 	
- public List <String> getPartnerByProject(Long ProjectId);
+    public List <String> getPartnerByProject(Long ProjectId);
  
 	public void addPartner(Partnership part,Company owner, Company partner, Project project);
+	
+	public List<Partnership> PartnershipByProject(Project p);
 	
 	
 	

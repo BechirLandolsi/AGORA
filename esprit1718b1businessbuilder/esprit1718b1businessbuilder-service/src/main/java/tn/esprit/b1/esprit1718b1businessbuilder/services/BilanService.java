@@ -29,6 +29,24 @@ public class BilanService implements BilanRemote{
 	}
 
 
+	@Override
+	public void deleteBilan(Bilan b) {
+		em.remove(b);
+		
+	}
+
+
+	@Override
+	public List<Bilan> findBilan(long id) {
+		 TypedQuery <Bilan> k= em.createQuery("select p from Project p where p.id="+id,Bilan.class);
+			
+			List<Bilan> b = k.getResultList() ;
+			
+			return b;
+			
+	}
+
+
 	
 
 }

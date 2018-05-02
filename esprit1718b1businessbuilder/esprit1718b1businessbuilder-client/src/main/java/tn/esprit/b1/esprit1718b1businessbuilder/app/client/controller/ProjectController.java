@@ -24,10 +24,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -42,7 +44,10 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SplitMenuButton;
@@ -68,6 +73,8 @@ import javafx.scene.control.TextField;
  */
 public class ProjectController implements Initializable {
 
+	@FXML
+    private PieChart pieChart;
 	
 	@FXML
     private AnchorPane idanchor;
@@ -162,6 +169,9 @@ public class ProjectController implements Initializable {
     @FXML
     private JFXButton btnajouterpartner1;
     
+    @FXML
+    private Label testLabel;
+    
  /************************************************ Anchor pane 3 *************************************************/
     
     @FXML
@@ -209,6 +219,9 @@ public class ProjectController implements Initializable {
     @FXML
     private Label StateLabel;
     
+    @FXML
+    private ListView<Project> listViewid;
+    
     
     
     /**
@@ -235,6 +248,7 @@ public class ProjectController implements Initializable {
 	 Context context5;
 	 	 
 	 User loggedcompany = LoginController.LoggedUser;
+	 Company loggedcompany1 = (Company)LoginController.LoggedUser;
 	
 	 //ProjectRemote proxy;
 
@@ -242,6 +256,25 @@ public class ProjectController implements Initializable {
 
 	 
 	 public static Project p ;
+	 
+	 
+	 public void PieChart(Company c) throws NamingException {
+	    	context2 = new InitialContext();
+	 	   ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName1);
+	 	   long i1=proxy2.CountStableProjects(c);
+	 	    long i2=proxy2.CountUnstableProjects(c);
+	
+	 	   //pieChart.setTitle("Projects' State");
+	 	    
+	    ObservableList<PieChart.Data> pieChartData =
+            FXCollections.observableArrayList(
+            new PieChart.Data("In Stable State",i1),
+            new PieChart.Data("In danger", i2));
+	  
+	    pieChart.setData(pieChartData);
+	 
+	    	     
+	    }
 	 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -251,8 +284,11 @@ public class ProjectController implements Initializable {
          natureprojectList.add("Creation");
          natureprojectList.add("Recovery");
          natureproectcombobox.setItems(natureprojectList);
-         	 
+        
+			
+			 
         	try {
+        		//PieChart((Company) loggedcompany);
        	context4 = new InitialContext();
        	CompanyServiceRemote proxy = (CompanyServiceRemote) context4.lookup(jndiName4);
        	Set <String> hashset = new HashSet<>();
@@ -273,23 +309,35 @@ public class ProjectController implements Initializable {
 		context1 = new InitialContext();
 		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
 		
-		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany((long) 2));
+		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany(loggedcompany.getId()));
     	
  	     // col_project.setId("1");
     	  //col_project.cellFactoryProperty();
     	  
-    	  col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+    	/*  col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
     	  col_name.cellFactoryProperty();
          
     	  col_service.setCellValueFactory(new PropertyValueFactory<>("service"));
     	  col_service.cellFactoryProperty();
-    	     	  
-    	  tab_project.setItems(listproject); 
+    	     	
+    	  tab_project.setItems(listproject); */
     	  
 	} catch (NamingException e) {
 		
 		e.printStackTrace();
 	}
+	
+	listViewid.setItems(listproject);
+    
+	listViewid.setCellFactory(new Callback<ListView<Project>, ListCell<Project>>() {
+	          
+
+		@Override
+		public ListCell<Project> call(ListView<Project> param) {
+			// TODO Auto-generated method stub
+			return new ProjectRowController() ;
+		}
+	});
     	
     	
     }    
@@ -299,11 +347,13 @@ public class ProjectController implements Initializable {
    @FXML
     void tableclick(MouseEvent event) {
 
-    	if (tab_project.getSelectionModel().getSelectedItem() != null) {
-    		 o = new Project();
+    	if (tab_project.getSelectionModel().getSelectedItem() != null) 
+    	{
+    		 
     		 o = tab_project.getSelectionModel().getSelectedItem();
       	     Long id = o.getId();
-          
+         // System.out.println(o);
+      	     testLabel.setText(o.getName());
            try {
         	  
             context2 = new InitialContext();
@@ -331,7 +381,6 @@ public class ProjectController implements Initializable {
     			partnerLabel1.setVisible(false);
     			partnerLabel.setVisible(true);
     			partnerLabel.setText(names.get(0));
-    			
     			
     		}
     		
@@ -711,14 +760,17 @@ void btnajouterpartner(ActionEvent event) throws IOException
 {
 	
 	 //menuScheduling.getScene().getWindow().hide();
-     Stage news=new Stage();
+     /*Stage news=new Stage();
      Parent root=FXMLLoader.load(getClass().getResource("../gui/Partnership.fxml"));
      Scene s=new Scene(root);
      news.setScene(s);
-     news.show();
+     news.show();*/
+	//btnajouterpartner.getScene().getWindow().hide();
 	
 
 }
+
+
 
 
 

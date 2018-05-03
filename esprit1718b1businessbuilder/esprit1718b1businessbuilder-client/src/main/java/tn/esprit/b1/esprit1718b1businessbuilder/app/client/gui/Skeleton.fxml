@@ -22,6 +22,7 @@
             </Label>
          </left>
       </JFXToolbar>
+      <AnchorPane fx:id="holderPane" layoutX="141.0" layoutY="45.0" prefHeight="630.0" prefWidth="1146.0" />
       <VBox layoutY="40.0" prefHeight="640.0" prefWidth="140.0" style="-fx-background-color: #2A3F54;">
          <children>
             <Label prefHeight="60.0" prefWidth="140.0" style="-fx-alignment: center; -fx-font-size: 16; -fx-text-fill: #7387A8; -fx-border-color: #7387A8; -fx-border-width: 0 0 2 0;" text="NAVIGATION" />
@@ -91,6 +92,5 @@
             </JFXButton>
          </children>
       </VBox>
-      <AnchorPane fx:id="holderPane" layoutX="140.0" layoutY="42.0" prefHeight="633.0" prefWidth="1147.0" />
    </children>
 </AnchorPane>

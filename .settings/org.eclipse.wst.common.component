@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="esprit1718b1businessbuilder">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/" source-path="/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/esprit1718b1businessbuilder/esprit1718b1businessbuilder-domain/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/esprit1718b1businessbuilder/esprit1718b1businessbuilder-service/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/esprit1718b1businessbuilder/esprit1718b1businessbuilder-service/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/esprit1718b1businessbuilder/esprit1718b1businessbuilder-web/src/main/java"/>
+        <property name="context-root" value="esprit1718b1businessbuilder"/>
+        <property name="java-output-path" value="/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes"/>
+    </wb-module>
+</project-modules>

@@ -35,7 +35,7 @@ public class TwoFactorAuthExample {
 					- ((System.currentTimeMillis() / 1000) % TimeBasedOneTimePasswordUtil.DEFAULT_TIME_STEP_SECONDS);
 			code = TimeBasedOneTimePasswordUtil.generateCurrentNumberString(base32Secret);
 			System.out.println("Secret code = " + code + ", change in " + diff + " seconds");
-			Thread.sleep(1000);
+			Thread.sleep(30000);
 		}
 	}
 }

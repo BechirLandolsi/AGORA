@@ -8,6 +8,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.IProvision;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
@@ -21,15 +22,15 @@ public class PearMain {
 		String ServiceJNDI ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 		String ProductJNDI ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
 		String OrderJNDI="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-			    	
+		String provJNDI="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProvisionService!tn.esprit.b1.esprit1718b1businessbuilder.services.IProvision";
 
 		OrderServiceRemote Orderproxy = (OrderServiceRemote) context.lookup(OrderJNDI);
 		ProductServiceRemote productProxy = (ProductServiceRemote) context.lookup(ProductJNDI);
 		CompanyServiceRemote companyProxy = (CompanyServiceRemote) context.lookup(companyJNDI) ; 
 		ServiceServiceRemote ServiceProxy = (ServiceServiceRemote) context.lookup(ServiceJNDI);
-		
+		IProvision provProxy = (IProvision) context.lookup(provJNDI);
 	/************************ORDERS************************************/	
-	Company c1 = companyProxy.findBy((long)32) ; 
+	Company c1 = companyProxy.findBy((long)31) ; 
 	Company c2 = companyProxy.findBy((long)36) ; 
 	
 	Produit p1 = new Produit("tibo",(long)300,null,(float)39,(float)50,null);
@@ -42,19 +43,21 @@ public class PearMain {
 	//productProxy.addProduct(p3, c2);
 	//productProxy.addProduct(p4, c2);
 	//productProxy.addProduct(p5, c2);
-	Produit p6 = productProxy.findProduct(23);
+	Produit p6 = productProxy.findProduct(4);
 	Produit p7 = productProxy.findProduct(12);
 	Produit p8 = productProxy.findProduct(25);
-	Orderproxy.addProductToOrder(p6, c1, 125);
+	/*Orderproxy.addProductToOrder(p6, c1, 125);
 	Orderproxy.addProductToOrder(p7, c1, 10000);
 	Orderproxy.addProductToOrder(p8, c1, 1285);
 	
 	Orderproxy.payOrder(c1);
-	
+	*/
 	//p6.setDescription("Baskets");
 	
 	//productProxy.editProduct(p6);
 	//productProxy.removeProduct(p6);
 	 //System.out.println(productProxy.findAllProduct()); 
+	
+	//provProxy.addContrat(c1, p6, 200);
 }
 }

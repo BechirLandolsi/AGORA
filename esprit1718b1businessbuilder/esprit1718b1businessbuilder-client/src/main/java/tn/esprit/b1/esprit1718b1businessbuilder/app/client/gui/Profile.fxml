@@ -6,8 +6,9 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -16,29 +17,40 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="1071.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.ProfileController">
    <children>
-      <TitledPane fx:id="update" animated="false" layoutX="114.0" layoutY="57.0" prefHeight="527.0" prefWidth="422.0" text="Update Informations">
+      <ImageView fitHeight="658.0" fitWidth="967.0" layoutX="-147.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/hoi-ky-truyen-cam-hung-cho-doanh-nhan-ava.jpg" />
+         </image>
+         <effect>
+            <MotionBlur radius="55.0" />
+         </effect>
+      </ImageView>
+      <TitledPane fx:id="update" animated="false" layoutX="116.0" layoutY="57.0" prefHeight="537.0" prefWidth="409.0" text="Update Informations" visible="false">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="482.0" prefWidth="674.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="420.0">
                <children>
-                  <JFXTextField fx:id="updatename" layoutX="51.0" layoutY="32.0" prefHeight="33.0" prefWidth="300.0" promptText="Company Name" />
+                  <JFXTextField fx:id="updatename" labelFloat="true" layoutX="51.0" layoutY="32.0" prefHeight="33.0" prefWidth="300.0" promptText="Company Name" />
                   <JFXComboBox fx:id="updatesector" layoutX="50.0" layoutY="90.0" prefHeight="39.0" prefWidth="303.0" promptText="Sector" visible="false" />
-                  <JFXTextField fx:id="updateref" layoutX="47.0" layoutY="129.0" prefHeight="39.0" prefWidth="303.0" promptText="Reference" />
-                  <JFXTextField fx:id="updatenbr" layoutX="49.0" layoutY="288.0" prefHeight="37.0" prefWidth="310.0" promptText="Phone Number" />
-                  <JFXDatePicker fx:id="updatedate" layoutX="51.0" layoutY="178.0" prefHeight="41.0" prefWidth="314.0" promptText="Creation Date" />
-                  <JFXTextField fx:id="updateceo" layoutX="49.0" layoutY="237.0" prefHeight="38.0" prefWidth="309.0" promptText="CEO of the Company" />
-                  <JFXTextField fx:id="udateadress" layoutX="49.0" layoutY="346.0" prefHeight="40.0" prefWidth="313.0" promptText="Adress" />
-                  <JFXButton fx:id="updatesubmit" layoutX="47.0" layoutY="415.0" onAction="#updatesubmitbtn" prefHeight="39.0" prefWidth="317.0" style="-fx-background-color: #1f70bb;" text="Submit" textFill="WHITE">
+                  <JFXTextField fx:id="updateref" labelFloat="true" layoutX="50.0" layoutY="90.0" prefHeight="39.0" prefWidth="303.0" promptText="Reference" />
+                  <JFXDatePicker fx:id="updatedate" layoutX="45.0" layoutY="162.0" prefHeight="41.0" prefWidth="314.0" promptText="Creation Date" />
+                  <JFXTextField fx:id="updateceo" labelFloat="true" layoutX="47.0" layoutY="232.0" prefHeight="38.0" prefWidth="309.0" promptText="CEO of the Company" />
+                  <JFXTextField fx:id="udateadress" labelFloat="true" layoutX="45.0" layoutY="304.0" prefHeight="40.0" prefWidth="313.0" promptText="Adress" />
+                  <JFXButton fx:id="updatesubmit" layoutX="44.0" layoutY="380.0" onAction="#updatesubmitbtn" prefHeight="39.0" prefWidth="317.0" style="-fx-background-color: #1f70bb;" text="Submit" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </JFXButton>
+                  <Label fx:id="success" layoutX="110.0" layoutY="444.0" prefHeight="44.0" prefWidth="222.0" text="Your Profile is updated with succes !" textFill="#ff5c4d" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>
       </TitledPane>
-      <Separator layoutX="775.0" layoutY="30.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="37.0" />
-      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="833.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="833.0" layoutY="262.0" prefHeight="118.0" prefWidth="98.0">
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="856.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="856.0" layoutY="262.0" prefHeight="118.0" prefWidth="98.0">
          <children>
             <Label prefHeight="17.0" prefWidth="79.0" text="Company :">
                <font>
@@ -72,7 +84,7 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="939.0" layoutY="262.0" prefHeight="118.0" prefWidth="118.0">
+      <VBox layoutX="962.0" layoutY="262.0" prefHeight="118.0" prefWidth="118.0">
          <children>
             <Label fx:id="labName" prefHeight="17.0" prefWidth="122.0" text="Label" />
             <Label fx:id="labmail" prefHeight="17.0" prefWidth="122.0" text="Label" />
@@ -82,19 +94,18 @@
             <Label fx:id="labenbr" prefHeight="17.0" prefWidth="122.0" text="Label" />
          </children>
       </VBox>
-      <JFXButton fx:id="logo" layoutX="826.0" layoutY="202.0" onAction="#uploadlogo" prefHeight="32.0" prefWidth="215.0" style="-fx-background-color: #1f70bb;" text="Upload Logo" textFill="WHITE" />
-      <TitledPane fx:id="missing" animated="false" layoutX="114.0" layoutY="30.0" prefHeight="581.0" prefWidth="443.0" text="Missing Informations" visible="false">
+      <JFXButton fx:id="logo" layoutX="849.0" layoutY="202.0" onAction="#uploadlogo" prefHeight="32.0" prefWidth="215.0" style="-fx-background-color: #1f70bb;" text="Upload Logo" textFill="WHITE" />
+      <TitledPane fx:id="missing" animated="false" layoutX="114.0" layoutY="11.0" prefHeight="600.0" prefWidth="437.0" text="Missing Informations" visible="false">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="441.0">
                <children>
-                  <JFXTextField fx:id="adress" layoutX="53.0" layoutY="442.0" prefHeight="38.0" prefWidth="335.0" promptText="Adress" />
-                  <JFXTextField fx:id="ceo" layoutX="55.0" layoutY="337.0" prefHeight="33.0" prefWidth="323.0" promptText="CEO of the Company" />
-                  <JFXTextField fx:id="name" layoutX="61.0" layoutY="110.0" prefHeight="36.0" prefWidth="311.0" promptText="Company Name" />
-                  <JFXTextField fx:id="nbr" layoutX="52.0" layoutY="391.0" prefHeight="36.0" prefWidth="329.0" promptText="Phone Number" />
+                  <JFXTextField fx:id="adress" labelFloat="true" layoutX="49.0" layoutY="402.0" prefHeight="38.0" prefWidth="335.0" promptText="Adress" />
+                  <JFXTextField fx:id="ceo" labelFloat="true" layoutX="55.0" layoutY="337.0" prefHeight="33.0" prefWidth="323.0" promptText="CEO of the Company" />
+                  <JFXTextField fx:id="name" labelFloat="true" layoutX="61.0" layoutY="110.0" prefHeight="36.0" prefWidth="311.0" promptText="Company Name" />
                   <JFXDatePicker fx:id="date" layoutX="55.0" layoutY="278.0" prefHeight="35.0" prefWidth="324.0" promptText="Creation Date" />
-                  <JFXTextField fx:id="ref" layoutX="55.0" layoutY="220.0" prefHeight="38.0" prefWidth="323.0" promptText="Reference" />
-                  <JFXComboBox fx:id="sector" layoutX="58.0" layoutY="168.0" prefHeight="33.0" prefWidth="319.0" promptText="Sector" />
-                  <JFXButton fx:id="submit" layoutX="47.0" layoutY="501.0" onAction="#submitbtn" prefHeight="40.0" prefWidth="340.0" style="-fx-background-color: #1f70bb;" text="Submit" textFill="WHITE">
+                  <JFXTextField fx:id="ref" labelFloat="true" layoutX="55.0" layoutY="220.0" prefHeight="38.0" prefWidth="323.0" promptText="Reference" />
+                  <JFXComboBox fx:id="sector" labelFloat="true" layoutX="58.0" layoutY="168.0" prefHeight="33.0" prefWidth="319.0" promptText="Sector" />
+                  <JFXButton fx:id="submit" layoutX="47.0" layoutY="468.0" onAction="#submitbtn" prefHeight="40.0" prefWidth="340.0" style="-fx-background-color: #1f70bb;" text="Submit" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -109,6 +120,11 @@
                         </Label>
                      </children>
                   </Pane>
+                  <Label fx:id="labmissing" layoutX="109.0" layoutY="522.0" prefHeight="32.0" prefWidth="215.0" text="Your profile is updated with success !" textFill="#f86d6d" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
         </content>

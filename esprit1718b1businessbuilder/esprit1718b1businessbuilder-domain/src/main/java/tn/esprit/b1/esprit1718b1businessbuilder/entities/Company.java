@@ -19,7 +19,6 @@ public class Company extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-			
 
 	public List<Partnership> getCompanyOwner() {
 		return CompanyOwner;
@@ -98,6 +97,9 @@ public class Company extends User {
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
 	
+	
+	
+	
 	@OneToMany(mappedBy="claimant") 
 	private List<Claim> myClaims ;  
 	
@@ -122,6 +124,9 @@ public class Company extends User {
 	  
 	  @OneToMany(mappedBy = "guest" )
 	  private List<Invitation> invitation;
+	  
+	  @OneToMany(mappedBy = "company" )
+		private List<Contrat> contrats ; 
 
 	/***********************/
 	
@@ -366,6 +371,17 @@ public class Company extends User {
 
 	public void setInvitation(List<Invitation> invitation) {
 		this.invitation = invitation;
+	}
+
+	
+
+	public List<Contrat> getContrats() {
+		return contrats;
+	}
+
+
+	public void setContrats(List<Contrat> contrats) {
+		this.contrats = contrats;
 	}
 
 

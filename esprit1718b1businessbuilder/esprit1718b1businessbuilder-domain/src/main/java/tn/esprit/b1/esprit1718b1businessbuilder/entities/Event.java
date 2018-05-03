@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -68,7 +69,7 @@ public class Event implements Serializable {
 	@OneToOne
 	private EventDepense Event_Dep;
 	
-	@OneToMany(mappedBy = "Event" )
+	@OneToMany(mappedBy = "Event",cascade={CascadeType.REMOVE})
     private List<Invitation> invitation;
 	
 	

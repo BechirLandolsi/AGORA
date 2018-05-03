@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="648.0" prefWidth="872.0" stylesheets="@custom.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.EventDetailsController">
+   <children>
+      <JFXToolbar prefHeight="42.0" prefWidth="872.0" style="-fx-min-height: 42; -fx-background-color: #222D32;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <Label prefHeight="30.0" prefWidth="189.0" style="-fx-font-size: 20; -fx-text-fill: #7387A8; -fx-font-weight: bold;" text="Event Details " BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </Label>
+         </left>
+      </JFXToolbar>
+      <AnchorPane fx:id="holderPane" layoutY="42.0" prefHeight="641.0" prefWidth="872.0">
+         <children>
+            <Pane layoutX="66.0" layoutY="40.0" prefHeight="189.0" prefWidth="184.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: rgb(17, 158, 132); -fx-background-radius: 8;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="127.0" minHeight="-Infinity" prefHeight="1.0" prefWidth="72.0" style="-fx-background-color: #a4fffc;" textAlignment="CENTER" />
+                  <Label alignment="CENTER" layoutX="62.0" layoutY="-32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: rgb(47, 143, 212,0.8); -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 4.0, 0.3, 0.0,0.5); -fx-border-radius: 60; -fx-background-radius: 60;" textAlignment="CENTER" />
+                  <Text fill="#a4fffc" layoutX="41.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVITED" textAlignment="CENTER" wrappingWidth="96.99999414384365">
+                     <font>
+                        <Font name="Roboto Medium" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="6.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Invited Companies to the event" textAlignment="CENTER" wrappingWidth="172.298828125">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="invited_label" layoutX="74.0" layoutY="138.0" prefHeight="37.0" prefWidth="97.0">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#a4fffc" glyphName="NEWSPAPER_ALT" layoutX="72.0" layoutY="8.0" size="28.0" textAlignment="CENTER" wrappingWidth="40.833981707692146" />
+               </children>
+            </Pane>
+            <Pane layoutX="319.0" layoutY="40.0" prefHeight="189.0" prefWidth="184.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: #293D52; -fx-background-radius: 8;">
+               <children>
+                  <Label alignment="CENTER" layoutX="62.0" layoutY="-30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: rgb(24, 181, 149,0.7); -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 4.0, 0.3, 0.0,0.5); -fx-border-radius: 60; -fx-background-radius: 60;" textAlignment="CENTER" />
+                  <Text fill="#a4fffc" layoutX="57.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GUESTS" textAlignment="CENTER">
+                     <font>
+                        <Font name="Roboto Medium" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="6.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Companies who confirm attendance to the event" textAlignment="CENTER" wrappingWidth="172.298828125">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Text>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="128.0" minHeight="-Infinity" prefHeight="1.0" prefWidth="72.0" style="-fx-background-color: #a4fffc;" textAlignment="CENTER" />
+                  <Label fx:id="guests_label" layoutX="90.0" layoutY="138.0" prefHeight="37.0" prefWidth="72.0" textFill="#a4fffc">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIconView fill="#a4fffc" glyphName="GROUP" layoutX="80.0" layoutY="9.0" size="25" wrappingWidth="22.000011205673218" />
+               </children>
+            </Pane>
+            <Pane layoutX="593.0" layoutY="40.0" prefHeight="189.0" prefWidth="184.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: #3196DE; -fx-background-radius: 8;">
+               <children>
+                  <Label alignment="CENTER" layoutX="62.0" layoutY="-30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: rgb(39, 58, 78,0.7); -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 4.0, 0.3, 0.0,0.5); -fx-border-radius: 60; -fx-background-radius: 60;" textAlignment="CENTER" />
+                  <Text fill="#a4fffc" layoutX="60.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REFUSED" textAlignment="CENTER">
+                     <font>
+                        <Font name="Roboto Medium" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invitation Of The event Refused/no response" textAlignment="CENTER" wrappingWidth="172.298828125">
+                     <font>
+                        <Font name="Roboto Medium" size="14.0" />
+                     </font>
+                  </Text>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="127.0" minHeight="-Infinity" prefHeight="1.0" prefWidth="72.0" style="-fx-background-color: #a4fffc;" textAlignment="CENTER" />
+                  <MaterialDesignIconView fill="#a4fffc" glyphName="CLOSE" layoutX="77.0" layoutY="11.0" onMouseClicked="#closeStage" size="30" />
+                  <Label fx:id="refused_label" layoutX="80.0" layoutY="138.0" prefHeight="37.0" prefWidth="97.0">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton fx:id="predict_butt" layoutX="14.0" layoutY="258.0" onAction="#onpredict_clicked" prefHeight="27.0" prefWidth="209.0" text="Predict Event Dependencies" textFill="#293d52">
+               <font>
+                  <Font name="Times New Roman Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="new_type_label" layoutX="235.0" layoutY="257.0" prefHeight="30.0" prefWidth="494.0" textFill="#b20909">
+               <font>
+                  <Font name="Times New Roman" size="16.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="depenses_details_anchorepane1" layoutX="29.0" layoutY="295.0" prefHeight="328.0" prefWidth="829.0" styleClass="card">
+               <children>
+                  <Pane prefHeight="32.0" prefWidth="829.0" style="-fx-background-color: #008F82; -fx-background-radius: 5 5 0 0;">
+                     <children>
+                        <Text fill="WHITE" layoutX="34.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Depenses Details" wrappingWidth="118.3759765625">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" layoutX="15.0" layoutY="22.0" size="18.0" />
+                     </children>
+                  </Pane>
+                  <JFXTextField fx:id="budget_label1" layoutX="26.0" layoutY="58.0" prefHeight="25.0" prefWidth="172.0" promptText="Type Event Budget" />
+                  <JFXTextField fx:id="foodbeverage_dep1" layoutX="26.0" layoutY="111.0" prefHeight="28.0" prefWidth="172.0" promptText="Type Food/Beverage Depenses" />
+                  <JFXTextField fx:id="marketing_dep1" layoutX="26.0" layoutY="171.0" prefHeight="25.0" prefWidth="172.0" promptText="Type Marketing Depenses" />
+                  <JFXTextField fx:id="technique_visuel_label1" layoutX="26.0" layoutY="234.0" prefHeight="25.0" prefWidth="172.0" promptText="Type Technique/visuel depenses" />
+                  <Separator layoutX="236.0" layoutY="60.0" orientation="VERTICAL" prefHeight="222.0" prefWidth="0.0" />
+                  <JFXTextField fx:id="accomandation_dep1" layoutX="273.0" layoutY="58.0" prefHeight="25.0" prefWidth="184.0" promptText="Type AccommandationDepenses" />
+                  <JFXTextField fx:id="planb_dep1" layoutX="273.0" layoutY="113.0" prefHeight="27.0" prefWidth="184.0" promptText="Type Plan B Depenses" />
+                  <JFXTextField fx:id="entertainment_dep1" layoutX="273.0" layoutY="171.0" prefHeight="25.0" prefWidth="184.0" promptText="Type  Entertainment Depenses" />
+                  <JFXTextField fx:id="transport_dep1" layoutX="273.0" layoutY="234.0" prefHeight="25.0" prefWidth="184.0" promptText="Type Transport Depenses" />
+                  <JFXButton fx:id="calculate" buttonType="RAISED" layoutX="686.0" layoutY="55.0" onAction="#oncalculate_clicked" prefHeight="32.0" prefWidth="110.0" style="-fx-background-color: #008F82;" text="Calculate" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Medium" size="13.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fx:id="calculate1" fill="WHITE" glyphName="COMPRESS" onDragDetected="#oncalculate_clicked" size="16.0" wrappingWidth="20.714285850524902" />
+                     </graphic>
+                  </JFXButton>
+                  <Separator layoutX="487.0" layoutY="60.0" orientation="VERTICAL" prefHeight="222.0" prefWidth="0.0" />
+                  <TextField fx:id="depenses_total_dep1" layoutX="517.0" layoutY="58.0" />
+                  <Label fx:id="error_label1" layoutX="517.0" layoutY="87.0" prefHeight="25.0" prefWidth="149.0" textFill="#b20909">
+                     <font>
+                        <Font name="Times New Roman" size="16.0" />
+                     </font>
+                  </Label>
+                  <PieChart fx:id="dep_piechart1" layoutX="526.0" layoutY="111.0" prefHeight="208.0" prefWidth="267.0" />
+                  <JFXTextField fx:id="communication_dep1" layoutX="26.0" layoutY="282.0" prefHeight="25.0" prefWidth="172.0" promptText="Type Communication Depenses" />
+                  <JFXTextField fx:id="logistiqueu_dep1" layoutX="273.0" layoutY="282.0" prefHeight="27.0" prefWidth="184.0" promptText="Type Logistique Depenses" />
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
+
+
+
+
+
+ 
+    
+
+
+
+
+   

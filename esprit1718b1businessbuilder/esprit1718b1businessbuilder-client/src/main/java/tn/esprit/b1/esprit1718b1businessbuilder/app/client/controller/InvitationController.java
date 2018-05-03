@@ -22,7 +22,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
 
 
 /**
@@ -39,18 +42,23 @@ public class InvitationController implements Initializable {
     private ListView<Company> invitationcompany_list_view;
 
     private ObservableList<Company> cplist ;
+    long eventid;
+    long Companyid;
     
-    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
-	CompanyServiceRemote proxy;
+    User loggedcompany = LoginController.LoggedUser;
+    
+    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/EventService!tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote" ; 
+	Context context1;
+	 
 	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	
      	
 		try {
-			 Context	context = new InitialContext();
-			proxy = (CompanyServiceRemote) context.lookup(jndiName1);
-			cplist = FXCollections.observableArrayList(proxy.findAllCompany());
+			    context1 = new InitialContext();
+			    EventServiceRemote proxy = (EventServiceRemote ) context1.lookup(jndiName1);
+			    cplist = FXCollections.observableArrayList(proxy.FindCompanyToInvite((long)loggedcompany.getId()));
 			
 			
 		} catch (NamingException e) {

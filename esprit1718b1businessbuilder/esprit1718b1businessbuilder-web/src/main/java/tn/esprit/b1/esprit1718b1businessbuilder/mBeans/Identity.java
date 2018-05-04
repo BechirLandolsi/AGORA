@@ -11,7 +11,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
 @ManagedBean
 @SessionScoped
-public class Identity {
+public class Identity { 
 	
 	private boolean isLogged = false;
 	private User user = new User();
@@ -32,15 +32,14 @@ public class Identity {
 		if (userLoggedIn != null) {
 			isLogged = true;
 			user = userLoggedIn;
-			navigateTo = "/home?faces-redirect=true";
+			navigateTo = "secured/home?faces-redirect=true";
 			System.out.println(userLoggedIn);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Veuillez inserer un login et un mot de passe valide", ""));
-			return "/login?faces-redirect=true";
+			return "/erreur?faces-redirect=true";
 		}
 		return navigateTo;
-
 	}
 
 	public User getUser() {

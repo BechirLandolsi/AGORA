@@ -32,12 +32,12 @@ public class Identity {
 		if (userLoggedIn != null) {
 			isLogged = true;
 			user = userLoggedIn;
-			navigateTo = "secured/home?faces-redirect=true";
+			navigateTo = "home?faces-redirect=true";
 			System.out.println(userLoggedIn);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Veuillez inserer un login et un mot de passe valide", ""));
-			return "/erreur?faces-redirect=true";
+			return "/login?faces-redirect=true";
 		}
 		return navigateTo;
 	}

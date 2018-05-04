@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import tn.esprit.b1.esprit1718b1businessbuilder.mBeans.Identity;
 
 
-@WebFilter("/secured/*")
+@WebFilter("/home.jsf")
 public class LoginFilter implements Filter {
 
 	@Override
@@ -38,6 +38,7 @@ public class LoginFilter implements Filter {
 			chain.doFilter(servletRequest, servletResponse);
 		
 		} else {
+			
 			servletResponse.sendRedirect(servletRequest.getContextPath() + "/login.jsf");
 			System.out.println(" url = " + ((HttpServletRequest) request).getRequestURL());
 		}

@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
+@LocalBean
 public abstract class GenericDAO<T> {
 	
 	//private final static String UNIT_NAME = "CrudPU";

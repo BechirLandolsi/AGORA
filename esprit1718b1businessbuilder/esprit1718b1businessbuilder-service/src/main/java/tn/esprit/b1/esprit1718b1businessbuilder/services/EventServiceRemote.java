@@ -11,7 +11,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.utilities.IGenericDAO;
 @Remote
 public interface EventServiceRemote extends IGenericDAO<Event> {
 
-
+    public void deleteev(long idevent);
 	public List<Event> findEventByCompany(long companyId);
 	public List<Event> findEventByName(String name);
 	public List<Event> findEventByDate(Date date);

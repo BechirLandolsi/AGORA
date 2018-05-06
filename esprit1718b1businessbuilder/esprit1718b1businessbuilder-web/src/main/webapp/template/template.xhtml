@@ -27,7 +27,7 @@
     <link href="resources/css/animate.css" rel="stylesheet"/>
     <link href="resources/css/style.css" rel="stylesheet"/>
     <link href="resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet"/>
-   
+    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -127,7 +127,16 @@
 
         });
     </script>
-    
+     <!-- iCheck -->
+    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+            });
+        </script>
 	
 	
 </body>

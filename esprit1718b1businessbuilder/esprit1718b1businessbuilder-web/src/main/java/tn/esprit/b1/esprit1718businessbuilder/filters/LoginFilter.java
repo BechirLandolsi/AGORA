@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import tn.esprit.b1.esprit1718b1businessbuilder.mBeans.Identity;
 
 
-@WebFilter("/home.jsf")
+//@WebFilter("")
 public class LoginFilter implements Filter {
 
 	@Override

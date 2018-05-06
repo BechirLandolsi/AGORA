@@ -1,5 +1,6 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -10,6 +11,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderCategory;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.GenericDAO;
 
 @Stateless
+@LocalBean
 public class TenderCategoryService extends GenericDAO<TenderCategory> implements ITenderCategory {
 
 	@PersistenceContext

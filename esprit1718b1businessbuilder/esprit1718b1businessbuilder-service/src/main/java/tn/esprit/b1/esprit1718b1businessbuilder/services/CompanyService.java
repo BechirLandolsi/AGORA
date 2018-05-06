@@ -2,6 +2,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,6 +15,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
+@LocalBean
 public class CompanyService extends UserService implements CompanyServiceRemote{
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 

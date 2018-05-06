@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
-@ManagedBean
+@ManagedBean(name="identity")
 @SessionScoped
 public class Identity { 
 	
@@ -32,7 +32,7 @@ public class Identity {
 		if (userLoggedIn != null) {
 			isLogged = true;
 			user = userLoggedIn;
-			navigateTo = "home?faces-redirect=true";
+			navigateTo = "tenders?faces-redirect=true";
 			System.out.println(userLoggedIn);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,

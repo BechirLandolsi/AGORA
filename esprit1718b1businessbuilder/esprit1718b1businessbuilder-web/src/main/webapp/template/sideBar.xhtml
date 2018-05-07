@@ -14,7 +14,7 @@
                             <img alt="image" class="img-circle" src="resources/img/profile_small.jpg" />
                              </span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                                <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><label jsf:id="loggeduser"  type="text" value="#{identity.user.name}"/></strong>
                              </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -43,6 +43,9 @@
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Projects</span></a>
+                    </li>
+                     <li >
+                        <a href="dashboard.jsf"><i class="fa fa-globe"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     
                 </ul>

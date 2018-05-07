@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -25,6 +26,9 @@ public class Contrat implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date date_contrat ;
 	
+	@Column(unique=false, nullable=true)
+	private Integer stock ;
+	
 	/* Association */ 
 	@OneToMany(mappedBy="contrat") 
 	private List<Provision> provisions ;
@@ -40,8 +44,21 @@ public class Contrat implements Serializable{
 	
 	/***************/
 	
+	
 	public ContratPK getContratPK() {
 		return contratPK;
+	}
+	public Integer getStock() {
+		return stock;
+	}
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+	public List<Provision> getProvisions() {
+		return provisions;
+	}
+	public void setProvisions(List<Provision> provisions) {
+		this.provisions = provisions;
 	}
 	public void setContratPK(ContratPK contratPK) {
 		this.contratPK = contratPK;

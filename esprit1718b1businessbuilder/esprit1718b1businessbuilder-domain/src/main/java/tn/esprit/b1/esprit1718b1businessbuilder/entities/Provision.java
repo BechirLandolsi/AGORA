@@ -1,6 +1,7 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name="provisions")
@@ -106,6 +108,12 @@ public class Provision implements Serializable{
 	public Provision() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Provision [id=" + id + ", date_provision=" + date_provision + ", delivState=" + delivState
+				+ ", invoState=" + invoState + ", packState=" + packState + "]";
 	}
 	
 	

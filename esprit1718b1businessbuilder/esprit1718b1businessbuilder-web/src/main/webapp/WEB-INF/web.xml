@@ -10,4 +10,8 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+  
+  <listener>
+             <listener-class>tn.esprit.b1.esprit1718b1businessbuilder.services.BackgroundJobManager</listener-class>
+    </listener>
 </web-app>

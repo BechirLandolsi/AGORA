@@ -1,10 +1,14 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Contrat;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
@@ -30,7 +34,7 @@ public class PearMain {
 		ServiceServiceRemote ServiceProxy = (ServiceServiceRemote) context.lookup(ServiceJNDI);
 		IProvision provProxy = (IProvision) context.lookup(provJNDI);
 	/************************ORDERS************************************/	
-	Company c1 = companyProxy.findBy((long)31) ; 
+	Company c1 = companyProxy.findBy((long)32) ; 
 	Company c2 = companyProxy.findBy((long)36) ; 
 	
 	Produit p1 = new Produit("tibo",(long)300,null,(float)39,(float)50,null);
@@ -43,8 +47,8 @@ public class PearMain {
 	//productProxy.addProduct(p3, c2);
 	//productProxy.addProduct(p4, c2);
 	//productProxy.addProduct(p5, c2);
-	Produit p6 = productProxy.findProduct(4);
-	Produit p7 = productProxy.findProduct(12);
+	Produit p6 = productProxy.findProduct(16);
+	Produit p7 = productProxy.findProduct(5);
 	Produit p8 = productProxy.findProduct(25);
 	/*Orderproxy.addProductToOrder(p6, c1, 125);
 	Orderproxy.addProductToOrder(p7, c1, 10000);
@@ -57,7 +61,26 @@ public class PearMain {
 	//productProxy.editProduct(p6);
 	//productProxy.removeProduct(p6);
 	 //System.out.println(productProxy.findAllProduct()); 
+	//System.out.println(c1.toString());
+	provProxy.addContrat(c1, p6, 100);
+	//provProxy.addContrat(c2, p7, 550);
+	//Contrat c = provProxy.findContrat(36,5);
+	//provProxy.provideProduct(c);
 	
-	//provProxy.addContrat(c1, p6, 200);
+	//Contrat cc = provProxy.findContrat(36,6);
+	//provProxy.provideProduct(cc);
+	//int l = provProxy.provisionTBD(c1);
+	//System.out.println(l);
+	//provProxy.updateDelivery(2);
+	//Date d = new Date(); 
+	//System.out.println(d);
+	
+	//List<Contrat> l = provProxy.provisionByCompany(c1) ;
+	//System.out.println(l.toString());
+	//System.out.println(provProxy.updateStock(c1));
+	 
+		 
+		  
+	  
 }
 }

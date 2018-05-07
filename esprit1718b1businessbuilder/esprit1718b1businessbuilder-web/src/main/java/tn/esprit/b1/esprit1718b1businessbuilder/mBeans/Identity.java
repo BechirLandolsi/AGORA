@@ -6,7 +6,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.BackgroundJobManager;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ProvisionService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
 @ManagedBean
@@ -18,6 +21,7 @@ public class Identity {
 	
 	@EJB
 	private UserServiceLocal userServiceLocal;
+	
 
 	public String logout() {
 		isLogged = false;
@@ -32,11 +36,15 @@ public class Identity {
 		if (userLoggedIn != null) {
 			isLogged = true;
 			user = userLoggedIn;
+			
+			
+			
 			navigateTo = "/home?faces-redirect=true";
-			System.out.println(userLoggedIn);
+			System.out.println(user);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Veuillez inserer un login et un mot de passe valide", ""));
+			System.out.println("0");
 			return "/login?faces-redirect=true";
 		}
 		return navigateTo;

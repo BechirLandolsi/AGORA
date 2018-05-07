@@ -26,20 +26,24 @@
 
     <link href="resources/css/animate.css" rel="stylesheet"/>
     <link href="resources/css/style.css" rel="stylesheet"/>
+
+    <link href="resources/css/plugins/chartist/chartist.min.css" rel="stylesheet"/>
+
+
     <link href="resources/css/plugins/datapicker/datepicker3.css" rel="stylesheet"/>
-   
+    <link href="resources/css/plugins/iCheck/custom.css" rel="stylesheet"/>
+    
+    
+
 </head>
 
 <body>
 
-	<div id="wrapper">
+<div id="wrapper">
 
 		<div id="header">
 			<div id="side">
 				<ui:include src="/template/sideBar.xhtml"/>
-			</div>
-			<div id="identity">
-				<ui:include src="/template/top-right.xhtml" />
 			</div>
 		</div>
 
@@ -53,7 +57,56 @@
 			<div id="content">
 				<ui:insert name="pageContent" />
 			</div>
-			
+
+			<div class="small-chat-box fadeInRight animated">
+
+				<div class="heading" draggable="true">
+					<small class="chat-date pull-right"> 02.19.2015 </small> Agora chat
+				</div>
+
+				<div class="content">
+
+					<div class="container">
+						<div align="left" style="height: 20px; width: 200px;">
+							<div class="row no_padding title__block nothing no-margin">
+								<div id="msgPanel" style="display: none">
+									<div class="chat-message active" id="msgContainer"
+										style="overflow: auto;">
+										<div class="author-name">
+											Hasnaoui <small class="chat-date"> 10:02 am </small>
+										</div>
+									</div>
+									<div id="msgController">
+										<textarea id="txtMsg" title="Enter to send message"
+											onkeyup="proxy.sendMessage_keyup(event)"
+											style="height: 20px; width: 200px;"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="loginPanel" class="form-chat">
+					<div class="input-group input-group-sm">
+						<input id="txtLogin" type="text" class="form-control"
+							onkeyup="proxy.login_keyup(event)" /> <span
+							class="input-group-btn">
+							<button class="btn btn-primary" type="button"
+								onclick="proxy.login()">Connect</button>
+						</span>
+					</div>
+				</div>
+
+			</div>
+			<div id="small-chat">
+
+				<span class="badge badge-warning pull-right">5</span> <a
+					class="open-small-chat" onclick="proxy.logout()"> <i
+					class="fa fa-comments"></i>
+
+				</a>
+			</div>
+ 
 			<div id="footer" class="footer">
 				<ui:include src="/template/footer.xhtml" />
 			</div>
@@ -100,10 +153,27 @@
 
     <!-- Toastr -->
     <script src="resources/js/plugins/toastr/toastr.min.js"></script>
-     <script src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-	
+    <script src="resources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="resources/js/plugins/iCheck/icheck.min.js"></script>
+			
+	<script type="text/javascript" src="chatroom.js"></script>
+		
+		<script type="text/javascript">
+			var wsUri = 'ws://localhost:18080/esprit1718b1businessbuilder-web/chat';
+			var proxy = CreateProxy(wsUri);
+		
+				document.addEventListener("DOMContentLoaded", function(event) {
+				console.log(document.getElementById('loginPanel'));
+				proxy.initiate({
+				loginPanel: document.getElementById('loginPanel'),
+				msgPanel: document.getElementById('msgPanel'),
+				txtMsg: document.getElementById('txtMsg'),
+				txtLogin: document.getElementById('txtLogin'),
+				msgContainer: document.getElementById('msgContainer')
+			});
+		</script>
 
-    <script>
+	<script>
         $(document).ready(function() {
             setTimeout(function() {
                 toastr.options = {
@@ -111,23 +181,50 @@
                     progressBar: true,
                     showMethod: 'slideDown',
                     timeOut: 4000
-                };
-                toastr.success('Welcome To AGORA Business Builder');
+                });
+            });
+                
+                
 
-            }, 1300);
-
-            $('#data_2 .input-group.date').datepicker({
-                startView: 1,
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: false,
-                autoclose: true,
-                format: "dd/mm/yyyy"
+            new Chartist.Bar('#ct-chart4', {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                series: [
+                    [5, 4, 3, 7, 5, 10, 3],
+                    [3, 2, 9, 5, 4, 6, 4]
+                ]
+            }, {
+                seriesBarDistance: 10,
+                reverseData: true,
+                horizontalBars: true,
+                axisY: {
+                    offset: 70
+                }
             });
 
         });
+
+        
     </script>
     
+    
+        <script>
+            $(document).ready(function () {
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+
+                $('#data_2 .input-group.date').datepicker({
+                    startView: 1,
+                    todayBtn: "linked",
+                    keyboardNavigation: false,
+                    forceParse: false,
+                    autoclose: true,
+                    format: "dd/mm/yyyy"
+
+                });
+            });
+        </script>
 	
 	
 </body>

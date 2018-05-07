@@ -1,0 +1,152 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				EVENT PAGE
+			</ui:define>
+
+	<ui:define name="pageContent">
+				 
+			
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>All Events</h5>
+
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <table jsf:id="tableevent" class="footable table table-stripped toggle-arrow-tiny">
+                                <thead>
+                                <tr>
+
+                                    <th data-toggle="true">Event Name</th>
+                                    <th>Event Sector</th>
+                                    <th data-hide="all">Event Adress</th>
+                                    <th data-hide="all"> Event Date</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                               <ui:repeat var="ListEvent" value="#{eventBean.AfficherEvents(id)}">
+                               <tr>
+                               <td>#{ListEvent.event_name}</td>
+                               <td>#{ListEvent.event_sector}</td>
+                               <td>#{ListEvent.event_adress}</td>
+                                <td>#{ListEvent.event_date}</td>
+                                 <td >
+                                   <form  jsf:id="formulaireajout" >
+                                   <h:commandButton action="#{eventBean.navigation()}"  class="btn btn-info btn-circle"/> 
+                            
+                            <button   id="islem" jsf:action="#{eventBean.deleteanevent(ListEvent.id_event)}" jsf:type="submit" class="btn btn-warning btn-circle" ><i class="fa fa-times"></i>
+                            </button>
+                             <button class="btn btn-primary btn-circle" ><i class="fa fa-list"></i>
+                            </button>  
+                            </form>         
+                                    </td>
+                               </tr>
+                             
+                               
+                               </ui:repeat>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="ibox-content">
+                            <div class="text-center">
+                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Add A new Event</a>
+                            </div>
+                           <div id="modal-form" class="modal fade" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                 
+                                                <div  class="col-sm-6 b-r col-md-12"><h3 class="m-t-none m-b">Adding A New Event</h3>
+  <form jsf:id="addingform">
+  <h:message for="validatevide" style="color:red"/> 
+                               <div class="form-group"><label>Event Name</label>  <h:inputText  id="validatevide" name="eventname" value="#{eventBean.event_name}" placeholder="Event Name" class="form-control" required="true" requiredMessage="This Field Is Required "/></div>
+                            <div class="form-group"> <label>Event Date</label>
+                                  
+                                </div>
+                             
+                               <div class="form-group" id="data_2">
+		       
+		                                <div class="input-group date">
+		                                   	 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+		                                   	 <h:inputText  class="form-control" value="#{eventBean.event_date}" >
+		                                   	 	<f:convertDateTime pattern="dd/MM/yyyy"/>
+		                                   	 </h:inputText>
+		                                </div>
+		                            </div>
+                                
+                                <div class="form-group"><label>Event Address</label><h:inputText id="address" value="#{eventBean.event_adress}"  placeholder="Event address" class="form-control" >
+                                 
+                               </h:inputText></div>
+                                <div class="form-group"><label>Event Sector</label> 
+                                 <h:selectOneMenu value="#{eventBean.event_sector}" class="select2_demo_1 form-control"> 
+                                 <f:selectItems value="#{eventBean.Sectors()}" var="lista"  itemValue="#{eventBean.event_sector}" itemLabel=""/>
+                                 </h:selectOneMenu>   </div>
+                                      
+                                      
+                               <div class="form-group"><label>Event Type</label> 
+                                 <h:selectOneMenu value="#{eventBean.event_type}" class="select2_demo_1 form-control"> 
+                                 <f:selectItem itemLabel="Select Event Type" itemValue="" />
+                                 <f:selectItem   itemValue="Product_Launch" itemLabel="Product_Launch"/>
+                                 <f:selectItem   itemValue="Company_Milesstones" itemLabel="Company_Milesstones"/>
+                                 <f:selectItem   itemValue="Trade_Shows" itemLabel="Trade_Shows"/>
+                                 <f:selectItem  itemValue="Appreciation_Event" itemLabel="Appreciation_Event"/>
+                                 </h:selectOneMenu>
+                                </div>
+                              
+                              
+                                         <div class="form-group">
+                                        <div class="i-checks"><label> <input type="radio" value="option1" name="a"/> <i></i> Profitable </label>
+                                       <label> <input type="radio"  value="#{eventBean.event_profitable}" name="a"/>
+                                          <em></em> Private </label>
+                                        </div>
+                                        </div>
+                                   <h:commandButton action="#{eventBean.ajouterevent()}" value="Save"  class="btn btn-sm btn-primary pull-right m-t-n-xs" /> 
+ </form>  
+                                                           
+                                                        </div>
+                                  </div>
+</div>
+                                                   </div>
+                                                   </div></div>
+                        </div> 
+                    
+      
+            
+	</ui:define>
+	
+</ui:composition>

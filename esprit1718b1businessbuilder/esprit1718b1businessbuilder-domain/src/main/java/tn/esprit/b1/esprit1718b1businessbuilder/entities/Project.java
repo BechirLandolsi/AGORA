@@ -123,6 +123,18 @@ public class Project implements Serializable {
 		this.count = count;
 		this.product = product;
 	}
+	
+	
+
+
+
+
+	public Project(Company projectOwner, String name, String service) {
+		super();
+		ProjectOwner = projectOwner;
+		this.name = name;
+		this.service = service;
+	}
 
 
 

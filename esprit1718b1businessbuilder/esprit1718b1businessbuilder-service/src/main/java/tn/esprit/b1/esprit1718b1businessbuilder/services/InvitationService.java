@@ -74,6 +74,7 @@ public class InvitationService  implements InvitationServiceRemote {
 		return invitation_list;
 	}
 
+	
 	@Override
 	public long countnumberguest(Event e) {
 		Query q =  em.createQuery("select count(e)  from Invitation e where e.Event=:id AND e.guest_Response="+true) ;

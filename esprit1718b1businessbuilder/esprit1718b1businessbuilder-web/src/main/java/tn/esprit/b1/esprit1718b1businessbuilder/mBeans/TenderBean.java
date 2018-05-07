@@ -8,11 +8,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.bean.ViewScoped;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -69,7 +67,7 @@ public class TenderBean {
 		tender=new Tender();
 		category = new TenderCategory();
 		loggedCompany = new User();
-		application = new TenderApplication();
+		application= new TenderApplication();
 	}
 	
 	public Tender getTender() {
@@ -175,8 +173,18 @@ public class TenderBean {
 	public void setMyTenders(List<Tender> myTenders) {
 		this.myTenders = myTenders;
 	}
+
+	public TenderApplication getApplication() {
+		return application;
+	}
+
+	public void setApplication(TenderApplication application) {
+		this.application = application;
+	}
 	
-	
+	public void delete(Tender t){
+		tenderService.delete(t);
+	}
 	
 
 }

@@ -27,6 +27,10 @@ public interface ProjectRemote {
 	
 	public List<Project> getRateByCompany(Company c);
 	
+	public List <Long> countProjectsPerCompanyBySector(Long CompanyId,String Sector);
+	
+	public List<Object[]> getProjectsPerCompanyBySector(Company c);
+	
 
 
 	

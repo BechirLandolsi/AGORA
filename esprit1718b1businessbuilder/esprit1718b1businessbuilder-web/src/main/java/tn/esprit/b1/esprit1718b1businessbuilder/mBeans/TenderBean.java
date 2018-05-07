@@ -150,7 +150,6 @@ public class TenderBean {
 				Date publishedDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 				tender.setPublishedDate(publishedDate);
 				
-				//loggedCompany=cs.findBy((long)2);
 				category= tenderCategoryService.findByName(categoryName);
 				
 				tenderService.affectTenderToCompanyCategory(tender, loggedCompany,category);
@@ -160,12 +159,12 @@ public class TenderBean {
 	
 	public void apply(Tender t) throws ParseException{
 		
-		loggedCompany=cs.findBy((long)2);
+		loggedCompany=loginBean.getUser();
 		tenderApplicationService.apply(loggedCompany, t);
 	}
 
 	public List<Tender> getMyTenders() {
-		loggedCompany=cs.findBy((long)2);
+		loggedCompany=loginBean.getUser();
 		myTenders=tenderService.findByCompany(loggedCompany);
 		return myTenders;
 	}

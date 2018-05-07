@@ -25,7 +25,7 @@ public class DBPopulator {
 
 	@PostConstruct
 	public void init() throws ParseException {
-		User user = new User("user", "u", "u", "user@bitbox.tn");
+		//User user = new User("user", "u", "u", "user@bitbox.tn");
         
 		
 		

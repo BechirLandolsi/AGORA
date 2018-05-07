@@ -36,6 +36,7 @@ public class EventBean implements Serializable{
 	private boolean event_state;
 	private boolean event_privacy;
 	private Date event_date;
+	private Date today_date;
 	private List<Event> events;
 	private List<String> sectors;
 	private List<Invitation> invitations;
@@ -48,12 +49,23 @@ public class EventBean implements Serializable{
 	
 	@EJB
 	EventService eventService;
+	@EJB
 	CompanyService companyService;
+@EJB
 	InvitationService invitationService;
 
 	
 	public Long getIdcompany() {
 		return idcompany;
+	}
+
+	public Date getToday_date() {
+		today_date=new Date();
+		return today_date;
+	}
+
+	public void setToday_date(Date today_date) {
+		this.today_date = today_date;
 	}
 
 	public void setIdcompany(Long idcompany) {
@@ -229,10 +241,10 @@ public class EventBean implements Serializable{
 	}
 	
 	public void inviteCompany(long id){
-		this.idcompany=id;
-		System.out.println(this.id_event);
-		System.out.println(this.idcompany);
-		invitationService.InviteCompanyToAnEvent(idcompany,155);	
+		idcompany=id;
+		System.out.println(id_event);
+		System.out.println(idcompany);
+		invitationService.InviteCompanyToAnEvent(idcompany,id_event);	
 	}
 	
 	public List<String> getSectors() {
@@ -259,8 +271,8 @@ public class EventBean implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public List<Invitation> DisplayMyInvitation(Company c){
-		invitations=invitationService.DisplayInvitationByCompany(c);
+	public List<Invitation> DisplayMyInvitation(){
+		invitations=invitationService.DisplayInvitationByCompany((Company)loginBean.getUser());
 		return invitations;
 	}
 	

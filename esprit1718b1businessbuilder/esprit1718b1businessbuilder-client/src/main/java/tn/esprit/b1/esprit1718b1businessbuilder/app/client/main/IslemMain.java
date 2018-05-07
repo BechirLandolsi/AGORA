@@ -15,6 +15,8 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.EventServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.InvitationService;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.InvitationServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote;
 
 public class IslemMain {
@@ -32,6 +34,11 @@ public class IslemMain {
 		Context context2 = new InitialContext();
 		CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2);
 		
+		
+		
+		String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/InvitationService!tn.esprit.b1.esprit1718b1businessbuilder.services.InvitationServiceRemote" ; 
+		Context context3 = new InitialContext();
+		InvitationServiceRemote proxy3 = (InvitationServiceRemote) context.lookup(jndiName3);
 		//*************************************************************************
 	/*	Company com1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
 		Company loggedUser=(Company)proxy2.login("vermeglogin", "vermegpass");
@@ -57,7 +64,7 @@ public class IslemMain {
 		Event e= new Event("Foire Samsung","Tunis","Mobile",true,datep);
 		e.setCompany_organizer(proxy2.findBy((long)8));
 		proxy.save(e);
-
+        proxy3.InviteCompanyToAnEvent(8, 155);
 	
 		
 	    all=proxy.findEventByCompany((long)8);

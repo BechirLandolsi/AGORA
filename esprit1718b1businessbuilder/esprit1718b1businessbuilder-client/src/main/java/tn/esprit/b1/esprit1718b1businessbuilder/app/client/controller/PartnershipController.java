@@ -22,7 +22,11 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import javafx.animation.FadeTransition;
 import javafx.collections.FXCollections;
@@ -37,6 +41,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
@@ -55,6 +60,10 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -73,18 +82,13 @@ import javafx.scene.input.TouchEvent;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.NoResultException;
 
+import org.controlsfx.control.HyperlinkLabel;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
 
@@ -162,6 +166,9 @@ public class PartnershipController implements Initializable {
 	    
 	    @FXML
 	    private Label chartLabel;
+	    
+	    @FXML
+	    private BarChart<String,Number> BarChart;
 
 /**************************************************** Anchor2 ***************************************************/
 
@@ -189,8 +196,71 @@ public class PartnershipController implements Initializable {
 	    @FXML
 	    private Label countLabel;
 	   
-	ProjectController projectController;
-/***********************************************************************************************************************/
+	
+	   ProjectController projectController;
+	
+	  // ProjectRowController projectrowcontroller;
+	   
+/******************************************************* Anchor3 ****************************************************/
+	    
+	
+	 @FXML
+	    private AnchorPane anchor3;
+
+	    @FXML
+	    private JFXButton btnbackanchor3To2;
+	    
+	    @FXML
+	    private JFXButton btnpartner;
+	    
+
+	    @FXML
+	    private Label salesLabel1;
+
+	    @FXML
+	    private Label CVLabel;
+
+	    @FXML
+	    private Label percentCVLabel;
+
+	    @FXML
+	    private Label MgLabel;
+
+	    @FXML
+	    private Label percentMgLabel;
+
+	    @FXML
+	    private Label CFLabel;
+
+	    @FXML
+	    private Label resultLabel1;
+
+	    @FXML
+	    private Label SRLabel;
+
+	    @FXML
+	    private Label PointMortLabel;
+
+	    @FXML
+	    private Label fondDeRoulmntLabel;
+
+	    @FXML
+	    private HyperlinkLabel afficherBilanLink;
+	    
+    
+	    @FXML
+	    private AnchorPane holderPane;
+	    
+	    @FXML
+	    private Label btnLabel;
+	    
+	    @FXML
+	    private Label requestLabel;
+	    
+
+	    
+/*********************************************************************************************************************/
+	    
 	    
 	    
 		 String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 
@@ -213,6 +283,9 @@ public class PartnershipController implements Initializable {
 		 User loggedcompany = LoginController.LoggedUser;
 
 		 //static Project o;
+		 
+/*******************************************************************************************************************/
+		 
    
 		    public void PieChart(Company c) throws NamingException {
 		    	context2 = new InitialContext();
@@ -220,18 +293,54 @@ public class PartnershipController implements Initializable {
 		 	   long i1=proxy2.CountStableProjects(c);
 		 	    long i2=proxy2.CountUnstableProjects(c);
 		
-		 	    pieChart1.setTitle("Projects' State");
-		    
+		 	   pieChart1.setTitle("Projects' State");
+		 	    
 		    ObservableList<PieChart.Data> pieChartData =
 	               FXCollections.observableArrayList(
 	               new PieChart.Data("In Stable State",i1),
 	               new PieChart.Data("In danger", i2));
-		   // pieChart1.setLegendSide(Side.LEFT);
+		   pieChart1.setLegendSide(Side.RIGHT);
 		    pieChart1.setData(pieChartData);
 		 
-		    
-	     
+		    	     
 		    }
+		    
+		    
+		       public void BarChart(Company c) throws NamingException {
+		    	   BarChart.getData().clear();
+		    	
+		       context2 = new InitialContext();
+		 	   ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName2);
+		 	   List l1=new ArrayList<>();
+		 	   List l2=new ArrayList<>();
+		 	   
+		 	   l1=proxy2.getProjectsNameByCompany(c);
+		 	   l2=proxy2.getProjectsQualityByCompany(c);
+		 	   
+		 	   
+		 	   BarChart.setTitle("Projects by score");
+		 	  ObservableList<XYChart.Series<String, Number>> data = FXCollections.observableArrayList();
+		 	  XYChart.Series series1 = null;
+		 	    series1 = new XYChart.Series();
+		 	   
+		        for(int i=0;i<l1.size();i++)
+		        {
+		        	series1.getData().add(new XYChart.Data(l1.get(i), l2.get(i)));
+		        	
+
+		        }
+		       
+		        data.add(series1);
+		        
+		        BarChart.getData().addAll(data);
+		     
+		    	
+
+		    
+		    }
+		       
+		      	
+/***************************************************************************************************************/
 		    
 	
 	@Override
@@ -268,12 +377,14 @@ public class PartnershipController implements Initializable {
 	    
 	 @FXML
 	    void help(MouseEvent event) throws NamingException {
-		 
 		 context1 = new InitialContext();
 		   CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1);
 		   
 		   context2 = new InitialContext();
 		   ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName2);
+		   
+		   context3 = new InitialContext();
+		   PartnershipRemote proxy3 = (PartnershipRemote) context3.lookup(jndiName4);
 		 
 		 String sector;
 		 
@@ -287,46 +398,38 @@ public class PartnershipController implements Initializable {
 		    	Company company =proxy.findBy(loggedcompany.getId());
 		    	System.out.println(company);
 	
-	
-	
-	//ObservableList<String> Allcompaniesname = FXCollections.observableArrayList(proxy.findAllCompanyNames());
+		    ObservableList<String> Allcompanies = FXCollections.observableArrayList(proxy.FindBySector(sector));
 
-		    	ObservableList<String> Allcompanies = FXCollections.observableArrayList(proxy.FindBySector(sector));
-
-		    			
-		    for(String c : Allcompanies) 
+		   if (Allcompanies.isEmpty())
+		   {System.out.println("--------");}
+		   
+		   else 
+		   {
+			   for(String c : Allcompanies) 
 		    {
 		    	
-		    			       if(company.getName().equals(c)) {
+		    	  if(company.getName().equals(c)) 
+		    	  {
 		    			        	
-		    			    	    System.out.println("name==name");
-		    			        	Allcompanies.remove(company.getName());
+		    	  System.out.println("name==name");
+		    	  Allcompanies.remove(company.getName());
 		    			        	
 		    			          
-		    			        }
+		    	  }
 		    			        
 		    }
-		    			       companiescombo.setItems(Allcompanies);
-		    			 	
-		    	
-
-				//companiescombo.setItems(Allcompanies);
-				
-				/*companynameLabel.setVisible(true);
-				ProjectsLabel.setVisible(true);
-				has.setVisible(true);
-				nbrprojLabel.setVisible(true);*/
-				
-				companynameLabel.setText(companiescombo.getValue());
+		    			      
+		       companiescombo.setItems(Allcompanies);
+			   companynameLabel.setText(companiescombo.getValue());
 			    
 				companypartner = new Company();
 				companypartner = proxy.findAllCompanyByName(companynameLabel.getText());
 				
 								
 				List <Long> nbrL = new ArrayList<>();
+				if (companypartner!=null)
+				{
 				nbrL = proxy2.countProjectsByCompanyName(companypartner);
-				
-				
 				
 				if(nbrL.isEmpty())
 				
@@ -334,7 +437,9 @@ public class PartnershipController implements Initializable {
 					System.err.println("empty");
 				}
 				
-				else{	
+				else
+				{	
+					
 				nbrprojLabel.setText(String.valueOf(nbrL.get(0)));
 				
 				companynameLabel.setVisible(true);
@@ -342,12 +447,35 @@ public class PartnershipController implements Initializable {
 				has.setVisible(true);
 				nbrprojLabel.setVisible(true);
 				
-			
+/***************************************************************************************************************/				
+
+				
+				//List <Project> projects = new ArrayList<>();
+			   //projects=proxy3.getAllProjectsAffectedByCompany(companypartner);
+				
+				//List <Project> Allprojects = new ArrayList<>();
+				//Allprojects = proxy2.getProjectsByCompany(companypartner.getId());
+					
+				//List <Project> projectsNotaffected = new ArrayList<>();
+				
+				/*for (Project p1 : Allprojects)
+				{
+					for(Project p2 :projects )
+					 
+					{if (p1!=p2)
+					 	{
+						projectsNotaffected.add(p2);
+						System.out.println(projectsNotaffected);
+					 	}
+						 
+					}
+				}	*/
+		
+/***************************************************************************************************************/				
+				
 				listproject = FXCollections.observableArrayList(proxy2.getProjectsByCompany(companypartner.getId()));
 		    	
-		 	    
-				
-		    	  col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+				  col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		    	  col_name.cellFactoryProperty();
 		         
 		    	  col_service.setCellValueFactory(new PropertyValueFactory<>("service"));
@@ -364,10 +492,16 @@ public class PartnershipController implements Initializable {
 		    	  
 		    	  tab_project.setItems(listproject); 
 		    	  
-		    	  //System.out.println("aaaaaaaaaaaaaaaaaaaaa");
 		    	  PieChart(companypartner);
+		    	  BarChart(companypartner);
+		    	  
+		    	
+		    	
+		    	 
+				} 
 				
 		   	}
+		    }
 		    }
 
 		    
@@ -389,7 +523,11 @@ public class PartnershipController implements Initializable {
     		 o = new Project();
     		 o = tab_project.getSelectionModel().getSelectedItem();
       	   
-      	    anchor1.setVisible(false);
+    		 if(o!=null)
+    		 
+    		 {
+    			 anchor1.setVisible(false);
+    		
       	    anchor2.setVisible(true);
       	
       	   context3 = new InitialContext();
@@ -419,6 +557,7 @@ public class PartnershipController implements Initializable {
 
     		
     	}	
+    		 }
       	     
       	  }
 	 
@@ -466,110 +605,144 @@ public class PartnershipController implements Initializable {
 	    }
 	  
 	  
-	  public void envoyer(String pwd, String mail)
-      {
-          Properties props = new Properties();
-          props.put("mail.smtp.auth", "true");
-          props.put("mail.smtp.starttls.enable", "true");
-          props.put("mail.smtp.host", "smtp.gmail.com");
-          props.put("mail.smtp.port", "587");
-          
-          Session session = Session.getInstance(props,new javax.mail.Authenticator(){
-              protected PasswordAuthentication getPasswordAuthentication(){
-                  return new PasswordAuthentication("tesnim.dahmeni@esprit.tn", "22121995missou");
-              }
-          }); 
-          try
-          {
-              Message message = new MimeMessage(session);
-              message.setFrom(new InternetAddress("tesnim.dahmeni@esprit.tn"));
-              message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-              message.setSubject("Salut");
-              message.setText("coucou");
-              Transport.send(message);
-              Notifications nb = Notifications.create().darkStyle().hideAfter(Duration.seconds(5)).title("Logout")
-                      .text("Mail sent successfully !");
-                    
-              nb.showConfirm();
-   
-          }
-          catch(MessagingException e){
-              
-                   Alert alert = new Alert(Alert.AlertType.ERROR);
-                      alert.setTitle("Failure to send");
-                      alert.setHeaderText("Please check your informations !!");
-
-                      alert.showAndWait();
-                  
-               }      
-          
-      }
-	  
 	  
 	    @FXML
-	    void btnpartner(ActionEvent event) throws NamingException {
+	    void btnpartner(ActionEvent event) throws NamingException, IOException {
 	    	
 	    	context1 = new InitialContext();
+	    	ProjectRemote proxy3 = (ProjectRemote) context1.lookup(jndiName2);
 			   CompanyServiceRemote proxy = (CompanyServiceRemote) context1.lookup(jndiName1); 	
 	       	Company c =proxy.findBy(loggedcompany.getId());
 	    	context4 = new InitialContext();
 			   PartnershipRemote proxy2 = (PartnershipRemote) context4.lookup(jndiName4);
 			   Partnership part = new Partnership();
 			  
-			if (part!=null && companypartner!=null  ) {
-			}
+			if (part!=null && companypartner!=null) {
+			
 			
 			  
 			Calendar cal = Calendar.getInstance();
-	       //sdf.format(cal.getTime());
+	      
 		        
-			   {   part.setPartnershipDate(cal.getTime());
-				   proxy2.addPartner(part,c, companypartner, projectController.o); 
+			    //System.out.println(ProjectRowController.project1);
+				   part.setPartnershipDate(cal.getTime());
+				   
+							       
+					   
+				          proxy2.addPartner(part,c, companypartner, ProjectRowController.project1);
+				          
+				          String Sender = c.getEmail();
+			    	        String password = c.getPassword();
+			    	        String receiver = companypartner.getEmail();
+
+			    	        Properties props = new Properties();
+			    	        props.put("mail.smtp.auth", true);
+			    	        props.put("mail.smtp.starttls.enable", true);
+			    	        props.put("mail.smtp.host", "smtp.gmail.com");
+			    	        props.put("mail.smtp.port", "587");
+
+			    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			    	            protected PasswordAuthentication getPasswordAuthentication() {
+			    	                return new PasswordAuthentication(Sender, password);
+			    	            }
+			    	        });
+
+			    	        try {
+
+			    	            Message message = new MimeMessage(session);
+			    	            message.setFrom(new InternetAddress(Sender));
+			    	            message.setRecipients(Message.RecipientType.TO,
+			    	                    InternetAddress.parse(receiver));
+			    	            message.setSubject("Partnership Request/"+c.getName()+"'Company");
+			    	            message.setText("Dear Sir/Madam\n Each year we work with more than 100 companies from all over the "
+			    	            		+ "world and it will be an honor to work with you on our new project\n "
+			    	            		+"The attached piece bellow presents the Balance Sheet of the Project:\n"
+			    	            		+ " _____________________________________________________________________________________________________ \n"
+					    	            + "|                                                                                                      \n"
+					    	            + "|Project name:    "+ProjectRowController.project1.getName()+"                                          \n"
+					    	            + "|_____________________________________________________________________________________________________ \n"
+					    	            + "|                                                                                                      \n"
+					    	            + "|Project nature:  "+ProjectRowController.project1.getProjectNature()+"                                 \n"
+			    	            		+ "|_____________________________________________________________________________________________________ \n"
+					    	            + "|                                                                                                      \n"
+			    	            		+ "|Service:         "+ProjectRowController.project1.getService()+"                                       \n"
+			    	            		+ "|_____________________________________________________________________________________________________ \n"
+					    	            + "|                                                                                                      \n"
+			    	            		+ "|Capital(DT):     "+ProjectRowController.project1.getCapital()+"                                       \n"
+			    	            		+ "|_____________________________________________________________________________________________________ \n"
+			    	            		+ "\nAt your request I can send you our company's "
+			    	            		+ "introductory profile in PDFformat for your perusal and more informations about the project."
+			    	            		+ "\nThank you very much, and we hope to receive your favorably response soon. Best regards");
+			    	            MimeBodyPart messageBodyPart = new MimeBodyPart();
+			    	            Multipart multipart = new MimeMultipart();
+			    	            Transport.send(message);
+			    	           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+						        alert.setTitle("Confirmation");
+						         alert.setHeaderText(null);
+						         alert.setContentText("Partnership request sent");
+						         alert.showAndWait().ifPresent(response -> {
+						             if (response == ButtonType.OK) {
+						            	
+						            	btnpartner.getScene().getWindow().hide();
+								      
+						             
+						             }
+						         });
+						     
+						 
+			       
+			    	         } catch (MessagingException e) {
+			    	            e.printStackTrace();
+			    
+
+			    	         }
+				          
+				       }
+				   
+				   
 			   
-				   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-			         //alert.initOwner(adresse.getScene().getWindow());
-			         alert.setTitle("Confirmation");
-			         alert.setHeaderText(null);
-			         alert.setContentText("Partner request sent");
-			         alert.showAndWait();
+				  
 			         
 			   
 	    	/**********************************************************************************************/
-	                       
-	                String mail="tesnim.dahmeni@esprit.tn";
-	                String pwd ="22121995missou";    
-	                
-	         
-	           
-	              //  envoyer(pwd,mail);
-			   
-			   
-	    	/* Mail emailS = new Mail();
-	         String[] to = {companypartner.getEmail()};
-	        String adresse = c.getEmail();
-	         System.out.println(adresse);
-	         String subject = "partnership request";
-	         String messageText = "Dear Sir/Madam\n Each year we work with more than 100 companies from all over the "
-	+ "world, and it will an honor to work with you on our new project\n At your request I can send you our company's "
-	+ "introductory profile in PDFformat for your perusal."
-	+ "\n Thank you very much, and we hope to receive your favorably response soon.Best regards";
-
-	         if (emailS.sendMail(adresse,c.getPassword(), messageText, subject, to)) {
-	         }
-	         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-	         //alert.initOwner(adresse.getScene().getWindow());
-	         alert.setTitle("Confirmation");
-	         alert.setHeaderText(null);
-	         alert.setContentText("Email Envoyer Avec Succées ");
-	         alert.showAndWait().ifPresent(response -> {
-	             if (response == ButtonType.OK) {
-
-	             }
-	         }); */
-
-			         }
-	 
+	       
+			          
+   
+	
 	    }
+	    
+	    @FXML
+	    void afficherBilanLink(MouseEvent event) {
+	    	 anchor2.setVisible(false);
+			 anchor3.setVisible(true);
+			  
+		    	float percentCV = (o.getBilan().getCV()/o.getBilan().getCA())*100 ;
+		    	float percentMg= (o.getBilan().getMargeSurCoutV()/o.getBilan().getCA())*100;
+		    
+		    	salesLabel1.setText(String.valueOf(o.getBilan().getCA()));
+		      	CVLabel.setText(String.valueOf(o.getBilan().getCV()));
+		    	percentCVLabel.setText(String.valueOf(percentCV)+"%");
+		    	MgLabel.setText(String.valueOf(o.getBilan().getMargeSurCoutV()));
+		    	percentMgLabel.setText(String.valueOf(percentMg)+"%");
+		    	CFLabel.setText(String.valueOf(o.getBilan().getCF()));
+		    	resultLabel1.setText(String.valueOf(o.getBilan().getResult()));
+		    	SRLabel.setText(String.valueOf(o.getBilan().getSR()));
+		    	fondDeRoulmntLabel.setText(String.valueOf(o.getBilan().getFR()));
+			 
+	    }
+	    
+	
+	    @FXML
+	    void btnbackanchor3To2(ActionEvent event) {
+
+	   	 anchor3.setVisible(false);
+		 anchor2.setVisible(true);
+		 
+		 
+	    	
+	    }
+	    
+	    
 	  
 
 	

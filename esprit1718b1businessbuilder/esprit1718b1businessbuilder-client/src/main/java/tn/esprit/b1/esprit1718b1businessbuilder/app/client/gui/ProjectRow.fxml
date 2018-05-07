@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane onMouseMoved="#pickproject" prefHeight="181.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane fx:id="cell" prefHeight="178.0" prefWidth="602.0" style="-fx-background-radius: 3; -fx-border-radius: 3; -fx-border-color: #c3c3c3;">
+         <children>
+            <Label fx:id="nameLabel" layoutX="95.0" layoutY="22.0" prefHeight="30.0" prefWidth="192.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="llll" />
+            <Label fx:id="serviceLabel" layoutX="95.0" layoutY="52.0" prefHeight="30.0" prefWidth="199.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="lllll" />
+            <Label fx:id="stateLabel" layoutX="95.0" layoutY="111.0" prefHeight="30.0" prefWidth="192.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="kkk" />
+            <Pane layoutY="177.0" prefHeight="5.0" prefWidth="600.0" style="-fx-border-radius: 0 0 3 3; -fx-background-color: #1E90FF; -fx-border-color: #C3C3C3; -fx-border-width: 1 0 0 0;" />
+            <Label fx:id="sector1" layoutX="14.0" layoutY="52.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Service" />
+            <Label fx:id="sector11" layoutX="14.0" layoutY="22.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Name" />
+            <Label fx:id="sector12" layoutX="14.0" layoutY="82.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Product" />
+            <Label fx:id="productLabel" layoutX="95.0" layoutY="82.0" prefHeight="30.0" prefWidth="192.0" style="-fx-text-fill: #73879#000000C; -fx-font-weight: bold; -fx-font-size: 15;" text="lllll" />
+            <Label fx:id="adress" layoutX="14.0" layoutY="111.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="State" />
+            <Label fx:id="stateLabel1" layoutX="14.0" layoutY="140.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Score" />
+            <Label fx:id="scoreLabel" layoutX="95.0" layoutY="140.0" prefHeight="30.0" prefWidth="43.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="kkk" />
+            <Label fx:id="partnerLabel" layoutX="329.0" layoutY="53.0" prefHeight="58.0" prefWidth="259.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="kkk" />
+            <Label fx:id="sector121" layoutX="426.0" layoutY="14.0" prefHeight="30.0" prefWidth="65.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="Partner" />
+            <Label fx:id="scoreLabel1" layoutX="138.0" layoutY="140.0" prefHeight="30.0" prefWidth="15.0" style="-fx-text-fill: #73879C; -fx-font-weight: bold; -fx-font-size: 15;" text="/" />
+            <Label fx:id="countLabel" layoutX="146.0" layoutY="140.0" prefHeight="30.0" prefWidth="43.0" style="-fx-text-fill: #000000; -fx-font-weight: bold; -fx-font-size: 15;" text="kkk" />
+            <JFXButton fx:id="btnajouterpartner1" layoutX="466.0" layoutY="126.0" onAction="#btnajouterpartner1" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Partner" visible="false" />
+            <Pane layoutX="233.0" layoutY="85.0" prefHeight="5.0" prefWidth="182.0" rotate="-90.0" style="-fx-border-radius: 0 0 3 3; -fx-background-color: #1E90FF; -fx-border-color: #C3C3C3; -fx-border-width: 1 0 0 0;" />
+            <JFXButton fx:id="btnsupprimerproject" layoutX="329.0" layoutY="126.0" onAction="#btnsupprimerproject" prefHeight="39.0" prefWidth="128.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Delete" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

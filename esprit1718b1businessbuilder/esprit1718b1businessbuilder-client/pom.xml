@@ -17,6 +17,12 @@
       <name>Sonatype Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
+    
+    	<repository>
+			<id>sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+    
   </repositories>
 
 
@@ -123,11 +129,7 @@
 			<version>1.6.1</version>
 		</dependency>
 
-		<!-- To use snapshots, you must also use the Sonatype Snapshots respository -->
-		<repository>
-			<id>sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
+		
 		
 		<dependency>
 			<groupId>com.twilio.sdk</groupId>
@@ -136,12 +138,38 @@
 		</dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
+
 		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>smtp</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+
+	<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
+
+<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		
+		  <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-translate</artifactId>
+      <version>v2-rev51-1.23.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.googlecode/google-api-translate-java -->
+<dependency>
+    <groupId>com.googlecode</groupId>
+    <artifactId>google-api-translate-java</artifactId>
+    <version>0.92</version>
+</dependency>
+		
 
 
 	</dependencies>
@@ -174,4 +202,5 @@
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>

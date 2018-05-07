@@ -1,0 +1,277 @@
+<ui:composition
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+	 xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:uii="http://java.sun.com/jsf/facelets"
+	xmlns:m="http://java.sun.com/jsf/core"
+	xmlns:l="http://java.sun.com/jsf/html"
+	xmlns:n="http://primefaces.org/ui"
+
+	template="template/template.xhtml">
+ 	
+<!-- 
+<head>
+
+ 
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>INSPINIA | FooTable</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+-->
+    <!-- FooTable -->
+  <!--  <link href="css/plugins/footable/footable.core.css" rel="stylesheet"/>
+
+    <link href="css/animate.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+
+</head> --> 
+
+<ui:define name="pageTitle">
+Project List
+			</ui:define>
+			 
+<ui:define name="pageContent">	
+	
+<!-- /////////////////////////////////////////   Recherche   ////////////////////////////////////////////// -->	
+	  <h:form>
+              <div class="row border-bottom">
+     <div class="ibox-title">
+     <div class="input-group"><input jsf:id="recherchlabel" value="#{projectBean.mot}" type="text" placeholder="Searching for something ..." class="input-sm form-control"/> 
+     <span class="input-group-btn">
+   
+       <h:commandButton action="#{projectBean.ListProjectByRecherche(projectBean.mot)}" value="Search" class="btn btn-primary block full-width m-b"/>
+                </span>
+         
+                
+                </div>
+                            <div class="ibox-tools">
+                            </div>
+                        </div>
+                    </div>
+	
+                 
+  
+ 
+      
+ <!-- ////////////////////////////////////    PARTIE NOTIFICATION     ////////////////////////////////////////// -->
+ 
+ 
+ <div id="right-sidebar" class="animated">
+            <div class="sidebar-container">
+
+                <ul class="nav nav-tabs navs-3">
+
+                    <li class="active"><a data-toggle="tab" href="#tab-1">
+                       Notifications
+                    </a></li>
+                    
+                  
+                </ul>
+
+                <div class="tab-content">
+
+
+                    <div id="tab-1" class="tab-pane active">
+
+                        <div class="sidebar-title">
+                            <h3> You have <i class="fa fa-comments-o"></i><label jsf:id="r" value="#{projectBean.countPartnershipNonConfirm()}"/> notifications</h3>
+                            <small><i class="fa fa-tim"></i> </small>
+                        </div>
+
+                        <div>
+                                
+					 		<form jsf:id="s">		  
+					  <ui:repeat var="b" value="#{projectBean.ListPartnership()}">
+	
+                            <div class="sidebar-message">
+            
+         
+		                              
+                                    <div class="pull-left text-center">
+                                       <img jsf:id="tt" alt="image" class="img-circle message-avatar" src="resources/img/#{b.companyOwner.image}"/>
+                                        <div class="m-t-xs">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                    
+			
+       		<label jsf:id="a" value="#{b.companyOwner.CEO}"/>
+									 invited you to join her project 
+										<label jsf:id="b" value="#{b.project.name}"/> as a partner for
+										<label jsf:id="c" value="#{b.partnershipDuration}"/> 
+										
+                                       	
+                                        <br></br>
+                                        <small class="text-muted"><label jsf:id="d" value="#{b.partnershipDate}"/></small>
+                                  
+                         	<h:commandButton action="#{projectBean.hez(b.project.id)}" value="Show me"  class="btn btn-primary block full-width m-b" />
+                                  
+                                  
+                                    </div>
+                           
+                       </div>
+             </ui:repeat>
+             </form>	
+                     
+          </div>
+          </div>
+          </div>
+          </div>
+         
+
+
+
+        </div>
+     
+     <!-- /////////////////////////////////////////////////////////////////////////////////////////// -->                                        
+ 
+		<div >
+		<h1>Projects List</h1>	
+	<!-- //////////////////////////////////////////   TABLEAU    ///////////////////////////////////////////////// -->		
+			
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Projects</h5>
+
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="ibox-content">
+
+                            <table class="footable table table-stripped toggle-arrow-tiny">
+           
+						 
+                            
+                             <thead>
+                                <tr>
+
+                                    <th data-toggle="true">Project</th>
+                                    <th>Nature</th>
+                                    <th data-hide="all">Product</th>
+                                    <th data-hide="all">Service</th>
+                                    <th data-hide="all">Capital</th>
+                                  
+                                   
+                                </tr>
+                                </thead>
+                            
+                                <thead>
+                                
+                                  <ui:repeat var="p" value="#{projectBean.ListProject()}">   
+                                                      
+                               <tr>
+                               
+                                  <!-- <td class="footable-visible footable-first-column">
+                                    <span class="footable-toggle"></span>
+                           <label jsf:id="e" value="#{p.name}" />
+                                    </td> -->
+                                   
+                                   <td><label jsf:id="f" value="#{p.name}" /> </td>
+                                 
+                                    <td>
+                                    <label jsf:id="i" value="#{p.projectNature}" />
+                                    </td>
+                                    
+                                     <td>
+                                    <label jsf:id="j" value="#{p.product}" />
+                                    </td>
+                                    
+                                     <td>
+                                    <label jsf:id="kt" value="#{p.service}" />
+                                    </td>
+                                    
+                                     <td>
+                                    <label jsf:id="ll" value="#{p.capital}" />
+                                    </td>
+								
+                                </tr>
+                                
+                                
+                         <ui:repeat var="a" value="#{projectBean.ListPartners(p)}">   
+                                
+                                <tr class="footable-row-detail"><td class="footable-row-detail-cell" colspan="4">
+                                
+                                <div class="footable-row-detail-inner">
+                                
+                                <div class="footable-row-detail-row">
+                                
+                                <div class="footable-row-detail-name">Company partner:</div>
+                                <div class="footable-row-detail-value">
+                                    <label jsf:id="mm" value="#{a.companyPartner.CEO}" />
+								</div>
+                                </div>
+                                
+                                <!--  <div class="footable-row-detail-row">
+                                <div class="footable-row-detail-name">Partership Date:</div>
+                                <div class="footable-row-detail-value"><span class="pie">
+								 <label jsf:id="nn" value="#{a.partnershipDate}" />
+								</span></div>
+                                </div>
+                                -->
+                                
+                                <div class="footable-row-detail-row">
+                                <div class="footable-row-detail-name">Partnership Date:</div>
+                                <div class="footable-row-detail-value">
+								 <label jsf:id="p" value="#{a.partnershipDate}" />
+								</div>
+                                </div>
+                                
+                                
+                                <div class="footable-row-detail-row">
+                                <div class="footable-row-detail-name">Partnership Duration:</div>
+                                <div class="footable-row-detail-value">
+								 <label jsf:id="q" value="#{a.partnershipDuration}" />
+								</div>
+                                </div>
+                                
+                              
+                                
+                                </div>
+                                </td>
+                                </tr>
+                                
+                                </ui:repeat>
+                                </ui:repeat>
+                                </thead>
+                              
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <ul class="pagination pull-right"></ul>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>			
+			
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////// -->		
+
+		</div>
+ </h:form>
+	</ui:define>
+
+
+</ui:composition>

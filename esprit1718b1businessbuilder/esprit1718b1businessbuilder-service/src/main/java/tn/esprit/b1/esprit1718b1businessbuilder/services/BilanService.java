@@ -2,6 +2,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +15,8 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
+@LocalBean
+
 public class BilanService implements BilanRemote{
 	
 	@PersistenceContext(unitName="sample-project-ejb")
@@ -26,6 +29,24 @@ public class BilanService implements BilanRemote{
 	    b.setProject(s1);
 		em.persist(b);
 		
+	}
+
+
+	@Override
+	public void deleteBilan(Bilan b) {
+		em.remove(b);
+		
+	}
+
+
+	@Override
+	public List<Bilan> findBilan(long id) {
+		 TypedQuery <Bilan> k= em.createQuery("select p from Project p where p.id="+id,Bilan.class);
+			
+			List<Bilan> b = k.getResultList() ;
+			
+			return b;
+			
 	}
 
 

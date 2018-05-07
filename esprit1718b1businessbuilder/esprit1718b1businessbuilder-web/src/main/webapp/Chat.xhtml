@@ -1,0 +1,214 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+	
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name='viewport'
+	content='minimum-scale=1.0, initial-scale=1.0,
+	width=device-width, maximum-scale=1.0, user-scalable=no' />
+<ui:define name="pageTitle">
+				CHAT PAGE</ui:define>
+ 
+<script type="text/javascript" src="chatroom.js"></script>
+<script type="text/javascript">
+var wsUri = 'ws://localhost:18080/esprit1718b1businessbuilder-web/chat';
+var proxy = CreateProxy(wsUri);
+
+document.addEventListener("DOMContentLoaded", function(event) {
+	console.log(document.getElementById('loginPanel'));
+	proxy.initiate({
+		loginPanel: document.getElementById('loginPanel'),
+		msgPanel: document.getElementById('msgPanel'),
+		txtMsg: document.getElementById('txtMsg'),
+		txtLogin: document.getElementById('txtLogin'),
+		msgContainer: document.getElementById('msgContainer')
+	});
+});
+
+</script>
+</head>
+			 
+	<ui:define name="pageContent">
+
+		<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Chat view</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Miscellaneous</a>
+            </li>
+            <li class="active">
+                <strong>Chat view</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-lg-12">
+
+                <div class="ibox chat-view">
+                      <div class="ibox-title">
+                        <small class="pull-right text-muted">Last message:  Mon Jan 26 2015 - 18:39:23</small>
+                         Chat room panel
+                    </div>
+
+
+                    <div class="ibox-content">
+
+                        <div class="row">
+
+                            <div class="col-md-9 ">
+                                <div class="chat-discussion">
+                                
+                               <div id="container">
+		<div id="loginPanel">
+			<div id="infoLabel">Type a name to join the room</div>
+			<div style="padding: 10px;">
+				<input id="txtLogin" type="text" class="loginInput"
+					onkeyup="proxy.login_keyup(event)" />
+				<button type="button" class="loginInput" onclick="proxy.login()">Login</button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row no_padding title__block nothing no-margin">
+				<div id="msgPanel" style="display: none">
+					<div id="msgContainer" style="overflow: auto;"></div>
+					<div id="msgController">
+						<textarea id="txtMsg" title="Enter to send message"
+							onkeyup="proxy.sendMessage_keyup(event)"
+							style="height: 20px; width: 100%"></textarea>
+						<button style="height: 30px; width: 100px" type="button"
+							onclick="proxy.logout()">Logout</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+                                
+                                
+                                
+                                
+
+                                    <div class="chat-message left">
+                                        <img class="message-avatar" src="img/a1.jpg" alt="" />
+                                        <div class="message">
+                                            <a class="message-author" href="#"> Michael Smith </a>
+											<span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                            <span class="message-content">
+											Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                  
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="chat-users">
+
+
+                                    <div class="users-list">
+                                        <div class="chat-user">
+                                            <img class="chat-avatar" src="img/a4.jpg" alt=""/>
+                                            <div class="chat-user-name">
+                                                <a href="#">Karl Jordan</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <img class="chat-avatar" src="img/a1.jpg" alt=""/>
+                                            <div class="chat-user-name">
+                                                <a href="#">Monica Smith</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <span class="pull-right label label-primary">Online</span>
+                                            <img class="chat-avatar" src="img/a2.jpg" alt=""/>
+                                            <div class="chat-user-name">
+                                                <a href="#">Michael Smith</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <span class="pull-right label label-primary">Online</span>
+                                            <img class="chat-avatar" src="img/a3.jpg" alt="" />
+                                            <div class="chat-user-name">
+                                                <a href="#">Janet Smith</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <img class="chat-avatar" src="img/a5.jpg" alt="" />
+                                            <div class="chat-user-name">
+                                                <a href="#">Alice Smith</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <img class="chat-avatar" src="img/a6.jpg" alt="" />
+                                            <div class="chat-user-name">
+                                                <a href="#">Monica Cale</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <img class="chat-avatar" src="img/a2.jpg" alt="" />
+                                            <div class="chat-user-name">
+                                                <a href="#">Mark Jordan</a>
+                                            </div>
+                                        </div>
+                                        <div class="chat-user">
+                                            <span class="pull-right label label-primary">Online</span>
+                                            <img class="chat-avatar" src="img/a3.jpg" alt="" />
+                                            <div class="chat-user-name">
+                                                <a href="#">Janet Smith</a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="chat-message-form">
+
+                                    <div class="form-group">
+
+                                        <textarea class="form-control message-input" name="message" placeholder="Enter message text"></textarea>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                
+                
+                
+                </div>
+                </div>
+                </div>
+
+
+
+	</ui:define>
+	
+
+	
+	
+</ui:composition>

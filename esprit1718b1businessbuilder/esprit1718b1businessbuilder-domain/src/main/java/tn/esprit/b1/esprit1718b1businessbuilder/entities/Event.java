@@ -72,7 +72,6 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy = "Event",cascade={CascadeType.REMOVE})
     private List<Invitation> invitation;
 	
-	
 	/* Getters And Setters*/
 
 	public Long getId_event() {

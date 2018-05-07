@@ -10,11 +10,8 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Event;
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
-import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
 @Singleton
@@ -28,7 +25,7 @@ public class DBPopulator {
 
 	@PostConstruct
 	public void init() throws ParseException {
-		User user = new User("user", "u", "u", "user@bitbox.tn");
+		//User user = new User("user", "u", "u", "user@bitbox.tn");
         
 		
 		
@@ -57,7 +54,7 @@ public class DBPopulator {
 	//userServiceLocal.update(user);
 		/***** Add Admin *****/
 		//User u = new Admin("Admin","Admin","adminpass","admin@agora.com"); 
-		User u = new Company("company1","companylog","pass","comp@gmail.com","ceo","adress",4,"aa","vetement",3,null,null);
+		//User u = new Company("company1","companylog","pass","comp@gmail.com","ceo","adress",4,"aa","vetement",3,null,null);
 	//userServiceLocal.save(u);
 		/******************************/
 				

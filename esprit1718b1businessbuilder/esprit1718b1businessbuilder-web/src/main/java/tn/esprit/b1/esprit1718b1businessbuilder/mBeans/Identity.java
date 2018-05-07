@@ -6,15 +6,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
-import tn.esprit.b1.esprit1718b1businessbuilder.services.BackgroundJobManager;
-import tn.esprit.b1.esprit1718b1businessbuilder.services.ProvisionService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
 @ManagedBean
 @SessionScoped
-public class Identity {
+public class Identity { 
 	
 	private boolean isLogged = false;
 	private User user = new User();
@@ -39,7 +36,7 @@ public class Identity {
 			
 			
 			
-			navigateTo = "/home?faces-redirect=true";
+			navigateTo = "home?faces-redirect=true";
 			System.out.println(user);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -48,7 +45,6 @@ public class Identity {
 			return "/login?faces-redirect=true";
 		}
 		return navigateTo;
-
 	}
 
 	public User getUser() {

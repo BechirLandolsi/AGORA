@@ -108,7 +108,7 @@ public class OrderService implements OrderServiceRemote {
 	public  Float calculAmount(Order o) {
         Float ammount = (float)0  ; 
 		TypedQuery<OrderLine> q =  em.createQuery("select o from OrderLine o where o.ord= :order  ",OrderLine.class) ;
-		 List<OrderLine> listO = q.setParameter("order", o).getResultList();	
+		List<OrderLine> listO = q.setParameter("order", o).getResultList();	
 		 for(OrderLine ol : listO){
 			 ammount = ammount + ol.getProd().getPrice()*ol.getQuantity() ;
 			 
@@ -142,8 +142,6 @@ public class OrderService implements OrderServiceRemote {
 		
 		 
 		Query q =  em.createQuery("select  SUM(c.amount) , c.orderDate from Order c group by c.orderDate " ) ;
-		    
-		
 		
 		List<Object[]> l = q.getResultList(); 
 		return l ;
@@ -215,5 +213,7 @@ public class OrderService implements OrderServiceRemote {
 		 List<Object[]> listO = q.getResultList();
 		return listO;
 	}
+
+	
 
 }

@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderCategory;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderQualification;
@@ -64,5 +66,16 @@ public class TenderService extends GenericDAO<Tender> implements ITender {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Tender> findByCompany(User user) {
+		
+		TypedQuery<Tender> query = em.createQuery("select t from Tender t WHERE t.companyTender = :user",Tender.class);
+		List<Tender> tenders = query.setParameter("user", user).getResultList() ;
+		
+		return tenders;
+	}
+	
+	
 
 }

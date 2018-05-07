@@ -38,14 +38,14 @@
                             <h:form class="form-horizontal" >
                                 <div class="form-group"><label class="col-sm-2 control-label">Title</label>
 
-                                    <div class="col-sm-10"><h:inputText  type="text" class="form-control"/></div>
+                                    <div class="col-sm-10"><h:inputText value="#{tenderBean.tender.title}" type="text" class="form-control"/></div>
                                 </div>
                                 
                                 <div class="hr-line-dashed"></div>
                                 
                                 <div class="form-group">
                                 	<label class="col-sm-2 control-label">Content</label>
-                                	<div class="col-sm-10"><h:inputTextarea  rows="10" cols="100" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" class="form-control" /></div>
+                                	<div class="col-sm-10"><h:inputTextarea value="#{tenderBean.tender.content}"  rows="10" cols="100" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" class="form-control" /></div>
  								</div>
  								
  								<div class="hr-line-dashed"></div>
@@ -54,7 +54,7 @@
 		                                <label class="col-sm-2 control-label">Deadline</label>
 		                                <div class="input-group date">
 		                                   	 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-		                                   	 <h:inputText  class="form-control" >
+		                                   	 <h:inputText value="#{tenderBean.tender.deadline}" class="form-control" >
 		                                   	 	<f:convertDateTime pattern="dd/MM/yyyy"/>
 		                                   	 </h:inputText>
 		                                </div>
@@ -62,7 +62,14 @@
                                 
                                 <div class="hr-line-dashed"></div>
                                 
-                                  
+                                  <div class="form-group">
+                                	<label class="col-sm-2 control-label">Category</label>
+                                	<div class="col-sm-10">
+                                		<h:selectOneMenu value="#{tenderBean.categoryName}" class="form-control">
+                                			<f:selectItems value="#{tenderBean.categories}"/>
+                                		</h:selectOneMenu>
+                                	</div>
+                                  </div>
                                 
                                 <div class="hr-line-dashed"></div>
                                 
@@ -79,6 +86,79 @@
                     </div>
                 </div>
             </div> 
+            
+            <!-- ***************************************************** My Tenders*********************************** -->
+            
+            <h:form>	
+		<ui:repeat var="tender" value="#{tenderBean.myTenders}">
+				
+			<div class="row">
+			
+					
+	                <div class="col-lg-12">
+	
+	                    <div class="ibox product-detail">
+	                        <div class="ibox-content">
+	                        	
+	                        	<div class="feed-element">
+	                                        <a href="#" class="pull-left">
+	                                            <img alt="image" class="img-circle" src="resources/img/a2.jpg"/>
+	                                        </a>
+	                                        <div class="media-body ">
+	                                            <small class="pull-right"><h:outputText value="#{tenderBean.getPrettyTime(tender)}" /></small>
+	                                            <strong><h:outputText value="#{tender.companyTender.name}" /></strong> posted a new tender <br></br>
+	                                            <small class="text-muted"><h:outputText value="#{tender.publishedDate}" /></small>
+	       
+	                                        </div>
+	                                    </div>
+	
+	                            <div class="row">
+	                                
+	                                <div class="col-md-7">
+	
+	                                    <h2 class="font-bold m-b-xs">
+	                                        <a href="#" class="text-navy"><h:outputText value="#{tender.title}" /></a>
+	                                    </h2>
+	                                    <hr></hr>
+	
+	                                    <h2><STRONG>Tender description</STRONG></h2>
+	
+	                                    <div >
+	                                    	<H2>
+	                                        <h:outputText value="#{tender.content}" /></H2>
+	                                    </div>
+	                                    <dl class="small m-t-md">
+	                                        <dt>Tender Category</dt>
+	                                        <dd><h:outputText value="#{tender.category}" /></dd>
+	                                    </dl>
+	                                    <hr></hr>
+	
+	                                    <div>
+	                                        <div class="pull-right">
+	                                            <button class="btn btn-info " type="button"><i class="fa fa-paste"></i> Edit</button>
+	                                            <button class="btn btn-danger" type="submit" id="delete" jsf:action="#{tenderBean.delete(tender)}"><i class="fa fa-recycle"></i> <span class="bold">Delete</span></button>
+	                                        </div>
+	                                    </div>
+	
+	
+	
+	                                </div>
+	                            </div>
+	
+	                        </div>
+	                        <div class="ibox-footer">
+	                            <span class="pull-right">
+	                                Deadline - <i class="fa fa-clock-o"></i> 14.04.2016 10:04 pm
+	                            </span>
+	                            <br/>
+	                        </div>
+	                    </div>
+	
+	                </div>
+	            </div>
+			
+		</ui:repeat>
+	</h:form>		
           
 
 		</ui:define>

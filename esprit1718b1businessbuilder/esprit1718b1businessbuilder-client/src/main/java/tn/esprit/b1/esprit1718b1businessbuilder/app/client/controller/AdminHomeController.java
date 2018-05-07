@@ -54,7 +54,7 @@ public class AdminHomeController implements Initializable {
     @FXML
     private AnchorPane HolderAnchor;
     
-    AnchorPane Home , Sales ,Profiles ;
+    AnchorPane Home , Sales ,Profiles , setting ;
 
     /**
      * Initializes the controller class.
@@ -111,7 +111,8 @@ public class AdminHomeController implements Initializable {
     }
 
     @FXML
-    private void switchSettings(ActionEvent event) {
+    private void switchSettings(ActionEvent event) throws IOException {
+    	  
     }
     
     @FXML

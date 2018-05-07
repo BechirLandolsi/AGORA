@@ -47,6 +47,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <form  jsf:id="formulaireajout" >
                                <ui:repeat var="ListEvent" value="#{eventBean.AfficherEvents(id)}">
                                <tr>
                                <td>#{ListEvent.event_name}</td>
@@ -54,19 +55,20 @@
                                <td>#{ListEvent.event_adress}</td>
                                 <td>#{ListEvent.event_date}</td>
                                  <td >
-                                   <form  jsf:id="formulaireajout" >
-                                   <h:commandButton action="#{eventBean.navigation()}"  class="btn btn-info btn-circle"/> 
+                                  
+                                   <h:commandButton action="#{eventBean.navigation(ListEvent.id_event)}"  class="btn btn-info btn-circle"/> 
                             
                             <button   id="islem" jsf:action="#{eventBean.deleteanevent(ListEvent.id_event)}" jsf:type="submit" class="btn btn-warning btn-circle" ><i class="fa fa-times"></i>
                             </button>
                              <button class="btn btn-primary btn-circle" ><i class="fa fa-list"></i>
                             </button>  
-                            </form>         
+                                   
                                     </td>
                                </tr>
                              
                                
                                </ui:repeat>
+                                </form> 
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -114,7 +116,8 @@
                                </h:inputText></div>
                                 <div class="form-group"><label>Event Sector</label> 
                                  <h:selectOneMenu value="#{eventBean.event_sector}" class="select2_demo_1 form-control"> 
-                                 <f:selectItems value="#{eventBean.Sectors()}" var="lista"  itemValue="#{eventBean.event_sector}" itemLabel=""/>
+                                  <f:selectItem itemLabel="Select Event Sector" itemValue="" />
+                                 <f:selectItems value="#{eventBean.Sectors()}" var="lista"  itemValue="#{eventBean.event_sector}" itemLabel="#{eventBean.event_sector}"/>
                                  </h:selectOneMenu>   </div>
                                       
                                       

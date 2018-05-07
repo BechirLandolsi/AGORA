@@ -6,25 +6,26 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 import javax.faces.bean.ViewScoped;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderApplication;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderCategory;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyService;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderApplicationService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderCategoryService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderService;
 
 @ManagedBean
-@ApplicationScoped  
+@ViewScoped
 public class TenderBean {
 	
 	
@@ -46,16 +47,30 @@ public class TenderBean {
 	
 	private TenderCategory category;
 	
-	//@ManagedProperty(value="#{identity}")
-	//private Identity loginBean;
+	private String categoryName;
+	
+	@ManagedProperty(value="#{identity}")
+	private Identity loginBean;
 	
 	@EJB
 	private CompanyService cs;
 	
+	@EJB
+	private TenderApplicationService tenderApplicationService;
 	
+	private TenderApplication application;
+	
+	private List <Tender> myTenders;
+	
+	@PostConstruct
+	private void init() {
+		tender=new Tender();
+		category = new TenderCategory();
+		loggedCompany = new User();
+		application= new TenderApplication();
+	}
 	
 	public Tender getTender() {
-		System.out.println("7ajeeeeeeeeeeeeeeeeeet");
 		return tender;
 	}
 
@@ -96,13 +111,13 @@ public class TenderBean {
 	}
 	
 	
-	/*public Identity getLoginBean() {
+	public Identity getLoginBean() {
 		return loginBean;
 	}
 
 	public void setLoginBean(Identity loginBean) {
 		this.loginBean = loginBean;
-	}*/
+	}
 
 	public User getLoggedCompany() {
 		return loggedCompany;
@@ -119,14 +134,60 @@ public class TenderBean {
 	public void setCategory(TenderCategory category) {
 		this.category = category;
 	}
+
 	
-	
-	public void ajouter(){
-		System.out.println("temchiii");	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public void ajouter() throws ParseException{
+		
+				loggedCompany= loginBean.getUser(); 
+				Date publishedDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+				tender.setPublishedDate(publishedDate);
+				
+				category= tenderCategoryService.findByName(categoryName);
+				
+				tenderService.affectTenderToCompanyCategory(tender, loggedCompany,category);
+				tenderService.add(tender);
 		
 	}
 	
+	public void apply(Tender t) throws ParseException{
+		
+		loggedCompany=loginBean.getUser();
+		tenderApplicationService.apply(loggedCompany, t);
+	}
+
+	public List<Tender> getMyTenders() {
+
 	
+
+		loggedCompany=loginBean.getUser();
+
+		myTenders=tenderService.findByCompany(loggedCompany);
+		return myTenders;
+	}
+
+	public void setMyTenders(List<Tender> myTenders) {
+		this.myTenders = myTenders;
+	}
+
+	public TenderApplication getApplication() {
+		return application;
+	}
+
+	public void setApplication(TenderApplication application) {
+		this.application = application;
+	}
+	
+	public void delete(Tender t){
+		tenderService.delete(t);
+	}
 	
 
 }

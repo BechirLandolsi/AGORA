@@ -273,7 +273,7 @@ public class ProjectController implements Initializable {
 		context1 = new InitialContext();
 		ProjectRemote proxy = (ProjectRemote) context1.lookup(jndiName1);
 		
-		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany((long) 2));
+		  listproject = FXCollections.observableArrayList(proxy.getProjectsByCompany((long) 31));
     	
  	     // col_project.setId("1");
     	  //col_project.cellFactoryProperty();
@@ -371,9 +371,9 @@ public class ProjectController implements Initializable {
     void btnajouterproject(ActionEvent event) throws IOException, NamingException {
     	 	
     
-    	//Company c = new Company();
+    	Company c = new Company();
 
-    	//c.setId((long) 31);
+    	c.setId((long) 31);
    	
         boolean n = false;
     	
@@ -420,7 +420,7 @@ public class ProjectController implements Initializable {
 	    	p.setCapital(Float.parseFloat(capital.getText()));
 	    	p.setProduct(product.getText());
 	    	p.setState(false);
-	    	p.setProjectOwner((Company) loggedcompany);
+	    	p.setProjectOwner((Company) c);
 
 	    	float CA = p.getStock()*p.getPriceUnit();
 	    	float CV =p.getPurchase()+p.getEnergyCost()+p.getTransportCost();

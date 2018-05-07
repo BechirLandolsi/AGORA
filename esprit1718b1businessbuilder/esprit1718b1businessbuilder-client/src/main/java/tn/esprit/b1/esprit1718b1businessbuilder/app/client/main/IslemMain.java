@@ -33,31 +33,35 @@ public class IslemMain {
 		CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2);
 		
 		//*************************************************************************
-		Company com1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
+	/*	Company com1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
 		Company loggedUser=(Company)proxy2.login("vermeglogin", "vermegpass");
 		System.out.println(loggedUser);
-		System.out.println(loggedUser.getId());
+		System.out.println(loggedUser.getId());*/
 		//proxy2.add(com1);
 
 		//System.out.println(loggedUser.getEvents());
 		//System.out.println(com1.getId());
 		//************************************************************************
 		List<Event> all = new ArrayList<Event>();
-	    List<Event> upcomingonly = new ArrayList<Event>();
-	    all=proxy.findAll();
-	   // upcomingonly=proxy.ArchiveOldEvents();
-	    
+	
+		
+	    all=proxy.findEventByCompany((long)8);
+	    System.out.println(all);
+	   // upcomingonly=proxy.ArchiveOldEvents();:::::::::::::::::::::::::::::::::::::::::::::
+	   /*
 	    for (Event event : upcomingonly) 
-	    {System.out.println(event);}
+	    {System.out.println(event);}*/
 		///************************* Adding Test **********************************
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datep =dateFormat.parse("31/12/2018");
 		Event e= new Event("Foire Samsung","Tunis","Mobile",true,datep);
-		e.setCompany_organizer(loggedUser);
+		e.setCompany_organizer(proxy2.findBy((long)8));
 		proxy.save(e);
-		proxy.AffectAnEventToCompany(e,loggedUser);
-		System.out.println("ajout avec succes");
-		System.out.println(proxy.findEventByCompany((long)4));
+
+	
+		
+	    all=proxy.findEventByCompany((long)8);
+	    System.out.println(all);
 		
 		//**************************** Find Event By Id ****************************
 		
@@ -67,7 +71,7 @@ public class IslemMain {
 		
 		
 		//******************************* Date Tests ********************************
-		// today Date
+	/*	// today Date
 		String format = "dd/MM/yy H:mm:ss"; 
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date da = new java.util.Date(); 
@@ -86,17 +90,18 @@ public class IslemMain {
 	    //**************************************************************************
 	    
 	    //******************************Searching event by name Test ****************
-	   /* List<Event> eventlist = new ArrayList<Event>();
+	    List<Event> eventlist = new ArrayList<Event>();
 	    eventlist=proxy.findEventByName("company opening");
 	    for (Event event : eventlist) 
-	    {System.out.println(event);}*/
+	    {System.out.println(event);}
 	    
 	   //******************************Searching event by Date Test ****************
-	    /*List<Event> eventlista = new ArrayList<Event>();
+	    List<Event> eventlista = new ArrayList<Event>();
         eventlista=proxy.findEventByDate(datep);
         for (Event event : eventlista) 
         {System.out.println(event);}*/
     }
+}
 	
-	}
+	
 

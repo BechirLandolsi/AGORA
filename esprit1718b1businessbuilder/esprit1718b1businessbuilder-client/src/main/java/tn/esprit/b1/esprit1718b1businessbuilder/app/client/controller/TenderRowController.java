@@ -139,6 +139,8 @@ public class TenderRowController extends ListCell<Tender> {
              TenderTitle.setText(tender.getTitle());
              TenderTitle.setTooltip(tooltip);
              TenderContent.setText(tender.getContent());
+             
+             
              DatePost.setText("Posted "+ p.format(tender.getPublishedDate()));
              
              if((tender.getDeadline().before(Calendar.getInstance().getTime())) || (tender.getDeadline().equals(Calendar.getInstance().getTime()))){

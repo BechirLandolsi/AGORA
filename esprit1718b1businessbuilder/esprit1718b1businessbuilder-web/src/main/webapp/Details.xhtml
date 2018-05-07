@@ -1,0 +1,111 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				INVITE PAGE
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+
+
+		<div class="row">
+		
+				
+                <div class="col-lg-12">
+ <div class="col-lg-3">
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-envelope-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Number Of Sent Invitation </span>
+                            <h2 class="font-bold">260</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget style1 yellow-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Declined Invitation </span>
+                            <h2 class="font-bold">12</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                             <i class="fa fa-thumbs-up fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Number of comfirmation </span>
+                            <h2 class="font-bold">26'C</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                    <div class="ibox product-detail">
+                        <div class="ibox-content">
+                        
+                        
+                       <ui:repeat var="ListCompany" value="#{invitedCompanyBean.companiesToInvite(id)}">
+                        	<div class="contact-box">
+               
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a2.jpg"/>
+                           
+                            <div class="m-t-xs font-bold"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>#{ListCompany.name}</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> #{ListCompany.adress}</p>
+                        <address>
+                            <strong>#{ListCompany.CEO}</strong><br/>
+                            #{ListCompany.sector}<br/>
+                            #{ListCompany.email}<br/>
+                          
+                            <abbr title="Phone">P:</abbr> #{ListCompany.number}
+                        </address>
+                         <div>  <h:commandButton  value="Invite"  type="button" class="btn btn-primary btn-lg"></h:commandButton></div>
+                        
+                    </div>
+                   
+                  
+                    
+                    <div class="clearfix"></div>
+                        
+                </div>
+              </ui:repeat>
+                </div>
+            </div>
+                        	
+                        	
+                        	</div>
+                        	</div>
+
+  
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+	</ui:define>
+	
+	
+</ui:composition>

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -18,6 +19,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.InvitationPK;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.GenericDAO;
 
 @Stateless
+@LocalBean
 public class EventService extends GenericDAO<Event> implements EventServiceRemote{
 	
 	public EventService() {
@@ -172,6 +174,12 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 	}	
 		
 		return e;
+	}
+	@Override
+	public void deleteev(long idevent) {
+		Event e=em.find(Event.class, idevent);
+		em.remove(e);
+		
 	}
 	
 }

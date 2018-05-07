@@ -33,12 +33,21 @@
 			<artifactId>primefaces</artifactId>
 		</dependency>
 		
+
 			<dependency>
    <groupId>com.fasterxml.jackson.core</groupId>
    <artifactId>jackson-databind</artifactId>
    <version>2.4.4</version>
  </dependency>
 	
+
+		<dependency>
+			<groupId>org.ocpsoft.prettytime</groupId>
+			<artifactId>prettytime</artifactId>
+			<version>4.0.1.Final</version>
+		</dependency>
+		
+
 	</dependencies>
 
 </project>

@@ -121,9 +121,7 @@ public class ContactBean {
 			 System.out.println(o[0]);
 			 System.out.println(o[1]);
 		 }
-		
-		
-		
+
 		this.setCompany(c);
 		System.out.println(c);
 		return navigateTo ;

@@ -26,12 +26,12 @@
 
     <link href="resources/css/animate.css" rel="stylesheet"/>
     <link href="resources/css/style.css" rel="stylesheet"/>
+    <link href="resources/css/plugins/chartist/chartist.min.css" rel="stylesheet"/>
 
 </head>
 
 <body>
-
-	<div id="wrapper">
+<div id="wrapper">
 
 		<div id="header">
 			<div id="side">
@@ -44,7 +44,7 @@
 
 		
 		
-		<div  id="page-wrapper" class="gray-bg dashbard-1">
+		<div  id="page-wrapper" class="gray-bg">
 			<div >
 				<ui:include src="/template/navBar.xhtml" />
 			</div>
@@ -52,13 +52,133 @@
 			<div id="content">
 				<ui:insert name="pageContent" />
 			</div>
-		</div>
+			
+			
+			  <div class="small-chat-box fadeInRight animated">
 
+            <div class="heading" draggable="true">
+                <small class="chat-date pull-right">
+                    02.19.2015
+                </small>
+                Small chat
+            </div>
+
+            <div class="content">
+
+                <div class="left">
+                    <div class="author-name">
+                        Monica Jackson <small class="chat-date">
+                        10:02 am
+                    </small>
+                    </div>
+                    <div class="chat-message active">
+                        Lorem Ipsum is simply dummy text input.
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="author-name">
+                        Mick Smith
+                        <small class="chat-date">
+                            11:24 am
+                        </small>
+                    </div>
+                    <div class="chat-message">
+                        Lorem Ipsum is simpl.
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="author-name">
+                        Alice Novak
+                        <small class="chat-date">
+                            08:45 pm
+                        </small>
+                    </div>
+                    <div class="chat-message active">
+                        Check this stock char.
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="author-name">
+                        Anna Lamson
+                        <small class="chat-date">
+                            11:24 am
+                        </small>
+                    </div>
+                    <div class="chat-message">
+                        The standard chunk of Lorem Ipsum
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="author-name">
+                        Mick Lane
+                        <small class="chat-date">
+                            08:45 pm
+                        </small>
+                    </div>
+                    <div class="chat-message active">
+                        I belive that. Lorem Ipsum is simply dummy text.
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-chat">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control"/>
+                    <span class="input-group-btn"> <button
+                        class="btn btn-primary" type="button">Send
+                </button> </span></div>
+            </div>
+
+        </div>
+        <div id="small-chat">
+
+            <span class="badge badge-warning pull-right">5</span>
+            <a class="open-small-chat">
+                <i class="fa fa-comments"></i>
+
+            </a>
+        </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div id="footer" class="footer">
+				<ui:include src="/template/footer.xhtml" />
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 
-		<div id="footer" class="footer">
-			<ui:include src="/template/footer.xhtml" />
-		</div>
 
 	</div>
 	
@@ -100,6 +220,21 @@
 
     <!-- Toastr -->
     <script src="resources/js/plugins/toastr/toastr.min.js"></script>
+    
+    
+    
+    <!-- Mainly scripts -->
+    <script src="resources/js/jquery-3.1.1.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="resources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Chartist -->
+    <script src="resources/js/plugins/chartist/chartist.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="resources/js/inspinia.js"></script>
+    <script src="resources/js/plugins/pace/pace.min.js"></script>
 
 
     <script>
@@ -115,7 +250,25 @@
 
             }, 1300);
 
+            new Chartist.Bar('#ct-chart4', {
+     
+                labels: ['#{contact[0]}'],
+                series: [
+                    ['#{contact[1]}'],
+                   
+                ]
+            }, {
+                seriesBarDistance: 1000,
+                reverseData: true,
+                horizontalBars: true,
+                axisY: {
+                    offset: 70
+                }
+            });
+
         });
+
+        
     </script>
     
 	

@@ -1,0 +1,75 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				CONTACTS PAGE
+	</ui:define>
+			 
+	<ui:define name="pageContent">
+	
+	  <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-9">
+                    <h2>Contacts List</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            App Views
+                        </li>
+                        <li class="active">
+                            <strong>Contacts </strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+		<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+          <h:form >
+        <ui:repeat var="contact" value="#{contactBean.Listcontact()}">
+            <div class="col-lg-3">
+                <div class="contact-box ">
+                
+                
+                
+                        <h3 class="m-b-xs text-center"><strong> <h:outputText value="#{contact.name}" /> </strong></h3>
+ 				
+                        <div class="font-bold text-center"><h:outputText value="#{contact.sector}" /> </div>
+                        <div class="font-bold text-center">CEO : <h:outputText value="#{contact.CEO}" /> </div>
+                        <address class="m-t-md text-center">
+                            <strong>How to Reach</strong><br></br>
+                           Adress : <h:outputText value="#{contact.adress}" /><br></br>
+                           Email : <h:outputText value="#{contact.email}" /><br></br> 
+                            <abbr title="Phone">Phone:</abbr> <h:outputText value="#{contact.number}" />
+                        </address>
+                       
+                
+
+                   
+                    <div class="contact-box-footer text-center">
+                        <div class="m-t-xs btn-group">
+                         <h:commandButton action="#{contactBean.ViewProfile(contact)}" class="btn btn-primary block full-width m-b" value="View Profile"></h:commandButton>
+                            <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
+                            
+                            <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow </a>
+                        
+                         <h:commandButton action="#{contactBean.incrementFollewers(contact)}" class="btn btn-primary block full-width m-b" value="Follow"></h:commandButton>
+                          
+                        </div>
+                    </div>
+				
+                </div>
+            </div>
+            </ui:repeat> 
+             </h:form>   
+</div>
+</div>
+	</ui:define>
+</ui:composition>

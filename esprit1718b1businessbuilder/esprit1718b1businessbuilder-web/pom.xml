@@ -26,10 +26,19 @@
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
+		
+	
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 		</dependency>
+		
+			<dependency>
+   <groupId>com.fasterxml.jackson.core</groupId>
+   <artifactId>jackson-databind</artifactId>
+   <version>2.4.4</version>
+ </dependency>
+	
 	</dependencies>
 
 </project>

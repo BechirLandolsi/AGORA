@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Bilan;
@@ -67,6 +68,20 @@ public class ProjectService implements ProjectRemote{
 		return nbr;
 	} 
 	
+	@Override
+	public List<Long> countProjectsPerCompanyBySector(Long CompanyId, String Sector) {
+		return null;
+		/*TypedQuery <Long> k= em.createQuery("select count (p) from Project p where p.ProjectOwner=: id and p.service=: s",Long.class)
+				.setParameter("id", CompanyId)
+				.setParameter("s", Sector);
+		
+		List<Long> nbr = k.getResultList();
+		
+				
+		return nbr;*/
+	
+	}
+	
 	
 	@Override
 	public void Edit(Project p,double quality,int count)
@@ -109,15 +124,17 @@ public class ProjectService implements ProjectRemote{
 		return projects;
 	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public List<Object[]> getProjectsPerCompanyBySector(Company c) {
+		
+		Query q =  em.createQuery("select count(p),p.service from Project p where p.ProjectOwner=:var group by p.service ");
+				  
+		List<Object[]> projects = q.setParameter("var", c)
+									.getResultList() ;
+		return projects; 
+		
+	}
 	
 }
 

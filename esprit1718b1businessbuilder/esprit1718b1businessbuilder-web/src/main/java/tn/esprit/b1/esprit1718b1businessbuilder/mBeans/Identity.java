@@ -9,7 +9,7 @@ import javax.faces.context.FacesContext;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceLocal;
 
-@ManagedBean(name="identity")
+@ManagedBean
 @SessionScoped
 public class Identity { 
 	

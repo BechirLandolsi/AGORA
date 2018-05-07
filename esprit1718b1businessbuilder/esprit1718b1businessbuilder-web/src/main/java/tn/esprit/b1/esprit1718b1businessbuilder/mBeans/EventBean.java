@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.EJB;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -41,6 +42,9 @@ public class EventBean implements Serializable{
 	private long nombre;
 	private long guests;
 	private long refused;
+	
+	@ManagedProperty(value="#{identity}")
+	private Identity loginBean;
 	
 	@EJB
 	EventService eventService;
@@ -161,8 +165,18 @@ public class EventBean implements Serializable{
 		this.refused = refused;
 	}
 
+	public Identity getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(Identity loginBean) {
+		this.loginBean = loginBean;
+	}
+
 	public List<Event> getEvents() {
-		events= eventService.findEventByCompany((long)8);
+		Company c =new Company();
+		c=(Company)loginBean.getUser();
+		events= eventService.findEventByCompany(c.getId());
 		System.out.println(events);
 		return events;
 	}
@@ -175,8 +189,8 @@ public class EventBean implements Serializable{
 	
 	public void ajouterevent()
 	{
-		Company c = new Company();
-		c.setId(8);
+		Company c = (Company)loginBean.getUser();
+		
 		Event e =new Event(event_name, event_adress, event_sector, event_type, event_profitable, event_privacy, event_date);
 		e.setCompany_organizer(c);
 		eventService.save(e);
@@ -252,11 +266,14 @@ public class EventBean implements Serializable{
 	
 	
 	public  List<Event> AfficherEvents(long id){
-		events= eventService.findEventByCompany(8);
+		Company c =new Company();
+		c=(Company)loginBean.getUser();
+		events= eventService.findEventByCompany(c.getId());
 		System.out.println(events);
-		
-		
 		return events;
+		
+		
+	
 	}
 
 	public void setEvents(List<Event> events) {

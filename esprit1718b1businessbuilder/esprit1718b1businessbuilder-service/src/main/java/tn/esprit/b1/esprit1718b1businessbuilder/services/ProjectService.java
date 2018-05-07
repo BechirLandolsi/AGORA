@@ -1,7 +1,15 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +21,8 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Project;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 
 @Stateless
+@LocalBean
+
 public class ProjectService implements ProjectRemote{
 	
 	@PersistenceContext(unitName="sample-project-ejb")
@@ -42,13 +52,8 @@ public class ProjectService implements ProjectRemote{
 	@Override
 	public List<Project> getProjectsByCompany(Long companyId) {
 		
-	//TypedQuery <Project> k = em.createQuery("select pr.service, par.CompanyPartner.name,par.partnershipDuration from Partnership par inner join par.Project pr on (pr.id=par.project.id) where pr.ProjectOwner.id="+companyId,Project.class);
+	TypedQuery <Project> k = em.createQuery("select pr from Project pr where pr.ProjectOwner.id="+companyId,Project.class);
 	
-	//TypedQuery <Project> k = em.createQuery("select pr from Partnership par inner join par.project pr where pr.ProjectOwner.id="+companyId,Project.class);
-
-   TypedQuery <Project> k = em.createQuery("select pr from Project pr where pr.ProjectOwner.id="+companyId,Project.class);
-
-		
 	List<Project> listproject = k.getResultList();
 	
 	return listproject;
@@ -149,9 +154,71 @@ public class ProjectService implements ProjectRemote{
 		
 		return p;
 	}
+
+	@Override
+	public List<Project> searchForProject(String mot, Company c) {
+		
+TypedQuery <Project> k= em.createQuery("select p from Project p where p.ProjectOwner=:c and (p.name like :mot or p.service like :mot or p.projectNature like :mot "
++ "or p.product like :mot or p.capital like :mot)",Project.class);
+		//TypedQuery <Project> k= em.createQuery("select p from Project p where p.productmot",Project.class);
+		k.setParameter("c", c);
+		 List<Project> p  =	k.setParameter("mot",  "%" + mot + "%" ).getResultList();
+
+			
+			return p;
+		
+	}
+
+	@Override
+	public double AvancementProject(Project p) {
+		
+		Calendar creation = new GregorianCalendar();
+		 Calendar fin = new GregorianCalendar();
+		 Calendar now = new GregorianCalendar();
+
+
+		 fin.setTime(p.getFinishDate());
+		  creation.setTime(p.getCreationDate());
+		  double projectdays = (fin.getTime().getTime()-creation.getTime().getTime())/ (1000 * 60 * 60 * 24);
+		
+		  LocalDate localDate = LocalDate.now();
+		  Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+		  now.setTime(date);
+		  double startdays= (now.getTime().getTime()-creation.getTime().getTime())/ (1000 * 60 * 60 * 24);
+		  
+		  double tauxAvancement = ((startdays/projectdays))*100;
+		  
+		return tauxAvancement;
+	}
+
+	@Override
+	public List<Number> AvancementDesProjetsByCompanyjsf(Long companyId) {
+		
+		TypedQuery <Project> k = em.createQuery("select pr from Project pr where pr.ProjectOwner.id="+companyId,Project.class);
+		
+		List<Project> listproject = k.getResultList();
+		List<Number> list = new ArrayList<>();
+		for(Project p : listproject)
+		{
+			
+			list.add(this.AvancementProject(p));
+		}
+		
+		return list;
+	}
 	
 	
+	@Override
+	public List<String> getProjectsNameByCompanyjsf(Long companyId) {
+		
+		TypedQuery <String> k= em.createQuery("select p.name from Project p where p.ProjectOwner.id="+companyId,String.class);
+		
+		List<String> projects = k.getResultList() ;
+		
+				
+		return projects;
 	
+	}
 	
 	
 	

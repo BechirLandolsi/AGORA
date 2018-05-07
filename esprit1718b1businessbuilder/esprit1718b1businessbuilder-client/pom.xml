@@ -128,6 +128,18 @@
 			<version>1.6.1</version>
 		</dependency>
 		
+		  <dependency>
+      <groupId>com.google.apis</groupId>
+      <artifactId>google-api-services-translate</artifactId>
+      <version>v2-rev51-1.23.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.googlecode/google-api-translate-java -->
+<dependency>
+    <groupId>com.googlecode</groupId>
+    <artifactId>google-api-translate-java</artifactId>
+    <version>0.92</version>
+</dependency>
+		
 
 	</dependencies>
 
@@ -159,4 +171,5 @@
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>

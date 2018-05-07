@@ -37,9 +37,8 @@
 			<div id="side">
 				<ui:include src="/template/sideBar.xhtml"/>
 			</div>
-			<div id="identity">
-				<ui:include src="/template/top-right.xhtml" />
-			</div>
+			
+	
 		</div>
 
 		
@@ -55,10 +54,6 @@
 		</div>
 
 		
-
-		<div id="footer" class="footer">
-			<ui:include src="/template/footer.xhtml" />
-		</div>
 
 	</div>
 	
@@ -118,6 +113,31 @@
         });
     </script>
     
+    
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	 <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- FooTable -->
+    <script src="js/plugins/footable/footable.all.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function() {
+
+            $('.footable').footable();
+            $('.footable2').footable();
+
+        });
+
+    </script>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
 	
 </body>

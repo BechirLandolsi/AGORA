@@ -37,7 +37,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import org.apache.http.impl.io.SocketOutputBuffer;
 import org.ocpsoft.prettytime.PrettyTime;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ITender;

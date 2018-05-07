@@ -18,6 +18,15 @@ public interface PartnershipRemote {
 	
 	public List<Partnership> PartnershipByProject(Project p);
 	
+	public List<Partnership> PartnershipNonConfirm(Long companyId);
+	
+	public long countPartnershipNonConfirm (Long companyId);
+	
+	public Partnership findPartnershipById(Long id);
+	
+
+	
+	
 	
 	
 }

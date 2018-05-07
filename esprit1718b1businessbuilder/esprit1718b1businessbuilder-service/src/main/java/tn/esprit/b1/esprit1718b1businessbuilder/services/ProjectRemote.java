@@ -1,5 +1,6 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -34,7 +35,14 @@ public interface ProjectRemote {
 	public Project Edit (Project p);
 	
 	public List<Project> findProjectById(Long id);
+	
+	public List<Project> searchForProject(String mot,Company c);
 
+	public double AvancementProject(Project p); 
+	
+	public List<Number> AvancementDesProjetsByCompanyjsf(Long companyid);
+	
+	public List<String> getProjectsNameByCompanyjsf(Long companyid);
 	
 	
 	

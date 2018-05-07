@@ -76,6 +76,10 @@ public class Company extends User {
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
 	
+	@OneToMany (mappedBy="CompanyComment")
+	private List <CommentProject> CompanyComment;
+	
+	
 	@OneToMany(mappedBy="companyTender")
 	private List <Tender> tenders;
 	
@@ -365,6 +369,18 @@ public class Company extends User {
 
 	public void setInvitation(List<Invitation> invitation) {
 		this.invitation = invitation;
+	}
+	
+	
+
+
+	public List<CommentProject> getCompanyComment() {
+		return CompanyComment;
+	}
+
+
+	public void setCompanyComment(List<CommentProject> companyComment) {
+		CompanyComment = companyComment;
 	}
 
 

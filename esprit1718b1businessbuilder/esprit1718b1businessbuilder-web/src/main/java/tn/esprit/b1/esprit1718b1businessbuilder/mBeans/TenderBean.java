@@ -165,7 +165,7 @@ public class TenderBean {
 	}
 
 	public List<Tender> getMyTenders() {
-		loggedCompany=cs.findBy((long)2);
+		loggedCompany=cs.findBy((long)1);
 		myTenders=tenderService.findByCompany(loggedCompany);
 		return myTenders;
 	}

@@ -214,6 +214,13 @@ public class EventBean implements Serializable{
 		return guests;
 	}
 	
+	public void inviteCompany(long id){
+		this.idcompany=id;
+		System.out.println(this.id_event);
+		System.out.println(this.idcompany);
+		invitationService.InviteCompanyToAnEvent(idcompany,155);	
+	}
+	
 	public List<String> getSectors() {
 		return sectors;
 	}

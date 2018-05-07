@@ -34,7 +34,7 @@ public class PearMain {
 		ServiceServiceRemote ServiceProxy = (ServiceServiceRemote) context.lookup(ServiceJNDI);
 		IProvision provProxy = (IProvision) context.lookup(provJNDI);
 	/************************ORDERS************************************/	
-	Company c1 = companyProxy.findBy((long)32) ; 
+	/*Company c1 = companyProxy.findBy((long)32) ; 
 	Company c2 = companyProxy.findBy((long)36) ; 
 	
 	Produit p1 = new Produit("tibo",(long)300,null,(float)39,(float)50,null);
@@ -42,14 +42,14 @@ public class PearMain {
 	Produit p3 = new Produit("peinture speciale grise",(long)250,null,(float)44,(float)60,null);
 	Produit p4 = new Produit("peinture dain champagne ",(long)120,null,(float)49,(float)63,null);
 	Produit p5 = new Produit("pinceau",(long)120,null,(float)8,(float)12,null);
-	//productProxy.addProduct(p1, c1);
+	//productProxy.addProduct(p1, c1);*/
 	//productProxy.addProduct(p2, c1);
 	//productProxy.addProduct(p3, c2);
 	//productProxy.addProduct(p4, c2);
 	//productProxy.addProduct(p5, c2);
-	Produit p6 = productProxy.findProduct(16);
+	/*Produit p6 = productProxy.findProduct(16);
 	Produit p7 = productProxy.findProduct(5);
-	Produit p8 = productProxy.findProduct(25);
+	Produit p8 = productProxy.findProduct(25);*/
 	/*Orderproxy.addProductToOrder(p6, c1, 125);
 	Orderproxy.addProductToOrder(p7, c1, 10000);
 	Orderproxy.addProductToOrder(p8, c1, 1285);
@@ -62,7 +62,7 @@ public class PearMain {
 	//productProxy.removeProduct(p6);
 	 //System.out.println(productProxy.findAllProduct()); 
 	//System.out.println(c1.toString());
-	provProxy.addContrat(c1, p6, 100);
+	//provProxy.addContrat(c1, p6, 100);
 	//provProxy.addContrat(c2, p7, 550);
 	//Contrat c = provProxy.findContrat(36,5);
 	//provProxy.provideProduct(c);
@@ -79,8 +79,26 @@ public class PearMain {
 	//System.out.println(l.toString());
 	//System.out.println(provProxy.updateStock(c1));
 	 
-		 
-		  
+		Company c1 = companyProxy.findBy((long)4) ; 
+	   
+	    
+	    Produit p2 = productProxy.findProduct(3); 
+	    Produit p3 = productProxy.findProduct(4); 
+	    Produit p4 = productProxy.findProduct(5); 
+	    Produit p5 = productProxy.findProduct(6); 
+	    
+	    //Contrat cc = provProxy.findContrat(3,3);
+	    //provProxy.addContrat(c1, p2, 1000);
+		//provProxy.addContrat(c1, p4, 550);
+		//provProxy.provideProduct(cc);
+		
+		//Orderproxy.payOrder(c1);
+	    
+	    Orderproxy.addProductToOrder(p4, c1, 125);
+		Orderproxy.addProductToOrder(p5, c1, 10000);
+		//Orderproxy.addProductToOrder(p4, c1, 1285);
+		//Orderproxy.addProductToOrder(p5, c1, 1285); 
+		Orderproxy.payOrder(c1);
 	  
 }
 }

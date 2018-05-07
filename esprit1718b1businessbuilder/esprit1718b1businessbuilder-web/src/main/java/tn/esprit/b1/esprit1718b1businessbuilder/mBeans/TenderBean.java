@@ -165,11 +165,9 @@ public class TenderBean {
 
 	public List<Tender> getMyTenders() {
 
-	
-
 		loggedCompany=loginBean.getUser();
-
 		myTenders=tenderService.findByCompany(loggedCompany);
+		myTenders.sort(Comparator.comparing(Tender::getPublishedDate).reversed());
 		return myTenders;
 	}
 

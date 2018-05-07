@@ -19,8 +19,9 @@
             </div>
         </div>
 
+	<h:form>	
 		<ui:repeat var="tender" value="#{tenderBean.tenders}">
-			<h:form>	
+				
 			<div class="row">
 			
 					
@@ -45,9 +46,9 @@
 	                                
 	                                <div class="col-md-7">
 	
-	                                    <h2 class="font-bold m-b-xs">
-	                                        <h:outputText value="#{tender.title}" />
-	                                    </h2>
+	                                    <h1 class="font-bold m-b-xs">
+	                                        <a href="#" class="text-navy"><h:outputText value="#{tender.title}" /></a>
+	                                    </h1>
 	                                    <hr></hr>
 	
 	                                    <h2><STRONG>Tender description</STRONG></h2>
@@ -57,19 +58,14 @@
 	                                        <h:outputText value="#{tender.content}" /></H2>
 	                                    </div>
 	                                    <dl class="small m-t-md">
-	                                        <dt>Description lists</dt>
-	                                        <dd>A description list is perfect for defining terms.</dd>
-	                                        <dt>Euismod</dt>
-	                                        <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-	                                        <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-	                                        <dt>Malesuada porta</dt>
-	                                        <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+	                                        <dt>Tender Category</dt>
+	                                        <dd><h:outputText value="#{tender.category}" /></dd>
 	                                    </dl>
 	                                    <hr></hr>
 	
 	                                    <div>
 	                                        <div class="pull-right">
-	                                            <h:commandButton value="Apply" action="#{tenderBean.ajouter(2)}" class="btn btn-primary" />
+	                                            <h:commandButton value="Apply" action="#{tenderBean.apply(tender)}" class="btn btn-primary" />
 	                                            <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
 	                                        </div>
 	                                    </div>
@@ -90,9 +86,9 @@
 	
 	                </div>
 	            </div>
-			</h:form>
-		</ui:repeat>
 			
+		</ui:repeat>
+	</h:form>		
 	</ui:define>
 	
 	

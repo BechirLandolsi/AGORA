@@ -53,7 +53,7 @@ public class DBPopulator {
 		//*******************************************************************
 	//userServiceLocal.update(user);
 		
-		User u = new Admin("Admin","Adminlog","adminpass","admin@agora.com"); 
-		userServiceLocal.save(u);
+		//User u = new Admin("Admin","Adminlog","adminpass","admin@agora.com"); 
+		//userServiceLocal.save(u);
 	}
 }

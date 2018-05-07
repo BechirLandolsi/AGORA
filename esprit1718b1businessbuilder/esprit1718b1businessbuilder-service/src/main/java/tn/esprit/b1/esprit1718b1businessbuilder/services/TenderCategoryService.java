@@ -32,4 +32,16 @@ public class TenderCategoryService extends GenericDAO<TenderCategory> implements
 		return tc;
 	}
 
+	@Override
+	public TenderCategory findByName(String name) {
+		TenderCategory tc = new TenderCategory();
+		
+		TypedQuery<TenderCategory> query = em.createQuery("select tc from TenderCategory tc WHERE tc.nameCategory = :name",TenderCategory.class);
+		
+		tc= query.setParameter("name", name).getSingleResult();
+		
+		
+		return tc;
+	}
+
 }

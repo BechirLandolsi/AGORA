@@ -65,9 +65,9 @@ public class TenderApplication implements Serializable {
 		return applicationDate;
 	}
 
-	public void setApplicationDate(ZonedDateTime applicationDate) {
-		applicationDate = ZonedDateTime.now();
-		this.applicationDate = java.util.Date.from( applicationDate.toInstant() );
+	public void setApplicationDate(Date applicationDate) {
+		
+		this.applicationDate = applicationDate;
 	}
 
 	public TenderApplication() {

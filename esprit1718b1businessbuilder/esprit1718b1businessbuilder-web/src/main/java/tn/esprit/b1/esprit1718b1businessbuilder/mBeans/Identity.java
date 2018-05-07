@@ -32,7 +32,7 @@ public class Identity {
 		if (userLoggedIn != null) {
 			isLogged = true;
 			user = userLoggedIn;
-			navigateTo = "tenders?faces-redirect=true";
+			navigateTo = "home?faces-redirect=true";
 			System.out.println(userLoggedIn);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,

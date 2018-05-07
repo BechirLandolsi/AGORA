@@ -27,6 +27,8 @@
     <link href="resources/css/animate.css" rel="stylesheet"/>
     <link href="resources/css/style.css" rel="stylesheet"/>
 
+    <!-- Sweet Alert -->
+    <link href="resources/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"> </link>
 </head>
 
 <body>
@@ -56,9 +58,7 @@
 
 		
 
-		<div id="footer" class="footer">
-			<ui:include src="/template/footer.xhtml" />
-		</div>
+		
 
 	</div>
 	
@@ -101,7 +101,8 @@
     <!-- Toastr -->
     <script src="resources/js/plugins/toastr/toastr.min.js"></script>
 
-
+    <!-- Sweet alert -->
+    <script src="resources/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function() {
             setTimeout(function() {
@@ -114,6 +115,13 @@
                 toastr.success('Welcome To AGORA Business Builder');
 
             }, 1300);
+
+            $('.demo1').click(function(){
+                swal({
+                    title: "Convert it with your price",
+                    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                });
+            });
 
         });
     </script>

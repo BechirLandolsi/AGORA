@@ -3,6 +3,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.main;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.naming.Context;
@@ -15,12 +16,19 @@ import com.github.kevinsawicki.http.HttpRequest;
 
 import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Comment;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Forum;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.OrderLine;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Reserche;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Service;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Undercomment;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Word;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ForumServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
 
 public class AhmedMain {
@@ -84,10 +92,10 @@ public class AhmedMain {
  	 	//proxy.affecterServiceACompany(30, 10);
  	 //	proxy.affecterServiceACompany(30, 12 );
 
- 	 	String jndiNameService="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote";
- 	 	ServiceServiceRemote proxyService = (ServiceServiceRemote)context1.lookup(jndiNameService);
+ 	 	//String jndiNameService="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote";
+ 	 	//ServiceServiceRemote proxyService = (ServiceServiceRemote)context1.lookup(jndiNameService);
 	    
-	    Service service = new Service () ;
+	   // Service service = new Service () ;
 	    //service.setName("aabb");
  	 	/*service.setName("car manufacturing");
  	 	service.setName("wheel manufacturing");
@@ -118,7 +126,80 @@ public class AhmedMain {
  	 	//System.out.println(proxy.ResercheListe(31));
 	    
 		//currencyConvertion("TND","EUR") ;
- 	 	
+	    
+	    
+	    
+	    
+	    
+	    
+		
+		String jndiNameF ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ForumService!tn.esprit.b1.esprit1718b1businessbuilder.services.ForumServiceRemote" ; 	
+		String jndiNameC ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ;
+	    String jndiNameP ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
+	    
+	    Context contextF = new InitialContext();
+	    Context contextC = new InitialContext();
+	    Context contextP = new InitialContext();
+
+	    
+	    ForumServiceRemote proxyF = (ForumServiceRemote) contextF.lookup(jndiNameF);
+	    CompanyServiceRemote proxyC = (CompanyServiceRemote) contextC.lookup(jndiNameC) ; 
+	    ProductServiceRemote proxyP = (ProductServiceRemote) contextP.lookup(jndiNameP);
+        
+	    Company c1 = proxyC.findBy((long)32);
+	    Produit p1 = proxyP.findProduct(4) ;
+	    
+	    Company c2 = proxyC.findBy((long)35);
+	    Produit p2 = proxyP.findProduct(3) ;
+		
+	    Forum forum1 = new Forum("looking for simcards for my employees", "i want to ask if this stock is a "
+	    		+ "good or bad stock to give to my employees or not to communicate ?", p1 , c1) ;
+	    Forum forum2 = new Forum("looking for wheels for my trucks", "i want to ask if this stock is a "
+	    		+ "good or bad stock to repaire my trucks for delivering goods or not ?", p2 , c2) ;
+	    
+	   Comment c = proxyF.findCommentById(1) ;
+
+	   
+	   
+	 //  Undercomment uc = new Undercomment() ;
+	   
+	/*List<Undercomment> ucomments =   proxyF.getAllUnderCommentbyForm(2);
+	List<Word> words =   proxyF.getAllWord();
+	System.out.println(words.toString());
+	   int x = 0 ;
+	   for (Undercomment ucc : ucomments ) {
+		   Pattern p = Pattern.compile("[a-zA-Z]+");
+	         
+	        Matcher m1 = p.matcher(ucc.getComment());
+	        while (m1.find()) {
+	        	 for (Word w : words ) {
+	        	if (m1.group().equals(w.getWord())){
+	        	   x = x + w.getPoint() ;
+	        	   System.out.println(x);
+	        	}
+	        }
+	   }*/
+	   for (Produit p : proxyF.getRecommandation(2)){
+		   System.out.println(p.getDescription());
+	   }
+
+	   
+	                                     // proxyF.NoteUnderComment();
+	  /* System.out.println(proxyF.NoteComment(2));
+	   System.out.println(proxyF.NoteUnderComment(2));
+	    
+	  System.out.println( proxyF.NoteProduct(p1, proxyF.findForumById(2)) );
+	  System.out.println(proxyF.getallCommentByForum(2).toString());
+	  System.out.println(proxyF.getAllUnderCommentbyForm(2).toString());*/
+	   //uc.setCommentUC(c);
+	   //uc.setCompanyUC(c1);
+	   
+	   //proxyF.addUnderComment(uc);
+		//proxyF.ajouterForum(forum1) ;
+		//proxyF.ajouterForum(forum2) ;
+	  //  System.out.println(proxyF.getAllForum());
+ 	 	//System.out.println(proxyF.nbrCommentForm(2));
+	    //System.out.println(proxyF.nbrCompanyForum(2));
     }
 /*	public static float currencyConvertion(String from,String to , float price)
 	{
@@ -131,5 +212,12 @@ public class AhmedMain {
 		Double eur = status.getDouble(to);
 		return (float) (eur * price) ;
 	} */
+	//////////////////////////////////////FORUM////////////////////////////////////////////////////////////////////////////////
 	
-}
+
+	
+	
+	
+	
+	}
+

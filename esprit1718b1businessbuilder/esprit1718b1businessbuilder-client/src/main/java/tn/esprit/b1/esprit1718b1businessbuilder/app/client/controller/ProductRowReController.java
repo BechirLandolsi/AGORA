@@ -54,7 +54,7 @@ public class ProductRowReController extends ListCell<Produit> {
              nameP.setText(produit.getDescription());
              stockP.setText(String.valueOf(produit.getStock()));
              priceP.setText(String.valueOf(produit.getPrice()+" DT"));
-             File file = new File("C:/Users/Ahmed/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + produit.getPath());
+             File file = new File("D:/4inoB1/pdev_workspace/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/target/classes/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/" + produit.getPath());
              Image img = new Image(file.toURI().toString());
              imgRowre.setImage(img);
              setText(null);

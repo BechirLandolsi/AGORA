@@ -69,6 +69,8 @@ public class Company extends User {
 	
 	private int rate ; 
 	
+	private  String currency ;
+	
 	private String resultTest ;
 	private String image ;
 	private int nbrprojects = 0;
@@ -169,6 +171,15 @@ public class Company extends User {
 	
 	@OneToMany (mappedBy="CompanyOwner")
 	private List <Partnership> CompanyOwner;
+	
+	@OneToMany (mappedBy="companyForum")
+	private List <Forum> forum;
+	
+	@OneToMany (mappedBy="companyC")
+	private List <Comment> comment;
+	
+	@OneToMany (mappedBy="companyUC")
+	private List <Undercomment> undercomment;
 	
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
@@ -388,6 +399,10 @@ public class Company extends User {
 	
 	
 	
+	@OneToMany (mappedBy="CompanyComment")
+	private List <CommentProject> CompanyComment;
+	
+	
 	@OneToMany(mappedBy="companyTender")
 	private List <Tender> tenders;
 	
@@ -408,6 +423,9 @@ public class Company extends User {
 
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
+	
+	
+	
 	
 	@OneToMany(mappedBy="claimant") 
 	private List<Claim> myClaims ;  
@@ -433,6 +451,9 @@ public class Company extends User {
 	  
 	  @OneToMany(mappedBy = "guest" )
 	  private List<Invitation> invitation;
+	  
+	  @OneToMany(mappedBy = "company" )
+		private List<Contrat> contrats ; 
 
 	/***********************/
 	
@@ -677,6 +698,61 @@ public class Company extends User {
 
 	public void setInvitation(List<Invitation> invitation) {
 		this.invitation = invitation;
+	}
+	
+	
+
+
+	public List<CommentProject> getCompanyComment() {
+		return CompanyComment;
+	}
+
+
+	public void setCompanyComment(List<CommentProject> companyComment) {
+		CompanyComment = companyComment;
+	}
+
+
+	public String getCurrency() {
+		return currency;
+	}
+
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+
+	
+
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+
+	public List<Forum> getForum() {
+		return forum;
+	}
+
+
+	public void setForum(List<Forum> forum) {
+		this.forum = forum;
+	}
+
+
+	public List<Undercomment> getUndercomment() {
+		return undercomment;
+	}
+
+
+	public void setUndercomment(List<Undercomment> undercomment) {
+		this.undercomment = undercomment;
 	}
 
 

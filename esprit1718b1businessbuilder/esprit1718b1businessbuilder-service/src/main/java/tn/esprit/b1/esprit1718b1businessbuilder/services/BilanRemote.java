@@ -12,6 +12,9 @@ public interface BilanRemote {
 
 	public void addBilan(Bilan b ,long idP ) ;
 		
+	public void deleteBilan(Bilan b);
+	
+	public List<Bilan> findBilan(long id);
 	
 	
 }

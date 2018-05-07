@@ -3,9 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -19,9 +16,9 @@
 
 <AnchorPane fx:id="HolderAnchor" prefHeight="763.0" prefWidth="1185.0" style="-fx-background-color: 004060;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller.AdminDashboardController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="14.0" layoutY="14.0" prefHeight="729.0" prefWidth="866.0" stylesheets="@styleAdmin.css">
+      <AnchorPane id="AnchorPane" layoutX="14.0" layoutY="17.0" prefHeight="736.0" prefWidth="866.0" stylesheets="@styleAdmin.css">
          <children>
-            <Pane layoutX="14.0" layoutY="14.0" prefHeight="160.0" prefWidth="193.0" styleClass="card">
+            <Pane layoutX="24.0" layoutY="26.0" prefHeight="160.0" prefWidth="193.0" styleClass="card">
                <children>
                   <Text layoutX="13.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of subscribers" wrappingWidth="199.99999914318323" />
                   <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
@@ -31,7 +28,7 @@
                         <VBox />
                      </children>
                   </VBox>
-                  <Label fx:id="lbSubnumber" layoutX="14.0" layoutY="14.0" prefHeight="141.0" prefWidth="170.0" text="100">
+                  <Label fx:id="lbSubnumber" layoutX="12.0" layoutY="10.0" prefHeight="141.0" prefWidth="170.0" text="100">
                      <font>
                         <Font size="96.0" />
                      </font>
@@ -39,7 +36,7 @@
                   <Text layoutX="99.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers" wrappingWidth="91.99999914318323" />
                </children>
             </Pane>
-            <Pane layoutX="14.0" layoutY="195.0" prefHeight="141.0" prefWidth="193.0" styleClass="card">
+            <Pane layoutX="24.0" layoutY="203.0" prefHeight="141.0" prefWidth="193.0" styleClass="card">
                <children>
                   <Text layoutX="13.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of subscribers of the day" wrappingWidth="92.00000613927841" />
                   <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
@@ -57,24 +54,84 @@
                   <Text layoutX="97.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subscribers" wrappingWidth="91.99999914318323" />
                </children>
             </Pane>
-            <PieChart fx:id="pieBookings" focusTraversable="true" layoutX="264.0" layoutY="14.0" prefHeight="339.0" prefWidth="526.0" styleClass="card" />
             <Label fx:id="lbvalue" layoutX="520.0" layoutY="146.0" prefHeight="40.0" prefWidth="47.0" textFill="#070000">
                <font>
                   <Font name="System Bold Italic" size="26.0" />
                </font>
             </Label>
-            <LineChart fx:id="lineChart" layoutX="14.0" layoutY="363.0" prefHeight="360.0" prefWidth="806.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
+            <Pane layoutX="4.0" layoutY="368.0" prefHeight="90.0" prefWidth="213.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: #293D52; -fx-background-radius: 8;">
+               <children>
+                  <Text fill="#fffbfb" layoutX="7.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of product available" wrappingWidth="199.99999914318323" />
+                  <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
+                     <children>
+                        <VBox />
+                        <VBox />
+                        <VBox />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lbProduct" layoutX="89.0" layoutY="41.0" prefHeight="40.0" prefWidth="110.0" text="100" textFill="#a4fffc">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="220.0" layoutY="368.0" prefHeight="90.0" prefWidth="213.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: rgb(17, 158, 132); -fx-background-radius: 8;">
+               <children>
+                  <Text fill="#fffbfb" layoutX="7.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of partnerships " wrappingWidth="199.99999914318323" />
+                  <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
+                     <children>
+                        <VBox />
+                        <VBox />
+                        <VBox />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lbPartnership" layoutX="67.0" layoutY="41.0" prefHeight="40.0" prefWidth="110.0" text="100" textFill="#a4fffc">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="437.0" layoutY="368.0" prefHeight="90.0" prefWidth="213.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: #293D52; -fx-background-radius: 8;">
+               <children>
+                  <Text fill="#fffbfb" layoutX="7.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of projects" wrappingWidth="199.99999914318323" />
+                  <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
+                     <children>
+                        <VBox />
+                        <VBox />
+                        <VBox />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lbProjet" layoutX="89.0" layoutY="41.0" prefHeight="40.0" prefWidth="110.0" text="100" textFill="#a4fffc">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="650.0" layoutY="368.0" prefHeight="90.0" prefWidth="213.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: rgb(17, 158, 132); -fx-background-radius: 8;">
+               <children>
+                  <Text fill="#fffbfb" layoutX="7.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tenders" wrappingWidth="199.99999914318323" />
+                  <VBox layoutX="13.0" layoutY="43.0" spacing="10.0">
+                     <children>
+                        <VBox />
+                        <VBox />
+                        <VBox />
+                     </children>
+                  </VBox>
+                  <Label fx:id="lbTender" layoutX="89.0" layoutY="41.0" prefHeight="40.0" prefWidth="110.0" text="100" textFill="#a4fffc">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <PieChart fx:id="pieBookings" focusTraversable="true" layoutX="295.0" layoutY="5.0" prefHeight="339.0" prefWidth="526.0" styleClass="card" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="141.0" fitWidth="146.0" layoutX="688.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="880.0" layoutY="29.0" prefHeight="406.0" prefWidth="259.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
+      <AnchorPane fx:id="adminprofile" layoutX="896.0" layoutY="28.0" prefHeight="406.0" prefWidth="259.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-color: white;">
          <children>
             <ImageView fx:id="imgAvatar" fitHeight="224.0" fitWidth="231.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true">
                <image>
@@ -101,7 +158,7 @@
                   </Label>
                </children>
             </VBox>
-            <JFXButton layoutX="85.0" layoutY="349.0" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #26B99A;" text="Edit Profile" textFill="WHITE">
+            <JFXButton fx:id="btnEdit" layoutX="85.0" layoutY="349.0" onAction="#switchEdit" prefHeight="31.0" prefWidth="149.0" style="-fx-background-color: #26B99A;" text="Edit Profile" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -111,6 +168,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <CalendarPicker layoutX="865.0" layoutY="461.0" />
+      <CalendarPicker layoutX="881.0" layoutY="462.0" />
    </children>
 </AnchorPane>

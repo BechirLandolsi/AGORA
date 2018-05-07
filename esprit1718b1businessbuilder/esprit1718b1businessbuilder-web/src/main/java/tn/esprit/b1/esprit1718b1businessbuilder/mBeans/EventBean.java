@@ -51,6 +51,7 @@ public class EventBean implements Serializable{
 	EventService eventService;
 	@EJB
 	CompanyService companyService;
+
 @EJB
 	InvitationService invitationService;
 
@@ -71,6 +72,7 @@ public class EventBean implements Serializable{
 	public void setIdcompany(Long idcompany) {
 		this.idcompany = idcompany;
 	}
+
 
 	public Long getId_event() {
 		return id_event;

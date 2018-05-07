@@ -47,14 +47,21 @@ public class Partnership implements Serializable {
 	@Column(name = "partnershipDuration")
 	private String partnershipDuration;
 	
+	@Column(name = "state")
+	private boolean state;
+	
 	public Partnership() {
 		super();
 	}
 
 	
 	
+	
+
+
+
 	public Partnership(PartnershipPK partnershipPK, Company companyOwner, Company companyPartner, Project project,
-			Date partnershipDate, String partnershipDuration) {
+			Date partnershipDate, String partnershipDuration, boolean state) {
 		super();
 		this.partnershipPK = partnershipPK;
 		CompanyOwner = companyOwner;
@@ -62,7 +69,12 @@ public class Partnership implements Serializable {
 		this.project = project;
 		this.partnershipDate = partnershipDate;
 		this.partnershipDuration = partnershipDuration;
+		this.state = state;
 	}
+
+
+
+
 
 
 
@@ -115,6 +127,16 @@ public class Partnership implements Serializable {
 	}
 
 
+	public boolean isState() {
+		return state;
+	}
+
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+
+	
 
 	@Override
 	public String toString() {

@@ -21,24 +21,27 @@ public class ServiceService implements ServiceServiceRemote  {
 	
 	
 	@Override
-	public void ajouterService(Service service) {
+	public long ajouterService(Service service) {
 		em.persist(service);
+		return service.getId();
 	}
 
 	@Override
 	public void editService(Service service) {
-		// TODO Auto-generated method stub
+	
+		em.merge(service);
 		
 	}
 
 	@Override
-	public void removeService(int id) {
-		// TODO Auto-generated method stub
+	public void removeService(long id) {
+		Service s1 = em.find(Service.class, id) ;
+		em.remove(s1);
 		
 	}
 
 	@Override
-	public Service findService(int id) {
+	public Service findService(long id) {
 		Service s1 = em.find(Service.class, id) ;
 		return s1 ;
 	}

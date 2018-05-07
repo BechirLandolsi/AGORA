@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,9 +29,13 @@ import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote;
+
+
+
 
 public class ProductController   implements Initializable {
 
@@ -49,12 +55,12 @@ public class ProductController   implements Initializable {
 	    private ObservableList<Produit> ProductList ;
         private ObservableList<Produit> cplist3 ;
         private List<Company> test  = new ArrayList<>();
-        private List<Produit> testP  = new ArrayList<>();
+        private List<Company> testP  = new ArrayList<>();
         private List<String> cplist3s  = new ArrayList<>();
         private Set<Company> hs = new HashSet<Company>();
         private ObservableList<Produit> listefinale  = FXCollections.<Produit>observableArrayList();
     
-        
+    
         
         @FXML
     void makeSearch(ActionEvent event) throws NamingException {
@@ -88,7 +94,8 @@ public class ProductController   implements Initializable {
             
          }
 ///////////////////////////////////////////////INITILIZATIONRECOMMANDATION/////////////////////////////////////////////////////////////////////////////////////////////////////
-    	 String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
+         
+         String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ; 	
 		 String jndiNames ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 
     	 CompanyServiceRemote proxy2;
@@ -102,19 +109,31 @@ public class ProductController   implements Initializable {
 				 contexts = new InitialContext();
 				 proxy3 = (CompanyServiceRemote) context3.lookup(jndiName2);
 				 ServiceServiceRemote proxys = (ServiceServiceRemote) contexts.lookup(jndiNames);
-				 cplist3s = proxys.ResercheListe(33);
-				//System.out.println(cplist3s);
+				 User u = LoginController.LoggedUser ;
+				 cplist3s = proxys.ResercheListe(u.getId());
+
+	    		  Pattern p = Pattern.compile("[a-zA-Z]+");
+	    	         
+	    	        
+				 
+				// System.out.println(cplist3s);
 		     for( String s : cplist3s  ){			    	 
 		    	    // System.out.println(s);
-					 test = proxy3.findAllCompanyByService(s);
+		    	  Matcher m1 = p.matcher(s);	
+		    	  while (m1.find()) {
+	    	        	if (!(proxys.findCompanyBysynonyme(m1.group())).isEmpty() ){
+	    	        		test = FXCollections.observableArrayList(proxys.findCompanyBysynonyme(m1.group()));
+	    	        		
+	    	        	}
+	    	        	     
+	    	        }
+
 					 
 					// System.out.println(test);
-					 for(Company c : test){		
-						// System.out.println(c);
-						 // System.out.println(",yntbrve");
-					            if (!hs.contains(c)){
+					 for(Company c : test){	
+					     if (!hs.contains(c)){
 					                hs.add(c);
-					                //System.out.println(hs);
+					      
 					        }
 						}
 				 }

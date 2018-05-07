@@ -2,8 +2,10 @@ package tn.esprit.b1.esprit1718b1businessbuilder.app.client.controller;
 
 
 import java.net.URL;
-
+import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,13 +20,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.BubbleChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Order;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.OrderLine;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
@@ -64,7 +71,21 @@ public class GlobalViewAdminController implements Initializable {
     @FXML
     private PieChart pieBookings;
 
+    @FXML
+    private LineChart< String , Number> lineChart;
    
+    @FXML
+    private TableView<Object> tableview;
+
+    @FXML
+    private TableColumn<Object, String> p_description;
+
+    @FXML
+    private TableColumn<Object, Double> p_price;
+
+    @FXML
+    private TableColumn<Object, Double> p_cost;
+
     
     final NumberAxis xAxis = new NumberAxis();
     final NumberAxis yAxis = new NumberAxis();
@@ -74,7 +95,9 @@ public class GlobalViewAdminController implements Initializable {
 
     /*********JNDI PRODUCT ****************/
     String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
-	  Context context;
+    String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
+	  
+    Context context;
 	  ProductServiceRemote proxy1 ;
 	  
 	/***************************************/
@@ -90,14 +113,15 @@ public class GlobalViewAdminController implements Initializable {
 			e.printStackTrace();
 		}
 		
-		lbPartnership.setText(proxy1.nbPartnershp().toString());
+		/*lbPartnership.setText(proxy1.nbPartnershp().toString());
 		lbProduct.setText(proxy1.nbProbuit().toString());
 		lbProjet.setText(proxy1.nbProjet().toString());
-		lbTender.setText(proxy1.nbTender().toString());
+		lbTender.setText(proxy1.nbTender().toString());*/
 		
 		try {
 			MakeBarGraphCategory() ;
 			buildPieChartData();
+			MakeLineGraph(); 
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -205,6 +229,69 @@ public class GlobalViewAdminController implements Initializable {
 			    	
 			         }
 			     }
+	    
+ private void MakeLineGraph() throws NamingException {
+	        
+	    	ObservableList<XYChart.Series< String , Number>> chartData = FXCollections.observableArrayList();
+
+	         XYChart.Series<String , Number> series = new XYChart.Series<>();
+	                
+	            context = new InitialContext();
+				
+			    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
+			    List<Object[]> list = proxy.salesPermonth();
+			    
+			    
+			    String PATTERN="yyyy-MM-dd";
+ 			    SimpleDateFormat dateFormat=new SimpleDateFormat();
+ 			    dateFormat.applyPattern(PATTERN);
+ 			    String today =dateFormat.format(Calendar.getInstance().getTime());
+ 			    int moisNow = Integer.parseInt((today.toString().substring(5,7)));
+ 			   lineChart.setTitle(Month.of(moisNow) +"'s  "+ "Sales ");
+	             for(Object[] o : list){
+	            	 System.out.println("1");
+	            	 double ammount = (double)o[0] ;
+	            	 
+	 		    	 Date date = (Date)o[1] ;
+	 		    	
+	 		    	String date1=dateFormat.format(date.getTime());
+	 			   
+	 			    int mois = Integer.parseInt((date1.toString().substring(5,7)));
+	 			    
+	 			   
+	 		    	 if(mois == moisNow){
+	 		    	
+	                 series.getData().add(new XYChart.Data<>(date.toString(),ammount));
+	                 
+	 		    	}
+	             }
+	             chartData.add(series);
+	             
+	             lineChart.getData().addAll(chartData);
+	             
+	         }
+ 
+ 			public void setTable() throws NamingException{
+              /*  context = new InitialContext();
+				
+			    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
+			    List<Object[]> list = proxy.salesPermonth();
+			    List<Object[]> list1 = proxy1.salesPerCompany();
+			  
+				ObservableList<Object> lp =FXCollections.observableArrayList(proxy1.salesPerCompany());
+				p_description.setCellValueFactory(new PropertyValueFactory<>("supplier"));
+		    	p_description.cellFactoryProperty();
+		         
+		    	p_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+		    	p_price.cellFactoryProperty();
+		    	
+		    	p_cost.setCellValueFactory(new PropertyValueFactory<>("cout"));
+		    	p_cost.cellFactoryProperty();
+		    	
+		    	
+		    	     	  
+		    	tableview.setItems(lp); */
+ 			}
 	  
 
 }

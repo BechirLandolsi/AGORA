@@ -3,10 +3,14 @@ package tn.esprit.b1.esprit1718b1businessbuilder.mBeans;
 import java.util.List;
 import java.util.Objects;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
@@ -23,6 +27,7 @@ public class ContactBean {
 	public static int nbrOrdersPerCompany ;
 	
 	private long numberofprojects ;
+	private String companyName;
 	private String sector;
 	public static int getNbrProjectsPerCompany() {
 		return nbrProjectsPerCompany;
@@ -30,6 +35,20 @@ public class ContactBean {
 
 	public static void setNbrProjectsPerCompany(int nbrProjectsPerCompany) {
 		ContactBean.nbrProjectsPerCompany = nbrProjectsPerCompany;
+	}
+	
+	@PostConstruct
+	private void init(){
+		company= new Company();
+	}
+
+	
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public static int getNbrOrdersPerCompany() {
@@ -103,29 +122,32 @@ public class ContactBean {
 	
 	
 	
-	
 	public String ViewProfile(Company c){
 		
 		String navigateTo="";
 		navigateTo="/Profile?faces-redirect=true";
-		CompanyService.incrementVisiteProfile(c);
-		CompanyService.countnbrs(c);
-		CompanyService.ActivityRate(c);
-		System.out.println("nbr projects per Company"+CompanyService.nbProjectByCompany(c) );
+	//	CompanyService.incrementVisiteProfile(c);
+	//	CompanyService.countnbrs(c);
+	//	CompanyService.ActivityRate(c);
+	//	System.out.println("nbr projects per Company"+CompanyService.nbProjectByCompany(c) );
 		//System.out.println("nbr company : "+CompanyService.nbrcompanyperService("Sport"));
-		System.out.println("nbr orders per company " +orderService.findAllOrder(c).size());
+	//	System.out.println("nbr orders per company " +orderService.findAllOrder(c).size());
 		
-		 for (Object[] o : projectService.getProjectsPerCompanyBySector(c)){
+		 /*for (Object[] o : projectService.getProjectsPerCompanyBySector(c)){
 			 numberofprojects= (long) o[0];
 			 sector=(String) o[1];
 			 System.out.println(o[0]);
 			 System.out.println(o[1]);
-		 }
+		 }*/
 
-		this.setCompany(c);
-		System.out.println(c);
+		FacesContext.getCurrentInstance().addMessage("contact:foo", new FacesMessage("ay haja"));
+		
+		company= c;
+		//companyName=c.getName();
+		System.out.println(c.getName());
 		return navigateTo ;
 	}
+
 	
 	
 	public void incrementFollewers(Company c){
@@ -133,6 +155,7 @@ public class ContactBean {
 		Company c2 = CompanyService.findBy((long)2) ;
 		//System.out.println(identity.getUser().getId());
 		CompanyService.incrementnbrFlowwersFollowings(c,c2);
+		
 	}
 	
 

@@ -13,7 +13,7 @@
 			 
 	<ui:define name="pageContent">
 
-			
+		<h:form>	
 	  <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
                     <h2>Company's Profile</h2>
@@ -44,10 +44,12 @@
                         <div class="">
                             <div>
                                 <h2 class="no-margins">
-                                    <h:outputText value="#{contactBean.company.name}" />
+                                    <h:outputText value="" />
                                 </h2>
                                 <h4>
-                                CEO of the Company : <h:outputText value="#{contactBean.company.CEO}" />
+                                CEO :   <h:outputText id = "foo" value="#{contactBean.company.name}" />
+                                  
+                                
                                 </h4>
                                 <small>
                                     There are many variations of passages of Lorem Ipsum available, but the majority
@@ -64,11 +66,11 @@
                         <tr>
                             <td>
                               <i class="fa fa-briefcase fa-2x">  </i>
-                                <strong><h:outputText value="#{contactBean.company.nbrprojects}"/></strong> Projects
+                                <strong><h:outputText value=""/></strong> Projects
                             </td>
                             <td>
                               <i class="fa fa-child fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrfolowers}"/></strong> Followers
+                                <strong><h:outputText value=""/></strong> Followers
                             </td>
 
                         </tr>
@@ -79,17 +81,17 @@
                             </td>
                             <td>
                               <i class="fa fa-asterisk fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrorders}"/></strong> Orders
+                                <strong><h:outputText value=""/></strong> Orders
                             </td>
                         </tr>
                         <tr>
                             <td>
                               <i class="fa fa-eye fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrorders}" /></strong> Profile Visits
+                                <strong><h:outputText value="" /></strong> Profile Visits
                             </td>
                             <td>
                               <i class="fa fa-user fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrfolowings}"/></strong> Followings
+                                <strong><h:outputText value=""/></strong> Followings
                             </td>
                         </tr>
                         </tbody>
@@ -104,7 +106,7 @@
                         </div>
                         <div class="col-xs-8 text-right">
                             <span>  Activity Rate </span>
-                            <h2 class="font-bold"><h:outputText value="#{contactBean.company.activity}"/>%</h2>
+                            <h2 class="font-bold"><h:outputText value=""/>%</h2>
                         </div>
                     </div>
                 </div>
@@ -155,7 +157,7 @@
                                         </a>
                                         <div class="media-body ">
                                             <small class="pull-right text-navy">1m ago</small>
-                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> started following <strong>Monica Smith</strong>. <br></br>
+                                            <strong> <h:outputText value="" /> </strong> started following <strong>Monica Smith</strong>. <br></br>
                                             <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
                                             <div class="actions">
                                                 <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
@@ -195,8 +197,7 @@
                 
                 
        
-       
-
+</h:form>
 	</ui:define>
 
 </ui:composition>

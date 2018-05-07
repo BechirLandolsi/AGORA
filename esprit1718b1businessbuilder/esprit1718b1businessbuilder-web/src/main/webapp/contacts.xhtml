@@ -32,7 +32,7 @@
 
 		<div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-          <h:form >
+          <h:form  id="contact">
         <ui:repeat var="contact" value="#{contactBean.Listcontact()}">
             <div class="col-lg-3">
                 <div class="contact-box ">
@@ -55,7 +55,9 @@
                    
                     <div class="contact-box-footer text-center">
                         <div class="m-t-xs btn-group">
-                         <h:commandButton action="#{contactBean.ViewProfile(contact)}" class="btn btn-primary block full-width m-b" value="View Profile"></h:commandButton>
+                         <h:commandButton id = "foo" action="#{contactBean.ViewProfile(contact)}" class="btn btn-primary block full-width m-b" value="View Profile"></h:commandButton>
+                         <h:message for="foo" />
+                           
                             <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
                             
                             <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow </a>

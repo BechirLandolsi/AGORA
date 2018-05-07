@@ -38,6 +38,15 @@ public class EventBean implements Serializable{
 	@EJB
 	EventService eventService;
 	CompanyService companyService;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public Long getId_event() {
 		return id_event;

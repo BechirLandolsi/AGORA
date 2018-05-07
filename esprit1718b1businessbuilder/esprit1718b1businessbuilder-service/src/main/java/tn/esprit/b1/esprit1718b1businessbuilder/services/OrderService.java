@@ -50,15 +50,17 @@ public class OrderService implements OrderServiceRemote {
 	@Override
 	public void addProductToOrder(Produit P, Company C, int k) {
 		Order o ; 
-		
+		System.out.println("1");
 		if (findActiveOrder(C) == null){
-			System.out.println("aaaaaaaa");
+			System.out.println("2");	
 			o = new Order();
 			o.setBuyer(C);
 			em.persist(o);
 		}else {
+			System.out.println("3");
 			o = findActiveOrder(C);
 		}
+		System.out.println("4");
 		OrderLine ol = new OrderLine();
 		OrderLineFK opk = new OrderLineFK() ; 
 		opk.setIdOrder(o.getId());
@@ -157,6 +159,59 @@ public class OrderService implements OrderServiceRemote {
 		}
 		
 		return c ;
+	}
+	
+	@Override
+	public List<Object[]> salesPerCompany(Company c) {
+		 
+		Query q =  em.createQuery("select SUM(o.quantity) , o.prod from OrderLine o inner join o.prod p where o.prod = p.id AND p.supplier = :c group by o.prod ") ;
+		 List<Object[]> listO = q.setParameter("c", c).getResultList();
+		return listO;
+	}
+	
+	@Override
+	public List<Object[]> productSales(Company c) {
+		 
+		Query q =  em.createQuery("select SUM(o.quantity) , o.prod ,o.ord from OrderLine o inner join o.prod p where o.prod = p.id AND p.supplier = :c group by o.prod ") ;
+		 List<Object[]> listO = q.setParameter("c", c).getResultList();
+		return listO;
+	}
+	
+	@Override
+	public List<Produit> findAllProduct(Company c) {
+
+		TypedQuery<Produit> q =  em.createQuery("select p from Produit p WHERE p.supplier = :c ",Produit.class) ;
+		List<Produit > lp = new ArrayList<>() ;
+		try{
+		lp =	q.setParameter("c",  c).getResultList() ;
+		}catch(NoResultException e){
+			
+		}
+		
+		return lp ;
+	}
+
+	@Override
+	public List<Produit> findAllProductOutStock(Company c) {
+
+		TypedQuery<Produit> q =  em.createQuery("select p from Produit p WHERE p.stock = 0 AND p.supplier = :c ",Produit.class) ;
+		List<Produit > lp = new ArrayList<>() ;
+		try{
+		lp =	q.setParameter("c",  c).getResultList() ;
+		}catch(NoResultException e){
+			
+		}
+		
+		return lp ;
+	}
+	
+	@Override
+	public List<Object[]> salesPerProduit(Produit p,Company c) {
+		Query q =  em.createQuery("select o.quantity, o.prod , o.ord from OrderLine o inner join o.prod p where o.prod = :p AND p.supplier = :c") ;
+		q.setParameter("p",  p);
+		q.setParameter("c",  c);
+		 List<Object[]> listO = q.getResultList();
+		return listO;
 	}
 
 	

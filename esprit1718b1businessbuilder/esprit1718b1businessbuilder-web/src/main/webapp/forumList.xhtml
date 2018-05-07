@@ -1,0 +1,103 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				HOME PAGE
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+
+		
+		
+		
+		
+		
+		<div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content animated fadeInRight">
+
+                        <div class="ibox-content m-b-sm border-bottom">
+                            <div class="p-xs">
+                                <div class="pull-left m-r-md">
+                                    <i class="fa fa-globe text-navy mid-icon"></i>
+                                </div>
+                                <h2>Welcome to AGORA Forum</h2>
+                                <span>Feel free to choose topic you're interested in.</span>
+                            </div>
+                        </div>
+
+                        <div class="ibox-content forum-container">
+
+                            <div class="forum-title">
+                                <div class="pull-right forum-desc">
+                                    <samll>Total comments: <label jsf:id="label" value="#{forumBean.totalComment()}" /></samll>
+                                </div>
+                                <h3>General subjects</h3>
+                            </div>
+                                <form jsf:id="form">
+<ui:repeat var="forum" value="#{forumBean.ForumList()}" >
+
+    
+
+                            <div class="forum-item active">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="forum-icon">
+                                            <i class="fa fa-shield"></i>
+                                        </div>
+                                    
+                                      <a  class="views-number" value="#{forum.name}" jsf:action="#{forumBean.gotodetail(forum)}">
+                                             <f:setPropertyActionListener target="#{forumBean.f}" value="#{forum}"/>
+                                      </a>
+                                      
+                         
+                                        <div class="forum-sub-title"> <label jsf:id="labelss" value="#{forum.description}" /> </div>
+                                      
+                                    </div>
+                                    <div class="col-md-1 forum-info">
+                                    <div>
+                                            <small>Comments</small>
+                                        </div>
+                                        <span class="views-number">
+                                              <label jsf:id="labelllllllllll" value="#{forumBean.nbrComment(forum.id)}" /> 
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="col-md-1 forum-info">
+                                      <div>
+                                            <small>Company in</small>
+                                        </div>
+                                        <span class="views-number">
+                                            <label jsf:id="label1" value="#{forumBean.nbrCompanyForum(forum.id)}" /> 
+                                        </span>
+                                      
+                                    </div>
+                                    <div class="col-md-1 forum-info">
+                                         <a  jsf:id="aaa" value="go"   class="forum-item-title"/>
+                                    </div>
+                                </div>
+                                                       
+                            </div>
+  
+                            
+                  
+</ui:repeat>
+     </form>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+		
+		
+		
+		
+		
+		
+	</ui:define>
+</ui:composition>

@@ -12,9 +12,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
@@ -24,8 +26,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.layout.AnchorPane;
-
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Admin;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote;
+import tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote;
 
 public class AdminDashboardController implements Initializable {
 
@@ -49,6 +53,21 @@ public class AdminDashboardController implements Initializable {
     private Label lblBirthdate;
     @FXML
     private Label lblemail;
+    @FXML
+    private Label lbProduct;
+
+    @FXML
+    private Label lbTender;
+
+    @FXML
+    private Label lbProjet;
+
+    @FXML
+    private Label lbPartnership;
+
+    @FXML
+    private JFXButton btnEdit;
+
     
 
     @FXML
@@ -57,7 +76,10 @@ public class AdminDashboardController implements Initializable {
     Context context;
 	//jndi OrderSercice
 	String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-	
+	String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
+	   
+	Admin logged = (Admin) LoginController.LoggedUser ;
+	   
 	   
 	 
     
@@ -69,10 +91,22 @@ public class AdminDashboardController implements Initializable {
 			context = new InitialContext();
 			
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
+		    ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
+		    
 		    lbSubnumber.setText(proxy.nbSubscriber().toString());
 		    lbSubnumberDay.setText(proxy.nbSubscriberPerday().toString());
+		    lblBirthdate.setText(logged.getBirthdate().toString());
+		    lblname.setText(logged.getName());
+		    lbCountry.setText(logged.getFirstname());
+		    lblemail.setText(logged.getEmail());
+		    
+		    lbPartnership.setText(proxy1.nbPartnershp().toString());
+			lbProduct.setText(proxy1.nbProbuit().toString());
+			lbProjet.setText(proxy1.nbProjet().toString());
+			lbTender.setText(proxy1.nbTender().toString());
+			
 		    buildPieChartData(); 
-		    MakeLineGraph(); 
+		   // MakeLineGraph(); 
 		    
 		    
 	   
@@ -148,6 +182,12 @@ public class AdminDashboardController implements Initializable {
 	             lineChart.getData().addAll(chartData);
 	             
 	         }
+	    
+	    @FXML
+	    void switchEdit(ActionEvent event) {
+	    	AdminDashboardController ac = new AdminDashboardController() ; 
+	    	ac.switchEdit(event);
+	    }
 
 
  }

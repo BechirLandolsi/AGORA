@@ -1,0 +1,132 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/templateStat.xhtml">
+
+
+
+
+	<ui:define name="pageTitle">
+				Sales Dashboard
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+		
+		
+		<div class="row  border-bottom white-bg dashboard-header">
+
+                    <div class="col-md-3">
+                        <h2>Sales Dashboard </h2>
+                        
+                        
+                         <div class="col-xs-4">
+                                <div class=" m-l-md">
+                                <span class="h4 font-bold m-t block">$ <label jsf:id="mrev1" value="#{chartView.aRevenue}"> </label></span>
+                                <small class="text-muted m-b block">Annual revenue</small>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="col-xs-4">
+                                <span class="h4 font-bold m-t block">$ <label jsf:id="mrev2" value="#{chartView.mRevenue}"> </label></span>
+                                <small class="text-muted m-b block">Month sales revenue</small>
+                            </div>
+                            
+                            <div class="col-xs-4">
+                                <span class="h4 font-bold m-t block">$ <label jsf:id="mrev3" value="#{chartView.netIncome}"></label> </span>
+                                <small class="text-muted m-b block">Net annual income</small>
+                            </div>
+ 							
+                    </div>
+                    <div class="col-md-6">
+                        
+                            <!-- sales line chart -->
+                            <h:head> 
+                            </h:head>
+						<p:chart type="line" model="#{chartView.dateModel}" style="height:300px;"/>
+ 
+                      </div>
+                     
+                
+            </div>
+            <div class="wrapper wrapper-content">
+            <div class="row">
+            <div class="col-lg-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div>
+                              
+                            <h3 class="font-bold no-margins">
+                               Sales per Product
+                            </h3>
+                            <small>Sales marketing.</small>
+                        </div>
+
+                        <div class="m-t-sm">
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div>
+                                        <!-- Bar chart -->
+                                        <h:head></h:head>
+                                        <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    
+                                            <h2 class="no-margins"><label jsf:id="mrev" value="#{chartView.maxName}"> </label></h2>
+                                            <small>Best Sold Product</small>
+                                            <h2 class="no-margins "><label jsf:id="arev" value="#{chartView.maxProduct}"> </label></h2>
+                                            <small>products</small>
+                                            <h2 class="no-margins ">$<label jsf:id="xrev" value="#{chartView.maxRev}"></label> </h2>
+                                       
+                                </div>
+                            </div>
+
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        
+                        <h5>Products provided</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <!-- pie chart -->
+                            <p:chart type="donut" model="#{chartView.donutModel1}" style="width:400px;height:300px" />
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+
+        </div>
+		
+		</div>
+		<h:outputScript>
+    			function chartExtender(){
+        
+       			 this.cfg.axes.xaxis.tickOptions.showGridline = false;
+        		this.cfg.axes.yaxis.tickOptions.showGridline = false;
+        		
+    }
+</h:outputScript>
+
+		
+		
+	</ui:define>
+	
+</ui:composition>
+			

@@ -12,6 +12,16 @@
 	<name>esprit1718b1businessbuilder-service</name>
 
 	<dependencies>
+	<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.kevinsawicki</groupId>
+			<artifactId>http-request</artifactId>
+			<version>5.3</version>
+		</dependency>
 		<dependency>
 			<groupId>tn.esprit.b1</groupId>
 			<artifactId>esprit1718b1businessbuilder-domain</artifactId>

@@ -92,7 +92,7 @@ public class ContactBean {
 
 	public List<Company> Listcontact()
 	{
-		return contacts = CompanyService.getContactsByCompany( (long)2);
+		return contacts = CompanyService.getContactsByCompany( (long)1);
 	}
 	
 	public List<Object[]> listProjectsBySector(){

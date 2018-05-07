@@ -10,11 +10,8 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
-  	<context-param>
-		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-		<param-value>client</param-value>
-	</context-param>
-	<welcome-file-list>
-		<welcome-file>welcome.xhtml</welcome-file>
-	</welcome-file-list>
+  
+  <listener>
+             <listener-class>tn.esprit.b1.esprit1718b1businessbuilder.services.BackgroundJobManager</listener-class>
+    </listener>
 </web-app>

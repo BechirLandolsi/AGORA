@@ -164,7 +164,11 @@ public class TenderBean {
 	}
 
 	public List<Tender> getMyTenders() {
+
+	
+
 		loggedCompany=loginBean.getUser();
+
 		myTenders=tenderService.findByCompany(loggedCompany);
 		return myTenders;
 	}

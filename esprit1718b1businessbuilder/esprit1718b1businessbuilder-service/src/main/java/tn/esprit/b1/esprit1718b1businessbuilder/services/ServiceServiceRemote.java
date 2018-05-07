@@ -12,10 +12,10 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 @Remote
 public interface ServiceServiceRemote {
 	
-	public void ajouterService(Service service);
+	public long ajouterService(Service service);
 	public void editService (Service service) ;
-	public void removeService (int id) ;
-	public Service findService (int id) ;
+	public void removeService (long id) ;
+	public Service findService (long id) ;
 	public List<String> getAllService();
 	public List<String> getByName(String name) ;
 	public void affecterServiceACompany(long companyId, long serviceId);

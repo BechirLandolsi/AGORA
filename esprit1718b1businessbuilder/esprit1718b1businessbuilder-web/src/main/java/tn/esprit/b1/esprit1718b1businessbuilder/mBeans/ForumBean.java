@@ -53,7 +53,6 @@ public class ForumBean {
 	
 	}
 	public String  gotodetail(Forum forum) {
-
 		this.f = forum ;
 		return "/forum?faces-redirect=true";
 	}
@@ -67,9 +66,7 @@ public class ForumBean {
 	    System.out.println(item);
 	}
 	public List<Comment> getCommentsByForum(int idforum){
-		
-		return forumservice.getallCommentByForum(idforum);
-		
+		return forumservice.getallCommentByForum(idforum);	
 	}
 	public List<Undercomment> getunderCommentByComment(int idcomment) {
 		return forumservice.getAllUnderCommentbyComment(idcomment);
@@ -77,7 +74,8 @@ public class ForumBean {
 	public void doComment (){
 		Comment c= new Comment() ;
 		c.setComment(this.comment);
-		c.setDatePost(new Date());
+		Date d = new Date();
+		c.setDatePost(d);
 		if (!this.comment.equals("")){
 		int x = forumservice.addComment(c);
 		Comment c1= new Comment() ;

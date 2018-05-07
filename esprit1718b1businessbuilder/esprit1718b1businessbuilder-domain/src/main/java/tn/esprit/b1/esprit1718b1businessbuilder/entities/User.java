@@ -34,12 +34,21 @@ public class User implements Serializable {
 	@Column(name = "USR_EMAIL")
 	protected String email;
 	
+
+
+	
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Column(name = "USR_MAC")
 	protected String mac;
 	
 	protected Double progress ;
 	protected String secretquestion ;
 	protected String response ;
+	
 	
 	
 	

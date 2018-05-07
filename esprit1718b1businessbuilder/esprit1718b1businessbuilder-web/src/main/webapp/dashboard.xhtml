@@ -1,0 +1,252 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+
+
+
+	<ui:define name="pageTitle">
+				Dashboard
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+
+		<div >
+			<h2>DASHBOARD</h2>
+			
+		</div>
+		<h3> Provisions activity </h3>
+        <div class="row">
+        	
+            <div class="col-lg-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Today</span>
+                        <h5>To Be delivered</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins"> <label jsf:id="text9"  type="text" value="#{provisionBean.calculqTBD()}"/> </h1>
+                        
+                       <!--  <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>--> 
+                        <small>products</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">Today</span>
+                        <h5>To Be packed</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins"><label jsf:id="text5"  type="text" value="#{provisionBean.calculQuantityTBP()}"/> </h1>
+                       <!--  <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>--> 
+                        <small>products</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        
+                        <h5>To Be invoiced</h5>
+                        <span class="label label-primary pull-right">month</span>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins"><label jsf:id="text4"  type="text" value="#{provisionBean.quantityTBI}"/> $</h1>
+                       <!--  <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>--> 
+                        <small></small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                      <h5>Inventory Summary</h5> 
+                       
+                     <span class="label label-info pull-right">Updated <label jsf:id="text1"  type="text" value="#{provisionBean.current}"/></span>
+                      
+                                    <ul class="stat-list m-t-lg">
+                                        <li>
+                                            <h2 class="no-margins"><label jsf:id="text2"  type="text" value="#{provisionBean.quantityIh}"/> </h2>
+                                            <small>Quantity in hand</small>
+                                            <div class="progress progress-mini">
+                                                <div class="progress-bar" style="width: 48%;"></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <h2 class="no-margins "><label jsf:id="text3"  type="text" value="#{provisionBean.quantityTr}"/> </h2>
+                                            <small>Quantity to be recieved</small>
+                                            <div class="progress progress-mini">
+                                                <div class="progress-bar" style="width: 60%;"></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                       </div>
+                      </div> 
+                    </div>
+                   
+                    <div class="col-lg-2">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row vertical-align">
+                           <span class="pie">1/5</span>
+                            <div class="col-xs-9 text-right">
+                             <form jsf:id="redirect">
+                                <a class="font-bold" jsf:action="#{provisionBean.redirectSales()}">open my Sales Dashboard </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                     <div class="col-lg-4">
+             <div class="widget yellow-bg p-lg text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-warning fa-4x"></i>
+                            <h1 class="m-xs"><label jsf:id="alert" value="#{notificationManagedBean.message}"/></h1>
+                            
+                        </div>
+                    </div>   
+                    </div>
+                 
+                  
+             <div class="row">  
+               <div class="col-lg-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Provision to be delivered </h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                               
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ibox-content">
+
+							<form jsf:id="f">
+                            <table  class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th data-hide="phone">Product</th>
+                                    <th data-hide="phone">quantity</th>
+                                    <th data-hide="phone">Date provision</th>
+                                    
+                                    <th data-hide="phone">Company to deliver </th>
+                                    <th class="text-right">Mark as</th>
+
+                                </tr>
+                                </thead>
+                                
+                                <thead>
+                                <ui:repeat  value="#{provisionBean.provisionD}" var="provision">
+                                <tr>
+                                   
+                                    <td>
+                                        <label  jsf:id="aa" value="#{provision.contrat.produit.description}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="aaa" value="#{provision.contrat.quantity}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="aaaa" value="#{provision.contrat.date_contrat}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="aaaaaa" value="#{provision.contrat.company.name}" />
+                                    </td>
+                                    
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <h:commandButton type="submit" action="#{provisionBean.makeDelivered(provision)}" value="done" class="btn btn-outline btn-primary"/>    
+                                        </div>
+                                    </td>
+                                </tr>
+                                </ui:repeat>
+                                </thead>
+                                </table>
+                                </form>
+                                
+                                </div>
+                                </div>
+                                </div>
+                                
+                                 <div class="col-lg-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Provision to be packed </h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                               
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ibox-content">
+
+							<form jsf:id="f2">
+                            <table  class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                                <thead>
+                                <tr>
+                                    <th data-hide="phone">Product</th>
+                                    <th data-hide="phone">quantity</th>
+                                    <th data-hide="phone">Date provision</th>
+                                    
+                                    <th data-hide="phone">Company to deliver </th>
+                                    <th class="text-right">Mark as</th>
+
+                                </tr>
+                                </thead>
+                                
+                                <thead>
+                                <ui:repeat  value="#{provisionBean.provisionP}" var="provision">
+                                <tr>
+                                   
+                                    <td>
+                                        <label  jsf:id="zz" value="#{provision.contrat.produit.description}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="zzz" value="#{provision.contrat.quantity}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="zzzz" value="#{provision.contrat.date_contrat}" />
+                                    </td>
+                                    <td>
+                                        <label  jsf:id="zzzzz" value="#{provision.contrat.company.name}" />
+                                    </td>
+                                    
+                                    <td class="text-right">
+                                        <div class="btn-group">
+                                            <h:commandButton type="submit" action="#{provisionBean.makePacked(provision)}" value="packed" class="btn btn-outline btn-primary"/>    
+                                        </div>
+                                    </td>
+                                </tr>
+                                </ui:repeat>
+                                </thead>
+                                </table>
+                                </form>
+                                
+                                </div>
+                                </div>
+                                </div>
+                                
+            </div>
+            </div>
+         
+
+
+
+	</ui:define>
+</ui:composition>

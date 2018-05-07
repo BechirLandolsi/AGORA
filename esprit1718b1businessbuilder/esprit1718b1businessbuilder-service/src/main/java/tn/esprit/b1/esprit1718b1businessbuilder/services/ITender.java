@@ -16,4 +16,5 @@ public interface ITender extends IGenericDAO<Tender> {
 	public List <Tender> findByCategory(TenderCategory tc);
 	public void affectTenderToCompanyCategory(Tender tender, User loggedUsery, TenderCategory tc);
 	public void affectTenderToQualification(Tender tender, TenderQualification qualification);
+	public List <Tender> findByCompany(User user);
 }

@@ -11,12 +11,13 @@
 	<name>esprit1718b1businessbuilder-client</name>
 
 	<repositories>
-		<repository>
-			<id>snapshots-repo</id>
-			<name>Sonatype Snapshots</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
+	
+    <repository>
+      <id>snapshots-repo</id>
+      <name>Sonatype Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
 
 
 	<dependencies>
@@ -108,6 +109,18 @@
 			<groupId>org.ocpsoft.prettytime</groupId>
 			<artifactId>prettytime</artifactId>
 			<version>4.0.1.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>smtp</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
 		</dependency>
 
 		<!-- To use snapshots, you must also use the Sonatype Snapshots respository -->

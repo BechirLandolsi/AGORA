@@ -66,11 +66,22 @@ public class Produit implements Serializable {
 		Forum = forum;
 	}*/
 
+	@OneToMany(mappedBy = "produit" )
+	private List<Contrat> contrats ; 
+	
 	/*********************/
 	
 //Getter and Setters
 	public int getId() {
 		return id;
+	}
+
+	public List<Contrat> getContrats() {
+		return contrats;
+	}
+
+	public void setContrats(List<Contrat> contrats) {
+		this.contrats = contrats;
 	}
 
 	public void setId(int id) {

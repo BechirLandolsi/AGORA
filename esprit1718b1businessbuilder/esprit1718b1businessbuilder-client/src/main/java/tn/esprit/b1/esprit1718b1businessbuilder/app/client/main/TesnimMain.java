@@ -67,11 +67,15 @@ public class TesnimMain {
 		
 		//CompanyServiceRemote proxy = (CompanyServiceRemote) context.lookup(jndiName2);
 		
+		Context context2 = new InitialContext();
+		CompanyServiceRemote proxy = (CompanyServiceRemote) context2.lookup(jndiName2);
+		ProjectRemote proxy2 = (ProjectRemote) context.lookup(jndiName1);
 		//System.out.println("projets sont: "+proxy.getProjectsByCompany(16));
 		
 		//System.out.println(proxy.getProjectsByCompany(10));
 		
 		//System.out.println(proxy.FindBySector("Sport"));
+	
 		
 		
 		//Context context2 = new InitialContext();
@@ -79,24 +83,26 @@ public class TesnimMain {
 	//	ProjectRemote proxy2 = (ProjectRemote) context2.lookup(jndiName1);
 		
 		//Company c =proxy.findBy((long)2);
+		Company c =proxy.findBy((long)3);
 		
 		//System.out.println(c);
 		//System.out.println(c.getId());
 		
-		//List <Integer> nbr = new ArrayList<>();
+	//	List<Long> nbr = new ArrayList<>();
 		
-		//nbr=proxy2.countProjectsByCompanyName("Vermeg");
+		//nbr=proxy2.countProjectsByCompanyName(c);
 		
-	//	System.out.println(nbr.get(0));
+	  // System.out.println(nbr.get(0));
 		
 		//long i=proxy2.CountUnstableProjects();
 		//System.out.println(i);
 		
 		
-		///List <Project> p = new ArrayList<>();
+	//	List<Project> p = new ArrayList<>();
 		//p=proxy2.getRateByCompany(c);
+		//p=proxy2.getProjectsPerCompanyBySector(c);
 		
-		//System.out.println(p);
+	//	System.out.println(p);
 		
 		//System.out.println(proxy.FindBySectorButCompany(c.getId(), "Sport"));
 
@@ -133,13 +139,14 @@ public class TesnimMain {
 		//PartnershipRemote proxy2 = (PartnershipRemote) context.lookup(jndiName4);
 		
 		//System.out.println(proxy2.PartnershipNonConfirm((long)3));
+		//System.out.println(proxy.FindBySectorButCompany((long)2, "Sport"));
 		
 		
 		//System.out.println(proxy2.findPartnershipById((long)16));
 		
 		
 	 
-		 ProjectRemote proxy2 = (ProjectRemote) context.lookup(jndiName1);
+		// ProjectRemote proxy2 = (ProjectRemote) context.lookup(jndiName1);
 		//System.out.println(proxy2.searchForProject("888",(long)3));
 		
 		
@@ -349,6 +356,14 @@ public class TesnimMain {
 		 
 	    System.out.println(proxy6.find(date));
 		 
+
+		/*List<Object[]> list = new  ;
+		list=proxy2.getProjectsPerCompanyBySector();
+		System.out.println(list);*/
+		 for (Object[] o : proxy2.getProjectsPerCompanyBySector(c)){
+			 System.out.println(o[0]);
+			 System.out.println(o[1]);
+		 }
 	}
 
 	

@@ -3,13 +3,17 @@ package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 import java.util.Date;
 import java.util.List;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.ws.rs.DefaultValue;
 
 @Entity
 
@@ -19,7 +23,10 @@ public class Company extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-
+	
+	
+	
+	
 	public List<Partnership> getCompanyOwner() {
 		return CompanyOwner;
 	}
@@ -62,9 +69,101 @@ public class Company extends User {
 	
 	private int rate ; 
 	
+	private  String currency ;
+	
 	private String resultTest ;
 	private String image ;
+	private int nbrprojects = 0;
+	private int nbrorders =0 ;
 	
+	private float activity=(float) 0.0;
+	
+	public float getActivity() {
+		return activity;
+	}
+
+
+	public void setActivity(float activity) {
+		this.activity = activity;
+	}
+
+
+	public int getNbrprojects() {
+		return nbrprojects;
+	}
+
+
+	public void setNbrprojects(int nbrprojects) {
+		this.nbrprojects = nbrprojects;
+	}
+
+
+	public int getNbrorders() {
+		return nbrorders;
+	}
+
+
+	public void setNbrorders(int nbrorders) {
+		this.nbrorders = nbrorders;
+	}
+
+
+	@Column(nullable=true)
+	private int nbrfolowers = 0;
+	@Column(nullable=true)
+
+	private int nbrfolowings = 0 ;
+	@Column(nullable=true)
+	private int visite = 0 ;
+	public int getVisite() {
+		return visite;
+	}
+
+
+	public void setVisite(int visite) {
+		this.visite = visite;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	private Date dateVisite ;
+	
+	
+	
+	public Date getDateVisite() {
+		return dateVisite;
+	}
+
+
+	public void setDateVisite(Date dateVisite) {
+		this.dateVisite = dateVisite;
+	}
+
+
+	
+	
+
+
+	public int getNbrfolowers() {
+		return nbrfolowers;
+	}
+
+
+	public void setNbrfolowers(int nbrfolowers) {
+		this.nbrfolowers = nbrfolowers;
+	}
+
+
+	public int getNbrfolowings() {
+		return nbrfolowings;
+	}
+
+
+	public void setNbrfolowings(int nbrfolowings) {
+		this.nbrfolowings = nbrfolowings;
+	}
+
+
 	//date d'inscription
 	@Temporal(TemporalType.DATE)
 	private Date subDate ; 
@@ -73,8 +172,232 @@ public class Company extends User {
 	@OneToMany (mappedBy="CompanyOwner")
 	private List <Partnership> CompanyOwner;
 	
+	@OneToMany (mappedBy="companyForum")
+	private List <Forum> forum;
+	
+	@OneToMany (mappedBy="companyC")
+	private List <Comment> comment;
+	
+	@OneToMany (mappedBy="companyUC")
+	private List <Undercomment> undercomment;
+	
 	@OneToMany (mappedBy="CompanyPartner")
 	private List <Partnership> CompanyPartner;
+	
+	@OneToMany (mappedBy="Company")
+	private List<Contact> Company ;
+	
+	@OneToMany (mappedBy="CompanyContact")
+	private List <Contact> CompanyContact ;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((CEO == null) ? 0 : CEO.hashCode());
+		result = prime * result + ((Company == null) ? 0 : Company.hashCode());
+		result = prime * result + ((CompanyContact == null) ? 0 : CompanyContact.hashCode());
+		result = prime * result + ((CompanyOwner == null) ? 0 : CompanyOwner.hashCode());
+		result = prime * result + ((CompanyPartner == null) ? 0 : CompanyPartner.hashCode());
+		result = prime * result + ((Recevedclaims == null) ? 0 : Recevedclaims.hashCode());
+		result = prime * result + ((adress == null) ? 0 : adress.hashCode());
+		result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
+		result = prime * result + ((events == null) ? 0 : events.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((invitation == null) ? 0 : invitation.hashCode());
+		result = prime * result + ((myClaims == null) ? 0 : myClaims.hashCode());
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
+		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
+		result = prime * result + ((partner == null) ? 0 : partner.hashCode());
+		result = prime * result + ((produits == null) ? 0 : produits.hashCode());
+		result = prime * result + ((project == null) ? 0 : project.hashCode());
+		result = prime * result + rate;
+		result = prime * result + ((recommandations1 == null) ? 0 : recommandations1.hashCode());
+		result = prime * result + ((recommandations2 == null) ? 0 : recommandations2.hashCode());
+		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
+		result = prime * result + ((reserche == null) ? 0 : reserche.hashCode());
+		result = prime * result + ((resultTest == null) ? 0 : resultTest.hashCode());
+		result = prime * result + ((sector == null) ? 0 : sector.hashCode());
+		result = prime * result + ((services == null) ? 0 : services.hashCode());
+		result = prime * result + ((subDate == null) ? 0 : subDate.hashCode());
+		result = prime * result + ((tenderApplications == null) ? 0 : tenderApplications.hashCode());
+		result = prime * result + ((tenders == null) ? 0 : tenders.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Company other = (Company) obj;
+		if (CEO == null) {
+			if (other.CEO != null)
+				return false;
+		} else if (!CEO.equals(other.CEO))
+			return false;
+		if (Company == null) {
+			if (other.Company != null)
+				return false;
+		} else if (!Company.equals(other.Company))
+			return false;
+		if (CompanyContact == null) {
+			if (other.CompanyContact != null)
+				return false;
+		} else if (!CompanyContact.equals(other.CompanyContact))
+			return false;
+		if (CompanyOwner == null) {
+			if (other.CompanyOwner != null)
+				return false;
+		} else if (!CompanyOwner.equals(other.CompanyOwner))
+			return false;
+		if (CompanyPartner == null) {
+			if (other.CompanyPartner != null)
+				return false;
+		} else if (!CompanyPartner.equals(other.CompanyPartner))
+			return false;
+		if (Recevedclaims == null) {
+			if (other.Recevedclaims != null)
+				return false;
+		} else if (!Recevedclaims.equals(other.Recevedclaims))
+			return false;
+		if (adress == null) {
+			if (other.adress != null)
+				return false;
+		} else if (!adress.equals(other.adress))
+			return false;
+		if (creationDate == null) {
+			if (other.creationDate != null)
+				return false;
+		} else if (!creationDate.equals(other.creationDate))
+			return false;
+		if (events == null) {
+			if (other.events != null)
+				return false;
+		} else if (!events.equals(other.events))
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (invitation == null) {
+			if (other.invitation != null)
+				return false;
+		} else if (!invitation.equals(other.invitation))
+			return false;
+		if (myClaims == null) {
+			if (other.myClaims != null)
+				return false;
+		} else if (!myClaims.equals(other.myClaims))
+			return false;
+		if (number == null) {
+			if (other.number != null)
+				return false;
+		} else if (!number.equals(other.number))
+			return false;
+		if (orders == null) {
+			if (other.orders != null)
+				return false;
+		} else if (!orders.equals(other.orders))
+			return false;
+		if (partner == null) {
+			if (other.partner != null)
+				return false;
+		} else if (!partner.equals(other.partner))
+			return false;
+		if (produits == null) {
+			if (other.produits != null)
+				return false;
+		} else if (!produits.equals(other.produits))
+			return false;
+		if (project == null) {
+			if (other.project != null)
+				return false;
+		} else if (!project.equals(other.project))
+			return false;
+		if (rate != other.rate)
+			return false;
+		if (recommandations1 == null) {
+			if (other.recommandations1 != null)
+				return false;
+		} else if (!recommandations1.equals(other.recommandations1))
+			return false;
+		if (recommandations2 == null) {
+			if (other.recommandations2 != null)
+				return false;
+		} else if (!recommandations2.equals(other.recommandations2))
+			return false;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
+			return false;
+		if (reserche == null) {
+			if (other.reserche != null)
+				return false;
+		} else if (!reserche.equals(other.reserche))
+			return false;
+		if (resultTest == null) {
+			if (other.resultTest != null)
+				return false;
+		} else if (!resultTest.equals(other.resultTest))
+			return false;
+		if (sector == null) {
+			if (other.sector != null)
+				return false;
+		} else if (!sector.equals(other.sector))
+			return false;
+		if (services == null) {
+			if (other.services != null)
+				return false;
+		} else if (!services.equals(other.services))
+			return false;
+		if (subDate == null) {
+			if (other.subDate != null)
+				return false;
+		} else if (!subDate.equals(other.subDate))
+			return false;
+		if (tenderApplications == null) {
+			if (other.tenderApplications != null)
+				return false;
+		} else if (!tenderApplications.equals(other.tenderApplications))
+			return false;
+		if (tenders == null) {
+			if (other.tenders != null)
+				return false;
+		} else if (!tenders.equals(other.tenders))
+			return false;
+		return true;
+	}
+
+
+	public List<Contact> getCompany() {
+		return Company;
+	}
+
+
+	public void setCompany(List<Contact> company) {
+		Company = company;
+	}
+
+
+	public List<Contact> getCompanyContact() {
+		return CompanyContact;
+	}
+
+
+	public void setCompanyContact(List<Contact> companyContact) {
+		CompanyContact = companyContact;
+	}
+
+
+	
+	
 	
 	@OneToMany (mappedBy="CompanyComment")
 	private List <CommentProject> CompanyComment;
@@ -101,6 +424,9 @@ public class Company extends User {
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
 	
+	
+	
+	
 	@OneToMany(mappedBy="claimant") 
 	private List<Claim> myClaims ;  
 	
@@ -125,6 +451,9 @@ public class Company extends User {
 	  
 	  @OneToMany(mappedBy = "guest" )
 	  private List<Invitation> invitation;
+	  
+	  @OneToMany(mappedBy = "company" )
+		private List<Contrat> contrats ; 
 
 	/***********************/
 	
@@ -381,6 +710,49 @@ public class Company extends User {
 
 	public void setCompanyComment(List<CommentProject> companyComment) {
 		CompanyComment = companyComment;
+	}
+
+
+	public String getCurrency() {
+		return currency;
+	}
+
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+
+	
+
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+
+	public List<Forum> getForum() {
+		return forum;
+	}
+
+
+	public void setForum(List<Forum> forum) {
+		this.forum = forum;
+	}
+
+
+	public List<Undercomment> getUndercomment() {
+		return undercomment;
+	}
+
+
+	public void setUndercomment(List<Undercomment> undercomment) {
+		this.undercomment = undercomment;
 	}
 
 

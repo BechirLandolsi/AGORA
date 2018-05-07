@@ -1,0 +1,200 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				PROFILE PAGE
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+
+			
+	  <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-9">
+                    <h2>Company's Profile</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                            App Views
+                        </li>
+                        <li class="active">
+                            <strong>Profile </strong>
+                        </li>
+                    </ol>
+                </div>
+       </div>
+       
+           <div class="wrapper wrapper-content animated fadeInRight">
+
+
+            <div class="row m-b-lg m-t-lg">
+                <div class="col-md-6">
+
+                    <div class="profile-image">
+                        <img src="resources/img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"/>
+                    </div>
+                    <div class="profile-info">
+                        <div class="">
+                            <div>
+                                <h2 class="no-margins">
+                                    <h:outputText value="#{contactBean.company.name}" />
+                                </h2>
+                                <h4>
+                                CEO of the Company : <h:outputText value="#{contactBean.company.CEO}" />
+                                </h4>
+                                <small>
+                                    There are many variations of passages of Lorem Ipsum available, but the majority
+                                    have suffered alteration in some form Ipsum available.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                    <div class="col-md-3">
+                    <table class="table small m-b-xs">
+                        <tbody>
+                        <tr>
+                            <td>
+                              <i class="fa fa-briefcase fa-2x">  </i>
+                                <strong><h:outputText value="#{contactBean.company.nbrprojects}"/></strong> Projects
+                            </td>
+                            <td>
+                              <i class="fa fa-child fa-2x"></i>
+                                <strong><h:outputText value="#{contactBean.company.nbrfolowers}"/></strong> Followers
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                              <i class="fa fa-comment fa-2x"></i>
+                                <strong>61</strong> Comments
+                            </td>
+                            <td>
+                              <i class="fa fa-asterisk fa-2x"></i>
+                                <strong><h:outputText value="#{contactBean.company.nbrorders}"/></strong> Orders
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                              <i class="fa fa-eye fa-2x"></i>
+                                <strong><h:outputText value="#{contactBean.company.nbrorders}" /></strong> Profile Visits
+                            </td>
+                            <td>
+                              <i class="fa fa-user fa-2x"></i>
+                                <strong><h:outputText value="#{contactBean.company.nbrfolowings}"/></strong> Followings
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="col-lg-3">
+                <div class="widget style1 lazur-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-area-chart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span>  Activity Rate </span>
+                            <h2 class="font-bold"><h:outputText value="#{contactBean.company.activity}"/>%</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="col-lg-6">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Horizontal bar chart </h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div id="ct-chart4" class="ct-perfect-fourth"></div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div class="col-md-8">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Activites</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Config option 1</a>
+                                    </li>
+                                    <li><a href="#">Config option 2</a>
+                                    </li>
+                                </ul>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div>
+                                <div class="feed-activity-list">
+
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                             <img src="resources/img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"/>
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right text-navy">1m ago</small>
+                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> started following <strong>Monica Smith</strong>. <br></br>
+                                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                                            <div class="actions">
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
+                                                <a class="btn btn-xs btn-danger"><i class="fa fa-heart"></i> Love</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    
+                                    
+                                   
+                                   
+                                    
+                                    
+                                </div>
+
+                                <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Show More</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                
+                
+             
+                </div>
+             </div>
+             
+                
+                
+       
+       
+
+	</ui:define>
+
+</ui:composition>
+
+ 

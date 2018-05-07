@@ -153,8 +153,12 @@ public class Project implements Serializable {
 		this.nbrEmployee = nbrEmployee;
 	}
 
-
-
+	public Project(Company projectOwner, String name, String service) {
+		super();
+		ProjectOwner = projectOwner;
+		this.name = name;
+		this.service = service;
+	}
 
 
 

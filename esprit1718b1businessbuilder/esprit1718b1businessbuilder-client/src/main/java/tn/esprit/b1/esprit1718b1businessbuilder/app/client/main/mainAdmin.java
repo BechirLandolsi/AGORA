@@ -23,17 +23,30 @@ public class mainAdmin {
 	public static void main(String[] args) throws NamingException {
 			
 		Context context = new InitialContext();
-		
-		//*******************************Company******************************\\
-		//CompanyService
+		 //OrderService
+	    String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
+		 //CompanyService
 		String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ;
 		//ServiceService
 		String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
 		 
-		    CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2) ; 
-			ServiceServiceRemote proxy3 = (ServiceServiceRemote) context.lookup(jndiName3);
+		        OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
+			    CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2) ; 
+				ServiceServiceRemote proxy3 = (ServiceServiceRemote) context.lookup(jndiName3);
+				
+				
+
+		
+		//*******************************Company******************************\\
+		//CompanyService
+	//	String jndiName2 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote" ;
+		//ServiceService
+		//String jndiName3 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ServiceService!tn.esprit.b1.esprit1718b1businessbuilder.services.ServiceServiceRemote" ; 
+		 
+		//    CompanyServiceRemote proxy2 = (CompanyServiceRemote) context.lookup(jndiName2) ; 
+		//	ServiceServiceRemote proxy3 = (ServiceServiceRemote) context.lookup(jndiName3);
 			
-			Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
+			//Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
 			Company c2 = new Company("Zara","Zaralogin","Zarapass","Zara@gmail.com","CEO_Zara","Espagne",(long)339585789,"0E17","Vetement",5,"excellent","Zara.jpg");
 			Company c3 = new Company("Astral","Astrallogin","Astralgpass","Astral@gmail.com","CEO_Astral","Tunisie",(long)71852963,"0T13","peinture",5,"excellent","Astral.jpg");
 		    
@@ -45,8 +58,7 @@ public class mainAdmin {
 		//***************************************************************************\\
 		//*******************************PRODUCT******************************************\\
 			//ProductService
-		    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;
-			
+	    String jndiName1 ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/ProductService!tn.esprit.b1.esprit1718b1businessbuilder.services.ProductServiceRemote" ;			
 		ProductServiceRemote proxy1 = (ProductServiceRemote) context.lookup(jndiName1);
 		
 
@@ -86,21 +98,28 @@ public class mainAdmin {
 		   
 
 
-		List<Object[]> list = proxy1.findBestProduct();
+
+		/*List<Object[]> list = proxy1.findBestProduct();
+=======
+	/*	List<Object[]> list = proxy1.findBestProduct();
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 		    for (Object[] o : list){
 		    	OrderLine sector = (OrderLine)o[1] ; 
 		    	System.out.println(sector.toString());
 		    	long count = (long)o[0] ; 
 		    	System.out.println(count);
 
-		    }
+		    }*/
 
-		    
+
+	
+
+
 
 
 	  		//System.out.println(proxy3.findBy(32));
 
-			/*	Company c1 = proxy2.findBy(36) ; 
+			  //  Company c1 = proxy2.findBy((long)2) ; 
 			 
 
 				//Company c1 = proxy2.findBy(31) ; 
@@ -108,28 +127,21 @@ public class mainAdmin {
 			//Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
 
 	  		//System.out.println(proxy2.findBy((long)3));
-				Company c5 = proxy2.findBy((long)3) ; 
+				//Company c5 = proxy2.findBy((long)3) ; 
 				 
 				Produit p1 = new Produit("Baskets Adidas",(long)300,null,(float)39,(float)50,null);
-
 				Produit p2 = new Produit("Ballons de foot",(long)500,null,(float)39,(float)50,null);
 				Produit p3 = new Produit("peinture speciale grise",(long)250,null,(float)44,(float)60,null);
 				Produit p4 = new Produit("peinture dain champagne ",(long)120,null,(float)49,(float)63,null);
 				Produit p5 = new Produit("pinceau",(long)120,null,(float)8,(float)12,null);
-				proxy1.addProduct(p1,c5);
+			    /*proxy1.addProduct(p1,c5);
 				proxy1.addProduct(p2,c5);
-				
-<<<<<<< HEAD
-				//System.out.println(c1.getProduits());
-				//proxy1.addProduct(p3,c5);
-				//proxy1.addProduct(p4,c5);
-				//proxy1.addProduct(p5,c5); 
-=======
-				System.out.println(c1.getProduits());
 				proxy1.addProduct(p3,c1);
 				proxy1.addProduct(p4,c1);
-
 				proxy1.addProduct(p5,c1); */
+
+				//System.out.println(c1.getProduits());
+				
 		
 				// System.out.println(proxy1.nbProbuit()); 
 				 //System.out.println(proxy1.nbPartnershp());
@@ -140,24 +152,34 @@ public class mainAdmin {
 		 //********************************************************************************\\
 
 		//*******************************Order****************************************\\
+
 		    //OrderService
-		   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
-		/*   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
+		  // String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
+		  //String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 			
 
-		   OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
-		Company c6 = proxy2.findBy((long) 3) ; 
-		 Produit p = proxy1.findProduct(3);
+		   //OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
+		//Company c6 = proxy2.findBy((long) 31) ; 
+	//	System.out.println(proxy.productSales(c6));
+		/* Produit p = proxy1.findProduct(3);
 		 proxy.addProductToOrder(p, c6, 100);
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 
 		    Company c1 = proxy2.findBy(33) ; 
+=======
+		
+		 
+		/* Company c6 = proxy2.findBy((long) 3) ; // adidas
+		 Produit p = proxy1.findProduct(1);
+		 proxy.addProductToOrder(p, c6, 100);
+		 Company c7 = proxy2.findBy((long) 2) ; 
+>>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 		 // System.out.println(c1.getId());  
-		    Produit p1 = proxy1.findProduct(17);*/
-
-		/*Company c6 = proxy2.findBy(35) ; 
-		 Produit p1 = proxy1.findProduct(4);
-		 proxy.addProductToOrder(p1, c6, 60);*/
+		 Produit p7 = proxy1.findProduct(2);
+		// proxy.addProductToOrder(p1, c7, 100);
+		//ompany c6 = proxy2.findBy(35) ; 
+		 Produit p8 = proxy1.findProduct(4);*/
+		// proxy.addProductToOrder(p8, c6, 60);
 
 		 //   OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 		// Company c1 = proxy2.findBy(34) ; 
@@ -170,21 +192,30 @@ public class mainAdmin {
 		   // proxy.addProductToOrder(p1, c1, 55);
 		//proxy.payOrder(c1); 
 		   //System.out.println(proxy.salesPermonth().toString());
-		   /* Date current = new Date() ; 
+		    Date current = new Date() ; 
 		    String PATTERN="yyyy-MM-dd";
 		    SimpleDateFormat dateFormat=new SimpleDateFormat();
 		    dateFormat.applyPattern(PATTERN);
 		    String date1=dateFormat.format(Calendar.getInstance().getTime());
-		    int mois = Integer.parseInt((date1.toString().substring(5,7)));
-		    System.out.println(mois);*/
+		    
 		   
-		   /* for (Object[] o : proxy.salesPermonth()){
+		    for (Object[] o : proxy.salesPermonth()){
+		    	int mois = Integer.parseInt((date1.toString().substring(5,7)));
+			    System.out.println(mois);
 		    	System.out.println((double)o[0]) ; 
 		    	System.out.println((Date)o[1]) ;
-		    }*/
+		    	
+		    }
+		    System.out.println(proxy.salesPermonth().size());
+		    Company c4 = proxy2.findBy((long)2);
+		
 		    
-		    //Order o = proxy.findOrder(1);
-		    //System.out.println(proxy.calculAmount(o));
+		//    Order o = proxy.findOrder(1);
+		//    Company c4 = proxy2.findBy((long)2);
+		    
+		  /*  List<Order> list = proxy.findAllOrder(c4);   
+		    System.out.println( list.size());*/
+		 //  System.out.println(proxy.calculAmount(o));
 		 //********************************************************************************\\
 		 
 		

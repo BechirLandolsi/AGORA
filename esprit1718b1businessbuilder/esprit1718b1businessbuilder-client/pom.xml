@@ -17,10 +17,28 @@
       <name>Sonatype Snapshots</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </repository>
+    
+    	<repository>
+			<id>sonatype-snapshots</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+    
   </repositories>
 
 
 	<dependencies>
+	
+	
+	<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.kevinsawicki</groupId>
+			<artifactId>http-request</artifactId>
+			<version>5.3</version>
+		</dependency>
 		<dependency>
 			<groupId>tn.esprit.b1</groupId>
 			<artifactId>esprit1718b1businessbuilder-service</artifactId>
@@ -60,9 +78,9 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
 		<dependency>
-		    <groupId>org.controlsfx</groupId>
-		    <artifactId>controlsfx</artifactId>
-		    <version>8.40.12</version>
+			<groupId>org.controlsfx</groupId>
+			<artifactId>controlsfx</artifactId>
+			<version>8.40.12</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx -->
@@ -98,6 +116,18 @@
 			<artifactId>prettytime</artifactId>
 			<version>4.0.1.Final</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/smtp -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>smtp</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 
 		
 		
@@ -116,7 +146,7 @@
 		</dependency>
 
 
-		<dependency>
+	<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
@@ -140,6 +170,7 @@
     <version>0.92</version>
 </dependency>
 		
+
 
 	</dependencies>
 

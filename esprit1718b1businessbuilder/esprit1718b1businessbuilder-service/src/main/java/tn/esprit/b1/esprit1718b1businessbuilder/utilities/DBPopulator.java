@@ -25,7 +25,7 @@ public class DBPopulator {
 
 	@PostConstruct
 	public void init() throws ParseException {
-		User user = new User("user", "u", "u", "user@bitbox.tn");
+		//User user = new User("user", "u", "u", "user@bitbox.tn");
         
 		
 		
@@ -52,8 +52,11 @@ public class DBPopulator {
 		Event e8 = new Event("Wolkswagen Exhibition", "Tunisia , Nabeul", "cars","Exhibition",true,false,dat8);*/
 		//*******************************************************************
 	//userServiceLocal.update(user);
-		
-		User u = new Admin("Admin","Adminlog","adminpass","admin@agora.com"); 
-		userServiceLocal.save(u);
+		/***** Add Admin *****/
+		//User u = new Admin("Admin","Admin","adminpass","admin@agora.com"); 
+		//User u = new Company("company1","companylog","pass","comp@gmail.com","ceo","adress",4,"aa","vetement",3,null,null);
+	//userServiceLocal.save(u);
+		/******************************/
+				
 	}
 }

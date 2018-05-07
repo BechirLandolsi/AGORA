@@ -1,0 +1,239 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/template/template.xhtml">
+
+	<ui:define name="pageTitle">
+				HOME PAGE
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+
+	<div class="row  border-bottom white-bg dashboard-header">
+<div class="row ">
+
+                <div class="col-md-6 forum-post-info">
+     <br/>  
+                    <div class="profile-image ">
+                        <img src="resources/img/#{forumBean.f.companyForum.image}" class="img-circle circle-border m-b-md" alt="profile"> </img>
+                    </div>
+                   
+                    <div class="profile-info " >
+                        
+                            <div>
+                                <h2 class="no-margins" >
+                                <label jsf:id="label1" class="text-navy" value="#{forumBean.f.name}" />
+                             
+                                </h2>
+                                Author : <label jsf:id="label2" value="#{forumBean.f.companyForum.name}" />
+                           <h3>
+                              <strong> Description : <br/> <label jsf:id="label3" value="#{forumBean.f.description}" /> </strong>
+                               </h3>
+                            
+                                     <br/>  
+                            </div>
+                       
+                    </div>
+                    
+
+              
+                
+
+             
+                  </div>  
+                    
+                    <div class="col-lg-4">
+
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle  img-responsive" src="resources/img/#{forumBean.f.productF.path}"/>
+                            <div class="m-t-xs font-bold">#{forumBean.f.productF.description}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-8">
+                        <h3 class="text-navy"><strong>#{forumBean.f.productF.supplier.name}</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> #{forumBean.f.productF.supplier.adress}</p>
+                        <address>
+                            <strong>Stock : #{forumBean.f.productF.stock} pieces</strong><br> </br>
+                            795 Folsom Ave, Suite 600<br></br>
+                            San Francisco, CA 94107<br></br>
+                            <abbr title="Phone">Phone number:</abbr> #{forumBean.f.productF.supplier.number}
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                          <div class="col-lg-6 h-100 p-lg">
+                                        <p>A basic sweetalert message</p>
+                                        <button class="btn btn-primary btn-sm demo1">Run example</button>
+                                    </div>
+                </div>
+               
+                  
+                         
+                                
+                          
+                       
+                   
+                </div>
+                            <div class="col-lg-2">
+                <div class="widget lazur-bg no-padding">
+                    <div class="p-m">
+                    <h3 class="font-bold no-margins">
+                            Rate
+                        </h3>
+                        <h1 class="m-xs">#{forumBean.noteProduct(forumBean.f.productF)} /10</h1>
+
+                        
+                        
+                    </div>
+                   
+                </div>
+            </div>
+
+                
+               
+        
+                    
+                    </div>
+
+            </div>
+         
+       <div class="wrapper wrapper-content ">
+		<div class="row">
+                <div class="col-lg-9">
+                    
+                        <div class="ibox-content forum-post-container">
+                            <div class="forum-post-info">
+                                <h4><span class="text-navy"><i class="fa fa-globe"></i> General discussion</span> - <span class="text-muted">Free talks</span></h4>
+                            </div>
+
+                           
+     
+      <c:forEach var="comment"  items="#{forumBean.getCommentsByForum(forumBean.f.id)}">
+      
+      
+      
+                            <div class="media">
+                                <a class="forum-avatar" href="#">
+                                    <img src="resources/img/#{comment.companyC.image}" class="img-circle" alt="image"> </img>
+                                    <div class="author-info">
+                                    
+                                        <strong>Posted:</strong><br/>#{comment.datePost}<br/>
+                                    </div>
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">#{comment.companyC.name}</h4>
+                                    #{comment.comment}
+                                    <br/><br/>
+                                    CEO of #{comment.companyC.name}
+   <c:forEach var="undercomment"  items="#{forumBean.getunderCommentByComment(comment.id)}">
+                            
+                   <div class="media" jsf:id="aaadd" rendered="#{not empty comment.undercomment}" >
+                    
+                                        <a class="forum-avatar" href="#">
+                                            <img src="resources/img/#{undercomment.companyUC.image}" class="img-circle" alt="image"></img>
+                                       <div class="author-info">
+                                    
+                                        <strong>Posted:</strong><br/>#{undercomment.datePost}<br/>
+                                    </div>
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">#{undercomment.companyUC.name}</h4>
+                                           #{undercomment.comment}
+                                           <br />  <br />
+                                           #{undercomment.companyUC.CEO}
+                                        </div>
+                                     
+                                      
+                                    </div>
+                                   </c:forEach>
+                                         <form jsf:id="formmmmmm">
+                                             <div class="media-body">
+                                                    <textarea jsf:id="comment3" class="form-control" placeholder="Write comment..." jsf:value="#{forumBean.undercomment}"></textarea>
+                                             </div>
+                                             <div class="media-body">
+                                                   <a value="commenter"   jsf:action="#{forumBean.doUnderComment(comment.id)}"  class="ladda-button ladda-button-demo btn btn-primary" data-style="contract" >
+                                                       <f:setPropertyActionListener target="#{forumBean.commentuc}" value="#{comment}"/>
+                                       
+                                                  </a>
+                                       </div>  
+                                        </form>
+                                </div>
+                            </div>
+                            
+                          </c:forEach>
+                               <form jsf:id="formmm">
+                               <div class="media-body">
+                                            <textarea jsf:id="comment3" class="form-control" placeholder="Write comment..." jsf:value="#{forumBean.comment}"></textarea>
+                                        </div>
+                                        
+                                         <h:commandButton   action="#{forumBean.doComment()}"   value="comment"  class="ladda-button ladda-button-demo btn btn-primary" data-style="contract"/>
+                                       
+                               </form>
+                                       
+                        </div>
+                         
+                   
+                </div>
+                
+                
+               
+                <c:forEach  var="product"  items="#{forumBean.getRecommandationP ()}">
+                 <div class="col-md-3">
+                    <div class="ibox">
+                        <div class="ibox-content product-box">
+
+                            <div class="product-imitation">
+                  <img src="resources/img/#{product.path}"  alt="image"></img>
+
+                            </div>
+                            <div class="product-desc">
+                                <span class="product-price">
+                                   #{product.price} DT
+                                </span>
+                                <small class="text-muted">#{product.supplier.name}</small>
+                                <a href="#"  class="product-name">#{product.description}</a>
+
+
+
+                                <div class="small m-t-xs">
+                                stock :   #{product.stock}
+                                </div>
+                                <div class="m-t text-righ">
+
+                                    <a href="#" class="btn btn-xs btn-outline btn-primary">View Recommandation <i class="fa fa-long-arrow-right"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+               
+                
+            </div>
+            </div>
+<script type="text/javascript">
+var l = Ladda.bind('.ladda-button-demo');
+      l.click(function()
+
+          // Start loading
+          l.ladda( 'start' );
+
+          // Do something in backend and then stop ladda
+          // setTimeout() is only for demo purpose
+          setTimeout(function()
+              l.ladda('stop');
+          },2000)
+
+      });
+</script>
+	</ui:define>
+</ui:composition>

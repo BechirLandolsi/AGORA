@@ -38,6 +38,10 @@ public interface ProjectRemote {
 	
 	public List<Project> searchForProject(String mot,Company c);
 
+	public List <Long> countProjectsPerCompanyBySector(Long CompanyId,String Sector);
+	
+	public List<Object[]> getProjectsPerCompanyBySector(Company c);
+	
 	public double AvancementProject(Project p); 
 	
 	public List<Number> AvancementDesProjetsByCompanyjsf(Long companyid);

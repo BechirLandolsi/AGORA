@@ -187,5 +187,33 @@ public class TenderBean {
 		tenderService.delete(t);
 	}
 	
+	public Long nbrApplication(Tender t){
+		Long nbr;
+		nbr=tenderApplicationService.applicationNumber(t);
+		System.out.println(nbr);
+		return nbr;
+	}
+	
+	public Float applicationNmbrProgress(Tender t){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrProgress(t);
+		System.out.println(nbr);
+		return nbr;
+	}
+	
+	public Float applicationNmbrRate(Tender t){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrRate(t);
+		System.out.println(nbr);
+		return nbr;
+		
+	}
+	
+	public Float applicationNmbrProjects(Tender tender){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrProjects(tender);
+		System.out.println(nbr);
+		return nbr;
+	}
 
 }

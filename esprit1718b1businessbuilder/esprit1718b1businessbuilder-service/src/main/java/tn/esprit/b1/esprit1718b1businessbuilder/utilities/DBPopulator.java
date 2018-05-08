@@ -59,10 +59,12 @@ public class DBPopulator {
 	//userServiceLocal.save(u);
 		/******************************/
 		
-		User u1 = new Company("Ooredoo", "ooredoo", "ooredoo", "ooredoo@mail.com", "Ooredoo_CEO", null, "Quatar", null, null, null, "Telecommunication", 4, "Dollar", null, "ooredoo.jpg", 25, 15, 8, 45, 32, 12, null, null); 
-		User u2 = new Company("Linedata", "linedata", "liendata", "linedata@mail.com", "Linedata_CEO", null, "Tunisia", null, null, null, "IT", 3, "Euro", null, "linedata.jpg", 25, 15, 8, 45, 32, 12, null, null); 
+		/*User u1 = new Company("Ooredoo", "ooredoo", "ooredoo", "ooredoo@mail.com", "Ooredoo_CEO", null, "Quatar", null, null, null, "Telecommunication", 4, "Dollar", null, "ooredoo.jpg", 25, 15, 8, 45, 32, 12, null, null); 
+		User u2 = new Company("Linedata", "linedata", "liendata", "linedata@mail.com", "Linedata_CEO", null, "Tunisia", null, null, null, "IT", 3, "Euro", null, "linedata.jpg", 28, 18, 10, 45, 49, 12, null, null); 
+		User u3 = new Company("Agora", "agora", "agora", "agora@mail.com", "Agora_CEO", null, "Germany", null, null, null, "IT", 5, "Euro", null, "Agora.jpg", 12, 25, 4, 45, 14, 12, null, null); 
 				
-		//userServiceLocal.save(u);
-				
+		userServiceLocal.save(u1);
+		userServiceLocal.save(u2);
+		userServiceLocal.save(u3);*/
 	}
 }

@@ -70,7 +70,8 @@ public class Company extends User {
 	private int rate ; 
 	
 	private  String currency ;
-	
+
+
 	private String resultTest ;
 	private String image ;
 	private int nbrprojects = 0;
@@ -423,9 +424,6 @@ public class Company extends User {
 
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
-	
-	
-	
 	
 	@OneToMany(mappedBy="claimant") 
 	private List<Claim> myClaims ;  

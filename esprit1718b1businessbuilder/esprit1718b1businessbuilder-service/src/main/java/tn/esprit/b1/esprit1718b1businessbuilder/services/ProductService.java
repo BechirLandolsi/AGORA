@@ -11,6 +11,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import org.json.JSONObject;
+
+import com.github.kevinsawicki.http.HttpRequest;
+
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Order;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
@@ -59,6 +63,18 @@ public class ProductService implements ProductServiceRemote{
 		return produits;
 		
 	}
+
+	public  float currencyConvertion(String from,String to , float price)
+	{
+		String response = HttpRequest
+				.get("https://v3.exchangerate-api.com/bulk/4f46365f63635a74262a885c/"+from)
+				.accept("application/json").body();
+		JSONObject jsonObject = new JSONObject(response);
+		JSONObject status = jsonObject.getJSONObject("rates");
+		Double eur = status.getDouble(to);
+		return (float) (eur * price) ;
+	}
+
 	
 
 

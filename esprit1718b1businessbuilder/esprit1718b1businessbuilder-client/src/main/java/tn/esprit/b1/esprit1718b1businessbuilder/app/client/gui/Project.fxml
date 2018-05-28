@@ -4,7 +4,9 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
@@ -21,12 +23,12 @@
    <children>
       <AnchorPane fx:id="anchor1" layoutX="-1.0" layoutY="-9.0" prefHeight="615.0" prefWidth="1010.0">
          <children>
-            <Label fx:id="partnerLabel" layoutX="401.0" layoutY="503.0" prefHeight="44.0" prefWidth="330.0">
+            <Label fx:id="partnerLabel" layoutX="401.0" layoutY="503.0" prefHeight="44.0" prefWidth="330.0" visible="false">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TitledPane animated="false" layoutX="70.0" layoutY="82.0" prefHeight="342.0" prefWidth="880.0" styleClass="blue-titledPane" stylesheets="@Style2.css" text="Project list">
+            <TitledPane animated="false" layoutX="70.0" layoutY="82.0" prefHeight="342.0" prefWidth="880.0" styleClass="blue-titledPane" stylesheets="@Style2.css" text="Project list" visible="false">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="846.0">
                      <children>
@@ -46,16 +48,19 @@
                   </AnchorPane>
                </content>
             </TitledPane>
-            <Label layoutX="434.0" layoutY="430.0" prefHeight="75.0" prefWidth="155.0" text="Your partner is:" textFill="#0b485b">
+            <Label layoutX="434.0" layoutY="430.0" prefHeight="75.0" prefWidth="155.0" text="Your partner is:" textFill="#0b485b" visible="false">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Label>
+            <ListView fx:id="listViewid" layoutX="23.0" layoutY="30.0" prefHeight="575.0" prefWidth="620.0" />
             <Label fx:id="partnerLabel1" layoutX="317.0" layoutY="503.0" prefHeight="44.0" prefWidth="366.0" visible="false">
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <JFXButton fx:id="btnajouter" layoutX="723.0" layoutY="537.0" onAction="#btnajouter" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Project" />
-            <JFXButton fx:id="btnajouterpartner1" layoutX="863.0" layoutY="536.0" onAction="#btnajouterpartner1" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Partner" visible="false" />
+            <JFXButton fx:id="btnajouter" layoutX="866.0" layoutY="560.0" onAction="#btnajouter" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Project" />
+            <JFXButton fx:id="btnajouterpartner1" layoutX="814.0" layoutY="475.0" onAction="#btnajouterpartner1" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add Partner" visible="false" />
+            <Label fx:id="testLabel" layoutX="182.0" layoutY="487.0" prefHeight="69.0" prefWidth="205.0" visible="false" />
+            <PieChart fx:id="pieChart" labelLineLength="16.0" layoutX="653.0" layoutY="80.0" prefHeight="317.0" prefWidth="348.0" titleSide="RIGHT" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchor2" layoutX="4.0" layoutY="-13.0" prefHeight="623.0" prefWidth="1017.0" visible="false">
@@ -326,7 +331,7 @@
                   <Font name="Sitka Heading" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btnajouterpartner" layoutX="851.0" layoutY="528.0" onAction="#btnajouterpartner" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add partner" />
+            <JFXButton fx:id="btnajouterpartner" layoutX="851.0" layoutY="528.0" onAction="#btnajouterpartner" prefHeight="45.0" prefWidth="127.0" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18;" text="Add partner" visible="false" />
             <Label layoutX="174.0" layoutY="48.0" prefHeight="45.0" prefWidth="690.0" style="-fx-alignment: center; -fx-background-color: #1E90FF; -fx-background-radius: 6; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" text="With our plateform, you do not need a financial expert anymore">
                <opaqueInsets>
                   <Insets />

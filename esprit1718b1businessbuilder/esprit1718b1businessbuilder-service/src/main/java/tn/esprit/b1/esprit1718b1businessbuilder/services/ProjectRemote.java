@@ -1,5 +1,6 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -25,14 +26,27 @@ public interface ProjectRemote {
 	
 	public long CountUnstableProjects(Company c);
 	
-	public List<Project> getRateByCompany(Company c);
+	public List<String> getProjectsNameByCompany(Company c);
 	
+	public List<Number> getProjectsQualityByCompany(Company c);
+	
+	public void delete(Project p);
+	
+	public Project Edit (Project p);
+	
+	public List<Project> findProjectById(Long id);
+	
+	public List<Project> searchForProject(String mot,Company c);
+
 	public List <Long> countProjectsPerCompanyBySector(Long CompanyId,String Sector);
 	
 	public List<Object[]> getProjectsPerCompanyBySector(Company c);
 	
-
-
+	public double AvancementProject(Project p); 
+	
+	public List<Number> AvancementDesProjetsByCompanyjsf(Long companyid);
+	
+	public List<String> getProjectsNameByCompanyjsf(Long companyid);
 	
 	
 	

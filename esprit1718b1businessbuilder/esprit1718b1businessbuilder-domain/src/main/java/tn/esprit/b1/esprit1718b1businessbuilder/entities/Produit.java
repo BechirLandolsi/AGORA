@@ -45,6 +45,8 @@ public class Produit implements Serializable {
 	
 	@Column(name = "deliveryD")   //Delai delivery
 	private Long deliveryD;
+	@Column(name = "rate")
+	private Float rate;
 	
 	/*  association  */
 	@ManyToOne
@@ -53,15 +55,23 @@ public class Produit implements Serializable {
 	@OneToMany(mappedBy = "prod" )
 	private List<OrderLine> orderLines ; 
 	
+	@OneToMany(mappedBy = "productF" )
+	private List<Forum> Forum ; 
+	
+	/*public List<Forum> getForum() {
+		return Forum;
+	}
+
+	public void setForum(List<Forum> forum) {
+		Forum = forum;
+	}*/
+
 	@OneToMany(mappedBy = "produit" )
 	private List<Contrat> contrats ; 
 	
 	/*********************/
 	
 //Getter and Setters
-	
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -166,6 +176,22 @@ public class Produit implements Serializable {
 	public String toString() {
 		return "Produit [id=" + id + ", description=" + description + ", stock=" + stock + ", path=" + path + ", cout="
 				+ cout + ", price=" + price + "]";
+	}
+
+	public List<Forum> getForum() {
+		return Forum;
+	}
+
+	public void setForum(List<Forum> forum) {
+		Forum = forum;
+	}
+
+	public Float getRate() {
+		return rate;
+	}
+
+	public void setRate(Float rate) {
+		this.rate = rate;
 	}
 	
 	

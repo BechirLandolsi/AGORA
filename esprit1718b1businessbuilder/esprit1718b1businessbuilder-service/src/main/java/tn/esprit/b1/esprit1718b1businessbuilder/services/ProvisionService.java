@@ -22,14 +22,28 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Provision;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Provision.StateType;
 import tn.esprit.b1.esprit1718b1businessbuilder.utilities.TimeBasedOneTimePasswordUtil;
 
+/**
+ * <ProvisionService> est un EJB stateless implementant l'interface 
+ * @see <IProvision> 
+ * 
+ * @author Nour 
+ *
+ */
+
 @Stateless
 @LocalBean
-
 public class ProvisionService implements IProvision {
 
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ;
 
+	/**
+	 * permet d'ajouter un contrat :
+	 * @param company 
+	 * @param produit
+	 * @param quantité
+	 * 
+	 */
 	@Override
 	public void addContrat(Company cmp, Produit p , int q) {
 		Contrat c = new Contrat(); 
@@ -46,6 +60,13 @@ public class ProvisionService implements IProvision {
 		
 		em.persist(c);	
 	}
+	/**
+	 * cette methode permet d'ajouter 
+	 * une provision ayant une clé étrangére
+	 * <Contrat> et modifier le stock de celui 
+	 * ci 
+	 * 
+	 */
 
 	@Override
 	public void provideProduct(Contrat c) {
@@ -62,6 +83,16 @@ public class ProvisionService implements IProvision {
 		em.merge(c);
 		
 	}
+	/**
+	 * 
+	 * cette methode permet de trouver 
+	 * le contrat d'une company dont l'id est
+	 * @param idC et le produit ayant un id
+	 * @param idP
+	 * 
+	 * @return Contrat
+	 *
+	 */
 
 	@Override
 	public Contrat findContrat(Integer idC, Integer idP) {
@@ -71,12 +102,29 @@ public class ProvisionService implements IProvision {
 		Contrat c = em.find(Contrat.class, pk);
 		return c;
 	}
+	
+	/**
+	 * cette methode permet de trouver 
+	 * la provision dont l'ID est 
+	 * @param id
+	 * 
+	 * @return Provision
+	 * 
+	 */
 
 	@Override
 	public Provision findProvision(Integer id) {
 		Provision p = em.find(Provision.class, id);
 		return p;
 	}
+	
+	/**
+	 * cette methode permet de compter les
+	 * provisions qui ne sont pas encore 
+	 * delivrés
+	 * 
+	 * @return Integer
+	 */
 
 	@Override
 	public Integer provisionTBD(Company cmp) {
@@ -93,6 +141,13 @@ public class ProvisionService implements IProvision {
 		}
 		return count ; 
 	}
+	/**
+	 * cette methode permet de compter les
+	 * provisions qui ne sont pas encore 
+	 * packetées
+	 * 
+	 * @return Integer
+	 */
 
 	@Override
 	public Integer provisionTBP(Company c) {
@@ -110,6 +165,13 @@ public class ProvisionService implements IProvision {
 		return count ;
 		
 	}
+	/**
+	 * cette methode permet de compter les
+	 * provisions qui ne sont pas encore 
+	 * payés
+	 * 
+	 * @return Float
+	 */
 
 	@Override
 	public Float provisionTBI(Company c) {
@@ -127,6 +189,14 @@ public class ProvisionService implements IProvision {
 		return count ;
 		
 	}
+	/**
+	 * cette methode permet de compter
+	 * le stock d'une company 
+	 * 
+	 * @param Company
+	 * 
+	 * @return Integer
+	 */
 
 	@Override
 	public Integer quantityInhand(Company c) {
@@ -141,6 +211,13 @@ public class ProvisionService implements IProvision {
 		}
 		return (int)count;
 	}
+	
+	/**
+	 * 
+	 * cette methode permet de calculer la quantité
+	 * des produits commandés et non pas encore reçue
+	 * 
+	 */
 
 	@Override
 	public Integer quantityToRecieve(Company c) {
@@ -158,6 +235,15 @@ public class ProvisionService implements IProvision {
 		}
 		return count;
 	}
+	
+	/**
+	 * cette methode permet de 
+	 * trouver les companies dont 
+	 * le stock est null 
+	 * et leur repasser des provisions 
+	 * automatiquement
+	 * 
+	 */
 
 	@Override
 	public void verifyStock() {
@@ -184,6 +270,15 @@ public class ProvisionService implements IProvision {
 				  			System.out.println("c merged");
 					}
     	}
+	
+	/**
+	 * cette methode permet de 
+	 * verifier le stock d'un company 
+	 * s'il est null
+	 *  des provisions sont ajoutées
+	 * automatiquement
+	 * 
+	 */
 	
 	@Override
 	public String updateStock(Company c1) {
@@ -220,7 +315,15 @@ public class ProvisionService implements IProvision {
 				  		return s ;
 				  		
     	}
-
+	
+	/**
+	 * cette methode permet de trouver les
+	 * provisions qui ne sont pas encore 
+	 * delivrés
+	 * 
+	 * @return List<Provision>
+	 */
+	
 	@Override
 	public List<Provision> getProvisionTBD(Company c) {
 		TypedQuery<Provision> q =  em.createQuery("select p from Provision p inner join p.contrat c inner join c.produit pr "
@@ -231,7 +334,14 @@ public class ProvisionService implements IProvision {
 		List<Provision> l = q.getResultList() ;
 		return l;
 	}
-
+     /**
+	 * cette methode permet de trouver les
+	 * provisions qui ne sont pas encore 
+	 * payés
+	 * 
+	 * @return List<Provision>
+	 */
+	 
 	@Override
 	public List<Provision> getProvisionTBP(Company c) {
 		TypedQuery<Provision> q =  em.createQuery("select p from Provision p inner join p.contrat c inner join c.produit pr "
@@ -239,9 +349,15 @@ public class ProvisionService implements IProvision {
 		
 		q.setParameter("cmp"	, c) ; 
 		q.setParameter("state", StateType.toBeDone);
-		List<Provision> l = q.getResultList() ;
+		List<Provision> l = q.getResultList() ;   
 		return l;
 	}
+	/**
+	 *
+	 *cette methode permet de changer
+	 *l'etat de la livraison 
+	 *
+	 */
 	
 	@Override
 	public void updateDelivery(Integer id){
@@ -250,6 +366,12 @@ public class ProvisionService implements IProvision {
 		em.merge(p);
 				
 	}
+	
+	/**
+	 * cette methode permet de changer
+	 *l'etat de la livraison 
+	 *
+	 */
 	@Override
 	public void updatePackaging(Integer id){
 		Provision p = em.find(Provision.class, id);
@@ -258,6 +380,13 @@ public class ProvisionService implements IProvision {
 				
 	}
 	
+	/**
+	 * cette methode permet de retourner
+	 * la quantité des produits et les produits vendues par 
+	 * la companies 
+	 * 
+	 */
+	
 	@Override
 	public List<Object[]> salesPerCompany(Company c) {
 		 
@@ -265,6 +394,17 @@ public class ProvisionService implements IProvision {
 		 List<Object[]> listO = q.setParameter("c", c).getResultList();
 		return listO;
 	}
+	
+	/**
+	 * cette methode permet de joigner 
+	 * les deux tables Orderline et 
+	 * produits et 
+	 *  retourner 
+	 * la quantité des produits 
+	 *  vendues par 
+	 * la companies 
+	 * 
+	 */
 	@Override
 	public List<Object[]> productSales(Company c) {
 		 
@@ -272,7 +412,13 @@ public class ProvisionService implements IProvision {
 		 List<Object[]> listO = q.setParameter("c", c).getResultList();
 		return listO;
 	}
-	
+	/**
+	 * cette methode permet de joigner 
+	 * les deux tables  Contrat et Produit
+	 * et 
+	 * @return List<Object[]>
+	 *  
+	 */
 	@Override
 	public List<Contrat> provisionByCompany(Company c) {
 		TypedQuery<Contrat> q =  em.createQuery("select ct from Contrat ct inner join ct.produit pr where pr.supplier= :c ",Contrat.class ) ;

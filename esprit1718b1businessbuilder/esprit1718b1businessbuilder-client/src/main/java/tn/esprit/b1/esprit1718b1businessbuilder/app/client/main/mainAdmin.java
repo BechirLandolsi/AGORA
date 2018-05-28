@@ -98,7 +98,7 @@ public class mainAdmin {
 		   
 
 
-<<<<<<< HEAD
+
 		/*List<Object[]> list = proxy1.findBestProduct();
 =======
 	/*	List<Object[]> list = proxy1.findBestProduct();
@@ -111,11 +111,7 @@ public class mainAdmin {
 
 		    }*/
 
-<<<<<<< HEAD
-		   */ 
-=======
 
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
 
 
 	  		//System.out.println(proxy3.findBy(32));
@@ -153,7 +149,7 @@ public class mainAdmin {
 		 //********************************************************************************\\
 
 		//*******************************Order****************************************\\
-<<<<<<< HEAD
+/*
 		    //OrderService
 		   String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
 		  //String jndiName="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/OrderService!tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote";
@@ -167,14 +163,14 @@ public class mainAdmin {
 		    OrderServiceRemote proxy = (OrderServiceRemote) context.lookup(jndiName); 
 
 		    Company c1 = proxy2.findBy(33) ; 
-=======
+*/
 		
 		 
 		/* Company c6 = proxy2.findBy((long) 3) ; // adidas
 		 Produit p = proxy1.findProduct(1);
 		 proxy.addProductToOrder(p, c6, 100);
 		 Company c7 = proxy2.findBy((long) 2) ; 
->>>>>>> branch 'master' of http://bitbox.tn:2015/root/esprit1718b1businessbuilder.git
+
 		 // System.out.println(c1.getId());  
 		 Produit p7 = proxy1.findProduct(2);
 		// proxy.addProductToOrder(p1, c7, 100);

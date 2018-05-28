@@ -24,8 +24,6 @@ public interface PartnershipRemote {
 	
 	public Partnership findPartnershipById(Long id);
 	
-	public void ChangeStateToTrue(Project p);
-	
 
 	
 	

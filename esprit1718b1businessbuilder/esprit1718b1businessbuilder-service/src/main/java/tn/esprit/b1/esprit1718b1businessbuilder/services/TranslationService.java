@@ -37,7 +37,7 @@ public class TranslationService implements TranslationRemote {
 	   TypedQuery <String> q= em.createQuery("select t.anglais from Translation t where t.français=:j",String.class);
 	   q.setParameter("j", j);
 	  
-	     list.addAll(q.getResultList());
+	     list.add(q.getSingleResult());
 	     }
 		 
 		return list;

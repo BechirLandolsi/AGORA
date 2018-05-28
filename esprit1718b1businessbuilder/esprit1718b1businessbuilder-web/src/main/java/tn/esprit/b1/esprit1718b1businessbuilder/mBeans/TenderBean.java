@@ -24,6 +24,13 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderApplicationServic
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderCategoryService;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.TenderService;
 
+/**
+ * Java class represented a managed bean for the entity tender
+ * 
+ * @author Beshir
+ *
+ */
+
 @ManagedBean
 @ViewScoped
 public class TenderBean {
@@ -62,6 +69,11 @@ public class TenderBean {
 	
 	private List <Tender> myTenders;
 	
+	
+	
+	/**
+	 * It defines the new instance of the entities.
+	 */
 	@PostConstruct
 	private void init() {
 		tender=new Tender();
@@ -78,6 +90,11 @@ public class TenderBean {
 		this.tender = tender;
 	}
 
+	
+	/**
+	 * It returns all the list of categories in the DB
+	 * @return
+	 */
 	public List<TenderCategory> getCategories() {
 		
 		categories= tenderCategoryService.findAll();
@@ -88,6 +105,11 @@ public class TenderBean {
 		this.categories = categories;
 	}
 
+	/**
+	 * It defines the time passed from the date of the post
+	 * @param tender
+	 * @return
+	 */
 	public String getPrettyTime(Tender tender) {
 		PrettyTime p =new PrettyTime();
 		prettyTime= p.format(tender.getPublishedDate());
@@ -98,6 +120,11 @@ public class TenderBean {
 		this.prettyTime = prettyTime;
 	}
 
+	
+	/**
+	 * it returns the list of the tenders and sorted with java 8
+	 * @return
+	 */
 	public List<Tender> getTenders(){
 		
 		tenders=tenderService.findAll();
@@ -144,6 +171,10 @@ public class TenderBean {
 		this.categoryName = categoryName;
 	}
 
+	/**
+	 * It define the method for adding a new tender
+	 * @throws ParseException
+	 */
 	public void ajouter() throws ParseException{
 		
 				loggedCompany= loginBean.getUser(); 
@@ -157,19 +188,26 @@ public class TenderBean {
 		
 	}
 	
+	/**
+	 * it defines the method to apply in a tender
+	 * @param t
+	 * @throws ParseException
+	 */
 	public void apply(Tender t) throws ParseException{
 		
 		loggedCompany=loginBean.getUser();
 		tenderApplicationService.apply(loggedCompany, t);
 	}
 
+	/**
+	 * it returns all the tenders of the logged User
+	 * @return
+	 */
 	public List<Tender> getMyTenders() {
 
-	
-
 		loggedCompany=loginBean.getUser();
-
 		myTenders=tenderService.findByCompany(loggedCompany);
+		myTenders.sort(Comparator.comparing(Tender::getPublishedDate).reversed());
 		return myTenders;
 	}
 
@@ -189,5 +227,54 @@ public class TenderBean {
 		tenderService.delete(t);
 	}
 	
+	/**
+	 * it returns the numbers of applications in a tender
+	 * @param t
+	 * @return
+	 */
+	public Long nbrApplication(Tender t){
+		Long nbr;
+		nbr=tenderApplicationService.applicationNumber(t);
+		System.out.println(nbr);
+		return nbr;
+	}
+	
+	
+	/**
+	 * it returns the number of the companies that has a developed profile in our application
+	 * @param t
+	 * @return
+	 */
+	public Float applicationNmbrProgress(Tender t){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrProgress(t);
+		System.out.println(nbr);
+		return nbr;
+	}
+	
+	/**
+	 * it returns the number of companies that have a good rate
+	 * @param t
+	 * @return
+	 */
+	public Float applicationNmbrRate(Tender t){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrRate(t);
+		System.out.println(nbr);
+		return nbr;
+		
+	}
+	
+	/**
+	 * it returns the number of companies that worked on more than 8 projects
+	 * @param tender
+	 * @return
+	 */
+	public Float applicationNmbrProjects(Tender tender){
+		Float nbr;
+		nbr=tenderApplicationService.applicationNmbrProjects(tender);
+		System.out.println(nbr);
+		return nbr;
+	}
 
 }

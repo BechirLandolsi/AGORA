@@ -9,7 +9,12 @@ import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Contrat;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Produit;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Provision;
-
+/**
+ * 
+ * <IProvision>
+ * @author Nour
+ *
+ */
 @Remote
 public interface IProvision {
 

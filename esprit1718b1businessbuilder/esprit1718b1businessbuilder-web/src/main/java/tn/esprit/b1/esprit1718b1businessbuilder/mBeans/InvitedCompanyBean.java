@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -23,7 +24,16 @@ public class InvitedCompanyBean implements Serializable {
 	private String adress ;
 	private String CEO ;
 
+	@ManagedProperty(value="#{identity}")
+	private Identity loginBean;
 	
+	
+	public Identity getLoginBean() {
+		return loginBean;
+	}
+	public void setLoginBean(Identity loginBean) {
+		this.loginBean = loginBean;
+	}
 	public List<Company> getCompanies() {
 		return companies;
 	}
@@ -57,7 +67,7 @@ public class InvitedCompanyBean implements Serializable {
 	@EJB
 	EventService eventService;
 	public List<Company> companiesToInvite(long id){
-		companies=eventService.FindCompanyToInvite(8); 
+		companies=eventService.FindCompanyToInvite(loginBean.getUser().getId()); 
 		System.out.println(companies);
 		return companies;
 	}

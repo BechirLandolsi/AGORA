@@ -59,7 +59,7 @@ public class EventService extends GenericDAO<Event> implements EventServiceRemot
 		Date a = ev.getEvent_date();
 		long nbDaysFirstDate=a.getTime()/DayInMillisecond;
 		difference= nbDaysSecondDate-nbDaysFirstDate;
-		if(difference<2 && difference>0){eventsoon.add(ev);}
+		if(difference<=2 && difference>=0){eventsoon.add(ev);}
 		}
 		return eventsoon;	
 	}

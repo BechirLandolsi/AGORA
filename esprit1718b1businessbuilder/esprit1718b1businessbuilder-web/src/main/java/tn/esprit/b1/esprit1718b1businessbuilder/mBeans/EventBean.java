@@ -40,6 +40,7 @@ public class EventBean implements Serializable{
 	private List<Event> events;
 	private List<String> sectors;
 	private List<Invitation> invitations;
+	private List<Event> remindedEvents;
 	private long nombre;
 	private long guests;
 	private long refused;
@@ -47,15 +48,21 @@ public class EventBean implements Serializable{
 	@ManagedProperty(value="#{identity}")
 	private Identity loginBean;
 	
+	
+	//les services utilisés 
 	@EJB
 	EventService eventService;
 	@EJB
 	CompanyService companyService;
 
-@EJB
+    @EJB
 	InvitationService invitationService;
 
 	
+    
+    
+    //Getters And Setters
+    
 	public Long getIdcompany() {
 		return idcompany;
 	}
@@ -201,6 +208,8 @@ public class EventBean implements Serializable{
 	}
 	
 	
+	//**************************************************************************************
+	//Ajouter un evenement par le logged user
 	public void ajouterevent()
 	{
 		Company c = (Company)loginBean.getUser();
@@ -211,6 +220,9 @@ public class EventBean implements Serializable{
 		System.out.println("added");
 	}
 	
+	//**************************************************************************************
+    //recuperer les secteurs de company dans la base de donnée
+	
 	public List<String> Sectors(){
 	 sectors=eventService.DisplaySector();
 	 System.out.println(sectors);
@@ -218,6 +230,19 @@ public class EventBean implements Serializable{
 	}
 	
 	
+	//**************************************************************************************
+	//reminder qui rapplle l'utilisateur de ses evenements qui aurons lieu deux jours plus tard ou moins
+	public List<Event> Reminder(){
+		Company c =new Company();
+		c=(Company)loginBean.getUser();
+		events= eventService.findEventByCompany(c.getId());
+		remindedEvents=eventService.EventReminder(events);
+		System.out.println(remindedEvents);
+		return remindedEvents;
+	}
+	
+	//**************************************************************************************
+	//redirection vers la page details
 	
 	public String navigation(long id){
 		String navigateTo="null";
@@ -228,6 +253,8 @@ public class EventBean implements Serializable{
 		return navigateTo;
 	}
 	
+	//**************************************************************************************
+	//retourne le nombre d'invitation d'un evenement specifié
 	public Long NumberInvitation(Event e){
 		Event e1 = new Event();
 		e1=eventService.find(this.id_event);
@@ -235,6 +262,8 @@ public class EventBean implements Serializable{
 		return nombre  ;
 	}
 	
+	//**************************************************************************************
+	//retourne le nombre des invités qui ont confirmés leurs presence
 	public Long NumberGuest(){
 		Event e = new Event();
 		e=eventService.find(this.id_event);
@@ -242,6 +271,8 @@ public class EventBean implements Serializable{
 		return guests;
 	}
 	
+	//**************************************************************************************
+	//inviter une company a un event
 	public void inviteCompany(long id){
 		idcompany=id;
 		System.out.println(id_event);
@@ -273,12 +304,15 @@ public class EventBean implements Serializable{
 		this.nombre = nombre;
 	}
 
+	//**************************************************************************************
+	//les invitations du logged user
 	public List<Invitation> DisplayMyInvitation(){
 		invitations=invitationService.DisplayInvitationByCompany((Company)loginBean.getUser());
 		return invitations;
 	}
 	
-	
+	//**************************************************************************************
+	//Affichage des events
 	public  List<Event> AfficherEvents(long id){
 		Company c =new Company();
 		c=(Company)loginBean.getUser();

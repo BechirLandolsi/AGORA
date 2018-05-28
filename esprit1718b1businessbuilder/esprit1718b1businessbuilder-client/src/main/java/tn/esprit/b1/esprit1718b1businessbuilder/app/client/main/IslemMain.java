@@ -40,6 +40,29 @@ public class IslemMain {
 		Context context3 = new InitialContext();
 		InvitationServiceRemote proxy3 = (InvitationServiceRemote) context.lookup(jndiName3);
 		//*************************************************************************
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date data =dateFormat.parse("12/05/2018");
+		Date dat1 =dateFormat.parse("10/05/2018");
+		Date dat2 =dateFormat.parse("09/05/2018");
+		Date dat3 =dateFormat.parse("12/05/2018");
+		Date dat4 =dateFormat.parse("31/05/2018");
+		Event e = new Event("Vermeg Opening", "Germany , Berlin", "Software","Company Opening",true,true,data);
+		Event e1 = new Event("Orange milestones", "Tunisia ,Tunis", "Telecommunications","ompany milestones",true,true,dat1);
+		Event e2 = new Event("Delice Event", "Germany , frankfurt", "Food","Product launch",false,true,dat2);
+		Event e3 = new Event("Wevioo Fest", "Libya , tripoli", "Software","Appreciation Event",true,true,dat3);
+		Event e4 = new Event("Said chocolate tasting", "France , Paris", "Food","Product launch",true,false,dat4);
+		List<Event> eventlist = new ArrayList<Event>();
+		List<Company> companies = new ArrayList<Company>();
+		List<Event> eventreminder = new ArrayList<Event>();
+		eventlist.add(e);
+		eventlist.add(e1);
+		eventlist.add(e2);
+		eventlist.add(e3);
+		eventlist.add(e4);
+		eventreminder=proxy.EventReminder(eventlist);
+		System.out.println(eventreminder);
+		    /*ObservableList<Event> event_l
+		///************************************************************************
 	/*	Company com1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
 		Company loggedUser=(Company)proxy2.login("vermeglogin", "vermegpass");
 		System.out.println(loggedUser);
@@ -49,15 +72,15 @@ public class IslemMain {
 		//System.out.println(loggedUser.getEvents());
 		//System.out.println(com1.getId());
 		//************************************************************************
-		List<Event> all = new ArrayList<Event>();
+		/*List<Event> all = new ArrayList<Event>();
 	
 		
 	    all=proxy.findEventByCompany((long)8);
 	    System.out.println(all);
 	   // upcomingonly=proxy.ArchiveOldEvents();:::::::::::::::::::::::::::::::::::::::::::::
-	   /*
+	   
 	    for (Event event : upcomingonly) 
-	    {System.out.println(event);}*/
+	    {System.out.println(event);}
 		///************************* Adding Test **********************************
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date datep =dateFormat.parse("31/12/2018");
@@ -68,7 +91,7 @@ public class IslemMain {
 	
 		
 	    all=proxy.findEventByCompany((long)8);
-	    System.out.println(all);
+	    System.out.println(all);*/
 		
 		//**************************** Find Event By Id ****************************
 		

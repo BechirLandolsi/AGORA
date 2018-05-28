@@ -1,4 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -8,8 +8,6 @@
                 	
 				<div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-              
-                     
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                         <form role="search" class="navbar-form-custom" action="#">
@@ -22,8 +20,62 @@
                         <li>
                             <span class="m-r-sm text-muted welcome-message">Welcome to AGORA Business Builder</span>
                         </li>
-                        
-          
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i> <span class="label label-warning"></span>
+                            </a>
+                           <ul class="dropdown-menu dropdown-messages">
+                        <ui:repeat var="Listinvitation" value="#{eventBean.DisplayMyInvitation()}">
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="Invitation.jsf" class="pull-left">
+                                  
+                                </a>
+                                <div class="media-body ">
+                                    
+                                   <i class="fa fa-envelope fa-fw"></i>You recieved Invitation For <strong>#{Listinvitation.event.event_name}</strong>. <br/>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        </ui:repeat>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="Invitation.jsf">
+                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i> <span class="label label-primary"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                             <ui:repeat var="Listremind" value="#{eventBean.Reminder()}">
+                            <li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> #{Listremind.event_name}
+                                    <span class="pull-right text-muted small"></span>
+                                </div>
+                            </a>
+                        </li>
+                        </ui:repeat>
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="notifications.html">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
 
                         <li>
                         	<form jsf:id="logout">

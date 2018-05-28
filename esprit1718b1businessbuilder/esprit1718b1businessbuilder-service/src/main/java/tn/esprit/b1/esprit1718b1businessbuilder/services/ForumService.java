@@ -276,7 +276,7 @@ public class ForumService implements ForumServiceRemote{
 					 		+ "http://localhost:18080/esprit1718b1businessbuilder-web/forum.jsf",new Date(),comment);
 					long x = addUnderComment(uc);
 					 Undercomment uccc = em.find(Undercomment.class, x);   
-					 Company f = em.find(Company.class, (long)36);   
+					 Company f = em.find(Company.class, (long)7);   
 					 uccc.setCompanyUC(f);
 					 em.merge(uccc) ;
 				   

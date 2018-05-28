@@ -111,6 +111,17 @@ public class PartnershipService implements PartnershipRemote{
 		return p;
 	}
 
+	@Override
+	public void ChangeStateToTrue(Project p) {
+		Partnership par = new Partnership();
+		TypedQuery <Partnership> k = em.createQuery("select p from Partnership p where p.project=:project",Partnership.class);
+		k.setParameter("project", p);
+		par=k.getSingleResult();
+		par.setState(true);
+		em.merge(p);
+		
+	}
+
 	
 	
 	

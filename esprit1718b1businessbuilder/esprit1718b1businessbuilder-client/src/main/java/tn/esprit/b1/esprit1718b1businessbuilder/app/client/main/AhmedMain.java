@@ -146,10 +146,10 @@ public class AhmedMain {
 	    CompanyServiceRemote proxyC = (CompanyServiceRemote) contextC.lookup(jndiNameC) ; 
 	    ProductServiceRemote proxyP = (ProductServiceRemote) contextP.lookup(jndiNameP);
         
-	    Company c1 = proxyC.findBy((long)32);
+	    Company c1 = proxyC.findBy((long)2);
 	    Produit p1 = proxyP.findProduct(4) ;
 	    
-	    Company c2 = proxyC.findBy((long)35);
+	    Company c2 = proxyC.findBy((long)3);
 	    Produit p2 = proxyP.findProduct(3) ;
 		
 	    Forum forum1 = new Forum("looking for simcards for my employees", "i want to ask if this stock is a "
@@ -157,7 +157,7 @@ public class AhmedMain {
 	    Forum forum2 = new Forum("looking for wheels for my trucks", "i want to ask if this stock is a "
 	    		+ "good or bad stock to repaire my trucks for delivering goods or not ?", p2 , c2) ;
 	    
-	   Comment c = proxyF.findCommentById(1) ;
+	   //Comment c = proxyF.findCommentById(1) ;
 
 	   
 	   
@@ -179,9 +179,9 @@ public class AhmedMain {
 	        	}
 	        }
 	   }*/
-	   for (Produit p : proxyF.getRecommandation(2)){
-		   System.out.println(p.getDescription());
-	   }
+	 //  for (Produit p : proxyF.getRecommandation(2)){
+	//	   System.out.println(p.getDescription());
+	 //  }
 
 	   
 	                                     // proxyF.NoteUnderComment();
@@ -195,8 +195,8 @@ public class AhmedMain {
 	   //uc.setCompanyUC(c1);
 	   
 	   //proxyF.addUnderComment(uc);
-		//proxyF.ajouterForum(forum1) ;
-		//proxyF.ajouterForum(forum2) ;
+		proxyF.ajouterForum(forum1) ;
+		proxyF.ajouterForum(forum2) ;
 	  //  System.out.println(proxyF.getAllForum());
  	 	//System.out.println(proxyF.nbrCommentForm(2));
 	    //System.out.println(proxyF.nbrCompanyForum(2));

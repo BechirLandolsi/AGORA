@@ -65,6 +65,7 @@ public class ProjectBean {
 	
 	private Date dateComment;
 	
+	
 	Partnership partnershipclass = new Partnership();
 
 	private String mot;
@@ -104,10 +105,17 @@ public class ProjectBean {
 	PartnershipService partnershipservice;
 	@EJB
 	CommentProjectService commentprojectservice;
+	
+
+	private List<Object[]> listall ;
+	
+	
+	
+	private String translatedcomment;
+	private List<String> listTranslate;
+	
 	@EJB
 	TranslationService translationservice;
-
-
 	
 /********************************************************************************************************/	
 	
@@ -240,39 +248,17 @@ public BarChartModel createBarModel(Company c) {
 public List<CommentProject> ListComment()
 	
 	{	
-		
 			Project pr= new Project();
 			pr=projectservice.findProjectById(this.idProject).get(0);
 			this.listcomment = commentprojectservice.AfficherCommentByProject(pr);
-			return this.listcomment;
-		
-		
 			
+	 	
+		//this.translatedcomment=null;
+		return this.listcomment;	
 		
 	}
 
-public String ListCommentTranslated(Date date)
-{	
-	System.out.println("/////////////"+date);
 
-	List<String> body = translationservice.translateComment(date);
-	
-	System.out.println("///////////////////////"+body);
-	
-	StringBuilder sb = new StringBuilder();
-	 for (String s : body)
-     {
-         sb.append(s);
-         sb.append(" ");
-     }
-	 
-	 CommentProject cp = new CommentProject();
-	 cp.setCommentBody(sb.toString());
-	 this.listcomment = commentprojectservice.AfficherCommentByProject(jib());
-	 this.listcomment.add(cp);
-	return "/partnership?faces-redirect=true"; 
-	
-}
 	
 /***********************************************************************************************************/	
 	
@@ -297,6 +283,12 @@ public String ListCommentTranslated(Date date)
 		
 	}
 	
+	public String AcceptPartner(Project p)
+	{
+		partnershipservice.ChangeStateToTrue(p);
+		return "/projectlist?faces-redirect=true";
+		
+	}
 
 	
 /********************************************************************************************************/	
@@ -356,32 +348,6 @@ public String ListCommentTranslated(Date date)
 	
 	
 	
-	
-	
-	
-/************************************************************************************************************/
-	
-	@OnMessage
-	  public void messageReceiver(String message) {
-	    System.out.println("Received message:" + message);
-	  }
-	
-
-	@OnOpen
-	  public void onOpen(Session session) {
-	    System.out.println("onOpen: " + session.getId());
-	    sessions.add(session);
-	    System.out.println("onOpen: Notification list size: " + sessions.size());
-	  }
-	
-	 public void countPerson() {
-		 	Company c =new Company();
-		 	//c.setName("vermeg");
-		   
-		  long i= projectservice.CountStableProjects(c);
-		  }
-	
-/************************************************************************************************************/
 
 
 	public List<Long> getIdPartnership() {
@@ -568,14 +534,28 @@ public String ListCommentTranslated(Date date)
 		this.dateComment = dateComment;
 	}
 
+	
+
+
+
+	public List<CommentProject> getListcomment() {
+		return listcomment;
+	}
+
+
+
+	public void setListcomment(List<CommentProject> listcomment) {
+		this.listcomment = listcomment;
+	}
+
 
 
 	@Override
 	public String toString() {
 		return "ProjectBean [idPartnership=" + idPartnership + ", durationpart=" + durationpart + "]";
 	}
-	
-	
+
+	 
 	
 	
 	

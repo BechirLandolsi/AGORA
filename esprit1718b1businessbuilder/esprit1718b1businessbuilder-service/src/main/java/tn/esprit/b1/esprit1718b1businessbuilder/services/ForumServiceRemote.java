@@ -41,4 +41,6 @@ public interface ForumServiceRemote {
 	List<Company> findCompanyBysynonyme(String r);
 	public void ResponseComment(int idcomment) ;
 	public  float currencyConvertion(String from,String to , float price) ;
+	
+
 }

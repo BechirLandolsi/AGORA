@@ -1,0 +1,33 @@
+<ui:composition
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+
+	 xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:uii="http://java.sun.com/jsf/facelets"
+	xmlns:m="http://java.sun.com/jsf/core"
+	xmlns:l="http://java.sun.com/jsf/html"
+	xmlns:n="http://primefaces.org/ui"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:rich="http://richfaces.org/rich">
+
+<h:form>
+    <p:growl autoUpdate="true" />
+ 
+    <p:signature style="width:400px;height:200px" widgetVar="sig" value="#{signatureView.value}" required="true" guideline="true"/>
+ 
+    <div style="margin:20px 0">
+        <p:commandButton value="Submit" icon="ui-icon-check" update="output"/>
+        <p:commandButton value="Clear" icon="ui-icon-close" type="button" onclick="PF('sig').clear()"/>
+    </div>
+ 
+    <p:outputPanel id="output">
+        <h:outputText rendered="#{not empty signatureView.value}" style="font-size:24px;display:block" value="Your Signature" />
+        <p:signature style="width:400px;height:200px;" value="#{signatureView.value}" readonly="true"
+                     rendered="#{not empty signatureView.value}" backgroundColor="#eaeaea" color="#03a9f4"/>
+    </p:outputPanel>
+</h:form>
+
+</ui:composition>

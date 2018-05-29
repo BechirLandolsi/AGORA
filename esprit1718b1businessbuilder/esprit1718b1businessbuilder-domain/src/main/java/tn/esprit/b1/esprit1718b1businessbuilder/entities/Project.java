@@ -1,5 +1,6 @@
 package tn.esprit.b1.esprit1718b1businessbuilder.entities;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -31,6 +34,9 @@ public class Project implements Serializable {
 	
 	@OneToMany (mappedBy="project")
 	private List <Partnership> partnerships;
+	
+	@OneToMany (mappedBy="projectComment")
+	private List <CommentProject> commentProjects ;
 	
 	@ManyToOne
 	private Company ProjectOwner;
@@ -83,8 +89,21 @@ public class Project implements Serializable {
 	@Column(name = "count")
 	private int count;
 	
+	@Temporal(TemporalType.DATE)
+	private Date creationDate ;
+	
+	@Temporal(TemporalType.DATE)
+	private Date finishDate;
+	
 	@Column(name = "product")
 	private String product;
+	
+	@Column(name = "nbrTache")
+	private Integer nbrTache;
+	
+	@Column(name = "nbrEmployee")
+	private Integer nbrEmployee;
+	
 	
 	public Project() {
 		super();
@@ -97,13 +116,19 @@ public class Project implements Serializable {
 
 	
 
-	public Project(Long id, List<Partnership> partnerships, Company projectOwner, Bilan bilan, String name,
-			String service, String projectNature, Integer stock, float priceUnit, float purchase, float energyCost,
-			float transportCost, float employeeSalaire, float interestOnLoans, float rentCost, float capital,
-			boolean state, double quality, int count, String product) {
+	
+
+
+
+	public Project(Long id, List<Partnership> partnerships, List<CommentProject> commentProjects, Company projectOwner,
+			Bilan bilan, String name, String service, String projectNature, Integer stock, float priceUnit,
+			float purchase, float energyCost, float transportCost, float employeeSalaire, float interestOnLoans,
+			float rentCost, float capital, boolean state, double quality, int count, Date creationDate, Date finishDate,
+			String product, Integer nbrTache, Integer nbrEmployee) {
 		super();
 		this.id = id;
 		this.partnerships = partnerships;
+		this.commentProjects = commentProjects;
 		ProjectOwner = projectOwner;
 		this.bilan = bilan;
 		this.name = name;
@@ -121,13 +146,12 @@ public class Project implements Serializable {
 		this.state = state;
 		this.quality = quality;
 		this.count = count;
+		this.creationDate = creationDate;
+		this.finishDate = finishDate;
 		this.product = product;
+		this.nbrTache = nbrTache;
+		this.nbrEmployee = nbrEmployee;
 	}
-	
-	
-
-
-
 
 	public Project(Company projectOwner, String name, String service) {
 		super();
@@ -135,6 +159,7 @@ public class Project implements Serializable {
 		this.name = name;
 		this.service = service;
 	}
+
 
 
 
@@ -311,12 +336,79 @@ public class Project implements Serializable {
 	}
 
 
+	
+
+	public List<CommentProject> getCommentProjects() {
+		return commentProjects;
+	}
+
+
+
+
+	public void setCommentProjects(List<CommentProject> commentProjects) {
+		this.commentProjects = commentProjects;
+	}
+
+
+	
+
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+
+
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
+
+
+	public Date getFinishDate() {
+		return finishDate;
+	}
+
+
+
+
+	public void setFinishDate(Date finishDate) {
+		this.finishDate = finishDate;
+	}
+
+
+
+
+	public Integer getNbrTache() {
+		return nbrTache;
+	}
+
+
+
+
+	public void setNbrTache(Integer nbrTache) {
+		this.nbrTache = nbrTache;
+	}
+
+
+	
+
+	public Integer getNbrEmployee() {
+		return nbrEmployee;
+	}
+
+
+	public void setNbrEmployee(Integer nbrEmployee) {
+		this.nbrEmployee = nbrEmployee;
+	}
+
 
 
 	@Override
 	public String toString() {
-		return "Project [id=" + id + ", partnerships=" + partnerships + ", ProjectOwner=" + ProjectOwner + ", bilan="
-				+ bilan + ", name=" + name + ", service=" + service + ", projectNature=" + projectNature + ", stock="
+		return "Project [id=" + id + ", name=" + name + ", service=" + service + ", projectNature=" + projectNature + ", stock="
 				+ stock + ", priceUnit=" + priceUnit + ", purchase=" + purchase + ", energyCost=" + energyCost
 				+ ", transportCost=" + transportCost + ", employeeSalaire=" + employeeSalaire + ", interestOnLoans="
 				+ interestOnLoans + ", rentCost=" + rentCost + ", capital=" + capital + ", state=" + state

@@ -22,12 +22,12 @@ public class BackgroundJobManager implements ServletContextListener {
 	
 	
 	    
-		//private Thread executor ; 
+	//	private Thread executor ; 
 
 	    
 		@Override
 		public void contextInitialized(ServletContextEvent sce) {
-			/*while(true) {
+		/*	while(true) {
 			
 				executor = new Thread(new Runnable() {
 
@@ -38,12 +38,13 @@ public class BackgroundJobManager implements ServletContextListener {
 				});
 			executor.start();
 			try {
-				executor.sleep(50000);
+				executor.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			4
+			
+		
 		}*/
 		}
 		

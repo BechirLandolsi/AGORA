@@ -70,7 +70,8 @@ public class Company extends User {
 	private int rate ; 
 	
 	private  String currency ;
-	
+
+
 	private String resultTest ;
 	private String image ;
 	private int nbrprojects = 0;
@@ -399,6 +400,10 @@ public class Company extends User {
 	
 	
 	
+	@OneToMany (mappedBy="CompanyComment")
+	private List <CommentProject> CompanyComment;
+	
+	
 	@OneToMany(mappedBy="companyTender")
 	private List <Tender> tenders;
 	
@@ -419,9 +424,6 @@ public class Company extends User {
 
 	@OneToMany(mappedBy="buyer") 
 	private List<Order> orders ;  
-	
-	
-	
 	
 	@OneToMany(mappedBy="claimant") 
 	private List<Claim> myClaims ;  
@@ -695,6 +697,18 @@ public class Company extends User {
 	public void setInvitation(List<Invitation> invitation) {
 		this.invitation = invitation;
 	}
+	
+	
+
+
+	public List<CommentProject> getCompanyComment() {
+		return CompanyComment;
+	}
+
+
+	public void setCompanyComment(List<CommentProject> companyComment) {
+		CompanyComment = companyComment;
+	}
 
 
 	public String getCurrency() {
@@ -738,6 +752,39 @@ public class Company extends User {
 	public void setUndercomment(List<Undercomment> undercomment) {
 		this.undercomment = undercomment;
 	}
+	
+	
+	
+
+	
+
+
+	public Company(String name, String login, String password, String email,String cEO, Date creationDate, String adress, Long number, String reference, String partner,
+			String sector, int rate, String currency, String resultTest, String image, int nbrprojects, int nbrorders,
+			float activity, int nbrfolowers, int nbrfolowings, int visite, Date dateVisite, Date subDate) {
+		super(name, login, password, email);
+		CEO = cEO;
+		this.creationDate = creationDate;
+		this.adress = adress;
+		this.number = number;
+		this.reference = reference;
+		this.partner = partner;
+		this.sector = sector;
+		this.rate = rate;
+		this.currency = currency;
+		this.resultTest = resultTest;
+		this.image = image;
+		this.nbrprojects = nbrprojects;
+		this.nbrorders = nbrorders;
+		this.activity = activity;
+		this.nbrfolowers = nbrfolowers;
+		this.nbrfolowings = nbrfolowings;
+		this.visite = visite;
+		this.dateVisite = dateVisite;
+		this.subDate = subDate;
+		
+	}
+
 
 
 	@Override

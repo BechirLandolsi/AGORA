@@ -2,6 +2,7 @@ package tn.esprit.b1.esprit1718b1businessbuilder.services;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import tn.esprit.b1.esprit1718b1businessbuilder.utilities.GenericDAO;
 
 
 @Stateless
+@LocalBean
 public class InvitationService  implements InvitationServiceRemote {
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 

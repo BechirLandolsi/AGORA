@@ -43,6 +43,7 @@ public class DBPopulator {
 		Date dat8 =dateFormat.parse("06/08/2018");
 		
 		Event e = new Event("Vermeg Opening", "Germany , Berlin", "Software","Company Opening",true,true,dat);
+		
 		Event e1 = new Event("Orange milestones", "Tunisia ,Tunis", "Telecommunications","ompany milestones",true,true,dat1);
 		Event e2 = new Event("Delice Event", "Germany , frankfurt", "Food","Product launch",false,true,dat2);
 		Event e3 = new Event("Wevioo Fest", "Libya , tripoli", "Software","Appreciation Event",true,true,dat3);

@@ -1,0 +1,103 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	template="/template/template.xhtml">
+
+
+	<ui:define name="pageTitle">
+				INVITATION PAGE
+				
+    
+			</ui:define>
+			 
+	<ui:define name="pageContent">
+		<div class="row">
+		
+		<div class="col-lg-12 animated fadeInRight">
+            <div class="mail-box-header">
+                <div class="pull-right tooltip-demo">
+                    <a href="mail_compose.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Reply"><i class="fa fa-reply"></i> Reply</a>
+                    <a href="#" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Print email"><i class="fa fa-print"></i> </a>
+                    <a href="mailbox.html" class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </a>
+                </div>
+                <h2>
+                    View Invitation
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+
+
+                    <h3>
+                        <span class="font-normal">Subject: </span>Invitation for Company Event
+                    </h3>
+                    <h5>
+                        <span class="pull-right font-normal"></span>
+                        <span class="font-normal">From: </span>#{identity.user.email}
+                    </h5>
+                </div>
+            </div>
+                <div class="mail-box">
+
+
+                <div class="mail-body">
+                    <p>
+                        Hello #{identity.user.name}
+                        <br/>
+                        <br/>
+                        We , on behalf of our management take immense pleasure in inviting Mr #{identity.user.name} to attend the inauguration function of our modest event. The Event will begin sharp at 9h(time of the inauguration ceremony)
+
+We have been running this company successfully from the past twenty years and after having 5 branches we are going ahead and opening a new branch. This would not have been possible today because of the efforts and dedication of our management and employees. So we invite each and every employee to attend this programme as they too are a vital part of this company.
+
+Yours Truly,
+                        </p>
+                 
+                 
+                </div>
+                    
+                       
+                         
+                            
+                            <div class="clearfix"></div>
+                        </div>
+                        </div>
+                        <div class="mail-body text-right tooltip-demo">
+                                <a class="btn btn-sm btn-white" href="mail_compose.html"><i class="fa fa-reply"></i> Reply</a>
+                                <a class="btn btn-sm btn-white" href="mail_compose.html"><i class="fa fa-arrow-right"></i> Forward</a>
+                                <button title="" data-placement="top" data-toggle="tooltip" type="button" data-original-title="Print" class="btn btn-sm btn-white"><i class="fa fa-print"></i> Print</button>
+                                <button title="" data-placement="top" data-toggle="tooltip" data-original-title="Trash" class="btn btn-sm btn-white"><i class="fa fa-trash-o"></i> Remove</button>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                </div>
+           
+                        	
+
+   <!-- Mainly scripts -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>
+
+	</ui:define>
+	
+	
+</ui:composition>

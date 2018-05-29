@@ -86,7 +86,7 @@
                                                     <p>Real Time Currency Converter</p>
 
                                                     <form jsf:id="aaaaaaaaaa">
-                                                        <div class="form-group"><label>Quantity of #{forumBean.f.productF.description}</label> <input jsf:id="inputq" type="number" value="#{forumBean.quantity}" /></div>
+                                                        <div class="form-group"><label>Quantity of #{forumBean.f.productF.description}</label>  <input jsf:id="inputq" type="number" value="#{forumBean.quantity}" /></div>
                                                         
                                                         <div class="widget style1 lazur-bg">
                         <div class="row vertical-align">
@@ -94,14 +94,14 @@
                                <strong>Price </strong>
                             </div>
                             <div class="col-xs-5 text-right">
-                               <label jsf:id="label55" value="#{forumBean.res}"></label>
+                      <label jsf:id="label55" value="#{forumBean.res}"></label>
                             </div>
                         </div>
                     </div>
                     <div>
-                                                                <button class="ladda-button ladda-button-demo btn btn-primary"   type="submit" jsf:action="#{forumBean.convert(forumBean.f.productF.supplier,forumBean.f.productF)}">
+                              <button class="ladda-button ladda-button-demo btn btn-primary"   type="submit" jsf:action="#{forumBean.CurrencyConverter()}">
                                                                 convert
-                                                                </button>
+                                                                </button>                          
                                                        
                                                         </div>
                                                     </form>

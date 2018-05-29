@@ -170,6 +170,16 @@ public class Company extends User {
 	private Date subDate ; 
 	
 	
+	public List<Contrat> getContrats() {
+		return contrats;
+	}
+
+
+	public void setContrats(List<Contrat> contrats) {
+		this.contrats = contrats;
+	}
+
+
 	@OneToMany (mappedBy="CompanyOwner")
 	private List <Partnership> CompanyOwner;
 	

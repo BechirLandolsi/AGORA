@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.UserServiceRemote;
 
@@ -68,8 +69,14 @@ public class SecretQuestion implements Initializable {
 		Context context = new InitialContext();
 		UserServiceRemote proxyCategory = (UserServiceRemote) context.lookup(jndiNameCategory);
 		User u = LoginController.LoggedUser ;
+		Company c = (Company)u;
     	if (reponse.getText().equals(u.getResponse())){
     		 question.getScene().getWindow().hide();
+    		 String format = "dd/MM/yy H:mm:ss";
+				java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+				java.util.Date da = new java.util.Date();
+				c.setSubDate(da);
+				proxyCategory.update(c);
 		        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
 		        Stage mainStage=new Stage();
 		        Scene scene=new Scene(root);

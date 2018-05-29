@@ -19,7 +19,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
+import java.time.Period;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -267,6 +267,7 @@ public class EventController implements Initializable{
     	String format = "dd/MM/yy H:mm:ss";
 		java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
 		java.util.Date da = new java.util.Date(); 
+		
 		
     	//control datepicker so the user can not enter a previous date
     	if(d.after(da)){

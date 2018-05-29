@@ -143,10 +143,10 @@ public class SecurityController implements Initializable {
         				
         					code = TimeBasedOneTimePasswordUtil.generateCurrentNumberString(base32Secret);
         					//System.out.println("Secret code = " + code + ", change in " + diff + " seconds");
-        					/*Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        					Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         		            com.twilio.rest.api.v2010.account.Message msg =
         		            com.twilio.rest.api.v2010.account.Message.creator(new PhoneNumber("+21692339150"),
-        		            new PhoneNumber("+16106248035"),"votre code securité est : "+ code).create();*/
+        		            new PhoneNumber("+16106248035"),"votre code securité est : "+ code).create();
         		            System.out.println (code);
         		            codefinal = code ;
         		            Thread.sleep(30000);        				

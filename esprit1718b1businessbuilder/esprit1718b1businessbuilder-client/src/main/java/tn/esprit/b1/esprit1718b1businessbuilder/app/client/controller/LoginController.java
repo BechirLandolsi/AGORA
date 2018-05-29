@@ -7,7 +7,10 @@ import com.twilio.Twilio;
 import com.twilio.type.PhoneNumber;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.URL;
+import java.time.Period;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -106,28 +109,75 @@ public class LoginController implements Initializable {
         final ImageView imageView = new ImageView(image); 
         final Pane root = new Pane(); 
         root.getChildren().setAll(imageView); */
-        
+    	 
+    	 if(LoggedUser!=null && LoggedUser instanceof Company) {
+    		 
+ 		 	InetAddress ip;
+ 			ip = InetAddress.getLocalHost();
+ 			// System.out.println("Current IP address : " + ip.getHostAddress());
+ 			NetworkInterface network = NetworkInterface.getByInetAddress(ip);
+ 			byte[] mac = network.getHardwareAddress();
+ 			// System.out.print("Current MAC address : ");
+ 			StringBuilder sb = new StringBuilder();
+ 			for (int i = 0; i < mac.length; i++) {
+ 				sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
+ 			}
+ 			
+ 			System.out.println("Current MAC address : "+sb);
+ 			System.out.println("MAC address DB : "+LoggedUser.getMac().toString());
+ 			
+ 			if (sb.toString().equals(LoggedUser.getMac()) ){
+ 				String format = "dd/MM/yy H:mm:ss";
+ 				java.text.SimpleDateFormat formater = new java.text.SimpleDateFormat( format ); 
+ 				java.util.Date da = new java.util.Date();
+ 				Company loggedC = (Company)LoggedUser;
+ 				long diff = da.getTime() - loggedC.getSubDate().getTime() ;
+ 				float days = (diff / (1000*60*60*24));
+
+ 				if (days>=30){
+ 					setStage("../gui/SecretQuestion.fxml");
+ 					
+ 				}
+ 				
+ 				else {
+ 					System.out.println("test equals");
+ 	 				 btnLogin.getScene().getWindow().hide();
+ 	 	    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
+ 	 	    	        Stage mainStage=new Stage();
+ 	 	    	        Scene scene=new Scene(root);
+ 	 	    	        mainStage.setScene(scene);
+ 	 	    	        mainStage.show();
+ 					
+ 				}
+		
+ 				
+ 						
+ 			}
+ 			
+ 			else {
+ 				setStage("../gui/Security.fxml");
+ 			}
+ 			
+ 		 
+	 
+ 	       
+ 	    	 }
+		 	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
+		 	        btnLogin.getScene().getWindow().hide();
+		 	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 
+		 	        Stage mainStage=new Stage();
+		 	        Scene scene=new Scene(root);
+		 	        mainStage.setScene(scene);
+		 	        mainStage.show();
+		 	       
+		 	    	 }
+    	 
+    
        }
     	else {
     		erreur.setText("Invalid UserName or Password !");
     }
-    	 if(LoggedUser!=null && LoggedUser instanceof Company) {
-    	        btnLogin.getScene().getWindow().hide();
-    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/Skeleton.fxml")); 
-    	        Stage mainStage=new Stage();
-    	        Scene scene=new Scene(root);
-    	        mainStage.setScene(scene);
-    	        mainStage.show();
-    	    	 }
-    	 else if (LoggedUser!=null && LoggedUser instanceof Admin) {
-    	        btnLogin.getScene().getWindow().hide();
-    	        Parent root=FXMLLoader.load(getClass().getResource("../gui/AdminHome.fxml")); 
-    	        Stage mainStage=new Stage();
-    	        Scene scene=new Scene(root);
-    	        mainStage.setScene(scene);
-    	        mainStage.show();
-    	       
-    	    	 }
+    	 
     	 //LoggedUser = proxyCategory.login(login.getText(), password.getText()) ;	
     }
 

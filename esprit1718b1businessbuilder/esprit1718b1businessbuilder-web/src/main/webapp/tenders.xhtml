@@ -111,15 +111,18 @@
 	       
 	                                        </div>
 	                                    </div>
-	
-	                            <div class="row">
+
+
+								<div class="row">
 	                                
-	                                <div class="col-md-7">
+	                                <div class="col-lg-6">
 	
 	                                    <h2 class="font-bold m-b-xs">
 	                                        <a href="#" class="text-navy"><h:outputText value="#{tender.title}" /></a>
+
 	                                    </h2>
 	                                    <hr></hr>
+
 	
 	                                    <h2><STRONG>Tender description</STRONG></h2>
 	
@@ -137,14 +140,57 @@
 	                                        <div class="pull-right">
 	                                            <button class="btn btn-info " type="button"><i class="fa fa-paste"></i> Edit</button>
 	                                            <button class="btn btn-danger" type="submit" id="delete" jsf:action="#{tenderBean.delete(tender)}"><i class="fa fa-recycle"></i> <span class="bold">Delete</span></button>
+	                                            
 	                                        </div>
 	                                    </div>
-	
-	
-	
+
 	                                </div>
+	                                
+	                                <div class="col-lg-6">
+						                <div class="widget style1 yellow-bg">
+						                    <div class="row">
+						                        <div class="col-xs-4">
+						                            <i class="fa fa-star fa-5x"></i>
+						                        </div>
+						                        <div class="col-xs-6 text-center">
+						                            <span> Companies rated more than 4 Stars </span>
+						                            <h2 class="font-bold">#{tenderBean.applicationNmbrRate(tender)} %</h2>
+						                        </div>
+						                    </div>
+						                </div>
+            						</div>
+            						
+            						<div class="col-lg-6">
+						                <div class="widget style1 yellow-bg">
+						                    <div class="row">
+						                        <div class="col-xs-4">
+						                            <i class="fa fa-bookmark fa-5x"></i>
+						                        </div>
+						                        <div class="col-xs-6 text-center">
+						                            <span> Companies worked on more than 8 projects </span>
+						                            <h2 class="font-bold">#{tenderBean.applicationNmbrProjects(tender)} %</h2>
+						                        </div>
+						                    </div>
+						                </div>
+            						</div>
+            						
+            						<div class="col-lg-6">
+						                <div class="widget style1 yellow-bg">
+						                    <div class="row">
+						                        <div class="col-xs-4">
+						                            <i class="fa fa-user-circle fa-5x"></i>
+						                        </div>
+						                        <div class="col-xs-6 text-center">
+						                            <span> Companies with a developed profile </span>
+						                            <h2 class="font-bold">#{tenderBean.applicationNmbrProgress(tender)} %</h2>
+						                        </div>
+						                    </div>
+						                </div>
+            						</div>
+	                                
 	                            </div>
-	
+								 
+								
 	                        </div>
 	                        <div class="ibox-footer">
 	                            <span class="pull-right">
@@ -156,8 +202,13 @@
 	
 	                </div>
 	            </div>
-			
+	            
+	            
+	            
 		</ui:repeat>
+
+		
+		
 	</h:form>		
           
 

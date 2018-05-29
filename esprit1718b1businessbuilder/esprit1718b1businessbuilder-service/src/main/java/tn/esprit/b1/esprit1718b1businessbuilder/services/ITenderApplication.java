@@ -13,5 +13,8 @@ import tn.esprit.b1.esprit1718b1businessbuilder.utilities.IGenericDAO;
 public interface ITenderApplication extends IGenericDAO<TenderApplication> {
 	
 	public void apply(User user, Tender tender) throws ParseException;
-
+	public Long applicationNumber(Tender tender);
+	public Float applicationNmbrProgress (Tender tender);
+	public Float applicationNmbrRate(Tender tender);
+	public Float applicationNmbrProjects(Tender tender);
 }

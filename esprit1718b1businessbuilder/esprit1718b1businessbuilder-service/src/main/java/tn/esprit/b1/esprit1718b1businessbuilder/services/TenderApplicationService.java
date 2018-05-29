@@ -8,6 +8,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Tender;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.TenderApplication;
@@ -45,6 +46,53 @@ public class TenderApplicationService extends GenericDAO<TenderApplication> impl
 		
 		em.persist(application);
 		
+	}
+
+	@Override
+	public Long applicationNumber(Tender tender) {
+		
+		TypedQuery<Long> k= em.createQuery("select Count(ta) from TenderApplication ta inner join ta.tender t where ta.tender=:tender",Long.class);
+		k.setParameter("tender", tender);	
+		 return k.getSingleResult() ;
+	}
+
+	@Override
+	public Float applicationNmbrProgress(Tender tender) {
+		
+		TypedQuery<Long> k= em.createQuery("select Count(ta) from TenderApplication ta inner join ta.company c where c.progress >=80 AND ta.tender=:tender",Long.class);
+		k.setParameter("tender", tender);
+		
+		if(applicationNumber(tender)==0){
+			return (float)0;
+		}
+		
+		return (float) ((k.getSingleResult()*100)/(applicationNumber(tender)));
+	}
+
+	@Override
+	public Float applicationNmbrRate(Tender tender) {
+
+		TypedQuery<Long> k= em.createQuery("select Count(ta) from TenderApplication ta inner join ta.company c where c.rate >=4 AND ta.tender=:tender",Long.class);
+		k.setParameter("tender", tender);
+		
+		if(applicationNumber(tender)==0){
+			return (float)0;
+		}
+		
+		return (float) ((k.getSingleResult()*100)/(applicationNumber(tender)));
+	}
+
+	@Override
+	public Float applicationNmbrProjects (Tender tender) {
+		
+		TypedQuery<Long> k= em.createQuery("select Count(ta) from TenderApplication ta inner join ta.company c where c.nbrprojects >=8 AND ta.tender=:tender",Long.class);
+		k.setParameter("tender", tender);
+		
+		if(applicationNumber(tender)==0){
+			return (float)0;
+		}
+		
+		return (float) ((k.getSingleResult()*100)/(applicationNumber(tender)));
 	}
 
 }

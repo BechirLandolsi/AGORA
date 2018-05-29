@@ -236,6 +236,7 @@ public class EventBean implements Serializable{
 		Company c =new Company();
 		c=(Company)loginBean.getUser();
 		events= eventService.findEventByCompany(c.getId());
+		System.out.println(events);
 		remindedEvents=eventService.EventReminder(events);
 		System.out.println(remindedEvents);
 		return remindedEvents;
@@ -323,6 +324,8 @@ public class EventBean implements Serializable{
 		
 	
 	}
+
+	
 
 	public void setEvents(List<Event> events) {
 		this.events = events;

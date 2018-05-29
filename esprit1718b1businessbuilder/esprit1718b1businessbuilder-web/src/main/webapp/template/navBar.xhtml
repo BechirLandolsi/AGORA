@@ -57,12 +57,12 @@
                             <ul class="dropdown-menu dropdown-alerts">
                              <ui:repeat var="Listremind" value="#{eventBean.Reminder()}">
                             <li>
-                            <a href="mailbox.html">
+                           
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> #{Listremind.event_name}
-                                    <span class="pull-right text-muted small"></span>
-                                </div>
-                            </a>
+                                    <i class="fa fa-envelope fa-fw"></i>  #{Listremind.event_name} is coming soon (2 days or less)
+                                    <span class="pull-right text-muted small"></span> 
+      </div>
+                           
                         </li>
                         </ui:repeat>
                                 <li>

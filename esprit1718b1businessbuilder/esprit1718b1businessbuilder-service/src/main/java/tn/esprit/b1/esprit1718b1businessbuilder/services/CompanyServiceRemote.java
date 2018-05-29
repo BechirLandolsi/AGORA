@@ -32,8 +32,9 @@ public interface CompanyServiceRemote extends UserServiceRemote {
 		public void incrementVisiteProfile(Company c);
 		public List<Object []> nbrcompanyperService(Company c);
 		public void countnbrs(Company c) ;
-		
+		public Contact findContact(Company c1 , Company c2);
 		public void ActivityRate (Company c);
+		public void RemoveContact(Company c) ;
 		
 }
 

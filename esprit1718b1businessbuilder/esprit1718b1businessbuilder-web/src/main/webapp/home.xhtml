@@ -65,8 +65,24 @@
 	
 	                                    <div>
 	                                        <div class="pull-right">
-	                                            <h:commandButton value="Apply" action="#{tenderBean.apply(tender)}" class="btn btn-primary" />
-	                                            <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
+	                                        <div></div>
+	                                        <table> 
+	                                        <tr> 
+	                                        <td>   <h:commandButton value="Apply" action="#{tenderBean.apply(tender)}" class="btn btn-primary" /></td>
+	                                        
+	                                        <td>
+	             
+	                                        
+	                                        
+	                                         <h:commandButton value="Add to my Contacts" action="#{contactBean.addtoContacts(tender.companyTender)}"  class="btn btn-warning" /></td>
+	                                        </tr>
+	                                        
+	                                        
+	                                        </table>
+	                                          
+	                                            
+	                                           
+	                                            
 	                                        </div>
 	                                    </div>
 	

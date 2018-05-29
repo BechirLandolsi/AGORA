@@ -40,19 +40,23 @@ public class MariemMain {
     String jndiName ="esprit1718b1businessbuilder-ear/esprit1718b1businessbuilder-service/CompanyService!tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote";
     Context contextt = new InitialContext();
     CompanyServiceRemote proxy = (CompanyServiceRemote) contextt.lookup(jndiName);
-    Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
-	Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
-	Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F1","informatique",5,"excellent","vermeg.jpg");
-
+ //   Company c1 = new Company("Orange","orangelogin","orangepass","orange@gmail.com","CEO_Orange","Tunis",(long)71322111,"0T1","Telecommunication",4,"good","orange.jpg");
+//	Company c2 = new Company("Adidas","adidaslogin","adidaspass","adidas@gmail.com","CEO_adidas","France",(long)339585789,"0F1","Sport",5,"excellent","adidas.jpg");
+//	Company c3 = new Company("Vermeg","vermeglogin","vermegpass","vermeg@gmail.com","CEO_vermeg","France",(long)339585789,"0F1","informatique",5,"excellent","vermeg.jpg");
+   // Company c1 = new Company("Michelin","michelinlogin","michpass","michelin@gmail.com","CEO_Michelin","Allemagne",(long)4585269,"0D5","Production-Roue",4,"good","michelin.jpg");
+	Company c2 = new Company("Berchka","berchkalogin","berchkapass","berchka@gmail.com","CEO_Berchka","Espagne",(long)339585789,"0E17","Vetement",5,"excellent","Zara.jpg");
+	Company c3 = new Company("pullANDbear","pullANDbearlogin","pullANDbearpass","pullANDbear@gmail.com","CEO_pullANDbear","Tunisie",(long)71852963,"0T13","Vetement",5,"excellent","Astral.jpg");
 	
-	Company c = proxy.findBy((long)2) ;
+	Company c8 = proxy.findBy((long)2) ;
 	
 	//System.out.println(proxy.ActivityRate(c));
-	//proxy.add(c1);
-    //proxy.add(c2);
-    //proxy.add(c3);
-/*	Contact c = new Contact() ;
-	for (Object[] o : proxy.nbrcompanyperService(c2) ){
+//	proxy.add(c1);
+    proxy.add(c2);
+    proxy.add(c3);
+    
+	Contact c = proxy.findContact(proxy.findBy((long)7), proxy.findBy((long)3));
+	System.out.println(c.toString());
+	/*for (Object[] o : proxy.nbrcompanyperService(c2) ){
 		 System.out.println(o[0]);
 		 System.out.println(o[1]);
 	 }*/

@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	template="/template/template.xhtml">
+	template="/templateStat.xhtml">
 
 	<ui:define name="pageTitle">
 				PROFILE PAGE
@@ -64,7 +64,7 @@
                         <tr>
                             <td>
                               <i class="fa fa-briefcase fa-2x">  </i>
-                                <strong><h:outputText value="#{contactBean.company.nbrprojects}"/></strong> Projects
+                                <strong><h:outputText value="#{contactBean.numberofprojects}"/></strong> Projects
                             </td>
                             <td>
                               <i class="fa fa-child fa-2x"></i>
@@ -79,13 +79,13 @@
                             </td>
                             <td>
                               <i class="fa fa-asterisk fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrorders}"/></strong> Orders
+                                <strong><h:outputText value="#{contactBean.ord}"/></strong> Orders
                             </td>
                         </tr>
                         <tr>
                             <td>
                               <i class="fa fa-eye fa-2x"></i>
-                                <strong><h:outputText value="#{contactBean.company.nbrorders}" /></strong> Profile Visits
+                                <strong><h:outputText value="#{contactBean.company.visite}" /></strong> Profile Visits
                             </td>
                             <td>
                               <i class="fa fa-user fa-2x"></i>
@@ -95,8 +95,10 @@
                         </tbody>
                     </table>
                 </div>
-                
-                <div class="col-lg-3">
+             
+             
+             
+              <div class="col-lg-3">
                 <div class="widget style1 lazur-bg">
                     <div class="row">
                         <div class="col-xs-4">
@@ -109,23 +111,22 @@
                     </div>
                 </div>
             </div>
+             
+             
+               
+             
+             
+             
             
-                <div class="col-lg-6">
+               
+            
+               
+            
+            
+                <div class="col-md-4">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Horizontal bar chart </h5>
-                        </div>
-                        <div class="ibox-content">
-                            <div id="ct-chart4" class="ct-perfect-fourth"></div>
-                        </div>
-                    </div>
-                </div>
-            
-            
-                <div class="col-md-8">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Activites</h5>
+                            <h5>More Informations : </h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -144,23 +145,20 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="ibox-content">
+                        <div class="contact-box">
 
                             <div>
-                                <div class="feed-activity-list">
+                                <div class="contact-box">
 
                                     <div class="feed-element">
                                         <a href="#" class="pull-left">
                                              <img src="resources/img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"/>
                                         </a>
                                         <div class="media-body ">
-                                            <small class="pull-right text-navy">1m ago</small>
-                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> started following <strong>Monica Smith</strong>. <br></br>
-                                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                                            <div class="actions">
-                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                                                <a class="btn btn-xs btn-danger"><i class="fa fa-heart"></i> Love</a>
-                                            </div>
+                                         
+                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> is localized in <strong><h:outputText value="#{contactBean.company.adress}" /></strong>. <br></br>
+                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> passed our Risk Tests and it  got <strong><h:outputText value="#{contactBean.company.resultTest}" /></strong>. <br></br> 
+                                            <strong> <h:outputText value="#{contactBean.company.name}" /> </strong> is rated  <strong><h:outputText value="#{contactBean.company.rate}" /></strong> th in our application. <br></br>  
                                         </div>
                                     </div>
 
@@ -174,16 +172,53 @@
                                     
                                 </div>
 
-                                <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Show More</button>
+                               
 
                             </div>
 
+            
                         </div>
+                        
+                     
                     </div>
 
-                </div>
-                
-                
+                </div> <br></br> <br></br> <br></br>
+             
+                <div class="col-md-4">
+                  <div class="ibox float-e-margins">
+                 <div class="contact-box">
+                 <div class="ibox-title">
+                            <h5> Number of Projects per Sector : </h5>
+                         
+                        </div>
+                  <h:head> </h:head>     
+                <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+   
+    <p:chart type="bar" model="#{stat.animatedModel2}" style="width:400px;" />
+</h:panelGrid>
+</div>
+               </div> 
+             </div>
+             
+             
+             
+             <div class="col-md-4">
+                  <div class="ibox float-e-margins">
+                 <div class="contact-box">
+                 <div class="ibox-title">
+                            <h5>Activity rate </h5>
+                         
+                        </div>
+                  <h:head> </h:head>     
+                <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+   
+   <p:chart type="pie" model="#{stat2.pieModel2}" style="width:400px;height:300px" />
+</h:panelGrid>
+</div>
+               </div> 
+             </div>
+             
+             
              
                 </div>
              </div>

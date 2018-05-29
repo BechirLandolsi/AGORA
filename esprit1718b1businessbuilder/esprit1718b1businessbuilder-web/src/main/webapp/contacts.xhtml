@@ -35,9 +35,12 @@
           <h:form >
         <ui:repeat var="contact" value="#{contactBean.Listcontact()}">
             <div class="col-lg-3">
+             
+                       
+                   
                 <div class="contact-box ">
                 
-                
+              
                 
                         <h3 class="m-b-xs text-center"><strong> <h:outputText value="#{contact.name}" /> </strong></h3>
  				
@@ -49,18 +52,15 @@
                            Email : <h:outputText value="#{contact.email}" /><br></br> 
                             <abbr title="Phone">Phone:</abbr> <h:outputText value="#{contact.number}" />
                         </address>
-                       
-                
+                  
+                  
 
                    
                     <div class="contact-box-footer text-center">
                         <div class="m-t-xs btn-group">
-                         <h:commandButton action="#{contactBean.ViewProfile(contact)}" class="btn btn-primary block full-width m-b" value="View Profile"></h:commandButton>
-                            <a class="btn btn-xs btn-white"><i class="fa fa-envelope"></i> Email</a>
-                            
-                            <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow </a>
-                        
-                         <h:commandButton action="#{contactBean.incrementFollewers(contact)}" class="btn btn-primary block full-width m-b" value="Follow"></h:commandButton>
+                         <h:commandButton action="#{contactBean.ViewProfile(contact)}" class="btn btn-primary block full-width m-b fa fa-user-plus" value="View Profile"></h:commandButton>
+                    
+                         <h:commandButton action="#{contactBean.incrementFollewers(contact)}" class="btn btn-warning block full-width m-b fa fa-user-plus"  value="Follow"></h:commandButton>
                           
                         </div>
                     </div>
@@ -68,6 +68,7 @@
                 </div>
             </div>
             </ui:repeat> 
+            
              </h:form>   
 </div>
 </div>

@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.Contact;
+import tn.esprit.b1.esprit1718b1businessbuilder.entities.User;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.CompanyServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.OrderServiceRemote;
 import tn.esprit.b1.esprit1718b1businessbuilder.services.ProjectRemote;
@@ -19,11 +21,54 @@ public class ContactBean {
 	
 	private List <Company> contacts ;
 	private Company company ;
+	
+	private Contact cont ;
 	public static int nbrProjectsPerCompany ;
 	public static int nbrOrdersPerCompany ;
 	
-	private long numberofprojects ;
+	public long numberofprojects ;
+	public long profileVisitis;
+	
+	public long ord ;
+	public long getOrd() {
+		return ord;
+	}
+
+	public void setOrd(long ord) {
+		this.ord = ord;
+	}
+
+	public long getProfileVisitis() {
+		return profileVisitis;
+	}
+
+	public void setProfileVisitis(long profileVisitis) {
+		this.profileVisitis = profileVisitis;
+	}
+
 	private String sector;
+	private User loggedCompany;
+	
+	@ManagedProperty(value="#{identity}")
+	private Identity loginBean;
+	
+	
+	public User getLoggedCompany() {
+		return loggedCompany;
+	}
+
+	public void setLoggedCompany(User loggedCompany) {
+		this.loggedCompany = loggedCompany;
+	}
+
+	public Contact getCont() {
+		return cont;
+	}
+
+	public void setCont(Contact cont) {
+		this.cont = cont;
+	}
+
 	public static int getNbrProjectsPerCompany() {
 		return nbrProjectsPerCompany;
 	}
@@ -92,15 +137,32 @@ public class ContactBean {
 
 	public List<Company> Listcontact()
 	{
-		return contacts = CompanyService.getContactsByCompany( (long)2);
+		loggedCompany= loginBean.getUser(); 
+		return contacts = CompanyService.getContactsByCompany(  loggedCompany.getId());
 	}
 	
+	public Identity getLoginBean() {
+		return loginBean;
+	}
+
+	public void setLoginBean(Identity loginBean) {
+		this.loginBean = loginBean;
+	}
+
 	public List<Object[]> listProjectsBySector(){
-		
-		return projectService.getProjectsPerCompanyBySector(CompanyService.findBy((long)3));
+		loggedCompany= loginBean.getUser(); 
+		return projectService.getProjectsPerCompanyBySector((Company) loggedCompany );
 		
 	}
 	
+	
+	
+	public void addtoContacts(Company c){
+		loggedCompany= loginBean.getUser(); 
+		Contact c1 = new Contact ();
+		CompanyService.addContact(c1,(Company) loggedCompany , c);
+		
+	}
 	
 	
 	
@@ -112,12 +174,16 @@ public class ContactBean {
 		CompanyService.countnbrs(c);
 		CompanyService.ActivityRate(c);
 		System.out.println("nbr projects per Company"+CompanyService.nbProjectByCompany(c) );
+		
+		numberofprojects=CompanyService.nbProjectByCompany(c);
+		ord=orderService.findAllOrder(c).size();
+		//profileVisitis=profileVisitis+1;
 		//System.out.println("nbr company : "+CompanyService.nbrcompanyperService("Sport"));
 		System.out.println("nbr orders per company " +orderService.findAllOrder(c).size());
 		
 		 for (Object[] o : projectService.getProjectsPerCompanyBySector(c)){
-			 numberofprojects= (long) o[0];
-			 sector=(String) o[1];
+			// numberofprojects= (long) o[0];
+			 //sector=(String) o[1];
 			 System.out.println(o[0]);
 			 System.out.println(o[1]);
 		 }

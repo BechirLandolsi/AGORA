@@ -31,10 +31,42 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	@PersistenceContext(unitName="sample-project-ejb")
 	EntityManager em ; 
 	
+	
+	
+	public float socialActivity;
+	public float proActiviy;
+	
+	
+	public EntityManager getEm() {
+		return em;
+	}
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+	public OrderServiceRemote getOrderService() {
+		return orderService;
+	}
+	public void setOrderService(OrderServiceRemote orderService) {
+		this.orderService = orderService;
+	}
+	public float getSocialActivity() {
+		return socialActivity;
+	}
+	public void setSocialActivity(float socialActivity) {
+		this.socialActivity = socialActivity;
+	}
+	public float getProActiviy() {
+		return proActiviy;
+	}
+	public void setProActiviy(float proActiviy) {
+		this.proActiviy = proActiviy;
+	}
+	
 	@EJB
 	OrderServiceRemote orderService ;
 	
-	
+	@EJB
+	ProjectRemote projectService ;
 	@Override
 	public List<Company> findAllCompany() {
 		
@@ -78,6 +110,18 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 									.setParameter("id",id)
 									.getSingleResult();
 		
+		return c ;
+		
+	}
+	
+	@Override
+	public Contact findContact(Company c1, Company c2){
+		
+		Contact c = null ;
+		c = em.createQuery("Select c FROM Contact c WHERE c.CompanyContact=:id1 AND c.Company=:id2",Contact.class)
+				.setParameter("id1", c1)
+				.setParameter("id2", c2)
+				.getSingleResult();
 		return c ;
 		
 	}
@@ -213,7 +257,8 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	public void countnbrs(Company c) {
 		
 		c.setNbrorders(orderService.findAllOrder(c).size());
-		c.setNbrprojects((int) this.nbProjectByCompany(c) );
+		c.setNbrprojects(projectService.getProjectsPerCompanyBySector(c).size() );
+		System.out.println("nombre de projets : " + projectService.getProjectsPerCompanyBySector(c).size() );
 		em.merge(c);
 		
 	}
@@ -222,11 +267,17 @@ public class CompanyService extends UserService implements CompanyServiceRemote{
 	public void ActivityRate(Company c) {
 		
 		this.findBy(c.getId());
-		float socialActivity = ((c.getNbrfolowers()+c.getNbrfolowings()+c.getVisite())/3)*100;
-		float proActivity =((c.getNbrprojects()+c.getNbrorders())/3)*100;
-		float activity = (float) ((0.4 *socialActivity) + (0.6*proActivity)) ;
+		 socialActivity = (float) (((c.getNbrfolowers()+c.getNbrfolowings()+c.getVisite())/3));
+		 proActiviy =(float) (((c.getNbrprojects()+c.getNbrorders())/3));
+		float activity = (float) ((0.4 *socialActivity) + (0.6*proActiviy)) ;
 		c.setActivity(activity);
 	    em.merge(c);
+	}
+	
+	@Override
+	public void RemoveContact(Company c) {
+		
+		
 	}
 	
 	

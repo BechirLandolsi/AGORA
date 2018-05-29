@@ -35,7 +35,7 @@ public class PearMain {
 		IProvision provProxy = (IProvision) context.lookup(provJNDI);
 	/************************ORDERS************************************/	
 
-	Company c1 = companyProxy.findBy((long)32) ; 
+	    Company c1 = companyProxy.findBy((long)32) ; 
 
 
 		Company c3 = new Company("Astral","Astrallogin","Astralgpass","Astral@gmail.com","CEO_Astral","Tunisie",(long)71852963,"0T13","peinture",5,"excellent","Astral.jpg");
@@ -66,7 +66,7 @@ public class PearMain {
 	//Company c2 = companyProxy.findBy((long)36) ; 
 
 	/*Company c1 = companyProxy.findBy((long)32) ; 
->>>>>>> branch 'master' of https://github.com/BechirLandolsi/AGORA.git
+
 	Company c2 = companyProxy.findBy((long)36) ; 
 
 	
@@ -74,11 +74,11 @@ public class PearMain {
 	Produit p2 = new Produit("Ballons de foot",(long)500,null,(float)39,(float)50,null);
 	Produit p3 = new Produit("peinture speciale grise",(long)250,null,(float)44,(float)60,null);
 	Produit p4 = new Produit("peinture dain champagne ",(long)120,null,(float)49,(float)63,null);
-<<<<<<< HEAD
+
 	Produit p5 = new Produit("pinceau",(long)120,null,(float)8,(float)12,null);
 	//productProxy.addProduct(p1, c1);
-=======
-<<<<<<< HEAD
+
+
 	Produit p5 = new Produit("pinceau",(long)120,null,(float)8,(float)12,null);*/
 	//productProxy.addProduct(p1, c1);
 
@@ -97,7 +97,6 @@ public class PearMain {
 
 	/*Produit p6 = productProxy.findProduct(16);
 
->>>>>>> branch 'master' of https://github.com/BechirLandolsi/AGORA.git
 	Produit p7 = productProxy.findProduct(5);
 	Produit p8 = productProxy.findProduct(25);
 	/*Orderproxy.addProductToOrder(p6, c1, 125);

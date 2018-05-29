@@ -179,9 +179,9 @@ public class AhmedMain {
 	        	}
 	        }
 	   }*/
-	   for (Produit p : proxyF.getRecommandation(2)){
+	  /* for (Produit p : proxyF.getRecommandation(2)){
 		   System.out.println(p.getDescription());
-	   }
+	   }*/
 
 	   
 	                                     // proxyF.NoteUnderComment();
@@ -200,8 +200,9 @@ public class AhmedMain {
 	  //  System.out.println(proxyF.getAllForum());
  	 	//System.out.println(proxyF.nbrCommentForm(2));
 	    //System.out.println(proxyF.nbrCompanyForum(2));
+	   System.out.println(currencyConvertion( "USD","TND" ,5));
     }
-/*	public static float currencyConvertion(String from,String to , float price)
+	public static float currencyConvertion(String from,String to , float price)
 	{
 		String response = HttpRequest
 				.get("https://v3.exchangerate-api.com/bulk/428d417084fe51418dc991a4/"+from)
@@ -211,7 +212,7 @@ public class AhmedMain {
 		JSONObject status = jsonObject.getJSONObject("rates");
 		Double eur = status.getDouble(to);
 		return (float) (eur * price) ;
-	} */
+	} 
 	//////////////////////////////////////FORUM////////////////////////////////////////////////////////////////////////////////
 	
 

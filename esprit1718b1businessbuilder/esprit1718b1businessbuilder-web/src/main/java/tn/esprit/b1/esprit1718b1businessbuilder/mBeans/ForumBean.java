@@ -7,9 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
+
 
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Comment;
 import tn.esprit.b1.esprit1718b1businessbuilder.entities.Company;
@@ -21,6 +19,9 @@ import tn.esprit.b1.esprit1718b1businessbuilder.services.ForumService;
 @ManagedBean
 @SessionScoped
 public class ForumBean {
+	
+	private Float quantity ;
+	private Float res;
     private String comment ;
     private String undercomment ;
 	private List<Forum> items;
@@ -145,7 +146,27 @@ public class ForumBean {
 	}
 	
 	
-	
+	public float CurrencyConverter () {
+	 
+		Company c = new Company() ;
+		c= (Company)identity.getUser() ;
+		System.out.println(f.getCompanyForum().getCurrency());
+		System.out.println(quantity);
+	res = forumservice.currencyConvertion(f.getCompanyForum().getCurrency(),c.getCurrency() , quantity) ;
+	return res ;
+	}
+	public Float getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Float quantity) {
+		this.quantity = quantity;
+	}
+	public Float getRes() {
+		return res;
+	}
+	public void setRes(Float res) {
+		this.res = res;
+	}
 	
 	
 }

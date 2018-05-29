@@ -70,18 +70,62 @@
                     </div>
                     <div class="clearfix"></div>
                         </a>
-                          <div class="col-lg-6 h-100 p-lg">
-                                        <p>A basic sweetalert message</p>
-                                        <button class="btn btn-primary btn-sm demo1">Run example</button>
-                                    </div>
-                </div>
-               
-                  
                          
-                                
-                          
-                       
-                   
+                                    
+                        <div class="ibox-content">
+                            <div class="text-center">
+                            <a data-toggle="modal" class="btn btn-primary" href="#modal-form">Convert Currency</a>
+                            </div>
+                            <div id="modal-form" class="modal fade" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Convert</h3>
+
+                                                    <p>Real Time Currency Converter</p>
+
+                                                    <form jsf:id="aaaaaaaaaa">
+                                                        <div class="form-group"><label>Quantity of #{forumBean.f.productF.description}</label>  <input jsf:id="inputq" type="number" value="#{forumBean.quantity}" /></div>
+                                                        
+                                                        <div class="widget style1 lazur-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-7">
+                               <strong>Price </strong>
+                            </div>
+                            <div class="col-xs-5 text-right">
+                      <label jsf:id="label55" value="#{forumBean.res}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                              <button class="ladda-button ladda-button-demo btn btn-primary"   type="submit" jsf:action="#{forumBean.CurrencyConverter()}">
+                                                                convert
+                                                                </button>                          
+                                                       
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="col-sm-6"><h4>Stock : #{forumBean.f.productF.stock} </h4>
+                                                    <p>Price per unit : #{forumBean.f.productF.price}</p>
+                                                    <p class="text-center">
+                                                        <a href="#">    <img alt="image" class="img-circle  img-responsive" src="resources/img/#{forumBean.f.productF.path}"/>
+</a>
+                                                    </p>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                          </div>          
+                                    
+                                    
+                                    
+                                    
+                                    
+                </div>
                 </div>
                             <div class="col-lg-2">
                 <div class="widget lazur-bg no-padding">
@@ -216,7 +260,7 @@
                     </div>
                 </div>
                 </c:forEach>
-               
+          
                 
             </div>
             </div>

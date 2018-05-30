@@ -15,14 +15,13 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="1565.0">
          <children>
-            <ImageView fitHeight="768.0" fitWidth="1208.0" layoutX="-36.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="741.0" fitWidth="1300.0" layoutX="-3.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/business-support.jpg" />
+                  <Image url="file:///C:/Users/Mariem/git/esprit1718b1businessbuilder/esprit1718b1businessbuilder/esprit1718b1businessbuilder-client/src/main/java/tn/esprit/b1/esprit1718b1businessbuilder/app/client/images/Business.jpg" />
                </image>
                <effect>
-                  <MotionBlur radius="8.5" />
-               </effect>
-            </ImageView>
+                  <MotionBlur radius="31.75" />
+               </effect></ImageView>
             <AnchorPane layoutX="351.0" layoutY="154.0" opacity="0.84" prefHeight="467.0" prefWidth="379.0" style="-fx-background-color: #EAEAEA;" styleClass="login-card">
                <children>
                   <JFXButton fx:id="btnLogin" buttonType="RAISED" layoutX="37.0" layoutY="302.0" onAction="#doLogin" prefHeight="42.0" prefWidth="320.0" ripplerFill="#374fb1" style="-fx-background-color: #374fb1; -fx-text-fill: white;" text="Login">
